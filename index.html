@@ -3,686 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>html{overflow-x:hidden;}</style>
+<title>Segmento Tecnologia — Audiência Terra & Vivo Ads</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  html { overflow-x: hidden; }
-</style>
-<title>Qual é o público que vai ao show do Bad Bunny?</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --purple: #7B2D8B;
-    --orange: #F26522;
-    --dark: #3d2a4a;
-    --mid: #555;
-    --light: #f5f5f5;
-    --white: #ffffff;
-    --bar-bg: #e8e0ec;
-    --card-bg: #fff;
-    --shadow: 0 2px 12px rgba(123,45,139,0.08);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: #ffffff;
-    color: var(--dark);
-    font-size: 13px;
-    line-height: 1.5;
-  }
+:root{
+  --cyan:#00D4FF;--blue:#0A6EFF;--dark:#0B1120;--mid:#94A3B8;--card:#111827;
+  --card2:#1E293B;--white:#F8FAFC;--green:#10B981;--orange:#F59E0B;--purple:#8B5CF6;
+  --pink:#EC4899;--bar-bg:#1E293B;--shadow:0 4px 20px rgba(0,212,255,0.08);
+  --glow-cyan:0 0 12px 2px rgba(0,212,255,0.5),0 0 28px 4px rgba(0,212,255,0.2);
+  --glow-blue:0 0 12px 2px rgba(10,110,255,0.5),0 0 28px 4px rgba(10,110,255,0.2);
+  --glow-green:0 0 12px 2px rgba(16,185,129,0.5),0 0 28px 4px rgba(16,185,129,0.2);
+  --glow-orange:0 0 12px 2px rgba(245,158,11,0.5),0 0 28px 4px rgba(245,158,11,0.2);
+  --glow-purple:0 0 12px 2px rgba(139,92,246,0.5),0 0 28px 4px rgba(139,92,246,0.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--dark);color:var(--white);font-size:13px;line-height:1.5;}
 
-  /* HERO BANNER */
-  .hero-banner {
-    position: relative;
-    width: 100%;
-    min-height: 340px;
-    border-radius: 0;
-    overflow: hidden;
-    background: #2a1a35;
-    margin: 0;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('https://dynamicmedia.livenationinternational.com/l/e/n/0f4152a7-9281-424a-8521-51469d4e2f90.jpg?format=webp&width=3840&quality=75');
-    background-size: cover;
-    background-position: 60% 20%;
-    filter: brightness(0.75) saturate(1.1);
-    transform: none;
-  }
-  .hero-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      105deg,
-      rgba(20,8,30,0.92) 0%,
-      rgba(20,8,30,0.65) 38%,
-      rgba(20,8,30,0.1) 70%,
-      transparent 100%
-    );
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 44px 60px 36px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 340px;
-  }
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--orange);
-    color: white;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 20px;
-    margin-bottom: 22px;
-    width: fit-content;
-  }
-  .hero-badge::before { content: '⚡'; font-size: 11px; }
-  .hero-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 52px;
-    font-weight: 800;
-    line-height: 1.05;
-    color: white;
-    margin-bottom: 6px;
-    letter-spacing: -1px;
-  }
-  .hero-title span {
-    color: var(--orange);
-    display: block;
-  }
-  .hero-sampling {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 18px;
-    color: rgba(255,255,255,0.8);
-    font-size: 13px;
-  }
-  .hero-sampling-icon {
-    font-size: 16px;
-    opacity: 0.7;
-  }
-  .hero-sampling strong {
-    color: white;
-    font-weight: 700;
-    border-bottom: 2px solid var(--orange);
-    padding-bottom: 1px;
-  }
-  .header-stat-strip {
-    display: flex;
-    gap: 0;
-    background: #2a1a35;
-    border-top: none;
-  }
-  .header-stat {
-    flex: 1;
-    padding: 16px 20px;
-    border-right: 1px solid rgba(255,255,255,0.07);
-    text-align: center;
-  }
-  .header-stat:last-child { border-right: none; }
-  .header-stat-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    color: var(--orange);
-    line-height: 1;
-  }
-  .header-stat-label {
-    font-size: 10px;
-    color: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 3px;
-  }
+/* HERO */
+.hero-banner{position:relative;width:100%;min-height:360px;overflow:hidden;background:linear-gradient(135deg,#0B1120 0%,#0f172a 40%,#1a1040 100%);}
+.hero-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);
+  background-size:40px 40px;animation:gridMove 20s linear infinite;}
+@keyframes gridMove{0%{transform:translate(0,0);}100%{transform:translate(40px,40px);}}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.3;}
+.hero-orb-1{width:400px;height:400px;background:var(--cyan);top:-100px;right:-50px;}
+.hero-orb-2{width:300px;height:300px;background:var(--blue);bottom:-80px;left:-60px;}
+.hero-orb-3{width:200px;height:200px;background:var(--purple);top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-content{position:relative;z-index:2;padding:50px 60px 40px;display:flex;flex-direction:column;justify-content:flex-end;min-height:360px;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.3);color:var(--cyan);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:22px;width:fit-content;}
+.hero-badge::before{content:'⚡';font-size:11px;}
+.hero-title{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;color:white;margin-bottom:4px;letter-spacing:-1.5px;}
+.hero-title span{background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;}
+.hero-sub{color:var(--mid);font-size:14px;margin-top:10px;max-width:600px;line-height:1.6;}
+.hero-sampling{display:flex;align-items:center;gap:8px;margin-top:18px;color:rgba(255,255,255,0.6);font-size:13px;}
+.hero-sampling strong{color:var(--cyan);font-weight:700;border-bottom:2px solid var(--cyan);padding-bottom:1px;}
 
-  /* BODY WRAPPER */
-  .report-body {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 0 40px;
-    background: #ffffff;
-    border-radius: 0;
-  }
+/* STAT STRIP */
+.header-stat-strip{display:flex;gap:0;background:#0f172a;border-top:1px solid rgba(0,212,255,0.1);}
+.header-stat{flex:1;padding:18px 20px;border-right:1px solid rgba(255,255,255,0.05);text-align:center;}
+.header-stat:last-child{border-right:none;}
+.header-stat-value{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--cyan);line-height:1;text-shadow:0 0 14px rgba(0,212,255,0.6),0 0 30px rgba(0,212,255,0.2);}
+.header-stat-label{font-size:10px;color:var(--mid);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;}
 
-  /* SECTION DIVIDER */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 22px 20px 12px;
-  }
-  .section-num {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: var(--purple);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    color: var(--purple);
-    letter-spacing: 1px;
-  }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--purple) 0%, transparent 100%);
-    opacity: 0.3;
-  }
+/* REPORT BODY */
+.report-body{width:100%;margin:0 auto;padding:0 0 40px;background:var(--dark);}
 
-  /* CARDS GRID */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 10px;
-    padding: 0 20px 8px;
-  }
+/* SECTION DIVIDER */
+.section-divider{display:flex;align-items:center;gap:12px;padding:28px 24px 14px;}
+.section-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:var(--dark);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:22px;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1.5px;}
+.section-line{flex:1;height:1px;background:linear-gradient(to right,rgba(0,212,255,0.3),transparent);opacity:0.5;}
 
-  /* STAT CARD label/total only */
-  .stat-card.orange { border-top-color: var(--orange); }
-  .stat-card-pct {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--purple);
-    line-height: 1;
-  }
-  .stat-card.orange .stat-card-pct { color: var(--orange); }
-  .stat-card-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--mid);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 5px;
-  }
-  .stat-card-total {
-    font-size: 10px;
-    color: #999;
-    margin-top: 3px;
-  }
+/* THREE COL DATA */
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:0 24px 8px;}
+.data-card{background:var(--card);border-radius:12px;padding:20px;border:1px solid rgba(255,255,255,0.05);transition:transform 0.25s,box-shadow 0.25s;}
+.data-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+.data-card-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.data-card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.data-card-icon.internet{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);}
+.data-card-icon.terra{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);}
+.data-card-icon.vivo{background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);}
+.data-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+.data-card-title.internet{color:var(--cyan);}
+.data-card-title.terra{color:var(--green);}
+.data-card-title.vivo{color:var(--purple);}
 
-  /* DONUT CHART */
-  .donut-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(160px, 200px));
-    gap: 14px;
-    padding: 0 20px 8px;
-    justify-content: center;
-  }
-  .donut-card {
-    background: white;
-    border-radius: 10px;
-    padding: 18px 14px 14px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .donut-title {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--mid);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-  }
-  .donut-wrap {
-    position: relative;
-    width: 90px;
-    height: 90px;
-  }
-  .donut-wrap svg { transform: rotate(-90deg); }
-  .donut-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  .donut-pct {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--purple);
-    line-height: 1;
-  }
-  .donut-sub {
-    font-size: 9px;
-    color: #999;
-  }
-  .donut-legend {
-    margin-top: 12px;
-    width: 100%;
-  }
-  .donut-legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-  .donut-legend-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .donut-legend-txt {
-    font-size: 10px;
-    color: var(--mid);
-    flex: 1;
-  }
-  .donut-legend-pct {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--dark);
-  }
+/* BAR ITEMS */
+.bar-item{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.bar-item:last-child{margin-bottom:0;}
+.bar-label{width:120px;font-size:11px;color:var(--mid);text-align:right;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar-track{flex:1;height:18px;background:var(--bar-bg);border-radius:4px;overflow:visible;position:relative;}
+.bar-fill{height:100%;border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.22,.61,.36,1),box-shadow 0.4s;box-shadow:0 0 0px transparent;}
+.bar-fill.cyan{background:linear-gradient(90deg,var(--cyan),var(--blue));}
+.bar-fill.green{background:linear-gradient(90deg,var(--green),#059669);}
+.bar-fill.purple{background:linear-gradient(90deg,var(--purple),#7C3AED);}
+.bar-fill.orange{background:linear-gradient(90deg,var(--orange),#D97706);}
+.bar-fill.pink{background:linear-gradient(90deg,var(--pink),#DB2777);}
+.bar-fill.glow-active.cyan{box-shadow:var(--glow-cyan);}
+.bar-fill.glow-active.green{box-shadow:var(--glow-green);}
+.bar-fill.glow-active.purple{box-shadow:var(--glow-purple);}
+.bar-fill.glow-active.orange{box-shadow:var(--glow-orange);}
+.bar-pct{width:42px;font-size:11px;font-weight:700;color:var(--white);flex-shrink:0;font-family:'JetBrains Mono',monospace;}
 
-  /* BAR CHART */
-  .bar-section {
-    background: white;
-    border-radius: 10px;
-    margin: 0 20px 14px;
-    padding: 18px 18px 14px;
-    box-shadow: var(--shadow);
-  }
-  .bar-section-title {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--purple);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 14px;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 8px;
-  }
-  .bar-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 9px;
-  }
-  .bar-item:last-child { margin-bottom: 0; }
-  .bar-label {
-    width: 130px;
-    font-size: 11px;
-    color: var(--mid);
-    text-align: right;
-    flex-shrink: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .bar-track {
-    flex: 1;
-    height: 18px;
-    background: var(--bar-bg);
-    border-radius: 4px;
-    overflow: visible;
-    position: relative;
-  }
-  .bar-pct {
-    width: 36px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--dark);
-    flex-shrink: 0;
-  }
+/* BAR SECTION */
+.bar-section{background:var(--card);border-radius:12px;margin:0 24px 14px;padding:20px;border:1px solid rgba(255,255,255,0.05);}
+.bar-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;}
+.bar-section-title.cyan{color:var(--cyan);}
+.bar-section-title.green{color:var(--green);}
+.bar-section-title.purple{color:var(--purple);}
 
-  /* INTERESTS TOP */
-  .interests-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    padding: 0 20px 8px;
-  }
-  .interests-card {
-    background: white;
-    border-radius: 10px;
-    padding: 18px;
-    box-shadow: var(--shadow);
-  }
-  .interests-card-title {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--purple);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 8px;
-  }
+/* HIGHLIGHT STRIP */
+.highlight-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 24px 8px;}
+.highlight-card{border-radius:12px;padding:22px 14px;text-align:center;transition:transform 0.25s,box-shadow 0.25s;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;}
+.highlight-card::before{content:'';position:absolute;inset:0;opacity:0.08;background:radial-gradient(circle at 50% 0%,currentColor,transparent 70%);}
+.highlight-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,212,255,0.2);}
+.highlight-card.cyan-bg{background:linear-gradient(135deg,rgba(0,212,255,0.12),rgba(10,110,255,0.08));border-color:rgba(0,212,255,0.2);color:var(--cyan);}
+.highlight-card.green-bg{background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(5,150,105,0.08));border-color:rgba(16,185,129,0.2);color:var(--green);}
+.highlight-card.purple-bg{background:linear-gradient(135deg,rgba(139,92,246,0.12),rgba(124,58,237,0.08));border-color:rgba(139,92,246,0.2);color:var(--purple);}
+.highlight-card.orange-bg{background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(217,119,6,0.08));border-color:rgba(245,158,11,0.2);color:var(--orange);}
+.highlight-pct{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;}
+.highlight-label{font-size:10px;color:var(--mid);text-transform:uppercase;letter-spacing:0.5px;margin-top:6px;line-height:1.4;}
 
-  /* TWO COL LAYOUT */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    padding: 0 20px 8px;
-  }
-  .full-col { padding: 0 20px 8px; }
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 24px 8px;}
+.full-col{padding:0 24px 8px;}
 
-  /* BIG HIGHLIGHT */
-  .highlight-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 0 20px 8px;
-  }
-  .highlight-pct {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    line-height: 1;
-    color: white;
-  }
-  .highlight-label {
-    font-size: 10px;
-    color: rgba(255,255,255,0.8);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 6px;
-    line-height: 1.4;
-  }
+/* DONUT GRID */
+.donut-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 24px 8px;justify-content:center;}
+.donut-card{background:var(--card);border-radius:12px;padding:18px 14px 14px;border:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;align-items:center;}
+.donut-title{font-size:10px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
+.donut-wrap{position:relative;width:90px;height:90px;}
+.donut-wrap svg{transform:rotate(-90deg);filter:drop-shadow(0 0 8px rgba(0,212,255,0.2));}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.donut-pct{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--cyan);line-height:1;}
+.donut-sub{font-size:9px;color:var(--mid);}
+.donut-legend{margin-top:12px;width:100%;}
+.donut-legend-item{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.donut-legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.donut-legend-txt{font-size:10px;color:var(--mid);flex:1;}
+.donut-legend-pct{font-size:10px;font-weight:700;color:var(--white);font-family:'JetBrains Mono',monospace;}
 
-  /* BUBBLE CLOUD */
-  .bubble-section {
-    background: white;
-    border-radius: 10px;
-    margin: 0 20px 14px;
-    padding: 18px;
-    box-shadow: var(--shadow);
-  }
-  .bubble-section-title {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--purple);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 14px;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 8px;
-  }
-  .bubble-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
-  .bubble-tag .bubble-pct { font-size: 10px; opacity: 0.8; }
-  .bubble-lg { font-size: 14px; padding: 8px 18px; }
-  .bubble-md { font-size: 12px; padding: 6px 14px; }
-  .bubble-sm { font-size: 10px; padding: 4px 10px; }
+/* STAT CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:0 24px 8px;}
+.stat-card{background:var(--card);border-radius:12px;padding:18px 14px;border:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;border-top:3px solid var(--cyan);transition:transform 0.2s,box-shadow 0.2s;}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,212,255,0.15);}
+.stat-card.green{border-top-color:var(--green);}
+.stat-card.purple{border-top-color:var(--purple);}
+.stat-card-pct{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;}
+.stat-card-pct.cyan{color:var(--cyan);}
+.stat-card-pct.green{color:var(--green);}
+.stat-card-pct.purple{color:var(--purple);}
+.stat-card-label{font-size:10px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:0.5px;margin-top:5px;}
+.stat-card-total{font-size:10px;color:rgba(148,163,184,0.5);margin-top:3px;font-family:'JetBrains Mono',monospace;}
 
-  /* FOOTER */
-  .report-footer {
-    background: #2a1a35;
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 16px;
-    font-size: 10px;
-    letter-spacing: 0.5px;
-  }
+/* BUBBLE */
+.bubble-section{background:var(--card);border-radius:12px;margin:0 24px 14px;padding:20px;border:1px solid rgba(255,255,255,0.05);}
+.bubble-section-title{font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;}
+.bubble-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+.bubble-tag{border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;transition:transform 0.2s,filter 0.2s;cursor:default;border:1px solid rgba(255,255,255,0.1);}
+.bubble-tag:hover{transform:scale(1.05);filter:brightness(1.15);}
+.bubble-tag .bubble-pct{font-size:10px;opacity:0.7;font-family:'JetBrains Mono',monospace;}
+.bubble-lg{font-size:13px;padding:8px 16px;}
+.bubble-md{font-size:11px;padding:6px 13px;}
+.bubble-sm{font-size:10px;padding:4px 10px;}
 
-  /* ── GLOW EFFECTS ── */
-  .bar-fill {
-    height: 100%;
-    background: var(--purple);
-    border-radius: 4px;
-    width: 0;
-    transition: width 1.2s cubic-bezier(.22,.61,.36,1), box-shadow 0.4s;
-    box-shadow: 0 0 0px transparent;
-  }
-  .bar-fill.glow-active {
-    box-shadow: 0 0 10px 2px rgba(123,45,139,0.55), 0 0 22px 4px rgba(123,45,139,0.22);
-  }
-  .bar-fill.orange { background: var(--orange); }
-  .bar-fill.orange.glow-active {
-    box-shadow: 0 0 10px 2px rgba(242,101,34,0.6), 0 0 22px 4px rgba(242,101,34,0.25);
-  }
-  .bar-fill.teal { background: #00a99d; }
-  .bar-fill.teal.glow-active {
-    box-shadow: 0 0 10px 2px rgba(0,169,157,0.6), 0 0 22px 4px rgba(0,169,157,0.25);
-  }
-  .bar-fill.pink { background: #e91e8c; }
-  .bar-fill.pink.glow-active {
-    box-shadow: 0 0 10px 2px rgba(233,30,140,0.6), 0 0 22px 4px rgba(233,30,140,0.25);
-  }
+/* INSIGHTS */
+.insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.insight-card{background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);border-left:4px solid var(--cyan);transition:transform 0.2s;}
+.insight-card:hover{transform:translateY(-2px);}
+.insight-card-title{font-family:'Bebas Neue',sans-serif;font-size:16px;margin-bottom:8px;}
+.insight-card p{font-size:12px;color:var(--mid);line-height:1.7;}
 
-  /* Donut glow on load */
-  .donut-card circle:not([stroke="#e0e0e0"]) {
-    filter: drop-shadow(0 0 6px rgba(123,45,139,0.5));
-  }
-  .donut-wrap svg {
-    transform: rotate(-90deg);
-    filter: drop-shadow(0 0 8px rgba(123,45,139,0.3));
-  }
+/* COMPARISON TABLE */
+.comp-table{width:100%;border-collapse:collapse;font-size:11px;}
+.comp-table thead tr{background:rgba(0,212,255,0.05);}
+.comp-table th{padding:10px 12px;text-align:left;color:var(--mid);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.06);letter-spacing:0.5px;}
+.comp-table th.internet{color:var(--cyan);}
+.comp-table th.terra{color:var(--green);}
+.comp-table th.vivo{color:var(--purple);}
+.comp-table td{padding:9px 12px;color:var(--mid);border-bottom:1px solid rgba(255,255,255,0.03);}
+.comp-table td:first-child{color:var(--white);font-weight:600;}
+.comp-table tbody tr:hover{background:rgba(0,212,255,0.03);}
+.comp-table .val{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;}
+.comp-table .val.cyan{color:var(--cyan);}
+.comp-table .val.green{color:var(--green);}
+.comp-table .val.purple{color:var(--purple);}
+.badge-sm{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.badge-sm.cyan{background:rgba(0,212,255,0.12);color:var(--cyan);}
+.badge-sm.green{background:rgba(16,185,129,0.12);color:var(--green);}
+.badge-sm.purple{background:rgba(139,92,246,0.12);color:var(--purple);}
 
-  /* Highlight card glow */
-  .highlight-card {
-    background: var(--purple);
-    color: white;
-    border-radius: 10px;
-    padding: 20px 14px;
-    text-align: center;
-    transition: transform 0.25s, box-shadow 0.25s;
-    box-shadow: 0 0 0 transparent;
-  }
-  .highlight-card:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 28px rgba(123,45,139,0.45);
-  }
-  .highlight-card.orange-bg { background: var(--orange); }
-  .highlight-card.orange-bg:hover { box-shadow: 0 8px 28px rgba(242,101,34,0.45); }
-  .highlight-card.dark-bg { background: #3d2a4a; }
-  .highlight-card.teal-bg { background: #00a99d; }
-  .highlight-card.teal-bg:hover { box-shadow: 0 8px 28px rgba(0,169,157,0.45); }
+/* FOOTER */
+.report-footer{background:#080d19;color:rgba(148,163,184,0.4);text-align:center;padding:20px;font-size:10px;letter-spacing:0.5px;border-top:1px solid rgba(0,212,255,0.08);}
 
-  /* Stat cards glow */
-  .stat-card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 16px 14px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    border-top: 3px solid var(--purple);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .stat-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(123,45,139,0.2);
-  }
-  .stat-card.orange:hover { box-shadow: 0 6px 24px rgba(242,101,34,0.25); }
+/* PDF BUTTON */
+.pdf-btn-wrap{width:100%;padding:16px 28px 0;display:flex;justify-content:flex-end;background:var(--dark);}
+.pdf-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:var(--dark);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(0,212,255,0.3);transition:all 0.2s;}
+.pdf-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,255,0.4);}
+.pdf-btn svg{flex-shrink:0;}
 
-  /* Header stat count-up glow */
-  .header-stat-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    color: var(--orange);
-    line-height: 1;
-    text-shadow: 0 0 14px rgba(242,101,34,0.7), 0 0 30px rgba(242,101,34,0.3);
-  }
+/* PRINT */
+@media print{
+  body{background:white!important;color:#1a1a1a!important;}
+  .pdf-btn-wrap{display:none!important;}
+  .bar-fill{box-shadow:none!important;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+}
 
-  /* Bubble glow on hover */
-  .bubble-tag {
-    border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: transform 0.2s, filter 0.2s;
-    cursor: default;
-  }
-  .bubble-tag:hover {
-    transform: scale(1.07);
-    filter: brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,0.3));
-  }
-
-  /* ── PDF EXPORT BUTTON ── */
-  .pdf-btn-wrap {
-    width: 100%;
-    padding: 16px 28px 0;
-    display: flex;
-    justify-content: flex-end;
-  }
-  .pdf-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--orange);
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(242,101,34,0.4);
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .pdf-btn:hover {
-    background: #d94f10;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(242,101,34,0.5);
-  }
-  .pdf-btn svg { flex-shrink: 0; }
-
-  /* ── PRINT / PDF styles ── */
-  @media print {
-    body { background: white !important; }
-    .pdf-btn-wrap { display: none !important; }
-    .hero-banner { border-radius: 0 !important; }
-    .report-body { border-radius: 0 !important; }
-    .bar-fill { box-shadow: none !important; }
-    .highlight-card:hover, .stat-card:hover { transform: none !important; box-shadow: var(--shadow) !important; }
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  }
-
-  /* ── MOBILE RESPONSIVE ── */
-  @media (max-width: 768px) {
-
-    html, body { overflow-x: hidden; width: 100%; }
-
-    /* PDF button */
-    .pdf-btn-wrap { padding: 12px 16px 0; }
-
-    /* Hero */
-    .hero-content { padding: 32px 20px 28px; min-height: 280px; }
-    .hero-title { font-size: 34px; }
-    .hero-bg { background-position: 70% 20%; }
-
-    /* Stat strip */
-    .header-stat-strip { flex-wrap: wrap; }
-    .header-stat {
-      flex: 1 1 33%;
-      min-width: 0;
-      padding: 12px 8px;
-      border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .header-stat-value { font-size: 20px; }
-    .header-stat-label { font-size: 9px; }
-
-    /* Section dividers */
-    .section-divider { padding: 18px 16px 10px; }
-
-    /* Donut grid → 2 cols */
-    .donut-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      padding: 0 16px 8px;
-      justify-content: stretch;
-    }
-
-    /* Bar sections */
-    .bar-section { margin: 0 16px 14px; padding: 14px; }
-    .bar-label { width: 90px; font-size: 10px; }
-    .bar-pct { width: 30px; font-size: 10px; }
-
-    /* Full col & two col */
-    .full-col { padding: 0 16px 8px; }
-    .two-col {
-      grid-template-columns: 1fr !important;
-      padding: 0 16px 8px;
-    }
-
-    /* Highlight strip → 2 cols */
-    .highlight-strip {
-      grid-template-columns: repeat(2, 1fr) !important;
-      padding: 0 16px 8px;
-    }
-    .highlight-pct { font-size: 32px; }
-
-    /* Interests grid → 1 col */
-    .interests-grid {
-      grid-template-columns: 1fr !important;
-      padding: 0 16px 8px;
-    }
-
-    /* Cards grid → 2 cols */
-    .cards-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      padding: 0 16px 8px;
-    }
-
-    /* Bubble cloud */
-    .bubble-section { margin: 0 16px 14px; }
-    .bubble-lg { font-size: 12px; padding: 6px 12px; }
-    .bubble-md { font-size: 11px; padding: 5px 10px; }
-
-    /* Persona cards */
-    .persona-inner {
-      grid-template-columns: 1fr !important;
-      padding: 16px !important;
-    }
-    .persona-header { flex-wrap: wrap; gap: 12px; padding: 18px 16px; }
-    .persona-header > div:last-child { display: none; }
-
-    /* Insights grid */
-    .insights-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    /* Persona tags */
-    .persona-tags { padding: 0 16px 16px !important; }
-
-    /* Comparison table */
-    .persona-table-wrap { padding: 16px !important; overflow-x: auto; }
-    table { font-size: 10px; min-width: 340px; }
-    table th, table td { padding: 7px 6px; }
-
-    /* General padding fix */
-    .report-body { padding: 0 0 30px; }
-    div[style*="padding: 0 20px"] { padding-left: 16px !important; padding-right: 16px !important; }
-  }
-
-  @media (max-width: 420px) {
-    .hero-title { font-size: 26px; }
-    .donut-grid { grid-template-columns: 1fr 1fr !important; gap: 10px; }
-    .header-stat { flex: 1 1 50%; }
-    .cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
-    .highlight-strip { grid-template-columns: 1fr 1fr !important; }
-  }
+/* RESPONSIVE */
+@media(max-width:768px){
+  html,body{overflow-x:hidden;width:100%;}
+  .hero-content{padding:32px 20px 28px;min-height:280px;}
+  .hero-title{font-size:32px;}
+  .header-stat-strip{flex-wrap:wrap;}
+  .header-stat{flex:1 1 33%;padding:12px 8px;}
+  .header-stat-value{font-size:20px;}
+  .three-col,.two-col,.donut-grid{grid-template-columns:1fr!important;padding:0 16px 8px;}
+  .highlight-strip{grid-template-columns:1fr 1fr!important;padding:0 16px 8px;}
+  .cards-grid{grid-template-columns:repeat(2,1fr)!important;padding:0 16px 8px;}
+  .bar-section,.bubble-section{margin:0 16px 14px;}
+  .bar-label{width:90px;font-size:10px;}
+  .full-col{padding:0 16px 8px;}
+  .section-divider{padding:18px 16px 10px;}
+  .insights-grid{grid-template-columns:1fr!important;}
+}
 </style>
 </head>
 <body>
 
-<!-- PDF EXPORT BUTTON -->
+<!-- PDF BUTTON -->
 <div class="pdf-btn-wrap">
   <button class="pdf-btn" onclick="exportPDF()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
@@ -690,20 +221,23 @@
   </button>
 </div>
 
-<!-- HERO BANNER -->
-<div style="padding: 0; width:100%;">
+<!-- HERO -->
+<div style="padding:0;width:100%;">
   <div class="hero-banner">
-    <div class="hero-bg"></div>
-    <div class="hero-gradient"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
     <div class="hero-content">
-      <div class="hero-badge">Live Insights</div>
+      <div class="hero-badge">Comscore Plan Metrix · Fev 2025</div>
       <h1 class="hero-title">
-        Quem é o público do
-        <span>Bad Bunny?</span>
+        Segmento Tecnologia
+        <span>Terra & Vivo Ads</span>
       </h1>
+      <p class="hero-sub">Comportamento digital, intenções de compra e atitudes do público interessado em tecnologia — comparativo Internet Geral vs. Terra vs. Vivo.</p>
       <div class="hero-sampling">
-        <span class="hero-sampling-icon">🗄</span>
-        Amostragem: <strong>31.703 Mil Usuários Reais</strong>
+        <span style="font-size:16px;opacity:0.7;">📊</span>
+        Base Internet Brasil: <strong>116 MM de Usuários Únicos</strong>
       </div>
     </div>
   </div>
@@ -713,745 +247,507 @@
 <div style="width:100%;">
   <div class="header-stat-strip">
     <div class="header-stat">
-      <div class="header-stat-value">31.704</div>
-      <div class="header-stat-label">Usuários Analisados</div>
+      <div class="header-stat-value">116 MM</div>
+      <div class="header-stat-label">Internet Brasil</div>
     </div>
     <div class="header-stat">
-      <div class="header-stat-value">171</div>
-      <div class="header-stat-label">Variáveis Mapeadas</div>
+      <div class="header-stat-value">62 MM</div>
+      <div class="header-stat-label">Audiência Terra</div>
     </div>
     <div class="header-stat">
-      <div class="header-stat-value">5</div>
-      <div class="header-stat-label">Regiões do Brasil</div>
+      <div class="header-stat-value">21,4 MM</div>
+      <div class="header-stat-label">Audiência Vivo</div>
     </div>
     <div class="header-stat">
-      <div class="header-stat-value">98%</div>
-      <div class="header-stat-label">Redes Sociais</div>
+      <div class="header-stat-value">53,5%</div>
+      <div class="header-stat-label">Reach Terra</div>
     </div>
     <div class="header-stat">
-      <div class="header-stat-value">76%</div>
-      <div class="header-stat-label">Usuários iPhone</div>
+      <div class="header-stat-value">18,5%</div>
+      <div class="header-stat-label">Reach Vivo</div>
     </div>
   </div>
 </div>
 
 <div class="report-body">
 
-  <!-- SECTION 1: PERFIL DE PÚBLICO -->
+  <!-- S1: PERFIL DEMOGRÁFICO -->
   <div class="section-divider">
     <div class="section-num">1</div>
-    <div class="section-title">Perfil de Público</div>
+    <div class="section-title">Perfil Demográfico da Audiência</div>
     <div class="section-line"></div>
   </div>
 
-  <!-- Gênero e Região -->
   <div class="donut-grid">
-    <!-- Gênero -->
+    <!-- Gênero Internet -->
     <div class="donut-card">
-      <div class="donut-title">Gênero</div>
+      <div class="donut-title">Gênero — Internet</div>
       <div class="donut-wrap">
         <svg width="90" height="90" viewBox="0 0 90 90">
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#e0e0e0" stroke-width="12"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#7B2D8B" stroke-width="12"
-            stroke-dasharray="219.91 219.91" stroke-dashoffset="0" stroke-linecap="butt"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#F26522" stroke-width="12"
-            stroke-dasharray="101.15 219.91" stroke-dashoffset="-119.75" stroke-linecap="butt"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="12"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--pink)" stroke-width="12"
+            stroke-dasharray="111.86 219.91" stroke-dashoffset="0"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--blue)" stroke-width="12"
+            stroke-dasharray="107.32 219.91" stroke-dashoffset="-111.86"/>
         </svg>
-        <div class="donut-center">
-          <div class="donut-pct">54%</div>
-          <div class="donut-sub">fem.</div>
-        </div>
+        <div class="donut-center"><div class="donut-pct" style="color:var(--pink)">51%</div><div class="donut-sub">fem.</div></div>
       </div>
       <div class="donut-legend">
-        <div class="donut-legend-item">
-          <div class="donut-legend-dot" style="background:#7B2D8B"></div>
-          <span class="donut-legend-txt">Feminino</span>
-          <span class="donut-legend-pct">54%</span>
-        </div>
-        <div class="donut-legend-item">
-          <div class="donut-legend-dot" style="background:#F26522"></div>
-          <span class="donut-legend-txt">Masculino</span>
-          <span class="donut-legend-pct">46%</span>
-        </div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--pink)"></div><span class="donut-legend-txt">Feminino</span><span class="donut-legend-pct">51%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--blue)"></div><span class="donut-legend-txt">Masculino</span><span class="donut-legend-pct">49%</span></div>
       </div>
     </div>
-
-    <!-- Faixa etária -->
+    <!-- Gênero Terra -->
     <div class="donut-card">
-      <div class="donut-title">Faixa Etária</div>
+      <div class="donut-title">Gênero — Terra</div>
       <div class="donut-wrap">
         <svg width="90" height="90" viewBox="0 0 90 90">
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#e0e0e0" stroke-width="12"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#7B2D8B" stroke-width="12"
-            stroke-dasharray="67.91 219.91" stroke-dashoffset="0"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#F26522" stroke-width="12"
-            stroke-dasharray="67.77 219.91" stroke-dashoffset="-67.91"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#00a99d" stroke-width="12"
-            stroke-dasharray="52.78 219.91" stroke-dashoffset="-135.68"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#e91e8c" stroke-width="12"
-            stroke-dasharray="29.23 219.91" stroke-dashoffset="-188.46"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="12"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--pink)" stroke-width="12"
+            stroke-dasharray="118.75 219.91" stroke-dashoffset="0"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--blue)" stroke-width="12"
+            stroke-dasharray="101.03 219.91" stroke-dashoffset="-118.75"/>
         </svg>
-        <div class="donut-center">
-          <div class="donut-pct" style="font-size:16px;">31%</div>
-          <div class="donut-sub">31–40</div>
-        </div>
+        <div class="donut-center"><div class="donut-pct" style="color:var(--green)">54%</div><div class="donut-sub">fem.</div></div>
       </div>
       <div class="donut-legend">
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#7B2D8B"></div><span class="donut-legend-txt">31 – 40 anos</span><span class="donut-legend-pct">31%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#F26522"></div><span class="donut-legend-txt">Acima de 50</span><span class="donut-legend-pct">31%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#00a99d"></div><span class="donut-legend-txt">18 – 30 anos</span><span class="donut-legend-pct">24%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#e91e8c"></div><span class="donut-legend-txt">41 – 50 anos</span><span class="donut-legend-pct">13%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--pink)"></div><span class="donut-legend-txt">Feminino</span><span class="donut-legend-pct">54%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--blue)"></div><span class="donut-legend-txt">Masculino</span><span class="donut-legend-pct">46%</span></div>
       </div>
     </div>
-
-    <!-- Classe Social -->
+    <!-- Gênero Vivo -->
     <div class="donut-card">
-      <div class="donut-title">Classe Social</div>
+      <div class="donut-title">Gênero — Vivo</div>
       <div class="donut-wrap">
         <svg width="90" height="90" viewBox="0 0 90 90">
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#e0e0e0" stroke-width="12"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#7B2D8B" stroke-width="12"
-            stroke-dasharray="98.96 219.91" stroke-dashoffset="0"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#F26522" stroke-width="12"
-            stroke-dasharray="72.57 219.91" stroke-dashoffset="-98.96"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#00a99d" stroke-width="12"
-            stroke-dasharray="28.59 219.91" stroke-dashoffset="-171.53"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#ccc" stroke-width="12"
-            stroke-dasharray="19.79 219.91" stroke-dashoffset="-200.12"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="12"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--pink)" stroke-width="12"
+            stroke-dasharray="127.57 219.91" stroke-dashoffset="0"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--blue)" stroke-width="12"
+            stroke-dasharray="92.14 219.91" stroke-dashoffset="-127.57"/>
         </svg>
-        <div class="donut-center">
-          <div class="donut-pct" style="font-size:16px;">45%</div>
-          <div class="donut-sub">Classe B</div>
-        </div>
+        <div class="donut-center"><div class="donut-pct" style="color:var(--purple)">58%</div><div class="donut-sub">fem.</div></div>
       </div>
       <div class="donut-legend">
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#7B2D8B"></div><span class="donut-legend-txt">Classe B</span><span class="donut-legend-pct">45%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#F26522"></div><span class="donut-legend-txt">Classe A</span><span class="donut-legend-pct">33%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#00a99d"></div><span class="donut-legend-txt">Classe C</span><span class="donut-legend-pct">13%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#ccc"></div><span class="donut-legend-txt">Classes D/E</span><span class="donut-legend-pct">9%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--pink)"></div><span class="donut-legend-txt">Feminino</span><span class="donut-legend-pct">58%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--blue)"></div><span class="donut-legend-txt">Masculino</span><span class="donut-legend-pct">42%</span></div>
       </div>
     </div>
-
-    <!-- Estado civil -->
+    <!-- Faixa etária Internet -->
     <div class="donut-card">
-      <div class="donut-title">Estado Civil</div>
+      <div class="donut-title">Faixa Etária — Internet</div>
       <div class="donut-wrap">
         <svg width="90" height="90" viewBox="0 0 90 90">
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#e0e0e0" stroke-width="12"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#7B2D8B" stroke-width="12"
-            stroke-dasharray="184.72 219.91" stroke-dashoffset="0"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#F26522" stroke-width="12"
-            stroke-dasharray="13.20 219.91" stroke-dashoffset="-184.72"/>
-          <circle cx="45" cy="45" r="35" fill="none" stroke="#ccc" stroke-width="12"
-            stroke-dasharray="21.99 219.91" stroke-dashoffset="-197.92"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="12"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--cyan)" stroke-width="12" stroke-dasharray="33.38 219.91" stroke-dashoffset="0"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--blue)" stroke-width="12" stroke-dasharray="52.87 219.91" stroke-dashoffset="-33.38"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--green)" stroke-width="12" stroke-dasharray="53.56 219.91" stroke-dashoffset="-86.25"/>
+          <circle cx="45" cy="45" r="35" fill="none" stroke="var(--orange)" stroke-width="12" stroke-dasharray="79.50 219.91" stroke-dashoffset="-139.81"/>
         </svg>
-        <div class="donut-center">
-          <div class="donut-pct" style="font-size:16px;">84%</div>
-          <div class="donut-sub">Solteiro</div>
-        </div>
+        <div class="donut-center"><div class="donut-pct" style="font-size:16px;">36%</div><div class="donut-sub">45+</div></div>
       </div>
       <div class="donut-legend">
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#7B2D8B"></div><span class="donut-legend-txt">Solteiro</span><span class="donut-legend-pct">84%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#F26522"></div><span class="donut-legend-txt">Casado</span><span class="donut-legend-pct">6%</span></div>
-        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:#ccc"></div><span class="donut-legend-txt">Outros</span><span class="donut-legend-pct">10%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--cyan)"></div><span class="donut-legend-txt">15-24</span><span class="donut-legend-pct">15%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--blue)"></div><span class="donut-legend-txt">25-34</span><span class="donut-legend-pct">24%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--green)"></div><span class="donut-legend-txt">35-44</span><span class="donut-legend-pct">24%</span></div>
+        <div class="donut-legend-item"><div class="donut-legend-dot" style="background:var(--orange)"></div><span class="donut-legend-txt">45+</span><span class="donut-legend-pct">36%</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Região -->
-  <div class="full-col">
-    <div class="bar-section">
-      <div class="bar-section-title">Distribuição por Região</div>
-      <div class="bar-item">
-        <div class="bar-label">Sudeste</div>
-        <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
-        <div class="bar-pct">82%</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Sul</div>
-        <div class="bar-track"><div class="bar-fill orange" style="width:9%"></div></div>
-        <div class="bar-pct">9%</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Nordeste</div>
-        <div class="bar-track"><div class="bar-fill teal" style="width:4%"></div></div>
-        <div class="bar-pct">4%</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Centro-Oeste</div>
-        <div class="bar-track"><div class="bar-fill teal" style="width:4%"></div></div>
-        <div class="bar-pct">4%</div>
-      </div>
-      <div class="bar-item">
-        <div class="bar-label">Norte</div>
-        <div class="bar-track"><div class="bar-fill pink" style="width:1%"></div></div>
-        <div class="bar-pct">1%</div>
-      </div>
+  <!-- COMPARATIVO FAIXA ETÁRIA -->
+  <div class="full-col" style="margin-top:6px;">
+    <div style="background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto;">
+      <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">📊 Comparativo Demográfico — Audiência (MM) · Composição · Reach</div>
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:140px;">Dimensão</th>
+          <th class="internet">🌐 Internet (MM)</th><th class="internet">Comp%</th>
+          <th class="terra">🟢 Terra (MM)</th><th class="terra">Comp%</th><th class="terra">Reach</th>
+          <th class="vivo">🟣 Vivo (MM)</th><th class="vivo">Comp%</th><th class="vivo">Reach</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Total Audiência</td><td class="val cyan">116 MM</td><td>100%</td><td class="val green">62 MM</td><td>100%</td><td>53,5%</td><td class="val purple">21,4 MM</td><td>100%</td><td>18,5%</td></tr>
+          <tr><td>15-24 anos</td><td class="val cyan">17,6 MM</td><td>15,2%</td><td class="val green">4,9 MM</td><td>8,0%</td><td>28,0%</td><td class="val purple">1,4 MM</td><td>6,7%</td><td>8,1%</td></tr>
+          <tr><td>25-34 anos</td><td class="val cyan">27,9 MM</td><td>24,1%</td><td class="val green">13,1 MM</td><td>21,1%</td><td>46,9%</td><td class="val purple">4,7 MM</td><td>21,9%</td><td>16,8%</td></tr>
+          <tr><td>35-44 anos</td><td class="val cyan">28,3 MM</td><td>24,4%</td><td class="val green">16,4 MM</td><td>26,5%</td><td>58,1%</td><td class="val purple">6,0 MM</td><td>27,9%</td><td>21,2%</td></tr>
+          <tr><td>45+ anos</td><td class="val cyan">42,0 MM</td><td>36,2%</td><td class="val green">27,6 MM</td><td>44,4%</td><td>65,7%</td><td class="val purple">9,3 MM</td><td>43,4%</td><td>22,2%</td></tr>
+          <tr><td>Feminino</td><td class="val cyan">59,1 MM</td><td>50,9%</td><td class="val green">33,5 MM</td><td>54,0%</td><td>56,7%</td><td class="val purple">12,4 MM</td><td>58,0%</td><td>21,0%</td></tr>
+          <tr><td>Masculino</td><td class="val cyan">56,7 MM</td><td>48,8%</td><td class="val green">28,5 MM</td><td>46,0%</td><td>50,3%</td><td class="val purple">9,0 MM</td><td>41,9%</td><td>15,9%</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- SECTION 2: DISPOSITIVOS -->
+  <!-- S2: ATITUDES SOBRE TECNOLOGIA -->
   <div class="section-divider">
     <div class="section-num">2</div>
-    <div class="section-title">Dispositivos & Conectividade</div>
+    <div class="section-title">Atitudes sobre Tecnologia</div>
     <div class="section-line"></div>
   </div>
 
   <div class="highlight-strip">
-    <div class="highlight-card">
-      <div class="highlight-pct">76%</div>
-      <div class="highlight-label">Usuários de iPhone</div>
+    <div class="highlight-card cyan-bg">
+      <div class="highlight-pct">88%</div>
+      <div class="highlight-label">Buscam melhor preço em eletrônicos</div>
+    </div>
+    <div class="highlight-card green-bg">
+      <div class="highlight-pct">82%</div>
+      <div class="highlight-label">Pesquisam antes de comprar eletrônicos</div>
+    </div>
+    <div class="highlight-card purple-bg">
+      <div class="highlight-pct">70%</div>
+      <div class="highlight-label">Acompanham novidades em tecnologia</div>
     </div>
     <div class="highlight-card orange-bg">
-      <div class="highlight-pct">18%</div>
-      <div class="highlight-label">Usuários de Samsung</div>
-    </div>
-    <div class="highlight-card teal-bg">
-      <div class="highlight-pct">94%</div>
-      <div class="highlight-label">Consomem via Digital</div>
-    </div>
-    <div class="highlight-card dark-bg">
-      <div class="highlight-pct">88%</div>
-      <div class="highlight-label">Pagamento Digital</div>
+      <div class="highlight-pct">60%</div>
+      <div class="highlight-label">Valorizam sincronizar dispositivos</div>
     </div>
   </div>
 
-  <div class="two-col" style="margin-top:14px;">
-    <div class="bar-section" style="margin:0;">
-      <div class="bar-section-title">Aparelhos</div>
-      <div class="bar-item"><div class="bar-label">iPhone</div><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div><div class="bar-pct">76%</div></div>
-      <div class="bar-item"><div class="bar-label">Samsung</div><div class="bar-track"><div class="bar-fill orange" style="width:18%"></div></div><div class="bar-pct">18%</div></div>
-      <div class="bar-item"><div class="bar-label">Xiaomi</div><div class="bar-track"><div class="bar-fill teal" style="width:3%"></div></div><div class="bar-pct">3%</div></div>
-      <div class="bar-item"><div class="bar-label">Motorola</div><div class="bar-track"><div class="bar-fill teal" style="width:3%"></div></div><div class="bar-pct">3%</div></div>
-      <div class="bar-item"><div class="bar-label">Outros</div><div class="bar-track"><div class="bar-fill pink" style="width:1%"></div></div><div class="bar-pct">1%</div></div>
-    </div>
-    <div class="bar-section" style="margin:0;">
-      <div class="bar-section-title">Geração de Rede</div>
-      <div class="bar-item"><div class="bar-label">5G</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><div class="bar-pct">80%</div></div>
-      <div class="bar-item"><div class="bar-label">4G</div><div class="bar-track"><div class="bar-fill orange" style="width:12%"></div></div><div class="bar-pct">12%</div></div>
-      <div class="bar-item"><div class="bar-label">3G</div><div class="bar-track"><div class="bar-fill teal" style="width:6%"></div></div><div class="bar-pct">6%</div></div>
-      <div class="bar-item"><div class="bar-label">2G</div><div class="bar-track"><div class="bar-fill pink" style="width:1%"></div></div><div class="bar-pct">0%</div></div>
+  <div class="full-col" style="margin-top:8px;">
+    <div style="background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto;">
+      <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">🧠 Opiniões sobre Tecnologia — % Concordam (Any Agree)</div>
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:280px;">Afirmação</th>
+          <th class="internet">Internet</th><th class="terra">Terra</th><th class="vivo">Vivo</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Busco sempre o melhor preço em eletrônicos</td><td><span class="badge-sm cyan">88,1%</span></td><td><span class="badge-sm green">90,2%</span></td><td><span class="badge-sm purple">89,8%</span></td></tr>
+          <tr><td>Pesquiso bastante antes de comprar eletrônicos</td><td><span class="badge-sm cyan">82,4%</span></td><td><span class="badge-sm green">82,4%</span></td><td><span class="badge-sm purple">84,1%</span></td></tr>
+          <tr><td>Espero a tecnologia ficar mais barata para comprar</td><td><span class="badge-sm cyan">71,9%</span></td><td><span class="badge-sm green">73,6%</span></td><td><span class="badge-sm purple">76,0%</span></td></tr>
+          <tr><td>Procuro acompanhar novidades tecnológicas</td><td><span class="badge-sm cyan">69,6%</span></td><td><span class="badge-sm green">69,0%</span></td><td><span class="badge-sm purple">65,5%</span></td></tr>
+          <tr><td>Sincronizar dispositivos é importante</td><td><span class="badge-sm cyan">60,1%</span></td><td><span class="badge-sm green">59,8%</span></td><td><span class="badge-sm purple">60,4%</span></td></tr>
+          <tr><td>Gosto de comprar novos eletrodomésticos</td><td><span class="badge-sm cyan">54,4%</span></td><td><span class="badge-sm green">54,6%</span></td><td><span class="badge-sm purple">55,2%</span></td></tr>
+          <tr><td>Tecnologia melhorou a qualidade do contato humano</td><td><span class="badge-sm cyan">52,2%</span></td><td><span class="badge-sm green">53,1%</span></td><td><span class="badge-sm purple">53,9%</span></td></tr>
+          <tr><td>Amigos pedem conselho antes de comprar eletrônicos</td><td><span class="badge-sm cyan">35,3%</span></td><td><span class="badge-sm green">32,3%</span></td><td><span class="badge-sm purple">31,7%</span></td></tr>
+          <tr><td>Pagaria qualquer preço pelo eletrônico que quero</td><td><span class="badge-sm cyan">31,8%</span></td><td><span class="badge-sm green">30,7%</span></td><td><span class="badge-sm purple">30,2%</span></td></tr>
+          <tr><td>Sou o primeiro a ter novos equipamentos</td><td><span class="badge-sm cyan">30,9%</span></td><td><span class="badge-sm green">30,0%</span></td><td><span class="badge-sm purple">27,1%</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- SECTION 3: INTERESSES DIGITAIS -->
+  <!-- S3: INTERNET & COMUNICAÇÃO DIGITAL -->
   <div class="section-divider">
     <div class="section-num">3</div>
-    <div class="section-title">Interesses & Comportamento Digital</div>
+    <div class="section-title">Internet & Comunicação Digital</div>
     <div class="section-line"></div>
   </div>
 
-  <!-- TOP INTERESSES -->
-  <div class="bubble-section">
-    <div class="bubble-section-title">Top Interesses — Penetração na Base</div>
-    <div class="bubble-cloud">
-      <span class="bubble-tag bubble-lg" style="background:#7B2D8B;color:white;">Redes Sociais Tradicionais <span class="bubble-pct">98%</span></span>
-      <span class="bubble-tag bubble-lg" style="background:#7B2D8B;color:white;">Redes Sociais c/ Vídeo <span class="bubble-pct">98%</span></span>
-      <span class="bubble-tag bubble-lg" style="background:#6a2579;color:white;">Redes Sociais Específicas <span class="bubble-pct">97%</span></span>
-      <span class="bubble-tag bubble-lg" style="background:#5a1a69;color:white;">Streaming de Música <span class="bubble-pct">97%</span></span>
-      <span class="bubble-tag bubble-md" style="background:#F26522;color:white;">Compras Online <span class="bubble-pct">96%</span></span>
-      <span class="bubble-tag bubble-md" style="background:#F26522;color:white;">Mobilidade <span class="bubble-pct">96%</span></span>
-      <span class="bubble-tag bubble-md" style="background:#e05a1a;color:white;">Videoconferência <span class="bubble-pct">94%</span></span>
-      <span class="bubble-tag bubble-md" style="background:#00a99d;color:white;">Consumo Digital <span class="bubble-pct">94%</span></span>
-      <span class="bubble-tag bubble-md" style="background:#00a99d;color:white;">Streaming de Vídeo <span class="bubble-pct">91%</span></span>
-      <span class="bubble-tag bubble-md" style="background:#009188;color:white;">Streaming de Vídeo <span class="bubble-pct">91%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#e91e8c;color:white;">Notícias <span class="bubble-pct">88%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#e91e8c;color:white;">Fabricantes de Aparelhos <span class="bubble-pct">88%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#d4198a;color:white;">Pagamento Digital <span class="bubble-pct">88%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#555;color:white;">Bancos Tradicionais <span class="bubble-pct">87%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#555;color:white;">Delivery <span class="bubble-pct">86%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#777;color:white;">Solteiros <span class="bubble-pct">84%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#888;color:white;">RCS <span class="bubble-pct">76%</span></span>
-      <span class="bubble-tag bubble-sm" style="background:#888;color:white;">Fintechs <span class="bubble-pct">74%</span></span>
+  <div class="highlight-strip">
+    <div class="highlight-card cyan-bg">
+      <div class="highlight-pct">81%</div>
+      <div class="highlight-label">Internet é 1º lugar para buscar informação</div>
+    </div>
+    <div class="highlight-card green-bg">
+      <div class="highlight-pct">75%</div>
+      <div class="highlight-label">Checam redes sociais todo dia</div>
+    </div>
+    <div class="highlight-card purple-bg">
+      <div class="highlight-pct">72%</div>
+      <div class="highlight-label">Internet é principal entretenimento</div>
+    </div>
+    <div class="highlight-card orange-bg">
+      <div class="highlight-pct">68%</div>
+      <div class="highlight-label">Dependem da internet p/ se informar</div>
     </div>
   </div>
 
-  <!-- BARRAS DE INTERESSES SELECIONADOS -->
-  <div class="interests-grid">
-    <div class="interests-card">
-      <div class="interests-card-title">💳 Finanças & Bancos</div>
-      <div class="bar-item"><div class="bar-label">Bancos Tradicionais</div><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div><div class="bar-pct">87%</div></div>
-      <div class="bar-item"><div class="bar-label">Fintechs</div><div class="bar-track"><div class="bar-fill" style="width:74%"></div></div><div class="bar-pct">74%</div></div>
-      <div class="bar-item"><div class="bar-label">Pagamento Digital</div><div class="bar-track"><div class="bar-fill orange" style="width:88%"></div></div><div class="bar-pct">88%</div></div>
-      <div class="bar-item"><div class="bar-label">Investimento</div><div class="bar-track"><div class="bar-fill orange" style="width:25%"></div></div><div class="bar-pct">25%</div></div>
-      <div class="bar-item"><div class="bar-label">Crédito Pessoal</div><div class="bar-track"><div class="bar-fill pink" style="width:4%"></div></div><div class="bar-pct">4%</div></div>
-      <div class="bar-item"><div class="bar-label">Máquina de Cartão</div><div class="bar-track"><div class="bar-fill pink" style="width:11%"></div></div><div class="bar-pct">11%</div></div>
-    </div>
-
-    <div class="interests-card">
-      <div class="interests-card-title">🏥 Saúde & Bem-Estar</div>
-      <div class="bar-item"><div class="bar-label">Atividade Física</div><div class="bar-track"><div class="bar-fill" style="width:52%"></div></div><div class="bar-pct">52%</div></div>
-      <div class="bar-item"><div class="bar-label">Farmácia</div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div><div class="bar-pct">44%</div></div>
-      <div class="bar-item"><div class="bar-label">Planos de Saúde</div><div class="bar-track"><div class="bar-fill orange" style="width:42%"></div></div><div class="bar-pct">42%</div></div>
-      <div class="bar-item"><div class="bar-label">Beleza</div><div class="bar-track"><div class="bar-fill orange" style="width:45%"></div></div><div class="bar-pct">45%</div></div>
-      <div class="bar-item"><div class="bar-label">Startup de Saúde</div><div class="bar-track"><div class="bar-fill teal" style="width:5%"></div></div><div class="bar-pct">5%</div></div>
-      <div class="bar-item"><div class="bar-label">Meditação</div><div class="bar-track"><div class="bar-fill pink" style="width:4%"></div></div><div class="bar-pct">4%</div></div>
-    </div>
-
-    <div class="interests-card">
-      <div class="interests-card-title">✈️ Viagem & Mobilidade</div>
-      <div class="bar-item"><div class="bar-label">Companhia Aérea</div><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><div class="bar-pct">58%</div></div>
-      <div class="bar-item"><div class="bar-label">Prog. de Pontos</div><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div><div class="bar-pct">35%</div></div>
-      <div class="bar-item"><div class="bar-label">Mobilidade Urbana</div><div class="bar-track"><div class="bar-fill orange" style="width:96%"></div></div><div class="bar-pct">96%</div></div>
-      <div class="bar-item"><div class="bar-label">Transporte Público</div><div class="bar-track"><div class="bar-fill teal" style="width:12%"></div></div><div class="bar-pct">12%</div></div>
-      <div class="bar-item"><div class="bar-label">Vivo Travel Roaming</div><div class="bar-track"><div class="bar-fill pink" style="width:2%"></div></div><div class="bar-pct">2%</div></div>
-    </div>
-
-    <div class="interests-card">
-      <div class="interests-card-title">🎮 Entretenimento & Games</div>
-      <div class="bar-item"><div class="bar-label">Streaming de Música</div><div class="bar-track"><div class="bar-fill" style="width:97%"></div></div><div class="bar-pct">97%</div></div>
-      <div class="bar-item"><div class="bar-label">Streaming de Vídeo</div><div class="bar-track"><div class="bar-fill" style="width:91%"></div></div><div class="bar-pct">91%</div></div>
-      <div class="bar-item"><div class="bar-label">Cinema</div><div class="bar-track"><div class="bar-fill orange" style="width:20%"></div></div><div class="bar-pct">20%</div></div>
-      <div class="bar-item"><div class="bar-label">Gamers</div><div class="bar-track"><div class="bar-fill teal" style="width:15%"></div></div><div class="bar-pct">15%</div></div>
-      <div class="bar-item"><div class="bar-label">Ingressos</div><div class="bar-track"><div class="bar-fill teal" style="width:22%"></div></div><div class="bar-pct">22%</div></div>
-      <div class="bar-item"><div class="bar-label">Festivais</div><div class="bar-track"><div class="bar-fill pink" style="width:5%"></div></div><div class="bar-pct">5%</div></div>
+  <div class="full-col" style="margin-top:8px;">
+    <div style="background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto;">
+      <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">📱 Atitudes Internet & Comunicação — % Concordam</div>
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:310px;">Afirmação</th>
+          <th class="internet">Internet</th><th class="terra">Terra</th><th class="vivo">Vivo</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Internet é o 1º lugar quando preciso de informação</td><td><span class="badge-sm cyan">81,0%</span></td><td><span class="badge-sm green">81,6%</span></td><td><span class="badge-sm purple">83,1%</span></td></tr>
+          <tr><td>Verifico fontes no WhatsApp e redes</td><td><span class="badge-sm cyan">79,1%</span></td><td><span class="badge-sm green">79,5%</span></td><td><span class="badge-sm purple">80,9%</span></td></tr>
+          <tr><td>Preocupo com segurança de dados online</td><td><span class="badge-sm cyan">76,0%</span></td><td><span class="badge-sm green">76,7%</span></td><td><span class="badge-sm purple">77,0%</span></td></tr>
+          <tr><td>Necessidade de checar redes todo dia</td><td><span class="badge-sm cyan">75,1%</span></td><td><span class="badge-sm green">75,3%</span></td><td><span class="badge-sm purple">75,2%</span></td></tr>
+          <tr><td>Uso frequente de redes sociais p/ amigos</td><td><span class="badge-sm cyan">73,5%</span></td><td><span class="badge-sm green">74,8%</span></td><td><span class="badge-sm purple">77,3%</span></td></tr>
+          <tr><td>Internet é minha principal fonte de entretenimento</td><td><span class="badge-sm cyan">72,3%</span></td><td><span class="badge-sm green">71,4%</span></td><td><span class="badge-sm purple">71,4%</span></td></tr>
+          <tr><td>Dependo da internet para me manter informado</td><td><span class="badge-sm cyan">67,7%</span></td><td><span class="badge-sm green">67,9%</span></td><td><span class="badge-sm purple">68,6%</span></td></tr>
+          <tr><td>Me sinto perdido sem meu celular</td><td><span class="badge-sm cyan">58,4%</span></td><td><span class="badge-sm green">58,9%</span></td><td><span class="badge-sm purple">61,4%</span></td></tr>
+          <tr><td>Confio na nuvem para guardar meus dados</td><td><span class="badge-sm cyan">55,0%</span></td><td><span class="badge-sm green">54,5%</span></td><td><span class="badge-sm purple">56,8%</span></td></tr>
+          <tr><td>Considero IA confiável como fonte de informação</td><td><span class="badge-sm cyan">42,7%</span></td><td><span class="badge-sm green">42,0%</span></td><td><span class="badge-sm purple">41,1%</span></td></tr>
+          <tr><td>Sigo marcas em redes sociais</td><td><span class="badge-sm cyan">40,0%</span></td><td><span class="badge-sm green">39,9%</span></td><td><span class="badge-sm purple">40,4%</span></td></tr>
+          <tr><td>Publicidade influencia minhas compras</td><td><span class="badge-sm cyan">36,5%</span></td><td><span class="badge-sm green">35,7%</span></td><td><span class="badge-sm purple">35,7%</span></td></tr>
+          <tr><td>Interajo clicando em anúncios/QR Code</td><td><span class="badge-sm cyan">32,6%</span></td><td><span class="badge-sm green">33,0%</span></td><td><span class="badge-sm purple">31,8%</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- SECTION 4: COMPORTAMENTO DE CONSUMO -->
+  <!-- S4: POSSE & INTENÇÃO DE COMPRA DE TECH -->
   <div class="section-divider">
     <div class="section-num">4</div>
-    <div class="section-title">Comportamento de Consumo</div>
+    <div class="section-title">Posse & Intenção de Compra — Produtos Tech</div>
     <div class="section-line"></div>
   </div>
 
-  <div class="highlight-strip">
-    <div class="highlight-card">
-      <div class="highlight-pct">52%</div>
-      <div class="highlight-label">Praticam Atividade Física</div>
+  <div class="three-col">
+    <!-- Internet -->
+    <div class="data-card">
+      <div class="data-card-header"><div class="data-card-icon internet">🌐</div><div class="data-card-title internet">Internet Geral</div></div>
+      <div class="bar-item"><div class="bar-label">TV (possui)</div><div class="bar-track"><div class="bar-fill cyan" style="width:94%"></div></div><div class="bar-pct">94,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Celular (possui)</div><div class="bar-track"><div class="bar-fill cyan" style="width:97%"></div></div><div class="bar-pct">96,9%</div></div>
+      <div class="bar-item"><div class="bar-label">Computador</div><div class="bar-track"><div class="bar-fill cyan" style="width:62%"></div></div><div class="bar-pct">61,5%</div></div>
+      <div class="bar-item"><div class="bar-label">Notebook</div><div class="bar-track"><div class="bar-fill cyan" style="width:50%"></div></div><div class="bar-pct">50,0%</div></div>
+      <div class="bar-item"><div class="bar-label">Videogame</div><div class="bar-track"><div class="bar-fill cyan" style="width:26%"></div></div><div class="bar-pct">25,6%</div></div>
+      <div class="bar-item"><div class="bar-label">Tablet</div><div class="bar-track"><div class="bar-fill cyan" style="width:23%"></div></div><div class="bar-pct">23,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Som / Áudio</div><div class="bar-track"><div class="bar-fill cyan" style="width:45%"></div></div><div class="bar-pct">44,9%</div></div>
     </div>
-    <div class="highlight-card orange-bg">
-      <div class="highlight-pct">58%</div>
-      <div class="highlight-label">Viajam de Avião</div>
+    <!-- Terra -->
+    <div class="data-card">
+      <div class="data-card-header"><div class="data-card-icon terra">🟢</div><div class="data-card-title terra">Terra</div></div>
+      <div class="bar-item"><div class="bar-label">TV (possui)</div><div class="bar-track"><div class="bar-fill green" style="width:95%"></div></div><div class="bar-pct">95,0%</div></div>
+      <div class="bar-item"><div class="bar-label">Celular (possui)</div><div class="bar-track"><div class="bar-fill green" style="width:98%"></div></div><div class="bar-pct">97,9%</div></div>
+      <div class="bar-item"><div class="bar-label">Computador</div><div class="bar-track"><div class="bar-fill green" style="width:56%"></div></div><div class="bar-pct">55,9%</div></div>
+      <div class="bar-item"><div class="bar-label">Notebook</div><div class="bar-track"><div class="bar-fill green" style="width:46%"></div></div><div class="bar-pct">46,4%</div></div>
+      <div class="bar-item"><div class="bar-label">Videogame</div><div class="bar-track"><div class="bar-fill green" style="width:24%"></div></div><div class="bar-pct">23,9%</div></div>
+      <div class="bar-item"><div class="bar-label">Tablet</div><div class="bar-track"><div class="bar-fill green" style="width:22%"></div></div><div class="bar-pct">22,0%</div></div>
+      <div class="bar-item"><div class="bar-label">Som / Áudio</div><div class="bar-track"><div class="bar-fill green" style="width:45%"></div></div><div class="bar-pct">45,3%</div></div>
     </div>
-    <div class="highlight-card teal-bg">
-      <div class="highlight-pct">45%</div>
-      <div class="highlight-label">Interesse em Beleza</div>
-    </div>
-    <div class="highlight-card dark-bg">
-      <div class="highlight-pct">96%</div>
-      <div class="highlight-label">Fazem Compras Online</div>
-    </div>
-  </div>
-
-  <div class="two-col" style="margin-top:14px;">
-    <div class="bar-section" style="margin:0;">
-      <div class="bar-section-title">🛒 Consumo & Lifestyle</div>
-      <div class="bar-item"><div class="bar-label">Compras Online</div><div class="bar-track"><div class="bar-fill" style="width:96%"></div></div><div class="bar-pct">96%</div></div>
-      <div class="bar-item"><div class="bar-label">Delivery</div><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div><div class="bar-pct">86%</div></div>
-      <div class="bar-item"><div class="bar-label">Marcas de Luxo</div><div class="bar-track"><div class="bar-fill orange" style="width:22%"></div></div><div class="bar-pct">22%</div></div>
-      <div class="bar-item"><div class="bar-label">Supermercados</div><div class="bar-track"><div class="bar-fill orange" style="width:18%"></div></div><div class="bar-pct">18%</div></div>
-      <div class="bar-item"><div class="bar-label">Pet</div><div class="bar-track"><div class="bar-fill teal" style="width:21%"></div></div><div class="bar-pct">21%</div></div>
-      <div class="bar-item"><div class="bar-label">Amazon Prime</div><div class="bar-track"><div class="bar-fill pink" style="width:10%"></div></div><div class="bar-pct">10%</div></div>
-    </div>
-
-    <div class="bar-section" style="margin:0;">
-      <div class="bar-section-title">⚽ Esportes & Interesses</div>
-      <div class="bar-item"><div class="bar-label">Futebol</div><div class="bar-track"><div class="bar-fill" style="width:24%"></div></div><div class="bar-pct">24%</div></div>
-      <div class="bar-item"><div class="bar-label">Esportes Diversos</div><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><div class="bar-pct">20%</div></div>
-      <div class="bar-item"><div class="bar-label">Marcas Esportivas</div><div class="bar-track"><div class="bar-fill orange" style="width:22%"></div></div><div class="bar-pct">22%</div></div>
-      <div class="bar-item"><div class="bar-label">Ciclistas</div><div class="bar-track"><div class="bar-fill teal" style="width:8%"></div></div><div class="bar-pct">8%</div></div>
-      <div class="bar-item"><div class="bar-label">Surf</div><div class="bar-track"><div class="bar-fill pink" style="width:3%"></div></div><div class="bar-pct">3%</div></div>
-      <div class="bar-item"><div class="bar-label">Esportes Americanos</div><div class="bar-track"><div class="bar-fill pink" style="width:2%"></div></div><div class="bar-pct">2%</div></div>
+    <!-- Vivo -->
+    <div class="data-card">
+      <div class="data-card-header"><div class="data-card-icon vivo">🟣</div><div class="data-card-title vivo">Vivo</div></div>
+      <div class="bar-item"><div class="bar-label">TV (possui)</div><div class="bar-track"><div class="bar-fill purple" style="width:96%"></div></div><div class="bar-pct">95,9%</div></div>
+      <div class="bar-item"><div class="bar-label">Celular (possui)</div><div class="bar-track"><div class="bar-fill purple" style="width:99%"></div></div><div class="bar-pct">98,5%</div></div>
+      <div class="bar-item"><div class="bar-label">Computador</div><div class="bar-track"><div class="bar-fill purple" style="width:57%"></div></div><div class="bar-pct">57,4%</div></div>
+      <div class="bar-item"><div class="bar-label">Notebook</div><div class="bar-track"><div class="bar-fill purple" style="width:45%"></div></div><div class="bar-pct">45,4%</div></div>
+      <div class="bar-item"><div class="bar-label">Videogame</div><div class="bar-track"><div class="bar-fill purple" style="width:26%"></div></div><div class="bar-pct">25,9%</div></div>
+      <div class="bar-item"><div class="bar-label">Tablet</div><div class="bar-track"><div class="bar-fill purple" style="width:22%"></div></div><div class="bar-pct">21,7%</div></div>
+      <div class="bar-item"><div class="bar-label">Som / Áudio</div><div class="bar-track"><div class="bar-fill purple" style="width:47%"></div></div><div class="bar-pct">46,9%</div></div>
     </div>
   </div>
 
-  <!-- SECTION 5: PERFIS DE SEGMENTO -->
+  <!-- INTENÇÃO DE COMPRA -->
+  <div class="full-col" style="margin-top:8px;">
+    <div style="background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto;">
+      <div style="font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">🛒 Intenção de Compra — Próximos 12 Meses</div>
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:220px;">Produto</th>
+          <th class="internet">Internet (MM)</th><th class="internet">%</th>
+          <th class="terra">Terra (MM)</th><th class="terra">%</th><th class="terra">Reach</th>
+          <th class="vivo">Vivo (MM)</th><th class="vivo">%</th><th class="vivo">Reach</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Smartphone</td><td class="val cyan">27,5 MM</td><td>23,7%</td><td class="val green">14,0 MM</td><td>22,6%</td><td>51,1%</td><td class="val purple">4,4 MM</td><td>20,3%</td><td>15,9%</td></tr>
+          <tr><td>Computador / Notebook (total)</td><td class="val cyan">26,8 MM</td><td>23,1%</td><td class="val green">13,2 MM</td><td>21,2%</td><td>49,2%</td><td class="val purple">4,6 MM</td><td>21,5%</td><td>17,2%</td></tr>
+          <tr><td>Smart TV</td><td class="val cyan">20,7 MM</td><td>17,9%</td><td class="val green">11,9 MM</td><td>19,1%</td><td>57,3%</td><td class="val purple">3,8 MM</td><td>17,9%</td><td>18,5%</td></tr>
+          <tr><td>Notebook / Laptop</td><td class="val cyan">19,7 MM</td><td>17,0%</td><td class="val green">9,9 MM</td><td>16,0%</td><td>50,3%</td><td class="val purple">3,5 MM</td><td>16,5%</td><td>17,9%</td></tr>
+          <tr><td>Videogame (TV)</td><td class="val cyan">12,7 MM</td><td>10,9%</td><td class="val green">6,1 MM</td><td>9,8%</td><td>48,0%</td><td class="val purple">2,0 MM</td><td>9,5%</td><td>16,0%</td></tr>
+          <tr><td>Fones Wireless</td><td class="val cyan">11,3 MM</td><td>9,7%</td><td class="val green">5,6 MM</td><td>9,1%</td><td>49,7%</td><td class="val purple">2,1 MM</td><td>9,7%</td><td>18,3%</td></tr>
+          <tr><td>Desktop</td><td class="val cyan">9,6 MM</td><td>8,3%</td><td class="val green">4,5 MM</td><td>7,2%</td><td>46,5%</td><td class="val purple">1,4 MM</td><td>6,7%</td><td>14,8%</td></tr>
+          <tr><td>Tablet</td><td class="val cyan">7,5 MM</td><td>6,5%</td><td class="val green">3,6 MM</td><td>5,7%</td><td>47,2%</td><td class="val purple">1,2 MM</td><td>5,4%</td><td>15,4%</td></tr>
+          <tr><td>Smartwatch / Smartband</td><td class="val cyan">3,8 MM</td><td>3,3%</td><td class="val green">2,0 MM</td><td>3,2%</td><td>51,0%</td><td class="val purple">690 Mil</td><td>3,2%</td><td>17,9%</td></tr>
+          <tr><td>Smart Speaker</td><td class="val cyan">1,6 MM</td><td>1,4%</td><td class="val green">828 Mil</td><td>1,3%</td><td>50,5%</td><td class="val purple">385 Mil</td><td>1,8%</td><td>23,5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- S5: MARCAS DE COMPUTADOR -->
   <div class="section-divider">
     <div class="section-num">5</div>
-    <div class="section-title">Perfis de Segmento</div>
+    <div class="section-title">Marcas de Computador — Posse</div>
     <div class="section-line"></div>
   </div>
 
-  <div class="full-col">
-    <div class="bar-section">
-      <div class="bar-section-title">Segmentos de Audiência Identificados</div>
-      <div class="bar-item"><div class="bar-label">Nova Classe Média</div><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div><div class="bar-pct">38%</div></div>
-      <div class="bar-item"><div class="bar-label">Elite Brasileira</div><div class="bar-track"><div class="bar-fill" style="width:32%"></div></div><div class="bar-pct">32%</div></div>
-      <div class="bar-item"><div class="bar-label">Jovens Prot. Cl. Média</div><div class="bar-track"><div class="bar-fill orange" style="width:11%"></div></div><div class="bar-pct">11%</div></div>
-      <div class="bar-item"><div class="bar-label">Estruturados Urbanos</div><div class="bar-track"><div class="bar-fill orange" style="width:12%"></div></div><div class="bar-pct">12%</div></div>
-      <div class="bar-item"><div class="bar-label">Adulto Digital Cl. Média</div><div class="bar-track"><div class="bar-fill teal" style="width:8%"></div></div><div class="bar-pct">8%</div></div>
-      <div class="bar-item"><div class="bar-label">Senior c/ Vida Confortável</div><div class="bar-track"><div class="bar-fill teal" style="width:3%"></div></div><div class="bar-pct">3%</div></div>
-      <div class="bar-item"><div class="bar-label">Juventude Trabalhadora</div><div class="bar-track"><div class="bar-fill pink" style="width:2%"></div></div><div class="bar-pct">2%</div></div>
+  <div class="three-col">
+    <div class="data-card">
+      <div class="data-card-header"><div class="data-card-icon internet">🌐</div><div class="data-card-title internet">Internet Geral</div></div>
+      <div class="bar-item"><div class="bar-label">Samsung</div><div class="bar-track"><div class="bar-fill cyan" style="width:55%"></div></div><div class="bar-pct">13,7%</div></div>
+      <div class="bar-item"><div class="bar-label">Dell</div><div class="bar-track"><div class="bar-fill cyan" style="width:49%"></div></div><div class="bar-pct">12,2%</div></div>
+      <div class="bar-item"><div class="bar-label">Lenovo</div><div class="bar-track"><div class="bar-fill cyan" style="width:33%"></div></div><div class="bar-pct">8,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Acer</div><div class="bar-track"><div class="bar-fill cyan" style="width:33%"></div></div><div class="bar-pct">8,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Positivo</div><div class="bar-track"><div class="bar-fill cyan" style="width:29%"></div></div><div class="bar-pct">7,2%</div></div>
+      <div class="bar-item"><div class="bar-label">HP</div><div class="bar-track"><div class="bar-fill cyan" style="width:17%"></div></div><div class="bar-pct">4,2%</div></div>
+      <div class="bar-item"><div class="bar-label">Asus</div><div class="bar-track"><div class="bar-fill cyan" style="width:16%"></div></div><div class="bar-pct">4,1%</div></div>
+      <div class="bar-item"><div class="bar-label">Apple Mac</div><div class="bar-track"><div class="bar-fill cyan" style="width:12%"></div></div><div class="bar-pct">3,1%</div></div>
+    </div>
+    <div class="data-card">
+      <div class="data-card-header"><div class="data-card-icon terra">🟢</div><div class="data-card-title terra">Terra</div></div>
+      <div class="bar-item"><div class="bar-label">Samsung</div><div class="bar-track"><div class="bar-fill green" style="width:52%"></div></div><div class="bar-pct">12,9%</div></div>
+      <div class="bar-item"><div class="bar-label">Dell</div><div class="bar-track"><div class="bar-fill green" style="width:42%"></div></div><div class="bar-pct">10,6%</div></div>
+      <div class="bar-item"><div class="bar-label">Positivo</div><div class="bar-track"><div class="bar-fill green" style="width:30%"></div></div><div class="bar-pct">7,4%</div></div>
+      <div class="bar-item"><div class="bar-label">Acer</div><div class="bar-track"><div class="bar-fill green" style="width:29%"></div></div><div class="bar-pct">7,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Lenovo</div><div class="bar-track"><div class="bar-fill green" style="width:29%"></div></div><div class="bar-pct">7,2%</div></div>
+      <div class="bar-item"><div class="bar-label">HP</div><div class="bar-track"><div class="bar-fill green" style="width:14%"></div></div><div class="bar-pct">3,4%</div></div>
+      <div class="bar-item"><div class="bar-label">Asus</div><div class="bar-track"><div class="bar-fill green" style="width:13%"></div></div><div class="bar-pct">3,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Apple Mac</div><div class="bar-track"><div class="bar-fill green" style="width:10%"></div></div><div class="bar-pct">2,6%</div></div>
+    </div>
+    <div class="data-card">
+      <div class="data-card-header"><div class="data-card-icon vivo">🟣</div><div class="data-card-title vivo">Vivo</div></div>
+      <div class="bar-item"><div class="bar-label">Samsung</div><div class="bar-track"><div class="bar-fill purple" style="width:53%"></div></div><div class="bar-pct">13,2%</div></div>
+      <div class="bar-item"><div class="bar-label">Dell</div><div class="bar-track"><div class="bar-fill purple" style="width:40%"></div></div><div class="bar-pct">10,1%</div></div>
+      <div class="bar-item"><div class="bar-label">Acer</div><div class="bar-track"><div class="bar-fill purple" style="width:31%"></div></div><div class="bar-pct">7,8%</div></div>
+      <div class="bar-item"><div class="bar-label">Positivo</div><div class="bar-track"><div class="bar-fill purple" style="width:30%"></div></div><div class="bar-pct">7,4%</div></div>
+      <div class="bar-item"><div class="bar-label">Lenovo</div><div class="bar-track"><div class="bar-fill purple" style="width:26%"></div></div><div class="bar-pct">6,6%</div></div>
+      <div class="bar-item"><div class="bar-label">HP</div><div class="bar-track"><div class="bar-fill purple" style="width:14%"></div></div><div class="bar-pct">3,4%</div></div>
+      <div class="bar-item"><div class="bar-label">Asus</div><div class="bar-track"><div class="bar-fill purple" style="width:10%"></div></div><div class="bar-pct">2,5%</div></div>
+      <div class="bar-item"><div class="bar-label">Apple Mac</div><div class="bar-track"><div class="bar-fill purple" style="width:7%"></div></div><div class="bar-pct">1,8%</div></div>
     </div>
   </div>
 
-  <!-- SECTION 6: STREAMING & MÍDIA -->
+  <!-- S6: TELECOMUNICAÇÕES -->
   <div class="section-divider">
     <div class="section-num">6</div>
-    <div class="section-title">Streaming & Plataformas de Mídia</div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="cards-grid">
-    <div class="stat-card">
-      <div class="stat-card-pct">97%</div>
-      <div class="stat-card-label">Streaming de Música</div>
-      <div class="stat-card-total">30.855 usuários</div>
-    </div>
-    <div class="stat-card orange">
-      <div class="stat-card-pct">91%</div>
-      <div class="stat-card-label">Streaming de Vídeo</div>
-      <div class="stat-card-total">28.872 usuários</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-pct">76%</div>
-      <div class="stat-card-label">RCS Ativado</div>
-      <div class="stat-card-total">24.186 usuários</div>
-    </div>
-    <div class="stat-card orange">
-      <div class="stat-card-pct">15%</div>
-      <div class="stat-card-label">Netflix</div>
-      <div class="stat-card-total">usuários confirmados</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-pct">12%</div>
-      <div class="stat-card-label">Spotify</div>
-      <div class="stat-card-total">usuários confirmados</div>
-    </div>
-    <div class="stat-card orange">
-      <div class="stat-card-pct">8%</div>
-      <div class="stat-card-label">Globoplay</div>
-      <div class="stat-card-total">usuários confirmados</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-pct">12%</div>
-      <div class="stat-card-label">Vivo TV</div>
-      <div class="stat-card-total">3.960 usuários</div>
-    </div>
-    <div class="stat-card orange">
-      <div class="stat-card-pct">7%</div>
-      <div class="stat-card-label">Apps Infantis</div>
-      <div class="stat-card-total">2.126 usuários</div>
-    </div>
-  </div>
-
-  <!-- SECTION 7: RISCO E CRÉDITO -->
-  <div class="section-divider">
-    <div class="section-num">7</div>
-    <div class="section-title">Risco de Crédito & Inadimplência</div>
+    <div class="section-title">Telecomunicações — Celular</div>
     <div class="section-line"></div>
   </div>
 
   <div class="full-col">
-    <div class="bar-section">
-      <div class="bar-section-title">Perfil de Risco Serasa</div>
-      <div class="bar-item"><div class="bar-label">Baixo Risco</div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><div class="bar-pct">60%</div></div>
-      <div class="bar-item"><div class="bar-label">Médio Risco</div><div class="bar-track"><div class="bar-fill orange" style="width:25%"></div></div><div class="bar-pct">25%</div></div>
-      <div class="bar-item"><div class="bar-label">Alto Risco</div><div class="bar-track"><div class="bar-fill pink" style="width:15%"></div></div><div class="bar-pct">15%</div></div>
+    <div style="background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto;">
+      <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">📱 Marca do Celular Principal — Composição (%)</div>
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:140px;">Marca</th>
+          <th class="internet">Internet</th><th class="terra">Terra</th><th class="vivo">Vivo</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Samsung</td><td><span class="badge-sm cyan">39,6%</span></td><td><span class="badge-sm green">41,6%</span></td><td><span class="badge-sm purple">42,5%</span></td></tr>
+          <tr><td>Motorola</td><td><span class="badge-sm cyan">23,3%</span></td><td><span class="badge-sm green">25,0%</span></td><td><span class="badge-sm purple">25,4%</span></td></tr>
+          <tr><td>Apple iPhone</td><td><span class="badge-sm cyan">14,1%</span></td><td><span class="badge-sm green">11,7%</span></td><td><span class="badge-sm purple">11,5%</span></td></tr>
+          <tr><td>Xiaomi</td><td><span class="badge-sm cyan">11,5%</span></td><td><span class="badge-sm green">12,2%</span></td><td><span class="badge-sm purple">12,1%</span></td></tr>
+          <tr><td>LG</td><td><span class="badge-sm cyan">3,3%</span></td><td><span class="badge-sm green">3,1%</span></td><td><span class="badge-sm purple">2,8%</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <div class="highlight-strip">
-    <div class="highlight-card">
-      <div class="highlight-pct">5%</div>
-      <div class="highlight-label">Inadimplentes na base</div>
-    </div>
-    <div class="highlight-card orange-bg">
-      <div class="highlight-pct">16%</div>
-      <div class="highlight-label">Carentes identificados</div>
-    </div>
-    <div class="highlight-card teal-bg">
-      <div class="highlight-pct">42%</div>
-      <div class="highlight-label">Planos de Saúde</div>
-    </div>
-    <div class="highlight-card dark-bg">
-      <div class="highlight-pct">35%</div>
-      <div class="highlight-label">Prog. de Pontos / Fidelidade</div>
+  <div class="full-col" style="margin-top:8px;">
+    <div style="background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto;">
+      <div style="font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">💰 Gasto Mensal Celular (R$) — Composição (%)</div>
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:160px;">Faixa</th>
+          <th class="internet">Internet</th><th class="terra">Terra</th><th class="vivo">Vivo</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>R$150+ /mês</td><td><span class="badge-sm cyan">5,2%</span></td><td><span class="badge-sm green">5,4%</span></td><td><span class="badge-sm purple">6,2%</span></td></tr>
+          <tr><td>R$120-R$149</td><td><span class="badge-sm cyan">4,2%</span></td><td><span class="badge-sm green">4,2%</span></td><td><span class="badge-sm purple">5,4%</span></td></tr>
+          <tr><td>R$90-R$119</td><td><span class="badge-sm cyan">7,6%</span></td><td><span class="badge-sm green">8,0%</span></td><td><span class="badge-sm purple">7,2%</span></td></tr>
+          <tr><td>R$60-R$89</td><td><span class="badge-sm cyan">17,6%</span></td><td><span class="badge-sm green">18,3%</span></td><td><span class="badge-sm purple">18,1%</span></td></tr>
+          <tr><td>R$30-R$59</td><td><span class="badge-sm cyan">34,0%</span></td><td><span class="badge-sm green">34,9%</span></td><td><span class="badge-sm purple">36,7%</span></td></tr>
+          <tr><td>R$15-R$29</td><td><span class="badge-sm cyan">20,8%</span></td><td><span class="badge-sm green">20,5%</span></td><td><span class="badge-sm purple">18,5%</span></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- SECTION 8: SEGMENTO EMPREENDEDORES -->
+  <!-- S7: FATORES DE COMPRA -->
   <div class="section-divider">
-    <div class="section-num">8</div>
-    <div class="section-title">Empreendedores & MEI</div>
+    <div class="section-num">7</div>
+    <div class="section-title">Fatores de Decisão de Compra — Computadores & TVs</div>
     <div class="section-line"></div>
   </div>
 
   <div class="two-col">
-    <div class="bar-section" style="margin:0;">
-      <div class="bar-section-title">Perfil Empreendedor</div>
-      <div class="bar-item"><div class="bar-label">Pessoa Jurídica / MEI</div><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div><div class="bar-pct">11%</div></div>
-      <div class="bar-item"><div class="bar-label">Empreendedores</div><div class="bar-track"><div class="bar-fill orange" style="width:4%"></div></div><div class="bar-pct">4%</div></div>
-      <div class="bar-item"><div class="bar-label">Vale Refeição</div><div class="bar-track"><div class="bar-fill teal" style="width:24%"></div></div><div class="bar-pct">24%</div></div>
-      <div class="bar-item"><div class="bar-label">Tecnologia</div><div class="bar-track"><div class="bar-fill pink" style="width:9%"></div></div><div class="bar-pct">9%</div></div>
+    <div style="background:var(--card);border-radius:12px;padding:20px;border:1px solid rgba(255,255,255,0.05);">
+      <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">💻 Computadores & Tablets</div>
+      <div class="bar-item"><div class="bar-label">Preço</div><div class="bar-track"><div class="bar-fill cyan" style="width:51%"></div></div><div class="bar-pct">51,2%</div></div>
+      <div class="bar-item"><div class="bar-label">Marca / Imagem</div><div class="bar-track"><div class="bar-fill cyan" style="width:45%"></div></div><div class="bar-pct">45,1%</div></div>
+      <div class="bar-item"><div class="bar-label">Especificações</div><div class="bar-track"><div class="bar-fill green" style="width:44%"></div></div><div class="bar-pct">44,0%</div></div>
+      <div class="bar-item"><div class="bar-label">Confiabilidade</div><div class="bar-track"><div class="bar-fill green" style="width:30%"></div></div><div class="bar-pct">30,2%</div></div>
+      <div class="bar-item"><div class="bar-label">Avaliações prof.</div><div class="bar-track"><div class="bar-fill purple" style="width:29%"></div></div><div class="bar-pct">29,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Últimas tecnologias</div><div class="bar-track"><div class="bar-fill purple" style="width:26%"></div></div><div class="bar-pct">25,8%</div></div>
+      <div class="bar-item"><div class="bar-label">Software</div><div class="bar-track"><div class="bar-fill orange" style="width:16%"></div></div><div class="bar-pct">16,2%</div></div>
     </div>
-
-    <div class="bar-section" style="margin:0;">
-      <div class="bar-section-title">Setores PJ na Base</div>
-      <div class="bar-item"><div class="bar-label">Informação & Com.</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><div class="bar-pct">2%</div></div>
-      <div class="bar-item"><div class="bar-label">Comércio e Veículos</div><div class="bar-track"><div class="bar-fill orange" style="width:50%"></div></div><div class="bar-pct">1%</div></div>
-      <div class="bar-item"><div class="bar-label">Prof. Científicas</div><div class="bar-track"><div class="bar-fill teal" style="width:60%"></div></div><div class="bar-pct">2%</div></div>
-      <div class="bar-item"><div class="bar-label">Educação</div><div class="bar-track"><div class="bar-fill pink" style="width:30%"></div></div><div class="bar-pct">1%</div></div>
+    <div style="background:var(--card);border-radius:12px;padding:20px;border:1px solid rgba(255,255,255,0.05);">
+      <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">📺 Televisores</div>
+      <div class="bar-item"><div class="bar-label">Qualidade</div><div class="bar-track"><div class="bar-fill cyan" style="width:70%"></div></div><div class="bar-pct">70,2%</div></div>
+      <div class="bar-item"><div class="bar-label">Preço</div><div class="bar-track"><div class="bar-fill cyan" style="width:65%"></div></div><div class="bar-pct">65,2%</div></div>
+      <div class="bar-item"><div class="bar-label">Features (total)</div><div class="bar-track"><div class="bar-fill green" style="width:55%"></div></div><div class="bar-pct">55,0%</div></div>
+      <div class="bar-item"><div class="bar-label">Marca / Imagem</div><div class="bar-track"><div class="bar-fill green" style="width:45%"></div></div><div class="bar-pct">45,1%</div></div>
+      <div class="bar-item"><div class="bar-label">Tamanho da tela</div><div class="bar-track"><div class="bar-fill purple" style="width:37%"></div></div><div class="bar-pct">37,5%</div></div>
+      <div class="bar-item"><div class="bar-label">Qualidade de imagem</div><div class="bar-track"><div class="bar-fill purple" style="width:30%"></div></div><div class="bar-pct">30,3%</div></div>
+      <div class="bar-item"><div class="bar-label">Últimas tecnologias</div><div class="bar-track"><div class="bar-fill orange" style="width:27%"></div></div><div class="bar-pct">27,3%</div></div>
     </div>
   </div>
 
-  <!-- SECTION 9: INSIGHTS ESTRATÉGICOS -->
+  <!-- S8: STREAMING & TV -->
+  <div class="section-divider">
+    <div class="section-num">8</div>
+    <div class="section-title">Streaming & Televisão</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="full-col">
+    <div style="background:var(--card);border-radius:12px;padding:22px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto;">
+      <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px;">📺 Opiniões sobre Streaming & TV — % Concordam</div>
+      <table class="comp-table">
+        <thead><tr>
+          <th style="width:310px;">Afirmação</th>
+          <th class="internet">Internet</th><th class="terra">Terra</th><th class="vivo">Vivo</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Satisfeito com updates dos streamings</td><td><span class="badge-sm cyan">49,1%</span></td><td><span class="badge-sm green">48,2%</span></td><td><span class="badge-sm purple">47,1%</span></td></tr>
+          <tr><td>Streaming mudou como assisto TV</td><td><span class="badge-sm cyan">45,7%</span></td><td><span class="badge-sm green">45,9%</span></td><td><span class="badge-sm purple">47,2%</span></td></tr>
+          <tr><td>Pesquiso na internet o que vejo anunciado na TV</td><td><span class="badge-sm cyan">43,0%</span></td><td><span class="badge-sm green">42,8%</span></td><td><span class="badge-sm purple">41,9%</span></td></tr>
+          <tr><td>Trocaria streaming por um mais barato com anúncios</td><td><span class="badge-sm cyan">35,8%</span></td><td><span class="badge-sm green">36,4%</span></td><td><span class="badge-sm purple">35,2%</span></td></tr>
+          <tr><td>Com streaming assisto mais TV que antes</td><td><span class="badge-sm cyan">33,8%</span></td><td><span class="badge-sm green">34,7%</span></td><td><span class="badge-sm purple">35,1%</span></td></tr>
+          <tr><td>Prefiro TV no laptop, tablet ou celular</td><td><span class="badge-sm cyan">30,1%</span></td><td><span class="badge-sm green">28,2%</span></td><td><span class="badge-sm purple">27,7%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- S9: INSIGHTS ESTRATÉGICOS -->
   <div class="section-divider">
     <div class="section-num">9</div>
-    <div class="section-title">Insights Estratégicos</div>
+    <div class="section-title">Insights Estratégicos para o Comercial</div>
     <div class="section-line"></div>
   </div>
 
-  <div style="padding: 0 20px;">
-    <div class="insights-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:14px;">
+  <div style="padding:0 24px;">
+    <div class="insights-grid">
 
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #7B2D8B;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#7B2D8B; margin-bottom:8px;">📱 Público Altamente Digital</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">98% estão ativos em redes sociais com vídeo. Ações em TikTok, Instagram Reels e YouTube têm alcance quase total da base.</p>
-      </div>
-
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #F26522;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#F26522; margin-bottom:8px;">🍎 Domínio do iPhone</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">76% dos fãs usam iPhone — público premium com alto poder aquisitivo. Criativo em formato vertical e campanhas otimizadas para iOS são essenciais.</p>
+      <div class="insight-card" style="border-left-color:var(--cyan);">
+        <div class="insight-card-title" style="color:var(--cyan);">📊 Alcance Massivo + Qualificado</div>
+        <p>Terra alcança <strong style="color:var(--cyan);">53,5%</strong> da internet brasileira (62 MM) e Vivo <strong style="color:var(--purple);">18,5%</strong> (21,4 MM). Juntos, entregam cobertura qualificada sobre um público adulto, com forte concentração nas faixas 35+ — o decision-maker de compra de tecnologia.</p>
       </div>
 
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #00a99d;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#00a99d; margin-bottom:8px;">💰 Perfil Econômico AB</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">78% das classes A e B concentram o público. Alto potencial para ofertas premium, pacotes VIP, hospitalidade e upgrades de experiência.</p>
+      <div class="insight-card" style="border-left-color:var(--green);">
+        <div class="insight-card-title" style="color:var(--green);">🔍 Público Pesquisador e Comparador</div>
+        <p>90,2% da audiência do Terra busca o melhor preço em eletrônicos e 82,4% pesquisa ativamente antes de comprar. É um público que <strong style="color:var(--green);">converte por informação, não por impulso</strong> — ideal para formatos de conteúdo nativo e comparativos patrocinados.</p>
       </div>
 
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #e91e8c;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#e91e8c; margin-bottom:8px;">✈️ Viajantes Frequentes</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">58% viajam de avião e 35% acumulam pontos. Parcerias com companhias aéreas e programas de fidelidade criam oportunidades únicas de ativação.</p>
+      <div class="insight-card" style="border-left-color:var(--purple);">
+        <div class="insight-card-title" style="color:var(--purple);">🟣 Vivo: Ticket Mais Alto</div>
+        <p>A audiência Vivo gasta mais com celular: <strong style="color:var(--purple);">11,6% gasta R$120+/mês</strong> vs. 9,3% da internet geral. Reach de Smart Speaker é de <strong style="color:var(--purple);">23,5%</strong> (vs. 50,5% no Terra) — sinal de público premium que adota novas categorias.</p>
       </div>
 
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #7B2D8B;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#7B2D8B; margin-bottom:8px;">🎵 Fãs de Streaming</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">97% consomem streaming de música. Ativações em Spotify/playlists temáticas, lançamento de conteúdo exclusivo e anúncio de setlists são altamente efetivos.</p>
+      <div class="insight-card" style="border-left-color:var(--orange);">
+        <div class="insight-card-title" style="color:var(--orange);">📱 Samsung + Motorola Dominam</div>
+        <p>Samsung (42,5%) e Motorola (25,4%) somam <strong style="color:var(--orange);">quase 68% dos celulares da base Vivo</strong>. Campanhas com essas marcas no ecossistema Vivo Ads garantem relevância máxima no público tech-first.</p>
       </div>
 
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #F26522;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#F26522; margin-bottom:8px;">🏙️ Concentração Sudeste</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">82% estão no Sudeste. Comunicação OOH, rádio e eventos pré-show em SP e RJ maximizam o impacto e geram senso de comunidade local.</p>
+      <div class="insight-card" style="border-left-color:var(--cyan);">
+        <div class="insight-card-title" style="color:var(--cyan);">🛒 27,5 MM Querem Comprar Smartphone</div>
+        <p>A intenção de compra de smartphone nos próximos 12 meses envolve 27,5 MM de pessoas. O Terra alcança <strong style="color:var(--green);">14 MM</strong> desses compradores (51,1% reach). É a maior janela de oportunidade para marcas e varejistas de tech.</p>
       </div>
 
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #00a99d;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#00a99d; margin-bottom:8px;">💳 Pagamento Digital</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">88% utilizam meios digitais de pagamento. Pix, carteiras digitais e checkout simplificado são mandatórios para converter intenção em compra.</p>
+      <div class="insight-card" style="border-left-color:var(--green);">
+        <div class="insight-card-title" style="color:var(--green);">📺 Smart TV: Reach Terra de 57,3%</div>
+        <p>Entre os 20,7 MM que pretendem comprar Smart TV, o Terra atinge <strong style="color:var(--green);">57,3%</strong> — o maior reach entre todos os produtos tech. Ideal para campanhas de Samsung, LG e TCL dentro do ecossistema Terra.</p>
       </div>
 
-      <div style="background:white; border-radius:10px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid #e91e8c;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:16px; color:#e91e8c; margin-bottom:8px;">👩 Maioria Feminina Solteira</div>
-        <p style="font-size:12px; color:#555; line-height:1.6;">54% mulheres e 84% solteiros. Comunicação direcionada para grupos de amigos e experiências sociais tem forte potencial de conversão e viralização.</p>
+      <div class="insight-card" style="border-left-color:var(--purple);">
+        <div class="insight-card-title" style="color:var(--purple);">💡 Dados First-Party com Escala</div>
+        <p>Terra e Vivo operam com dados first-party reais de navegação e consumo. Num cenário de fim dos cookies, essa base de <strong style="color:var(--cyan);">83 MM de touchpoints qualificados</strong> é um ativo insubstituível para planejamento de mídia.</p>
       </div>
 
-    </div>
-  </div>
+      <div class="insight-card" style="border-left-color:var(--orange);">
+        <div class="insight-card-title" style="color:var(--orange);">🎯 Público Receptivo à Publicidade</div>
+        <p>36,5% dizem que publicidade influencia compras, 40% seguem marcas em redes e <strong style="color:var(--orange);">32,6% interagem clicando em anúncios</strong>. Na Vivo, 36,1% são favoráveis a receber publicidade no celular — uma audiência que aceita e engaja com ads.</p>
+      </div>
 
-
-  <!-- SECTION 10: PERSONAS -->
-  <div class="section-divider">
-    <div class="section-num">10</div>
-    <div class="section-title">Personas do Público</div>
-    <div class="section-line"></div>
-  </div>
-
-  <div style="padding: 0 20px 20px;">
-    <p style="font-size:12px; color:#777; margin-bottom:18px; line-height:1.7;">
-      Com base nos padrões comportamentais, demográficos e de consumo identificados na base de <strong>31.704 usuários</strong>, foram construídas 3 personas representativas do público do Bad Bunny no Brasil.
-    </p>
-
-    <!-- PERSONA 1 -->
-    <div class="persona-card" style="background:white; border-radius:14px; margin-bottom:18px; overflow:hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-      <div class="persona-header" style="background: linear-gradient(135deg, #7B2D8B 0%, #a94dbb 100%); padding: 24px 28px; display:flex; align-items:center; gap:20px; position:relative; overflow:hidden;">
-        <div style="position:absolute; right:-20px; top:-20px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.06);"></div>
-        <div style="position:absolute; right:40px; top:10px; width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,0.05);"></div>
-        <div style="width:68px; height:68px; border-radius:50%; background:rgba(255,255,255,0.15); border:3px solid rgba(255,255,255,0.4); display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0;">👩</div>
-        <div>
-          <div style="font-size:9px; font-weight:700; letter-spacing:3px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:4px;">Persona 01 · 38% da Base</div>
-          <div style="font-family:'DM Sans',sans-serif; font-size:26px; font-weight:800; color:white; line-height:1; margin-bottom:4px;">Camila, 32 anos</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.75);">Classe B · Sudeste · Solteira · iPhone · 5G</div>
-        </div>
-        <div style="margin-left:auto; text-align:right; flex-shrink:0;">
-          <div style="font-family:'Bebas Neue',sans-serif; font-size:42px; color:rgba(255,255,255,0.2); line-height:1;">01</div>
-        </div>
-      </div>
-      <div class="persona-inner" style="padding:24px 28px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#7B2D8B; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #f0e6f5; padding-bottom:5px;">🧠 Quem é ela</div>
-          <p style="font-size:12px; color:#555; line-height:1.7;">Jovem urbana da nova classe média, conectada 24h, consome muito conteúdo via Reels e TikTok. Usa iPhone, está no 5G e costuma estourar o pacote de dados. Solteira, ativa fisicamente e muito ligada em beleza e estilo de vida.</p>
-        </div>
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#7B2D8B; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #f0e6f5; padding-bottom:5px;">💡 Comportamento</div>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#7B2D8B; flex-shrink:0;"></span>Compras online diárias — marketplace & delivery</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#7B2D8B; flex-shrink:0;"></span>Streaming de música no trajeto (Spotify)</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#7B2D8B; flex-shrink:0;"></span>Paga tudo via Pix e carteira digital</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#7B2D8B; flex-shrink:0;"></span>Usa fintechs (Nubank/Inter) como banco principal</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#7B2D8B; flex-shrink:0;"></span>Interesse em ingressos, cinema e festivais</div>
-          </div>
-        </div>
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#F26522; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #fde8d8; padding-bottom:5px;">🎯 Como ativá-la</div>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="background:#fff7f0; border-left:3px solid #F26522; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#F26522;">Instagram/TikTok</strong> — Reels com bastidores, estilo e experiência do show</div>
-            <div style="background:#fff7f0; border-left:3px solid #F26522; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#F26522;">Checkout via Pix</strong> com parcelamento sem juros nas fintechs</div>
-            <div style="background:#fff7f0; border-left:3px solid #F26522; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#F26522;">Playlist Bad Bunny</strong> com link de ingresso integrado no Spotify</div>
-          </div>
-        </div>
-      </div>
-      <div class="persona-tags" style="padding:0 28px 20px; display:flex; gap:8px; flex-wrap:wrap;">
-        <span style="background:#f0e6f5; color:#7B2D8B; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Nova Classe Média</span>
-        <span style="background:#f0e6f5; color:#7B2D8B; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Beleza 45%</span>
-        <span style="background:#f0e6f5; color:#7B2D8B; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Atividade Física 52%</span>
-        <span style="background:#fff0e6; color:#F26522; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Fintechs 74%</span>
-        <span style="background:#fff0e6; color:#F26522; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Delivery 86%</span>
-        <span style="background:#e6f7f6; color:#00a99d; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Streaming Música 97%</span>
-      </div>
-    </div>
-
-    <!-- PERSONA 2 -->
-    <div class="persona-card" style="background:white; border-radius:14px; margin-bottom:18px; overflow:hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-      <div class="persona-header" style="background: linear-gradient(135deg, #F26522 0%, #f5894a 100%); padding: 24px 28px; display:flex; align-items:center; gap:20px; position:relative; overflow:hidden;">
-        <div style="position:absolute; right:-20px; top:-20px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.06);"></div>
-        <div style="position:absolute; right:40px; top:10px; width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,0.05);"></div>
-        <div style="width:68px; height:68px; border-radius:50%; background:rgba(255,255,255,0.15); border:3px solid rgba(255,255,255,0.4); display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0;">👨</div>
-        <div>
-          <div style="font-size:9px; font-weight:700; letter-spacing:3px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:4px;">Persona 02 · 33% da Base</div>
-          <div style="font-family:'DM Sans',sans-serif; font-size:26px; font-weight:800; color:white; line-height:1; margin-bottom:4px;">Rafael, 38 anos</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.75);">Classe A · Sudeste · Casado · iPhone · 5G · Elite Brasileira</div>
-        </div>
-        <div style="margin-left:auto; text-align:right; flex-shrink:0;">
-          <div style="font-family:'Bebas Neue',sans-serif; font-size:42px; color:rgba(255,255,255,0.2); line-height:1;">02</div>
-        </div>
-      </div>
-      <div class="persona-inner" style="padding:24px 28px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#F26522; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #fde8d8; padding-bottom:5px;">🧠 Quem é ele</div>
-          <p style="font-size:12px; color:#555; line-height:1.7;">Profissional liberal ou gestor de empresa, Classe A, viaja frequentemente a trabalho e lazer. Tem programa de pontos, costuma voar, usa marcas de luxo e consome produtos premium. Tem filhos — apps infantis na família — e é alto consumidor digital.</p>
-        </div>
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#F26522; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #fde8d8; padding-bottom:5px;">💡 Comportamento</div>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#F26522; flex-shrink:0;"></span>Investe em bolsa e acompanha finanças pelo app</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#F26522; flex-shrink:0;"></span>Voa com frequência — milhas e pontos acumulados</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#F26522; flex-shrink:0;"></span>Amazon Prime, plano de saúde premium e seguro</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#F26522; flex-shrink:0;"></span>TV por assinatura, streaming de vídeo e música</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#F26522; flex-shrink:0;"></span>Compra ingressos para experiências VIP</div>
-          </div>
-        </div>
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#7B2D8B; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #f0e6f5; padding-bottom:5px;">🎯 Como ativá-lo</div>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="background:#f7f0ff; border-left:3px solid #7B2D8B; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#7B2D8B;">Pacotes VIP & Hospitality</strong> — camarote, open bar, meet & greet com cashback em pontos</div>
-            <div style="background:#f7f0ff; border-left:3px solid #7B2D8B; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#7B2D8B;">Parceria com cia aéreas</strong> — combo voo + ingresso + hotel em SP/RJ</div>
-            <div style="background:#f7f0ff; border-left:3px solid #7B2D8B; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#7B2D8B;">LinkedIn + Google Ads</strong> — campanha premium focada em renda A/B</div>
-          </div>
-        </div>
-      </div>
-      <div class="persona-tags" style="padding:0 28px 20px; display:flex; gap:8px; flex-wrap:wrap;">
-        <span style="background:#fde8d8; color:#F26522; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Elite Brasileira 32%</span>
-        <span style="background:#fde8d8; color:#F26522; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Investimento 25%</span>
-        <span style="background:#fde8d8; color:#F26522; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Companhia Aérea 58%</span>
-        <span style="background:#f0e6f5; color:#7B2D8B; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Marcas de Luxo 22%</span>
-        <span style="background:#f0e6f5; color:#7B2D8B; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Prog. Pontos 35%</span>
-        <span style="background:#e6f7f6; color:#00a99d; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Seguros & Saúde</span>
-      </div>
-    </div>
-
-    <!-- PERSONA 3 -->
-    <div class="persona-card" style="background:white; border-radius:14px; margin-bottom:8px; overflow:hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-      <div class="persona-header" style="background: linear-gradient(135deg, #00a99d 0%, #00c9bb 100%); padding: 24px 28px; display:flex; align-items:center; gap:20px; position:relative; overflow:hidden;">
-        <div style="position:absolute; right:-20px; top:-20px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,0.06);"></div>
-        <div style="position:absolute; right:40px; top:10px; width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,0.05);"></div>
-        <div style="width:68px; height:68px; border-radius:50%; background:rgba(255,255,255,0.15); border:3px solid rgba(255,255,255,0.4); display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0;">🧑</div>
-        <div>
-          <div style="font-size:9px; font-weight:700; letter-spacing:3px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:4px;">Persona 03 · 24% da Base</div>
-          <div style="font-family:'DM Sans',sans-serif; font-size:26px; font-weight:800; color:white; line-height:1; margin-bottom:4px;">Lucas, 22 anos</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.75);">Classe B/C · Sudeste & Nordeste · Solteiro · iPhone · 5G</div>
-        </div>
-        <div style="margin-left:auto; text-align:right; flex-shrink:0;">
-          <div style="font-family:'Bebas Neue',sans-serif; font-size:42px; color:rgba(255,255,255,0.2); line-height:1;">03</div>
-        </div>
-      </div>
-      <div class="persona-inner" style="padding:24px 28px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#00a99d; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #d0f2ef; padding-bottom:5px;">🧠 Quem é ele</div>
-          <p style="font-size:12px; color:#555; line-height:1.7;">Jovem protagonista da classe média, trabalha e estuda, consome muito entretenimento digital. Adora games, cinema, apostas e conteúdo de celebridades. Usa transporte público, faz recargas de celular e tem perfil de alto risco de crédito — mas é extremamente engajado.</p>
-        </div>
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#00a99d; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #d0f2ef; padding-bottom:5px;">💡 Comportamento</div>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#00a99d; flex-shrink:0;"></span>Consome celebridades, fofocas e cultura pop</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#00a99d; flex-shrink:0;"></span>Gamer — portais, lojas e streaming de games</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#00a99d; flex-shrink:0;"></span>Apostas esportivas e jogos competitivos online</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#00a99d; flex-shrink:0;"></span>Apps de emprego e crédito pessoal ativos</div>
-            <div style="display:flex; align-items:center; gap:8px; font-size:11px; color:#444;"><span style="width:6px; height:6px; border-radius:50%; background:#00a99d; flex-shrink:0;"></span>Viraliza conteúdo — alto potencial de advocacia</div>
-          </div>
-        </div>
-        <div>
-          <div style="font-size:10px; font-weight:700; color:#F26522; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; border-bottom:2px solid #fde8d8; padding-bottom:5px;">🎯 Como ativá-lo</div>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="background:#e6f7f6; border-left:3px solid #00a99d; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#00a99d;">TikTok nativo</strong> — challenges, trending sounds e conteúdo gerado por fãs (UGC)</div>
-            <div style="background:#e6f7f6; border-left:3px solid #00a99d; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#00a99d;">Parcelamento agressivo</strong> — 12x sem juros via crédito pessoal ou BNPL</div>
-            <div style="background:#e6f7f6; border-left:3px solid #00a99d; padding:7px 10px; border-radius:4px; font-size:11px; color:#555; line-height:1.5;"><strong style="color:#00a99d;">Gaming & apostas</strong> — ativar via Twitch, influencers gamers e sorteios</div>
-          </div>
-        </div>
-      </div>
-      <div class="persona-tags" style="padding:0 28px 20px; display:flex; gap:8px; flex-wrap:wrap;">
-        <span style="background:#d0f2ef; color:#00a99d; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Jovens Protagonistas 11%</span>
-        <span style="background:#d0f2ef; color:#00a99d; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Gamers</span>
-        <span style="background:#d0f2ef; color:#00a99d; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Apostas</span>
-        <span style="background:#fde8d8; color:#F26522; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Celebridades & Fofocas</span>
-        <span style="background:#fde8d8; color:#F26522; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Crédito Pessoal 4%</span>
-        <span style="background:#f0e6f5; color:#7B2D8B; font-size:10px; font-weight:700; padding:4px 10px; border-radius:12px;">Alto Engajamento Digital</span>
-      </div>
-    </div>
-
-    <!-- PERSONA COMPARISON TABLE -->
-    <div class="persona-table-wrap" style="background:white; border-radius:14px; padding:22px; box-shadow:0 4px 20px rgba(0,0,0,0.08); margin-top:6px;">
-      <div style="font-size:11px; font-weight:700; color:#7B2D8B; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px; border-bottom:1px solid #f0f0f0; padding-bottom:8px;">📊 Comparativo das Personas</div>
-      <div style="overflow-x:auto;">
-        <table style="width:100%; border-collapse:collapse; font-size:11px;">
-          <thead>
-            <tr style="background:#fafafa;">
-              <th style="padding:10px 12px; text-align:left; color:#999; font-weight:600; font-size:10px; text-transform:uppercase; border-bottom:1px solid #eee; width:180px;">Dimensão</th>
-              <th style="padding:10px 12px; text-align:center; color:#7B2D8B; font-weight:700; border-bottom:1px solid #eee;">👩 Camila, 32</th>
-              <th style="padding:10px 12px; text-align:center; color:#F26522; font-weight:700; border-bottom:1px solid #eee;">👨 Rafael, 38</th>
-              <th style="padding:10px 12px; text-align:center; color:#00a99d; font-weight:700; border-bottom:1px solid #eee;">🧑 Lucas, 22</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid #f5f5f5;">
-              <td style="padding:9px 12px; color:#666; font-weight:600;">Renda estimada</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">R$ 4k–8k/mês</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">R$ 15k+/mês</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">R$ 2k–4k/mês</td>
-            </tr>
-            <tr style="background:#fafafa; border-bottom:1px solid #f5f5f5;">
-              <td style="padding:9px 12px; color:#666; font-weight:600;">Canal principal</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">Instagram / Reels</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">LinkedIn / Google</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">TikTok / Twitch</td>
-            </tr>
-            <tr style="border-bottom:1px solid #f5f5f5;">
-              <td style="padding:9px 12px; color:#666; font-weight:600;">Tipo de ingresso</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">Pista / Cadeira</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">Camarote VIP</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">Pista Parcelada</td>
-            </tr>
-            <tr style="background:#fafafa; border-bottom:1px solid #f5f5f5;">
-              <td style="padding:9px 12px; color:#666; font-weight:600;">Forma de pagamento</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">Pix / Fintech</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">Crédito + Pontos</td>
-              <td style="padding:9px 12px; text-align:center; color:#555;">12x Crédito/BNPL</td>
-            </tr>
-            <tr style="border-bottom:1px solid #f5f5f5;">
-              <td style="padding:9px 12px; color:#666; font-weight:600;">Potencial viral</td>
-              <td style="padding:9px 12px; text-align:center;">⭐⭐⭐⭐</td>
-              <td style="padding:9px 12px; text-align:center;">⭐⭐</td>
-              <td style="padding:9px 12px; text-align:center;">⭐⭐⭐⭐⭐</td>
-            </tr>
-            <tr style="background:#fafafa;">
-              <td style="padding:9px 12px; color:#666; font-weight:600;">Ticket médio esperado</td>
-              <td style="padding:9px 12px; text-align:center;"><span style="background:#f0e6f5; color:#7B2D8B; padding:3px 8px; border-radius:8px; font-weight:700;">R$ 450</span></td>
-              <td style="padding:9px 12px; text-align:center;"><span style="background:#fde8d8; color:#F26522; padding:3px 8px; border-radius:8px; font-weight:700;">R$ 1.200</span></td>
-              <td style="padding:9px 12px; text-align:center;"><span style="background:#d0f2ef; color:#00a99d; padding:3px 8px; border-radius:8px; font-weight:700;">R$ 280</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 
@@ -1459,78 +755,30 @@
 
 <!-- FOOTER -->
 <div class="report-footer">
-  Geomon Trends · Análise de Perfil de Público — Bad Bunny · Base: 31.704 usuários · Dados processados via plataforma de inteligência de audiências
+  Terra & Vivo Ads · Segmento Tecnologia — Comscore Plan Metrix Audience Profile · Fevereiro 2025 · Fonte: Comscore Multi-Platform · Brasil · Home & Work
 </div>
 
 <script>
-/* ── COUNT-UP ANIMATION ── */
-function countUp(el, target, suffix, duration) {
-  const isFloat = String(target).includes('.');
-  const start = 0;
-  const startTime = performance.now();
-  // Format with thousand separators
-  const fmt = (n) => {
-    if (isFloat) return n.toFixed(1);
-    return Math.round(n).toLocaleString('pt-BR');
-  };
-  function step(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = start + (target - start) * eased;
-    el.textContent = fmt(current) + (suffix || '');
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = fmt(target) + (suffix || '');
-  }
-  requestAnimationFrame(step);
-}
-
-/* ── PARSE stat values from the header ── */
-const statValues = [
-  { target: 31704, suffix: '' },
-  { target: 171,   suffix: '' },
-  { target: 5,     suffix: '' },
-  { target: 98,    suffix: '%' },
-  { target: 76,    suffix: '%' },
-];
-
-/* ── INTERSECTION OBSERVER for bars ── */
+/* BAR ANIMATION */
 const barObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const fill = entry.target;
-      const targetW = fill.dataset.width;
-      fill.style.width = targetW;
+      fill.style.width = fill.dataset.width;
       setTimeout(() => fill.classList.add('glow-active'), 300);
       barObserver.unobserve(fill);
     }
   });
 }, { threshold: 0.2 });
 
-/* ── INTERSECTION OBSERVER for count-up ── */
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const idx = parseInt(el.dataset.statIdx);
-      const { target, suffix } = statValues[idx];
-      countUp(el, target, suffix, 1800);
-      statObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-
-/* ── DONUT draw animation ── */
+/* DONUT ANIMATION */
 function animateDonut(svg) {
-  const circles = svg.querySelectorAll('circle:not([data-bg])');
+  const circles = svg.querySelectorAll('circle:not([stroke="rgba(255,255,255,0.06)"])');
   circles.forEach(c => {
     const da = c.getAttribute('stroke-dasharray');
     if (!da) return;
     const total = parseFloat(da.split(' ')[1]) || 219.91;
-    const fill  = parseFloat(da.split(' ')[0]);
-    const offset = parseFloat(c.getAttribute('stroke-dashoffset') || '0');
-    // Start with empty and animate in
+    const fill = parseFloat(da.split(' ')[0]);
     c.setAttribute('stroke-dasharray', `0 ${total}`);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -1541,42 +789,27 @@ function animateDonut(svg) {
   });
 }
 
-/* ── ON DOM READY ── */
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Store bar widths in data attribute, then reset to 0 for animation
   document.querySelectorAll('.bar-fill').forEach(fill => {
     const w = fill.style.width || '0%';
     fill.dataset.width = w;
     fill.style.width = '0%';
     barObserver.observe(fill);
   });
-
-  // Observe header stats for count-up
-  document.querySelectorAll('.header-stat-value').forEach((el, i) => {
-    el.dataset.statIdx = i;
-    statObserver.observe(el);
-  });
-
-  // Animate donuts on load with slight delay
   setTimeout(() => {
     document.querySelectorAll('.donut-wrap svg').forEach(svg => animateDonut(svg));
   }, 400);
 });
 
-/* ── PDF EXPORT ── */
 function exportPDF() {
   const btn = document.querySelector('.pdf-btn');
   btn.textContent = '⏳ Preparando...';
   btn.disabled = true;
-
-  // Temporarily expand all bars to their real width for print
   document.querySelectorAll('.bar-fill').forEach(fill => {
     fill.style.transition = 'none';
     fill.style.width = fill.dataset.width || fill.style.width;
     fill.classList.add('glow-active');
   });
-
   setTimeout(() => {
     window.print();
     btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Exportar PDF`;
