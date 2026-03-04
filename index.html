@@ -77,7 +77,7 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--dark);color:var(--w
 .bar{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .bar:last-child{margin-bottom:0;}
 .bl{width:160px;font-size:11px;color:var(--mid);text-align:right;flex-shrink:0;white-space:normal;line-height:1.3;word-break:break-word;}
-.bt{flex:1;height:18px;background:var(--bar-bg);border-radius:4px;overflow:visible;}
+.bt{flex:1;height:18px;background:var(--bar-bg);border-radius:4px;overflow:visible;flex-shrink:1;min-width:40px;}
 .bf{height:100%;border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.22,.61,.36,1);}
 .bf.c{background:linear-gradient(90deg,var(--cyan),var(--blue));}
 .bf.g{background:linear-gradient(90deg,var(--green),#059669);}
@@ -164,8 +164,10 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--dark);color:var(--w
   /* Bar labels: fully visible in print */
   .bl{width:180px!important;font-size:10px!important;white-space:normal!important;overflow:visible!important;text-overflow:unset!important;word-break:break-word!important;}
   .bp{font-size:10px!important;white-space:normal!important;}
-  .bar{gap:8px!important;align-items:flex-start!important;}
-  .bt{min-height:14px;height:auto!important;}
+  .bar{gap:8px!important;}
+  /* Ensure bars render in print */
+  .bt{height:16px!important;min-height:16px!important;}
+  .bf{height:100%!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;transition:none!important;}
   /* Ensure hero and strip don't break */
   .hero,.strip{page-break-inside:avoid!important;break-inside:avoid!important;}
   .hero{min-height:auto!important;}
