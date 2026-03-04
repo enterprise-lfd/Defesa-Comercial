@@ -1,594 +1,604 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Data | Classe A & Tecnologia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background: #fcfcfc; scroll-behavior: smooth; }
-        @keyframes aurora { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .bg-aurora { background: linear-gradient(-45deg, #ffffff, #f0f4ff, #fff7ed, #f5f0ff, #ffffff); background-size: 400% 400%; animation: aurora 15s ease infinite; }
-        @keyframes pulse-btn { 0%,100%{box-shadow:0 0 0 0 rgba(59,130,246,0.4)} 50%{box-shadow:0 0 0 10px rgba(59,130,246,0)} }
-        .btn-download { animation: pulse-btn 2.5s infinite; }
-        #top-bar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(0,0,0,0.06); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classe A × Tecnologia — Terra Deep Data</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#04060f; --s1:#080c1a; --s2:#0c1225;
+  --border:rgba(255,255,255,0.06);
+  --cyan:#00e5ff; --violet:#a855f7; --amber:#fbbf24; --emerald:#34d399; --rose:#fb7185;
+  --muted:#4a5568; --txt:#e2e8f0;
+  --mono:'JetBrains Mono',monospace; --display:'Syne',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--display);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,229,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.022) 1px,transparent 1px);
+  background-size:52px 52px}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.15) 3px,rgba(0,0,0,.15) 4px)}
 
-        /* ── PRINT / PDF STYLES ── */
-        @media print {
-            @page {
-                size: A4 landscape;
-                margin: 12mm 14mm;
-            }
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+/* TOPBAR */
+#topbar{position:sticky;top:0;z-index:200;height:56px;display:flex;align-items:center;
+  justify-content:space-between;padding:0 48px;
+  background:rgba(4,6,15,.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,229,255,.1)}
+#topbar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.35}
+.terra-logo{height:26px;filter:brightness(1.1)}
+.tb-right{display:flex;align-items:center;gap:16px}
+.tb-chip{font-family:var(--mono);font-size:8px;letter-spacing:.2em;color:var(--cyan);
+  border:1px solid rgba(0,229,255,.3);padding:4px 12px;border-radius:3px;text-transform:uppercase}
+.btn-pdf{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;background:var(--cyan);color:#000;border:none;
+  padding:8px 20px;border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px;
+  transition:all .2s;position:relative;overflow:hidden}
+.btn-pdf:hover{background:#33eaff;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,229,255,.4)}
 
-            #top-bar { display: none !important; }
+/* LAYOUT */
+main{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:64px 48px 120px}
 
-            body { background: #fcfcfc !important; }
+/* HERO */
+.hero{margin-bottom:100px;padding-top:40px;position:relative}
+.hero-tag{font-family:var(--mono);font-size:9px;letter-spacing:.35em;color:var(--cyan);
+  text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.hero-tag::before{content:'//';opacity:.45}
+.hero-tag::after{content:'';flex:0 0 80px;height:1px;background:var(--cyan);opacity:.4}
+.hero-title{font-size:clamp(52px,8vw,104px);font-weight:900;line-height:.88;letter-spacing:-.04em;margin-bottom:40px}
+.hero-title .hl{-webkit-text-stroke:2px var(--cyan);color:transparent;display:inline-block}
+.hero-kpis{display:flex;gap:48px;flex-wrap:wrap}
+.hero-kpi{border-left:2px solid rgba(0,229,255,.25);padding-left:20px}
+.hero-kpi-n{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--cyan);line-height:1}
+.hero-kpi-l{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;margin-top:4px;text-transform:uppercase}
+.hero-bg-num{position:absolute;right:-20px;top:-20px;font-size:280px;font-weight:900;
+  letter-spacing:-.06em;color:rgba(0,229,255,.022);font-family:var(--mono);
+  pointer-events:none;user-select:none;line-height:1}
 
-            /* Force all animated cards visible */
-            .animate-card { opacity: 1 !important; transform: none !important; animation: none !important; }
+/* SECTION */
+.sec{margin-bottom:100px}
+.sec-head{margin-bottom:48px}
+.sec-tag{font-family:var(--mono);font-size:8px;letter-spacing:.3em;color:var(--cyan);
+  text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sec-tag::before{content:'——';opacity:.4}
+.sec-title{font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.hr{height:1px;margin:0 0 80px;background:linear-gradient(90deg,var(--cyan),var(--violet),transparent);opacity:.18}
 
-            /* Freeze aurora background */
-            .bg-aurora { animation: none !important; background: linear-gradient(135deg, #ffffff, #f0f4ff, #fff7ed) !important; }
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.g12{display:grid;grid-template-columns:5fr 7fr;gap:20px}
+.g21{display:grid;grid-template-columns:7fr 5fr;gap:20px}
 
-            /* All bars fully rendered */
-            .bar-fill { transition: none !important; }
+/* CARD */
+.card{background:var(--s1);border:1px solid var(--border);border-radius:16px;padding:32px;
+  position:relative;overflow:hidden;transition:border-color .4s}
+.card::before{content:'';position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(0,229,255,.04),transparent 40%);
+  opacity:0;transition:opacity .4s;pointer-events:none}
+.card:hover{border-color:rgba(0,229,255,.22)}
+.card:hover::before{opacity:1}
+.card-dark{background:var(--s2)}
+.card-glow{border-color:rgba(0,229,255,.2);background:linear-gradient(135deg,rgba(0,229,255,.04),transparent)}
+.card::after{content:'';position:absolute;top:0;right:0;width:60px;height:60px;
+  background:linear-gradient(225deg,rgba(0,229,255,.12) 0%,transparent 60%);border-radius:0 16px 0 0}
 
-            /* Sensible page-break rules */
-            main > * { page-break-inside: avoid; break-inside: avoid; }
+.c-tag{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
+.c-num{font-family:var(--mono);font-size:56px;font-weight:700;color:var(--cyan);line-height:1;margin:4px 0}
+.c-abs{font-family:var(--mono);font-size:12px;color:var(--amber);margin-bottom:6px}
+.c-desc{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.7}
 
-            /* Section headings always start fresh if pushed near bottom */
-            h2 { page-break-after: avoid; break-after: avoid; }
+/* WAFFLE */
+.waffle{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:20px 0 12px}
+.w-cell{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.04);transition:background .04s}
+.w-cell.on {background:var(--cyan);  box-shadow:0 0 5px rgba(0,229,255,.5)}
+.w-cell.on-v{background:var(--violet);box-shadow:0 0 5px rgba(168,85,247,.5)}
+.w-cell.on-a{background:var(--amber); box-shadow:0 0 5px rgba(251,191,36,.5)}
+.w-legend{display:flex;gap:16px}
+.w-leg-item{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:var(--muted)}
+.w-leg-dot{width:8px;height:8px;border-radius:2px}
 
-            /* Grid items don't break mid-card */
-            .glow-card, .animate-card { page-break-inside: avoid; break-inside: avoid; }
+/* BUBBLE */
+.bubble-area{position:relative;height:250px;margin-top:16px}
+.bubble{position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;cursor:default;transform:scale(0);
+  transition:transform .7s cubic-bezier(.34,1.56,.64,1),filter .2s}
+.bubble:hover{filter:brightness(1.15);z-index:10}
+.bubble.in{transform:scale(1)}
+.b-pct{font-family:var(--mono);font-size:15px;font-weight:700;color:#000;line-height:1.1}
+.b-abs{font-family:var(--mono);font-size:8px;color:rgba(0,0,0,.6)}
+.b-lbl{font-family:var(--mono);font-size:7px;color:rgba(0,0,0,.55);text-transform:uppercase;
+  letter-spacing:.05em;text-align:center;max-width:80%;margin-top:1px;line-height:1.2}
 
-            /* Insert page break before major sections */
-            .page-break-before { page-break-before: always; break-before: always; }
+/* DONUT */
+.donut-wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;margin-top:8px}
+.donut-legend{display:flex;flex-direction:column;gap:14px}
+.d-row{display:flex;align-items:center;gap:10px}
+.d-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.d-label{font-family:var(--mono);font-size:9px;color:var(--muted);flex:1}
+.d-pct{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--txt)}
+.d-abs{font-family:var(--mono);font-size:8px;color:var(--amber)}
 
-            /* Remove hover shadows for print */
-            .glow-card:hover { transform: none !important; box-shadow: none !important; }
+/* LOLLIPOP */
+.lolly{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+.lolly-row{display:flex;align-items:center;gap:12px}
+.lolly-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);width:180px;flex-shrink:0;text-align:right}
+.lolly-track{flex:1;height:2px;background:rgba(255,255,255,.05);position:relative;border-radius:99px}
+.lolly-bar{height:2px;border-radius:99px;width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1);position:relative}
+.lolly-dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--bg);
+  position:absolute;right:-5.5px;top:-4.5px;box-shadow:0 0 10px currentColor}
+.lolly-val{font-family:var(--mono);font-size:10px;width:100px;padding-left:8px}
+.lolly-val .pct{color:var(--txt)}
+.lolly-val .abs{color:var(--amber);font-size:8px;display:block}
 
-            /* Keep dark backgrounds */
-            .bg-gray-900  { background-color: #111827 !important; }
-            .bg-purple-600{ background-color: #9333ea !important; }
-            .bg-blue-500  { background-color: #3b82f6 !important; }
-        }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-card { opacity: 0; }
-        .animate-card.visible { animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        .glow-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(0,0,0,0.04); }
-        .glow-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.4); }
-        .glow-card-purple:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(147,51,234,0.15); border-color: rgba(147,51,234,0.4); }
-        .bar-fill { transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .v-bar { transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .donut-path { transition: stroke-dasharray 2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .text-glow-blue { text-shadow: 0 0 20px rgba(59,130,246,0.3); }
-        .badge-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 999px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; }
-    </style>
+/* RADAR */
+.radar-svg{overflow:visible;display:block;margin:0 auto}
+
+/* GAUGE */
+.gauges-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
+.gauge-item{display:flex;flex-direction:column;align-items:center;gap:8px}
+.g-sub{font-family:var(--mono);font-size:8px;color:var(--muted);text-align:center;letter-spacing:.05em;text-transform:uppercase}
+.g-abs-l{font-family:var(--mono);font-size:8px;color:var(--amber);text-align:center}
+
+/* HBARS */
+.hbars{display:flex;flex-direction:column;gap:18px;margin-top:16px}
+.hb-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.hb-lbl{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.hb-nums{display:flex;align-items:baseline;gap:8px}
+.hb-pct{font-family:var(--mono);font-size:13px;font-weight:700}
+.hb-abs{font-family:var(--mono);font-size:8px;color:var(--amber)}
+.hb-track{height:5px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden}
+.hb-fill{height:100%;border-radius:99px;width:0;transition:width 1.6s cubic-bezier(.4,0,.2,1)}
+
+/* INSIGHT */
+.insight{border-left:3px solid var(--cyan);background:rgba(0,229,255,.04);
+  border-radius:0 12px 12px 0;padding:20px 28px;margin:28px 0}
+.insight p{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.9}
+.insight b{color:var(--txt)}
+
+/* WOM */
+.wom-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* FINAL */
+.final{background:linear-gradient(135deg,var(--s2),rgba(168,85,247,.12));
+  border:1px solid rgba(168,85,247,.25);border-radius:24px;padding:64px 56px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:48px;position:relative;overflow:hidden}
+.final::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;
+  border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.15),transparent 70%);pointer-events:none}
+.f-n{font-family:var(--mono);font-size:48px;font-weight:700;line-height:1;color:var(--cyan)}
+.f-abs{font-family:var(--mono);font-size:11px;color:var(--amber);margin:6px 0}
+.f-desc{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.8}
+
+/* REVEAL */
+@keyframes riseUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0}
+.reveal.in{animation:riseUp .8s cubic-bezier(.22,1,.36,1) forwards}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--s2);border-radius:3px}
+
+/* PRINT */
+@media print{
+  @page{size:A4 landscape;margin:10mm 12mm}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  #topbar{display:none!important}
+  body::before,body::after{display:none!important}
+  .reveal{opacity:1!important;animation:none!important}
+  .page-break{page-break-before:always;break-before:always}
+}
+</style>
 </head>
-<body class="min-h-screen pb-20 selection:bg-blue-100 selection:text-blue-900">
+<body>
 
-<!-- TOP BAR -->
-<div id="top-bar" class="w-full px-8 py-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Terra_Logo.svg"
-             alt="Terra" class="h-8 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
-        <span style="display:none" class="text-2xl font-black tracking-tighter text-blue-600">terra</span>
-        <div class="flex items-center gap-4">
-            <span class="text-[10px] font-black uppercase tracking-widest text-gray-400 hidden md:block">Deep Data · Classe A & Tecnologia</span>
-            <button onclick="downloadPDF()"
-                class="btn-download flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl shadow-lg transition-all duration-200 hover:scale-105 active:scale-95">
-                <i data-lucide="download" class="w-4 h-4"></i>
-                Baixar PDF
-            </button>
-        </div>
-    </div>
+<div id="topbar">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Terra_Logo.svg" class="terra-logo" alt="Terra"
+    onerror="this.outerHTML='<span style=\'font-family:var(--mono);color:var(--cyan);font-size:16px;font-weight:700;letter-spacing:.1em\'>TERRA</span>'">
+  <div class="tb-right">
+    <span class="tb-chip">&#11044; Deep Data · Fev 2025</span>
+    <button class="btn-pdf" onclick="printPDF()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M12 15V3m0 12-4-4m4 4 4-4M2 17l.621 2.485A2 2 0 004.56 21h14.878a2 2 0 001.94-1.515L22 17"/>
+      </svg>
+      Baixar PDF
+    </button>
+  </div>
 </div>
 
-<div class="bg-aurora">
-<main class="max-w-7xl mx-auto px-6 py-16">
+<main>
 
-    <!-- HERO -->
-    <div class="relative w-full h-[480px] rounded-[4rem] overflow-hidden mb-20 shadow-2xl group animate-card">
-        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900"></div>
-        <!-- Decorative circles -->
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-3xl -translate-y-1/2 translate-x-1/4"></div>
-        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-3xl translate-y-1/2 -translate-x-1/4"></div>
-        <!-- Grid pattern -->
-        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px); background-size: 40px 40px;"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-        <div class="absolute bottom-16 left-16 right-16">
-            <div class="max-w-3xl">
-                <div class="badge-pill bg-blue-500 text-white mb-6 shadow-[0_0_20px_rgba(59,130,246,0.5)] animate-pulse">
-                    <i data-lucide="cpu" class="w-3 h-3"></i> Deep Data · Fevereiro 2025
-                </div>
-                <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.95] mb-6 text-glow-blue">
-                    Classe A &<br><span class="text-blue-400">Tecnologia</span>
-                </h1>
-                <p class="text-white/80 text-xl font-medium flex items-center gap-3">
-                    <i data-lucide="database" class="w-5 h-5 text-blue-400"></i>
-                    Base: <span class="text-white font-black underline underline-offset-8 decoration-blue-500">11,1 MM de Usuários · Comscore Multi-Platform · Brasil</span>
-                </p>
-            </div>
-        </div>
+<!-- HERO -->
+<section class="hero reveal">
+  <div class="hero-bg-num">A+</div>
+  <div class="hero-tag">Classe A &amp; Tecnologia · Brasil · Comscore Multi-Platform</div>
+  <h1 class="hero-title">O público que<br><span class="hl">decide</span><br>o amanhã</h1>
+  <div class="hero-kpis">
+    <div class="hero-kpi"><div class="hero-kpi-n" id="h-base">0</div><div class="hero-kpi-l">MM de usuários</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-n" id="h-comp">0%</div><div class="hero-kpi-l">posse de computador</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-n" id="h-inf">0%</div><div class="hero-kpi-l">influenciam amigos em tech</div></div>
+    <div class="hero-kpi"><div class="hero-kpi-n" id="h-int">0%</div><div class="hero-kpi-l">internet como 1ª fonte</div></div>
+  </div>
+</section>
+
+<!-- SEC 1: DISPOSITIVOS -->
+<section class="sec reveal">
+  <div class="sec-head">
+    <div class="sec-tag">01 — Infraestrutura Digital</div>
+    <h2 class="sec-title">Posse de Dispositivos</h2>
+  </div>
+  <div class="g3" style="margin-bottom:20px">
+    <div class="card card-glow">
+      <div class="c-tag">Celular Pessoal</div>
+      <div class="c-num" id="n-cel">0%</div>
+      <div class="c-abs">10,8 MM de pessoas</div>
+      <div class="waffle" id="w-cel"></div>
+      <div class="w-legend"><div class="w-leg-item"><div class="w-leg-dot" style="background:var(--cyan)"></div>Possui</div><div class="w-leg-item"><div class="w-leg-dot" style="background:rgba(255,255,255,.04)"></div>Não possui</div></div>
     </div>
-
-    <!-- SECTION: PILARES -->
-    <div class="flex items-center gap-5 mb-12 animate-card">
-        <div class="p-4 bg-blue-500 rounded-3xl text-white shadow-xl rotate-3"><i data-lucide="smartphone"></i></div>
-        <div>
-            <h2 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">Dispositivos & Conectividade</h2>
-            <p class="text-gray-400 text-xs font-black uppercase tracking-widest mt-1">Posse e Comportamento de Hardware · Classe A Brasil</p>
-        </div>
+    <div class="card card-dark">
+      <div class="c-tag">Computador no Domicílio</div>
+      <div class="c-num" id="n-cmp" style="color:var(--violet)">0%</div>
+      <div class="c-abs">11,0 MM de domicílios</div>
+      <div class="waffle" id="w-cmp"></div>
+      <div class="w-legend"><div class="w-leg-item"><div class="w-leg-dot" style="background:var(--violet)"></div>Possui</div><div class="w-leg-item"><div class="w-leg-dot" style="background:rgba(255,255,255,.04)"></div>Não possui</div></div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12" id="devices-grid"></div>
-
-    <!-- INSIGHT BOX 1 -->
-    <div class="bg-white border border-gray-100 rounded-[3rem] p-10 mb-24 animate-card glow-card border-t-8 border-t-blue-500 shadow-xl">
-        <div class="flex items-start gap-6">
-            <div class="p-4 bg-blue-100 text-blue-600 rounded-2xl shrink-0"><i data-lucide="zap"></i></div>
-            <div>
-                <h4 class="text-sm font-black uppercase tracking-widest text-blue-600 mb-3">Deep Insight · Hardware da Classe A</h4>
-                <p class="text-sm text-gray-600 leading-relaxed font-medium">
-                    O Público Classe A é praticamente <b>universal no acesso a dispositivos</b>: 99,1% possuem computador no domicílio e 97,7% possuem televisão. Com <b>96,7% de penetração de celular</b> pessoal e 53,8% usando o aparelho de forma mista (pessoal + profissional), este é um público que vive em múltiplas telas simultaneamente. A posse de tablet chega a 60% nos domicílios — hardware premium como base, não exceção.                </p>
-            </div>
-        </div>
+    <div class="card card-dark">
+      <div class="c-tag">Televisão</div>
+      <div class="c-num" id="n-tv" style="color:var(--amber)">0%</div>
+      <div class="c-abs">10,9 MM de domicílios</div>
+      <div class="waffle" id="w-tv"></div>
+      <div class="w-legend"><div class="w-leg-item"><div class="w-leg-dot" style="background:var(--amber)"></div>Possui</div><div class="w-leg-item"><div class="w-leg-dot" style="background:rgba(255,255,255,.04)"></div>Não possui</div></div>
     </div>
+  </div>
+  <div class="card card-dark">
+    <div class="c-tag">Outros Dispositivos · % de posse na Classe A</div>
+    <div class="bubble-area" id="bubble-wrap"></div>
+  </div>
+</section>
 
-    <!-- SECTION: MARCAS E PURCHASE INTENTION -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-24 page-break-before">
-        <!-- Smartphone Brands -->
-        <div class="lg:col-span-5 bg-gray-900 rounded-[3.5rem] p-12 text-white shadow-2xl relative overflow-hidden animate-card flex flex-col">
-            <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl"></div>
-            <h3 class="text-[11px] font-black uppercase tracking-[0.4em] mb-3 text-blue-400">Marcas de Smartphone</h3>
-            <p class="text-xs text-gray-400 mb-10 font-medium">Share de posse · celular principal</p>
-            <div id="phone-brands" class="space-y-5 mb-auto"></div>
-            <div class="mt-10 p-6 bg-white/5 rounded-3xl border border-white/10">
-                <h4 class="text-[10px] font-black uppercase tracking-widest text-blue-400 mb-2 italic">Análise de Ecossistema</h4>
-                <p class="text-xs text-gray-300 leading-relaxed font-medium italic">Samsung domina com 38%, seguida de Apple iPhone (24,4%) e Motorola (16%). O share Apple na Classe A é estratégico: representa o segmento de maior ARPU e maior propensão a adquirir serviços premium.</p>
-            </div>
-        </div>
+<div class="hr"></div>
 
-        <!-- Purchase Intention -->
-        <div class="lg:col-span-7 bg-white border border-gray-100 rounded-[3.5rem] p-12 shadow-sm animate-card flex flex-col glow-card">
-            <h3 class="text-lg font-black uppercase mb-2 tracking-tighter">Intenção de Compra Tech</h3>
-            <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-12">Próximos 12 meses · % da Classe A</p>
-            <div class="flex justify-between items-end gap-3 h-56 mb-10 px-2" id="intent-bars"></div>
-            <div class="mt-auto bg-blue-50 p-8 rounded-3xl border border-blue-100">
-                <h4 class="text-xs font-black uppercase tracking-widest text-blue-600 mb-3 flex items-center gap-2">
-                    <i data-lucide="trending-up" class="w-4 h-4"></i> Análise de Intenção de Compra
-                </h4>
-                <p class="text-xs text-blue-900 leading-relaxed font-semibold">
-                    Smartphone (39,9%) e computador (37,8%) lideram as intenções — sinalizando um ciclo de renovação ativo. O interesse em Wireless Earphones (16,3%) aponta para o <b>mercado de acessórios premium</b> como vetor de crescimento complementar.
-                </p>
-            </div>
-        </div>
+<!-- SEC 2: MARCAS -->
+<section class="sec reveal page-break">
+  <div class="sec-head">
+    <div class="sec-tag">02 — Marcas &amp; Intenção de Compra</div>
+    <h2 class="sec-title">Ecossistema de Marcas</h2>
+  </div>
+  <div class="g12">
+    <div class="card card-dark">
+      <div class="c-tag">Share de Smartphones · Marca Principal</div>
+      <div class="donut-wrap">
+        <svg id="donut-svg" width="180" height="180" viewBox="0 0 180 180"></svg>
+        <div class="donut-legend" id="donut-leg"></div>
+      </div>
     </div>
-
-    <!-- SECTION: ATITUDES SOBRE TECNOLOGIA -->
-    <div class="flex items-center gap-5 mb-12 animate-card page-break-before">
-        <div class="p-4 bg-purple-600 rounded-3xl text-white shadow-[0_0_20px_rgba(147,51,234,0.4)] -rotate-3"><i data-lucide="brain"></i></div>
-        <div>
-            <h2 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">Mindset Tecnológico</h2>
-            <p class="text-gray-400 text-xs font-black uppercase tracking-widest mt-1">Opiniões & Atitudes · Classe A perante Tecnologia</p>
-        </div>
+    <div class="card card-dark">
+      <div class="c-tag">Intenção de Compra Tech · Próximos 12 Meses</div>
+      <div class="lolly" id="lolly-wrap"></div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12" id="attitudes-grid"></div>
+  </div>
+  <div class="insight">
+    <p>Smartphone (<b>39,9% · 4,4 MM</b>) e Computador (<b>37,8% · 4,2 MM</b>) lideram as intenções de compra. Wireless Earphones (<b>1,8 MM</b>) sinaliza o mercado de acessórios premium como vetor de crescimento complementar.</p>
+  </div>
+</section>
 
-    <!-- INSIGHT BOX 2 -->
-    <div class="bg-white border border-gray-100 rounded-[3rem] p-10 mb-24 animate-card glow-card border-t-8 border-t-purple-600 shadow-xl">
-        <div class="flex items-start gap-6">
-            <div class="p-4 bg-purple-100 text-purple-600 rounded-2xl shrink-0"><i data-lucide="lightbulb"></i></div>
-            <div>
-                <h4 class="text-sm font-black uppercase tracking-widest text-purple-600 mb-3">Deep Insight · Comportamento de Decisão Tech</h4>
-                <p class="text-sm text-gray-600 leading-relaxed font-medium">
-                    A Classe A é <b>pesquisadora compulsiva</b>: 81,2% buscam o máximo de informação antes de comprar eletrônicos e 84,5% sempre procuram o melhor preço — mas não são price-sensitive por necessidade, são <b>racionais por padrão</b>. Simultaneamente, 44,8% se autodeclaram "primeiros a adquirir novos equipamentos" entre seus amigos, e 51,9% são consultados pelos seus pares antes de compras tech. Este público atua como <b>hub de referência</b> para decisões tecnológicas em seus círculos.
-                </p>
-            </div>
-        </div>
+<div class="hr"></div>
+
+<!-- SEC 3: MINDSET -->
+<section class="sec reveal page-break">
+  <div class="sec-head">
+    <div class="sec-tag">03 — Mindset Tecnológico</div>
+    <h2 class="sec-title">Como a Classe A pensa sobre tech</h2>
+  </div>
+  <div class="g2">
+    <div class="card card-dark">
+      <div class="c-tag">Perfil de Comportamento · % concordam</div>
+      <svg id="radar-svg" width="340" height="320" viewBox="0 0 340 320" class="radar-svg"></svg>
     </div>
-
-    <!-- SECTION: INTERNET & DIGITAL BEHAVIOR -->
-    <div class="flex items-center gap-5 mb-12 animate-card page-break-before">
-        <div class="p-4 bg-gray-900 rounded-3xl text-white shadow-xl rotate-12"><i data-lucide="wifi"></i></div>
-        <h2 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">Comportamento Digital</h2>
+    <div class="card card-dark">
+      <div class="c-tag">Indicadores-Chave de Atitude</div>
+      <div class="gauges-grid">
+        <div class="gauge-item"><svg id="g1" width="150" height="95" viewBox="0 0 150 95"></svg><div class="g-sub">Pesquisam antes de comprar</div><div class="g-abs-l">9,0 MM · 81%</div></div>
+        <div class="gauge-item"><svg id="g2" width="150" height="95" viewBox="0 0 150 95"></svg><div class="g-sub">Buscam melhor preço</div><div class="g-abs-l">9,4 MM · 85%</div></div>
+        <div class="gauge-item"><svg id="g3" width="150" height="95" viewBox="0 0 150 95"></svg><div class="g-sub">Acompanham tendências tech</div><div class="g-abs-l">8,3 MM · 75%</div></div>
+        <div class="gauge-item"><svg id="g4" width="150" height="95" viewBox="0 0 150 95"></svg><div class="g-sub">Consultados pelos amigos</div><div class="g-abs-l">5,8 MM · 52%</div></div>
+      </div>
     </div>
+  </div>
+  <div class="insight">
+    <p>A Classe A atua como <b>hub de decisão tecnológica</b>: 51,9% (<b>5,8 MM</b>) são consultados pelos amigos antes de compras tech — combinado com 44,8% (<b>5,0 MM</b>) early adopters, tornando este público o vetor mais eficiente de word-of-mouth no mercado tech brasileiro.</p>
+  </div>
+</section>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
-        <!-- Internet Attitudes -->
-        <div class="bg-white border border-gray-100 rounded-[3.5rem] p-12 shadow-sm animate-card glow-card">
-            <h3 class="text-sm font-black uppercase tracking-widest mb-10 text-gray-900">Relação com Internet & Informação</h3>
-            <div id="internet-bars" class="space-y-6"></div>
-        </div>
+<div class="hr"></div>
 
-        <!-- Telecom Spending + AI -->
-        <div class="flex flex-col gap-8">
-            <div class="bg-gray-900 text-white rounded-[3rem] p-10 animate-card flex-1">
-                <h3 class="text-[11px] font-black uppercase tracking-[0.4em] mb-8 text-blue-400">Gasto Mensal com Celular</h3>
-                <div id="spend-bars" class="space-y-4"></div>
-            </div>
-            <div class="bg-purple-600 text-white rounded-[3rem] p-10 animate-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="p-3 bg-white/20 rounded-2xl"><i data-lucide="bot" class="w-6 h-6"></i></div>
-                    <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest opacity-70">IA como Fonte Confiável</p>
-                        <p class="text-5xl font-black tabular-nums mt-1"><span class="counter" data-target="53">0</span>%</p>
-                        <p class="text-sm font-black opacity-80 mt-1">5,9 MM de pessoas</p>
-                    </div>
-                </div>
-                <p class="text-xs text-white/80 leading-relaxed font-semibold">
-                    53,2% da Classe A considera Inteligência Artificial uma fonte confiável de informação — <b>adoção expressiva</b> que abre janela para produtos e experiências baseados em IA.
-                </p>
-            </div>
-        </div>
+<!-- SEC 4: DIGITAL -->
+<section class="sec reveal page-break">
+  <div class="sec-head">
+    <div class="sec-tag">04 — Comportamento Digital</div>
+    <h2 class="sec-title">Como vivem online</h2>
+  </div>
+  <div class="g21">
+    <div class="card card-dark">
+      <div class="c-tag">Relação com Internet · % concordam</div>
+      <div class="hbars" id="hbar-wrap"></div>
     </div>
-
-    <!-- INSIGHT BOX 3 -->
-    <div class="bg-white border border-gray-100 rounded-[3rem] p-10 mb-24 animate-card glow-card border-t-8 border-t-gray-900 shadow-xl">
-        <div class="flex items-start gap-6">
-            <div class="p-4 bg-gray-100 text-gray-800 rounded-2xl shrink-0"><i data-lucide="shield-alert"></i></div>
-            <div>
-                <h4 class="text-sm font-black uppercase tracking-widest text-gray-900 mb-3">Deep Insight · Privacidade & Confiança Digital</h4>
-                <p class="text-sm text-gray-600 leading-relaxed font-medium">
-                    Um dado crítico para marcas de tecnologia: <b>81,1% da Classe A demonstra preocupação com segurança de dados online</b>. Ao mesmo tempo, 61,9% confia na nuvem para guardar suas informações e 84,6% busca informação na internet como primeiro recurso. O paradoxo revela um consumidor que <b>quer conveniência digital, mas exige transparência</b>. Marcas tech que comunicam segurança com clareza têm vantagem competitiva neste segmento.
-                </p>
-            </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="card card-dark" style="flex:1">
+        <div class="c-tag">Gasto Mensal com Celular · Distribuição</div>
+        <svg id="area-svg" height="140" viewBox="0 0 380 140" preserveAspectRatio="xMidYMid meet" style="width:100%;display:block;margin-top:12px"></svg>
+      </div>
+      <div class="card card-glow" style="padding:28px">
+        <div class="c-tag">IA como Fonte Confiável de Informação</div>
+        <div style="display:flex;align-items:flex-end;gap:20px">
+          <div class="c-num" id="n-ai" style="font-size:72px">0%</div>
+          <div style="padding-bottom:14px"><div class="c-abs">5,9 MM de pessoas</div><div class="c-desc">da Classe A considera IA<br>uma fonte confiável</div></div>
         </div>
+        <div style="margin-top:16px;height:6px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden">
+          <div id="ai-bar" style="height:100%;background:var(--cyan);border-radius:99px;width:0%;transition:width 1.8s cubic-bezier(.4,0,.2,1)"></div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="insight">
+    <p><b>81,1% da Classe A</b> (9,0 MM) preocupada com segurança de dados — mas 84,6% (<b>9,4 MM</b>) busca informação na internet como primeiro recurso. <b>Máxima conveniência digital com exigência de controle e transparência.</b></p>
+  </div>
+</section>
 
-    <!-- SECTION: FATORES DE DECISÃO DE COMPRA -->
-    <div class="flex items-center gap-5 mb-12 animate-card page-break-before">
-        <div class="p-4 bg-orange-500 rounded-3xl text-white shadow-xl rotate-3"><i data-lucide="shopping-cart"></i></div>
-        <div>
-            <h2 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">Fatores de Decisão de Compra Tech</h2>
-            <p class="text-gray-400 text-xs font-black uppercase tracking-widest mt-1">O que move a compra de Computadores & Tablets · Classe A</p>
-        </div>
+<div class="hr"></div>
+
+<!-- SEC 5: WOM -->
+<section class="sec reveal page-break">
+  <div class="sec-head">
+    <div class="sec-tag">05 — Word of Mouth</div>
+    <h2 class="sec-title">Poder de Influência</h2>
+  </div>
+  <div class="wom-grid">
+    <div class="card card-dark" style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px">
+      <div class="c-tag" style="align-self:flex-start">Mobile Phone</div>
+      <svg id="wom1" width="180" height="180" viewBox="0 0 180 180"></svg>
+      <div class="c-abs" style="text-align:center">5,3 MM de pessoas</div>
+      <div class="c-desc" style="text-align:center">Salespeople <b style="color:var(--cyan)">47,6%</b> · Influencers <b style="color:var(--cyan)">45,9%</b></div>
     </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-24">
-        <div class="lg:col-span-7 bg-white border border-gray-100 rounded-[3.5rem] p-12 shadow-sm animate-card glow-card">
-            <h3 class="text-sm font-black uppercase tracking-widest mb-10">Fatores de Compra · Computadores & Tablets</h3>
-            <div id="buy-factors" class="space-y-5"></div>
-        </div>
-        <div class="lg:col-span-5 flex flex-col gap-8">
-            <!-- TV Factors -->
-            <div class="bg-gray-50 border border-gray-100 rounded-[3rem] p-10 animate-card flex-1">
-                <h3 class="text-sm font-black uppercase tracking-widest mb-8 text-gray-700">Fatores de Compra · TV</h3>
-                <div id="tv-factors" class="space-y-4"></div>
-            </div>
-        </div>
+    <div class="card card-dark" style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px">
+      <div class="c-tag" style="align-self:flex-start">Apps &amp; Tablets</div>
+      <svg id="wom2" width="180" height="180" viewBox="0 0 180 180"></svg>
+      <div class="c-abs" style="text-align:center">4,7 MM de pessoas</div>
+      <div class="c-desc" style="text-align:center">Salespeople <b style="color:var(--violet)">42,5%</b> · Influencers <b style="color:var(--violet)">39,6%</b></div>
     </div>
-
-    <!-- SECTION: WOM TECH -->
-    <div class="flex items-center gap-5 mb-12 animate-card page-break-before">
-        <div class="p-4 bg-green-600 rounded-3xl text-white shadow-xl -rotate-3"><i data-lucide="megaphone"></i></div>
-        <div>
-            <h2 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">Word of Mouth · Tecnologia</h2>
-            <p class="text-gray-400 text-xs font-black uppercase tracking-widest mt-1">Poder de Influência da Classe A em Mobile & Apps</p>
-        </div>
+    <div class="card card-dark" style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px">
+      <div class="c-tag" style="align-self:flex-start">TV &amp; Áudio</div>
+      <svg id="wom3" width="180" height="180" viewBox="0 0 180 180"></svg>
+      <div class="c-abs" style="text-align:center">4,3 MM de pessoas</div>
+      <div class="c-desc" style="text-align:center">Salespeople <b style="color:var(--amber)">39,0%</b> · Influencers <b style="color:var(--amber)">36,0%</b></div>
     </div>
+  </div>
+  <div class="insight" style="margin-top:28px">
+    <p>A Classe A domina todas as três categorias tech como <b>Salespeople e Influencers</b> — são <b>14,3 MM de instâncias de influência</b> somando mobile, apps e TV/áudio. Cada pessoa influencia em múltiplas categorias simultaneamente.</p>
+  </div>
+</section>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12" id="wom-grid"></div>
+<div class="hr"></div>
 
-    <!-- FINAL INSIGHT -->
-    <div class="bg-gray-900 text-white rounded-[3.5rem] p-14 mt-8 animate-card relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl -translate-y-1/2 translate-x-1/4"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-purple-500/10 blur-3xl translate-y-1/2 -translate-x-1/4"></div>
-        <div class="relative">
-            <div class="badge-pill bg-blue-500 text-white mb-8">
-                <i data-lucide="star" class="w-3 h-3 fill-current"></i> Conclusão Estratégica
-            </div>
-            <h3 class="text-3xl font-black mb-8 leading-tight">A Classe A é o <span class="text-blue-400">árbitro tecnológico</span> do Brasil</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white/5 rounded-3xl p-8 border border-white/10">
-                    <i data-lucide="users" class="text-blue-400 mb-4 w-7 h-7"></i>
-                    <h4 class="font-black text-sm uppercase tracking-wide mb-3 text-blue-300">Hub de Influência</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">51,9% são consultados pelos amigos antes de compras tech. Este público não é só consumidor — é <b class="text-white">formador de opinião</b> do ecossistema tecnológico.</p>
-                </div>
-                <div class="bg-white/5 rounded-3xl p-8 border border-white/10">
-                    <i data-lucide="search" class="text-purple-400 mb-4 w-7 h-7"></i>
-                    <h4 class="font-black text-sm uppercase tracking-wide mb-3 text-purple-300">Decisão Racional Premium</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">81,2% pesquisam profundamente antes de comprar. Campanhas devem ser <b class="text-white">ricas em informação técnica</b>, não apenas aspiracionais.</p>
-                </div>
-                <div class="bg-white/5 rounded-3xl p-8 border border-white/10">
-                    <i data-lucide="shield-check" class="text-green-400 mb-4 w-7 h-7"></i>
-                    <h4 class="font-black text-sm uppercase tracking-wide mb-3 text-green-300">Privacidade como Valor</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">81,1% preocupados com dados. Segurança e transparência não são diferencial — são <b class="text-white">requisito de entrada</b> para este público.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- CONCLUSÃO -->
+<section class="reveal page-break">
+  <div class="sec-head">
+    <div class="sec-tag">06 — Conclusão Estratégica</div>
+    <h2 class="sec-title">A Classe A é o árbitro tech do Brasil</h2>
+  </div>
+  <div class="final">
+    <div><div class="f-n" id="f1">0%</div><div class="f-abs">9,4 MM de pessoas</div><div class="f-desc">buscam o melhor preço em eletrônicos — decisão racional com exigência de qualidade</div></div>
+    <div><div class="f-n" id="f2" style="color:var(--violet)">0%</div><div class="f-abs">5,8 MM de pessoas</div><div class="f-desc">consultadas pelos amigos antes de compras tech — hub de influência autêntico</div></div>
+    <div><div class="f-n" id="f3" style="color:var(--amber)">0%</div><div class="f-abs">9,0 MM de pessoas</div><div class="f-desc">preocupadas com segurança de dados — privacidade é requisito de entrada</div></div>
+  </div>
+</section>
 
 </main>
-</div>
-
 <script>
-const DB = {
-    devices: [
-        { icon: 'monitor',     t: 'Computador',         sub: 'Domicílio',     p: 99.1, abs: 11027, c: '#3b82f6', bg: 'bg-blue-50',   tc: 'text-blue-600' },
-        { icon: 'tv-2',        t: 'Televisão',           sub: 'Posse',         p: 97.7, abs: 10865, c: '#8b5cf6', bg: 'bg-purple-50', tc: 'text-purple-600' },
-        { icon: 'smartphone',  t: 'Celular',             sub: 'Pessoal',       p: 96.7, abs: 10752, c: '#f97316', bg: 'bg-orange-50', tc: 'text-orange-600' },
-        { icon: 'tablet',      t: 'Tablet',              sub: 'Domicílio',     p: 60.0, abs: 6670,  c: '#10b981', bg: 'bg-green-50',  tc: 'text-green-600' },
-        { icon: 'gamepad-2',   t: 'Videogame',           sub: 'Posse',         p: 42.5, abs: 4728,  c: '#6366f1', bg: 'bg-indigo-50', tc: 'text-indigo-600' },
-        { icon: 'music',       t: 'Equip. de Som',       sub: 'Posse',         p: 57.6, abs: 6407,  c: '#f43f5e', bg: 'bg-rose-50',   tc: 'text-rose-600' },
-        { icon: 'mic',         t: 'Smart Speaker',       sub: 'Comprado L12m', p: 21.3, abs: 2365,  c: '#3b82f6', bg: 'bg-blue-50',   tc: 'text-blue-600' },
-        { icon: 'apple',       t: 'iPad / iPad Mini',    sub: 'Posse',         p: 16.9, abs: 1877,  c: '#8b5cf6', bg: 'bg-purple-50', tc: 'text-purple-600' }
-    ],
-    phoneBrands: [
-        { l: 'Samsung',     p: 38.1, abs: 4232, c: '#3b82f6' },
-        { l: 'Apple iPhone',p: 24.4, abs: 2717, c: '#6366f1' },
-        { l: 'Motorola',    p: 16.1, abs: 1785, c: '#8b5cf6' },
-        { l: 'Xiaomi',      p: 8.3,  abs: 924,  c: '#a855f7' },
-        { l: 'Outros',      p: 3.97, abs: 441,  c: '#c084fc' }
-    ],
-    intentBars: [
-        { l: 'Smartphone', p: 39.9, abs: 4438, c: '#3b82f6' },
-        { l: 'Computador',  p: 37.8, abs: 4201, c: '#6366f1' },
-        { l: 'Notebook',    p: 28.5, abs: 3165, c: '#8b5cf6' },
-        { l: 'Earphone',    p: 16.3, abs: 1814, c: '#f97316' },
-        { l: 'Smart TV',    p: 13.0, abs: 1449, c: '#10b981' },
-        { l: 'Tablet',      p: 10.8, abs: 1197, c: '#a855f7' },
-        { l: 'Smartwatch',  p: 8.1,  abs: 906,  c: '#6366f1' }
-    ],
-    attitudes: [
-        { i: 'search',       v: 81.2, abs: 9027, l: 'Pesquisam antes de comprar',              s: 'Eletrônicos', c: 'text-blue-600',   bg: 'bg-blue-50' },
-        { i: 'tag',          v: 84.5, abs: 9404, l: 'Buscam melhor preço',                     s: 'Eletrônicos', c: 'text-blue-600',   bg: 'bg-blue-50' },
-        { i: 'trending-up',  v: 74.5, abs: 8289, l: 'Acompanham tendências tech',              s: 'Inovação',    c: 'text-purple-600', bg: 'bg-purple-50' },
-        { i: 'users',        v: 51.9, abs: 5772, l: 'São consultados pelos amigos',             s: 'Influência',  c: 'text-purple-600', bg: 'bg-purple-50' },
-        { i: 'zap',          v: 44.8, abs: 4988, l: 'Primeiros a adquirir novos equipamentos', s: 'Early Adopters', c: 'text-orange-600', bg: 'bg-orange-50' },
-        { i: 'heart',        v: 44.6, abs: 4958, l: 'Pagariam qualquer preço pelo que querem', s: 'Premium',     c: 'text-orange-600', bg: 'bg-orange-50' },
-        { i: 'link',         v: 62.7, abs: 6970, l: 'Sincronizam todos os dispositivos',       s: 'Ecossistema', c: 'text-green-600',  bg: 'bg-green-50' },
-        { i: 'shopping-bag', v: 64.4, abs: 7169, l: 'Gostam de comprar novos eletrodomésticos',s: 'Lifestyle',   c: 'text-green-600',  bg: 'bg-green-50' }
-    ],
-    internetBars: [
-        { l: 'Buscam info primeiro na internet',    p: 84.6, abs: 9409, c: '#3b82f6' },
-        { l: 'Internet é principal entretenimento', p: 73.2, abs: 8141, c: '#6366f1' },
-        { l: 'Dependem da internet p/ informação',  p: 74.4, abs: 8274, c: '#8b5cf6' },
-        { l: 'Usam redes sociais frequentemente',   p: 75.0, abs: 8340, c: '#a855f7' },
-        { l: 'Checam redes sociais todo dia',       p: 70.4, abs: 7828, c: '#c084fc' },
-        { l: 'Preocupados com segurança de dados',  p: 81.1, abs: 9021, c: '#ef4444' },
-        { l: 'Confiam na nuvem para dados',         p: 61.9, abs: 6881, c: '#10b981' }
-    ],
-    spendBars: [
-        { l: 'R$ 150+',    p: 17.2, abs: 1912, c: '#3b82f6' },
-        { l: 'R$ 120–149', p: 11.0, abs: 1228, c: '#6366f1' },
-        { l: 'R$ 90–119',  p: 13.6, abs: 1511, c: '#8b5cf6' },
-        { l: 'R$ 60–89',   p: 20.3, abs: 2257, c: '#a855f7' },
-        { l: 'R$ 30–59',   p: 21.0, abs: 2334, c: '#c084fc' }
-    ],
-    buyFactors: [
-        { l: 'Preço', p: 45.1 },
-        { l: 'Imagem / Marca', p: 40.2 },
-        { l: 'Confiabilidade', p: 37.3 },
-        { l: 'Especificações Técnicas', p: 35.9 },
-        { l: 'Avaliações Profissionais', p: 32.1 },
-        { l: 'Última tecnologia disponível', p: 22.7 },
-        { l: 'Avaliações de usuários', p: 24.6 },
-        { l: 'Facilidade de uso', p: 18.8 }
-    ],
-    tvFactors: [
-        { l: 'Qualidade', p: 67.4 },
-        { l: 'Preço', p: 59.5 },
-        { l: 'Imagem / Marca', p: 36.9 },
-        { l: 'Confiabilidade', p: 31.5 },
-        { l: 'Última tecnologia', p: 28.9 }
-    ],
-    wom: [
-        {
-            cat: 'Mobile Phone', icon: 'smartphone',
-            know: { large: 20.0, mod: 32.2, label: '52,2% bem informados' },
-            convince: 47.6, abs: 5298,
-            segment: 'Influencers: 45,9%',
-            c: '#3b82f6',
-            insight: '47,6% muito propensos a recomendar smartphones. A Classe A é a principal locomotiva de word-of-mouth em mobile no Brasil.'
-        },
-        {
-            cat: 'Apps & Tablets', icon: 'grid-2x2',
-            know: { large: 18.3, mod: 28.1, label: '46,4% bem informados' },
-            convince: 42.5, abs: 4725,
-            segment: 'Salespeople: 42,5%',
-            c: '#8b5cf6',
-            insight: '42,5% como "Salespeople" em apps — ativamente vendem e recomendam aplicativos para sua rede de contatos.'
-        },
-        {
-            cat: 'TV & Áudio', icon: 'tv-2',
-            know: { large: 15.1, mod: 24.7, label: '39,8% bem informados' },
-            convince: 38.97, abs: 4335,
-            segment: 'Influencers: 36%',
-            c: '#f97316',
-            insight: '38,97% da Classe A funcionam como "Salespeople" de TV/Áudio — influenciando a decisão de compra na categoria entre amigos e família.'
-        }
-    ]
-};
+const $=id=>document.getElementById(id);
+const fmt=v=>v>=1000?(v/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+' MM':v.toLocaleString('pt-BR')+' Mil';
+function animNum(el,target,suffix='%',dur=1400){
+  if(!el)return;
+  const s=performance.now();
+  const run=t=>{
+    const p=Math.min((t-s)/dur,1),e=1-Math.pow(1-p,3);
+    const v=target<10?(target*e).toFixed(1):Math.round(target*e);
+    el.textContent=v+suffix;
+    if(p<1)requestAnimationFrame(run);
+  };
+  requestAnimationFrame(run);
+}
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+});
 
-function formatNum(val) {
-    // val is a number (raw value in thousands from Comscore, stored as-is in DB)
-    // For display: if >= 1000 show as "X,X MM", else "XXX Mil"
-    if (val >= 1000) {
-        return (val / 1000).toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1}) + ' MM';
-    } else {
-        return val.toLocaleString('pt-BR', {maximumFractionDigits:0}) + ' Mil';
-    }
+/* WAFFLE */
+function waffle(id,pct,cls){
+  const el=$(id);if(!el)return;
+  const n=Math.round(pct);
+  el.innerHTML=Array.from({length:100},(_,i)=>`<div class="w-cell${i<n?' '+cls:''}"></div>`).join('');
+  el.querySelectorAll('.'+cls).forEach((c,i)=>{
+    c.style.cssText='opacity:0;transform:scale(0)';
+    setTimeout(()=>{c.style.cssText='opacity:1;transform:scale(1);transition:opacity .08s,transform .08s';},i*12);
+  });
 }
 
-function countUp(el) {
-    const target = +el.dataset.target;
-    let current = 0;
-    const inc = target / 40;
-    const update = () => {
-        if (current < target) {
-            current += Math.ceil(inc);
-            if (current > target) current = target;
-            el.innerText = current.toLocaleString('pt-BR');
-            requestAnimationFrame(update);
-        } else { el.innerText = target.toLocaleString('pt-BR'); }
-    };
-    update();
+/* BUBBLES */
+const BUBBLES=[{l:'Tablet',p:60.0,abs:6670},{l:'Equip. Som',p:57.6,abs:6407},{l:'Videogame',p:42.5,abs:4728},{l:'Smart Speaker',p:21.3,abs:2365},{l:'iPad',p:16.9,abs:1877},{l:'Earphone',p:16.3,abs:1814}];
+const BCOLS=['#00e5ff','#a855f7','#34d399','#fbbf24','#fb7185','#818cf8'];
+const BPOS=[{x:3,y:12},{x:20,y:22},{x:38,y:6},{x:56,y:24},{x:71,y:9},{x:83,y:20}];
+function buildBubbles(){
+  const wrap=$('bubble-wrap');if(!wrap)return;
+  const maxP=Math.max(...BUBBLES.map(b=>b.p));
+  BUBBLES.forEach((b,i)=>{
+    const sz=Math.max(78,Math.min(145,(b.p/maxP)*145));
+    const d=document.createElement('div');
+    d.className='bubble';
+    d.style.cssText=`width:${sz}px;height:${sz}px;left:${BPOS[i].x}%;top:${BPOS[i].y}%;background:${BCOLS[i]}`;
+    d.innerHTML=`<span class="b-pct">${b.p}%</span><span class="b-abs">${fmt(b.abs)}</span><span class="b-lbl">${b.l}</span>`;
+    wrap.appendChild(d);
+    setTimeout(()=>d.classList.add('in'),100+i*110);
+  });
 }
 
-async function downloadPDF() {
-    const btn = document.querySelector('[onclick="downloadPDF()"]');
-    btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4"></i> Preparando...';
-    btn.disabled = true;
-    lucide.createIcons();
-
-    // 1. Force all cards visible & bars filled
-    document.querySelectorAll('.animate-card').forEach(el => {
-        el.classList.add('visible');
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-    });
-    document.querySelectorAll('.bar-fill').forEach(b => {
-        b.style.transition = 'none';
-        b.style.width = b.dataset.w;
-    });
-    document.querySelectorAll('.counter').forEach(el => {
-        el.innerText = el.dataset.target;
-    });
-
-    // 2. Small delay so browser paints everything
-    await new Promise(r => setTimeout(r, 300));
-
-    // 3. Trigger native print dialog (browser saves as PDF)
-    window.print();
-
-    // 4. Restore button
-    btn.innerHTML = '<i data-lucide="download" class="w-4 h-4"></i> Baixar PDF';
-    btn.disabled = false;
-    lucide.createIcons();
+/* DONUT */
+const PHONES=[{l:'Samsung',v:38.1,abs:4232,c:'#00e5ff'},{l:'iPhone',v:24.4,abs:2717,c:'#a855f7'},{l:'Motorola',v:16.1,abs:1785,c:'#fbbf24'},{l:'Xiaomi',v:8.3,abs:924,c:'#34d399'},{l:'Outros',v:4.0,abs:441,c:'#64748b'}];
+function buildDonut(){
+  const svg=$('donut-svg');if(!svg)return;
+  const cx=90,cy=90,R=72,sw=22,circ=2*Math.PI*R;
+  let off=0,html=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="${sw}"/>`;
+  PHONES.forEach((p,i)=>{
+    const frac=p.v/100,dash=circ*frac-1.5,gap=circ-dash,rot=off*360-90;
+    html+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${p.c}" stroke-width="${sw}" stroke-linecap="butt" stroke-dasharray="0 ${circ}" stroke-dashoffset="${circ/4}" transform="rotate(${rot} ${cx} ${cy})" style="transition:stroke-dasharray 1.${3+i}s cubic-bezier(.4,0,.2,1) ${i*80}ms" data-dash="${dash}" data-gap="${gap}" data-circ="${circ}"/>`;
+    off+=frac;
+  });
+  html+=`<text x="${cx}" y="${cy-4}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="rgba(255,255,255,.35)" letter-spacing=".12em">SHARE</text><text x="${cx}" y="${cy+20}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="700" fill="#00e5ff" id="donut-val">0%</text>`;
+  svg.innerHTML=html;
+  const leg=$('donut-leg');if(leg)leg.innerHTML=PHONES.map(p=>`<div class="d-row"><div class="d-dot" style="background:${p.c}"></div><span class="d-label">${p.l}</span><span class="d-abs">${fmt(p.abs)}</span><span class="d-pct">${p.v}%</span></div>`).join('');
+}
+function animDonut(){
+  document.querySelectorAll('#donut-svg circle[data-dash]').forEach(c=>c.setAttribute('stroke-dasharray',`${c.dataset.dash} ${c.dataset.gap}`));
+  animNum($('donut-val'),38.1,'%',1600);
 }
 
-function render() {
-    // Devices Grid
-    document.getElementById('devices-grid').innerHTML = DB.devices.map(d => `
-        <div class="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm animate-card glow-card text-center group">
-            <div class="p-3 ${d.bg} ${d.tc} rounded-2xl w-fit mb-5 shadow-sm mx-auto group-hover:scale-110 transition-transform"><i data-lucide="${d.icon}" class="w-5 h-5"></i></div>
-            <div class="text-4xl font-black mb-1 tabular-nums"><span class="counter" data-target="${Math.round(d.p)}">0</span>%</div>
-            <div class="text-[11px] font-black mb-2" style="color:${d.c}">${formatNum(d.abs)}</div>
-            <p class="text-[10px] font-black uppercase text-gray-900 tracking-tighter mt-1">${d.t}</p>
-            <p class="text-[9px] text-gray-400 font-bold uppercase">${d.sub}</p>
-        </div>
-    `).join('');
-
-    // Phone Brands
-    document.getElementById('phone-brands').innerHTML = DB.phoneBrands.map(b => `
-        <div>
-            <div class="flex justify-between text-[10px] font-black uppercase mb-2 text-gray-400">
-                <span>${b.l}</span>
-                <span class="flex items-center gap-2">
-                    <span class="text-gray-500 font-bold normal-case">${formatNum(b.abs)}</span>
-                    <span class="text-white"><span class="counter" data-target="${Math.round(b.p)}">0</span>%</span>
-                </span>
-            </div>
-            <div class="h-2 bg-white/10 rounded-full overflow-hidden"><div class="bar-fill h-full rounded-full w-0 shadow-[0_0_10px_rgba(59,130,246,0.5)]" style="background:${b.c}" data-w="${b.p}%"></div></div>
-        </div>
-    `).join('');
-
-    // Intent V-Bars
-    document.getElementById('intent-bars').innerHTML = DB.intentBars.map(v => `
-        <div class="flex flex-col items-center flex-1 h-full justify-end group">
-            <span class="text-[9px] font-black text-blue-600 mb-1 tabular-nums"><span class="counter" data-target="${Math.round(v.p)}">0</span>%</span>
-            <span class="text-[8px] font-bold text-gray-400 mb-1">${formatNum(v.abs)}</span>
-            <div class="w-full max-w-[32px] rounded-t-xl transition-all duration-1000 shadow-lg" style="background:${v.c}; height:${v.p}%"></div>
-            <span class="text-[7px] font-black uppercase text-gray-400 mt-3 text-center leading-none">${v.l}</span>
-        </div>
-    `).join('');
-
-    // Attitudes Grid
-    document.getElementById('attitudes-grid').innerHTML = DB.attitudes.map(a => `
-        <div class="bg-white border border-gray-100 rounded-[1.8rem] p-6 shadow-sm animate-card glow-card text-center group">
-            <div class="p-3 ${a.bg} ${a.c} rounded-2xl w-fit mb-5 shadow-sm mx-auto group-hover:scale-110 transition-transform"><i data-lucide="${a.i}" class="w-5 h-5"></i></div>
-            <div class="text-3xl font-black mb-1 tabular-nums"><span class="counter" data-target="${Math.round(a.v)}">0</span>%</div>
-            <div class="text-[10px] font-black mb-2 ${a.c}">${formatNum(a.abs)}</div>
-            <p class="text-[9px] font-black uppercase text-gray-900 tracking-tighter leading-tight">${a.l}</p>
-            <span class="text-[8px] text-gray-400 font-bold">${a.s}</span>
-        </div>
-    `).join('');
-
-    // Internet Bars
-    document.getElementById('internet-bars').innerHTML = DB.internetBars.map(b => `
-        <div>
-            <div class="flex justify-between text-[10px] font-black uppercase mb-2 text-gray-500">
-                <span>${b.l}</span>
-                <span class="flex items-center gap-2">
-                    <span class="font-bold normal-case text-gray-400">${formatNum(b.abs)}</span>
-                    <span style="color:${b.c}"><span class="counter" data-target="${Math.round(b.p)}">0</span>%</span>
-                </span>
-            </div>
-            <div class="h-2 bg-gray-100 rounded-full overflow-hidden"><div class="bar-fill h-full rounded-full w-0" style="background:${b.c}" data-w="${b.p}%"></div></div>
-        </div>
-    `).join('');
-
-    // Spend Bars
-    document.getElementById('spend-bars').innerHTML = DB.spendBars.map(b => `
-        <div>
-            <div class="flex justify-between text-[10px] font-black uppercase mb-2 text-gray-400">
-                <span>${b.l}</span>
-                <span class="flex items-center gap-2">
-                    <span class="font-bold normal-case opacity-60">${formatNum(b.abs)}</span>
-                    <span class="text-white"><span class="counter" data-target="${Math.round(b.p)}">0</span>%</span>
-                </span>
-            </div>
-            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="bar-fill h-full rounded-full w-0" style="background:${b.c}" data-w="${b.p}%"></div></div>
-        </div>
-    `).join('');
-
-    // Buy Factors
-    document.getElementById('buy-factors').innerHTML = DB.buyFactors.map(b => `
-        <div>
-            <div class="flex justify-between text-[10px] font-black uppercase mb-2 text-gray-500"><span>${b.l}</span><span class="text-blue-600"><span class="counter" data-target="${Math.round(b.p)}">0</span>%</span></div>
-            <div class="h-2 bg-gray-100 rounded-full overflow-hidden"><div class="bar-fill h-full rounded-full w-0 bg-blue-500" data-w="${b.p}%"></div></div>
-        </div>
-    `).join('');
-
-    // TV Factors
-    document.getElementById('tv-factors').innerHTML = DB.tvFactors.map(b => `
-        <div>
-            <div class="flex justify-between text-[10px] font-black uppercase mb-1.5 text-gray-500"><span>${b.l}</span><span class="text-purple-600">${b.p}%</span></div>
-            <div class="h-1.5 bg-gray-200 rounded-full overflow-hidden"><div class="bar-fill h-full rounded-full w-0 bg-purple-500" data-w="${b.p}%"></div></div>
-        </div>
-    `).join('');
-
-    // WOM Grid
-    document.getElementById('wom-grid').innerHTML = DB.wom.map(w => `
-        <div class="bg-white border border-gray-100 rounded-[3rem] overflow-hidden shadow-sm animate-card glow-card flex flex-col">
-            <div class="p-8 border-b border-gray-100" style="background: linear-gradient(135deg, ${w.c}10, ${w.c}05)">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="p-3 rounded-2xl text-white" style="background:${w.c}"><i data-lucide="${w.icon}" class="w-5 h-5"></i></div>
-                    <h4 class="font-black text-sm uppercase tracking-tight">${w.cat}</h4>
-                </div>
-                <div class="text-4xl font-black tabular-nums mb-1" style="color:${w.c}"><span class="counter" data-target="${Math.round(w.convince)}">0</span>%</div>
-                <div class="text-sm font-black mb-1" style="color:${w.c}">${formatNum(w.abs)}</div>
-                <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest">Propensos a recomendar</p>
-            </div>
-            <div class="p-8 flex-1">
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="px-3 py-1 rounded-lg text-[9px] font-black uppercase border" style="color:${w.c}; border-color:${w.c}40; background:${w.c}10">${w.segment}</span>
-                    <span class="px-3 py-1 rounded-lg text-[9px] font-black uppercase border border-gray-200 text-gray-600 bg-gray-50">${w.know.label}</span>
-                </div>
-                <p class="text-xs text-gray-600 leading-relaxed font-semibold">${w.insight}</p>
-            </div>
-        </div>
-    `).join('');
-
-    lucide.createIcons();
-
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                e.target.querySelectorAll('.counter').forEach(countUp);
-                e.target.querySelectorAll('.bar-fill').forEach(b => b.style.width = b.dataset.w);
-                e.target.querySelectorAll('.donut-path').forEach(d => d.style.strokeDasharray = `${(d.dataset.p / 100) * 126}, 126`);
-            }
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.animate-card').forEach(c => obs.observe(c));
+/* LOLLIPOP */
+const INTENT=[{l:'Smartphone',p:39.9,abs:4438,c:'#00e5ff'},{l:'Computador/Notebook',p:37.8,abs:4201,c:'#a855f7'},{l:'Notebook',p:28.5,abs:3165,c:'#818cf8'},{l:'Wireless Earphone',p:16.3,abs:1814,c:'#fbbf24'},{l:'Smart TV',p:13.0,abs:1449,c:'#34d399'},{l:'Tablet',p:10.8,abs:1197,c:'#fb7185'},{l:'Smartwatch',p:8.1,abs:906,c:'#94a3b8'}];
+function buildLollipop(){
+  const wrap=$('lolly-wrap');if(!wrap)return;
+  const max=Math.max(...INTENT.map(d=>d.p));
+  wrap.innerHTML=INTENT.map(d=>`<div class="lolly-row"><span class="lolly-lbl">${d.l}</span><div class="lolly-track"><div class="lolly-bar" data-w="${(d.p/max)*100}" style="background:${d.c}"><div class="lolly-dot" style="background:${d.c};color:${d.c}"></div></div></div><div class="lolly-val"><span class="pct">${d.p}%</span><span class="abs">${fmt(d.abs)}</span></div></div>`).join('');
 }
-window.onload = render;
+function animLollipop(){document.querySelectorAll('.lolly-bar').forEach((b,i)=>setTimeout(()=>{b.style.width=b.dataset.w+'%'},80*i));}
+
+/* RADAR */
+const RADAR=[{l:'Pesquisa\nantes',v:81},{l:'Melhor\npreco',v:85},{l:'Segue\ntendencias',v:75},{l:'Hub\namigos',v:52},{l:'Early\nadopter',v:45},{l:'Sincroniza\ndevices',v:63},{l:'Paga\npremium',v:45},{l:'Adora\nappliances',v:64}];
+function buildRadar(){
+  const svg=$('radar-svg');if(!svg)return;
+  const cx=170,cy=162,maxR=118,n=RADAR.length;
+  const ang=i=>(Math.PI*2/n)*i-Math.PI/2;
+  const pt=(i,r)=>({x:cx+r*Math.cos(ang(i)),y:cy+r*Math.sin(ang(i))});
+  let html='';
+  [.25,.5,.75,1].forEach(f=>{
+    const pts=RADAR.map((_,i)=>pt(i,maxR*f));
+    html+=`<polygon points="${pts.map(p=>`${p.x},${p.y}`).join(' ')}" fill="${f===1?'rgba(0,229,255,.03)':'none'}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
+  });
+  RADAR.forEach((_,i)=>{const p=pt(i,maxR);html+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;});
+  html+=`<polygon id="radar-poly" points="${RADAR.map((_,i)=>`${cx},${cy}`).join(' ')}" fill="rgba(0,229,255,.1)" stroke="#00e5ff" stroke-width="2" style="transition:points 1.8s cubic-bezier(.4,0,.2,1)"/>`;
+  RADAR.forEach((_,i)=>html+=`<circle id="rd${i}" cx="${cx}" cy="${cy}" r="4" fill="#00e5ff" stroke="rgba(4,6,15,.8)" stroke-width="2" style="transition:cx 1.8s cubic-bezier(.4,0,.2,1),cy 1.8s cubic-bezier(.4,0,.2,1)"/>`);
+  RADAR.forEach((d,i)=>{
+    const p=pt(i,maxR+30),an=p.x<cx-8?'end':p.x>cx+8?'start':'middle';
+    const lines=d.l.split('\n');
+    const tspans=lines.map((l,li)=>`<tspan x="${p.x}" dy="${li===0?-7*lines.length/2+7:14}">${l}</tspan>`).join('');
+    html+=`<text y="${p.y}" text-anchor="${an}" font-family="'JetBrains Mono',monospace" font-size="8.5" fill="rgba(255,255,255,.38)">${tspans}</text>`;
+  });
+  svg.innerHTML=html;
+}
+function animRadar(){
+  const cx=170,cy=162,maxR=118,n=RADAR.length;
+  const ang=i=>(Math.PI*2/n)*i-Math.PI/2;
+  const pt=(i,r)=>({x:cx+r*Math.cos(ang(i)),y:cy+r*Math.sin(ang(i))});
+  setTimeout(()=>{
+    const pts=RADAR.map((d,i)=>pt(i,(d.v/100)*maxR));
+    $('radar-poly').setAttribute('points',pts.map(p=>`${p.x},${p.y}`).join(' '));
+    RADAR.forEach((_,i)=>{const p=pts[i];$('rd'+i).setAttribute('cx',p.x);$('rd'+i).setAttribute('cy',p.y);});
+  },200);
+}
+
+/* GAUGES */
+const GAUGES=[{id:'g1',v:81,c:'#00e5ff'},{id:'g2',v:85,c:'#00e5ff'},{id:'g3',v:75,c:'#a855f7'},{id:'g4',v:52,c:'#fbbf24'}];
+function buildGauges(){
+  GAUGES.forEach(g=>{
+    const svg=$(g.id);if(!svg)return;
+    const cx=75,cy=85,R=58,sw=10,circ=Math.PI*R;
+    svg.innerHTML=`<path d="M ${cx-R} ${cy} A ${R} ${R} 0 0 1 ${cx+R} ${cy}" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="${sw}" stroke-linecap="round"/><path id="${g.id}-arc" d="M ${cx-R} ${cy} A ${R} ${R} 0 0 1 ${cx+R} ${cy}" fill="none" stroke="${g.c}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="0 ${circ}" style="transition:stroke-dasharray 1.6s cubic-bezier(.4,0,.2,1)" data-target="${(g.v/100)*circ}" data-circ="${circ}"/><text x="${cx}" y="${cy-12}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="22" font-weight="700" fill="${g.c}" id="${g.id}-val">0%</text>`;
+  });
+}
+function animGauges(){
+  GAUGES.forEach(g=>{
+    const arc=$(g.id+'-arc');if(!arc)return;
+    const tgt=parseFloat(arc.dataset.target),circ=parseFloat(arc.dataset.circ);
+    arc.setAttribute('stroke-dasharray',`${tgt} ${circ-tgt}`);
+    animNum($(g.id+'-val'),g.v);
+  });
+}
+
+/* HBARS */
+const INTERNET=[{l:'Internet como 1a fonte de info',p:84.6,abs:9409,c:'#00e5ff'},{l:'Preocupados com dados online',p:81.1,abs:9021,c:'#fb7185'},{l:'Usam redes sociais diariamente',p:75.0,abs:8340,c:'#a855f7'},{l:'Internet = principal entret.',p:73.2,abs:8141,c:'#818cf8'},{l:'Confiam na nuvem',p:61.9,abs:6881,c:'#34d399'},{l:'Seguem marcas em redes sociais',p:45.7,abs:5078,c:'#fbbf24'},{l:'Interagem com anuncios',p:41.4,abs:4607,c:'#94a3b8'}];
+function buildHbars(){
+  const wrap=$('hbar-wrap');if(!wrap)return;
+  const max=Math.max(...INTERNET.map(d=>d.p));
+  wrap.innerHTML=INTERNET.map(d=>`<div class="hb-row"><div class="hb-meta"><span class="hb-lbl">${d.l}</span><div class="hb-nums"><span class="hb-abs">${fmt(d.abs)}</span><span class="hb-pct" style="color:${d.c}">${d.p}%</span></div></div><div class="hb-track"><div class="hb-fill" data-w="${(d.p/max)*100}" style="background:${d.c}"></div></div></div>`).join('');
+}
+function animHbars(){document.querySelectorAll('.hb-fill').forEach((b,i)=>setTimeout(()=>{b.style.width=b.dataset.w+'%'},80*i));}
+
+/* AREA */
+const SPEND=[{l:'R$30-59',p:21.0,abs:2334},{l:'R$60-89',p:20.3,abs:2257},{l:'R$90-119',p:13.6,abs:1511},{l:'R$120-149',p:11.0,abs:1228},{l:'R$150+',p:17.2,abs:1912}];
+function buildArea(){
+  const svg=$('area-svg');if(!svg)return;
+  const W=380,H=130,padL=8,padR=8,padT=24,padB=32;
+  const max=Math.max(...SPEND.map(d=>d.p));
+  const xStep=(W-padL-padR)/(SPEND.length-1);
+  const ys=v=>padT+(1-v/max)*(H-padT-padB);
+  const pts=SPEND.map((d,i)=>({x:padL+i*xStep,y:ys(d.p)}));
+  const lineD=pts.map((p,i)=>(i===0?'M':'L')+`${p.x},${p.y}`).join(' ');
+  const areaD=lineD+` L${pts[pts.length-1].x},${H-padB} L${pts[0].x},${H-padB} Z`;
+  let html=`<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00e5ff" stop-opacity=".35"/><stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/></linearGradient></defs><path d="${areaD}" fill="url(#ag)"/><path id="area-line" d="${lineD}" fill="none" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="800" stroke-dashoffset="800" style="transition:stroke-dashoffset 2s ease"/>`;
+  pts.forEach((p,i)=>{
+    html+=`<circle cx="${p.x}" cy="${p.y}" r="5" fill="#00e5ff" stroke="#04060f" stroke-width="2"/><text x="${p.x}" y="${p.y-10}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#00e5ff">${SPEND[i].p}%</text><text x="${p.x}" y="${H-padB+14}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="rgba(255,255,255,.3)">${SPEND[i].l}</text><text x="${p.x}" y="${H-padB+24}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7" fill="rgba(251,191,36,.7)">${fmt(SPEND[i].abs)}</text>`;
+  });
+  svg.innerHTML=html;
+}
+function animArea(){const line=$('area-line');if(line)line.style.strokeDashoffset='0';}
+
+/* WOM RINGS */
+const WOM=[{id:'wom1',v:47.6,c:'#00e5ff'},{id:'wom2',v:42.5,c:'#a855f7'},{id:'wom3',v:38.97,c:'#fbbf24'}];
+function buildWomRing(cfg){
+  const svg=$(cfg.id);if(!svg)return;
+  const cx=90,cy=90;
+  const rings=[{r:80,sw:10,alpha:.06,v:100},{r:64,sw:14,alpha:1,v:cfg.v},{r:46,sw:8,alpha:.45,v:cfg.v*.8}];
+  let html='';
+  rings.forEach((ring,ri)=>{
+    const circ=2*Math.PI*ring.r;
+    const dash=(ring.v/100)*circ;
+    html+=`<circle cx="${cx}" cy="${cy}" r="${ring.r}" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="${ring.sw}"/>`;
+    html+=`<circle cx="${cx}" cy="${cy}" r="${ring.r}" fill="none" stroke="${cfg.c}" stroke-width="${ring.sw}" stroke-opacity="${ring.alpha}" stroke-linecap="round" stroke-dasharray="0 ${circ}" transform="rotate(-90 ${cx} ${cy})" style="transition:stroke-dasharray 1.${6+ri}s cubic-bezier(.4,0,.2,1) ${ri*180}ms" data-dash="${dash}" data-circ="${circ}"/>`;
+  });
+  html+=`<text x="${cx}" y="${cy-2}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="26" font-weight="700" fill="${cfg.c}" id="${cfg.id}-val">0%</text><text x="${cx}" y="${cy+18}" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7" fill="rgba(255,255,255,.3)" letter-spacing=".1em">RECOMENDAM</text>`;
+  svg.innerHTML=html;
+}
+function animWomRing(cfg){
+  const svg=$(cfg.id);if(!svg)return;
+  svg.querySelectorAll('circle[data-dash]').forEach(c=>c.setAttribute('stroke-dasharray',`${c.dataset.dash} ${parseFloat(c.dataset.circ)-parseFloat(c.dataset.dash)}`));
+  animNum($(cfg.id+'-val'),cfg.v);
+}
+
+/* MAIN INIT */
+let inited=false;
+function runAll(){
+  if(inited)return;inited=true;
+  waffle('w-cel',97,'on');waffle('w-cmp',99,'on-v');waffle('w-tv',98,'on-a');
+  animNum($('n-cel'),96.7);animNum($('n-cmp'),99.1);animNum($('n-tv'),97.7);
+  animNum($('h-base'),11.1,'',1200);animNum($('h-comp'),99.1,'%',1400);animNum($('h-inf'),51.9,'%',1400);animNum($('h-int'),84.6,'%',1400);
+  buildBubbles();
+  buildDonut();setTimeout(animDonut,300);
+  buildLollipop();setTimeout(animLollipop,400);
+  buildRadar();animRadar();
+  buildGauges();setTimeout(animGauges,500);
+  buildHbars();setTimeout(animHbars,300);
+  buildArea();setTimeout(animArea,500);
+  animNum($('n-ai'),53);setTimeout(()=>{const b=$('ai-bar');if(b)b.style.width='53%'},500);
+  WOM.forEach(w=>buildWomRing(w));setTimeout(()=>WOM.forEach(w=>animWomRing(w)),400);
+  animNum($('f1'),85);animNum($('f2'),52);animNum($('f3'),81);
+}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');runAll();}});},{threshold:0.05});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function printPDF(){
+  runAll();
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+  document.querySelectorAll('.lolly-bar,.hb-fill').forEach(b=>{b.style.transition='none';b.style.width=b.dataset.w+'%';});
+  setTimeout(()=>window.print(),800);
+}
 </script>
 </body>
 </html>
