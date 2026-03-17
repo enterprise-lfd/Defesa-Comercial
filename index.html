@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-:root{--sky:#22D3EE;--sky2:#67E8F9;--amber:#F59E0B;--amber2:#FCD34D;--coral:#F87171;--violet:#A855F7;--mint:#34D399;--white:#F0F0FF;--sky-dim:rgba(34,211,238,.1);--amber-dim:rgba(245,158,11,.1);--coral-dim:rgba(248,113,113,.1);--violet-dim:rgba(168,85,247,.12);--mint-dim:rgba(52,211,153,.1);--neon:#C084FC;--neon2:#E879F9}
+:root{--sky:#22D3EE;--sky2:#67E8F9;--amber:#F59E0B;--amber2:#FCD34D;--coral:#F87171;--violet:#A855F7;--mint:#34D399;--white:#F0F0FF;--sky-dim:rgba(34,211,238,.1);--amber-dim:rgba(168,85,247,.1);--coral-dim:rgba(248,113,113,.1);--violet-dim:rgba(168,85,247,.12);--mint-dim:rgba(52,211,153,.1);--neon:#C084FC;--neon2:#E879F9}
 [data-theme="dark"]{--bg:#08080F;--bg2:#0D0D18;--bg3:#131320;--bg4:#1A1A2E;--border:rgba(168,85,247,.12);--border2:rgba(168,85,247,.22);--txt:#EDEDFF;--txt2:#9CA3C0;--txt3:#5B5F80;--card:rgba(168,85,247,.04);--card-h:rgba(168,85,247,.08)}
 [data-theme="light"]{--bg:#F0F0F8;--bg2:#E4E4F0;--bg3:#D8D8E8;--bg4:#CCCCDD;--border:rgba(100,50,200,.1);--border2:rgba(100,50,200,.18);--txt:#0F0F2E;--txt2:#4A4A70;--txt3:#7B7BA0;--card:rgba(255,255,255,.80);--card-h:rgba(255,255,255,.95)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -46,7 +46,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .btn-ghost{background:rgba(255,255,255,.06);color:var(--txt2);border:1px solid var(--border2);backdrop-filter:blur(8px)}
 .btn-ghost:hover{background:rgba(255,255,255,.10);color:var(--txt);border-color:rgba(255,255,255,.2);transform:translateY(-1px)}
 .btn-amber{background:linear-gradient(135deg,#8B5CF6 0%,#A855F7 50%,#C084FC 100%);color:#fff;font-weight:800;box-shadow:0 4px 18px rgba(168,85,247,.4);border:1px solid rgba(168,85,247,.5)}
-.btn-amber:hover{box-shadow:0 6px 28px rgba(168,85,247,.6);transform:translateY(-2px)}
+.btn-amber:hover{box-shadow:0 6px 28px rgba(168,85,247,.5);transform:translateY(-2px)}
 .page{position:relative;z-index:1}
 .section-wrap{max-width:1280px;margin:0 auto;padding:52px 52px 24px}
 @media(max-width:700px){.section-wrap{padding:36px 20px 20px}}
@@ -56,7 +56,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .sec-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
 .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.2vw,38px);font-weight:700;line-height:1.15;margin-bottom:6px;position:relative;display:inline-block}
 .sec-title--internet{background:linear-gradient(120deg,#22D3EE 0%,#A855F7 50%,#C084FC 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 18px rgba(168,85,247,.35))}
-.sec-title--terra{background:linear-gradient(120deg,#F59E0B 0%,#FBBF24 50%,#FDE68A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 18px rgba(245,158,11,.28))}
+.sec-title--terra{background:linear-gradient(120deg,#F59E0B 0%,#FBBF24 50%,#FDE68A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 18px rgba(168,85,247,.28))}
 .sec-title--vivo{background:linear-gradient(120deg,#A78BFA 0%,#C4B5FD 50%,#DDD6FE 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 18px rgba(167,139,250,.28))}
 .sec-title--comp{background:linear-gradient(120deg,#F59E0B 0%,#C084FC 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .sec-title--copa{background:linear-gradient(120deg,#34D399 0%,#A855F7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -86,7 +86,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .kpi-lbl{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:10px}
 .kpi-val{font-family:'Nunito',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1;margin-bottom:4px}
 .kpi-sub{font-size:12px;color:var(--txt2);font-weight:300}
-.c-sky{color:var(--sky)}.c-amber{color:var(--amber)}.c-coral{color:var(--coral)}.c-violet{color:var(--violet)}.c-mint{color:var(--mint)}.c-amber2{color:var(--amber2)}
+.c-sky{color:var(--sky)}.c-amber{color:var(--amber)}.c-coral{color:var(--coral)}.c-violet{color:var(--violet)}.c-mint{color:var(--mint)}.c-amber2{color:var(--neon)}
 .bars{display:flex;flex-direction:column;gap:11px}
 .bar-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
 .bar-lbl{font-size:12px;color:var(--txt2);flex:1}
@@ -94,7 +94,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .bar-track{height:5px;border-radius:3px;background:var(--bg4);overflow:hidden}
 .bar-fill{height:100%;border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
 .bf-sky{background:linear-gradient(90deg,var(--sky),rgba(34,211,238,.3))}
-.bf-amber{background:linear-gradient(90deg,var(--amber),rgba(245,158,11,.4))}
+.bf-amber{background:linear-gradient(90deg,var(--amber),rgba(168,85,247,.4))}
 .bf-violet{background:linear-gradient(90deg,var(--violet),rgba(168,85,247,.3))}
 .bf-mint{background:linear-gradient(90deg,var(--mint),rgba(52,211,153,.4))}
 .bf-coral{background:linear-gradient(90deg,var(--coral),rgba(248,113,113,.4))}
@@ -144,7 +144,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .wom-n{font-size:12px;color:var(--txt2);font-weight:300}
 .tag{display:inline-flex;align-items:center;padding:4px 11px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid}
 .tag-sky{background:var(--sky-dim);color:var(--sky);border-color:rgba(0,212,255,.25)}
-.tag-amber{background:var(--amber-dim);color:var(--amber);border-color:rgba(245,158,11,.25)}
+.tag-amber{background:var(--amber-dim);color:var(--amber);border-color:rgba(168,85,247,.25)}
 .tag-violet{background:var(--violet-dim);color:var(--violet);border-color:rgba(167,139,250,.25)}
 .tag-mint{background:var(--mint-dim);color:var(--mint);border-color:rgba(52,211,153,.25)}
 .anim{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
@@ -153,9 +153,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .footer{position:relative;z-index:1;max-width:1280px;margin:24px auto 0;padding:24px 52px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .footer-copy{font-size:11px;color:var(--txt3);font-weight:300;line-height:1.8}
 .footer-copy strong{color:var(--txt2);font-weight:600}
-#scroll-top{position:fixed;bottom:36px;right:36px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--violet),#A855F7);color:#fff;font-size:20px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(168,85,247,.4);opacity:0;transform:translateY(12px) scale(.85);transition:opacity .3s,transform .3s;pointer-events:none;z-index:999}
+#scroll-top{position:fixed;bottom:36px;right:36px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--violet),#A855F7);color:#fff;font-size:20px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(168,85,247,.35);opacity:0;transform:translateY(12px) scale(.85);transition:opacity .3s,transform .3s;pointer-events:none;z-index:999}
 #scroll-top.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-#scroll-top:hover{background:linear-gradient(135deg,#7DD3FC,var(--sky));box-shadow:0 6px 28px rgba(168,85,247,.6);transform:translateY(-2px) scale(1.05)}
+#scroll-top:hover{background:linear-gradient(135deg,#7DD3FC,var(--sky));box-shadow:0 6px 28px rgba(168,85,247,.5);transform:translateY(-2px) scale(1.05)}
 .brand-logo-icon{width:28px;height:28px;object-fit:contain;display:block;flex-shrink:0}
 .brand-logo-nav{width:14px;height:14px;object-fit:contain;display:inline-block;vertical-align:middle;margin-right:4px;position:relative;top:-1px}
 .brand-logo-terra{border-radius:4px}
@@ -186,7 +186,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .sub-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
 
 .card{box-shadow:0 0 0 1px rgba(168,85,247,.06) inset}
-.card:hover{box-shadow:0 12px 40px rgba(168,85,247,.12),0 0 1px rgba(168,85,247,.3),0 0 30px rgba(168,85,247,.05)}
+.card:hover{box-shadow:0 12px 40px rgba(168,85,247,.08),0 0 1px rgba(168,85,247,.2),0 0 30px rgba(168,85,247,.04)}
 .card[data-accent="sky"]::before{background:linear-gradient(90deg,#22D3EE,#A855F7)}
 .hkpi{border-color:rgba(168,85,247,.15)}
 .hkpi:hover{border-color:rgba(168,85,247,.3);box-shadow:0 0 20px rgba(168,85,247,.1)}
@@ -207,6 +207,32 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .btn-ghost{border-color:rgba(168,85,247,.15)}
 .btn-ghost:hover{border-color:rgba(168,85,247,.3);box-shadow:0 0 12px rgba(168,85,247,.08)}
 .footer{border-top-color:rgba(168,85,247,.1)}
+
+.sidebar{position:fixed;left:0;top:0;width:260px;height:100vh;background:rgba(8,8,15,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-right:1px solid rgba(168,85,247,.15);z-index:200;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:20px 0}
+.sidebar.open{transform:translateX(0)}
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;opacity:0;pointer-events:none;transition:opacity .3s}
+.sidebar-overlay.open{opacity:1;pointer-events:auto}
+.sidebar-header{padding:16px 20px;border-bottom:1px solid rgba(168,85,247,.1);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.sidebar-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--txt)}
+.sidebar-close{background:none;border:none;color:var(--txt2);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .2s}
+.sidebar-close:hover{background:rgba(168,85,247,.12);color:var(--txt)}
+.sidebar-section{padding:8px 16px 4px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;border:none;background:none;width:100%;text-align:left;font-family:'Outfit',sans-serif}
+.sidebar-item:hover{background:rgba(168,85,247,.08);color:var(--txt)}
+.sidebar-item.active{background:rgba(168,85,247,.12);color:var(--violet);border-right:3px solid var(--violet)}
+.sidebar-icon{font-size:16px;width:24px;text-align:center;flex-shrink:0}
+.menu-btn{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(168,85,247,.2);background:rgba(168,85,247,.06);color:var(--txt2);font-family:'Outfit',sans-serif;transition:all .2s}
+.menu-btn:hover{background:rgba(168,85,247,.12);color:var(--txt);border-color:rgba(168,85,247,.3)}
+@media print{.sidebar,.sidebar-overlay,.menu-btn{display:none!important}}
+
+.masthead-tech-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.masthead-tech-bg svg{position:absolute;width:100%;height:100%;opacity:.04}
+.masthead-chip{position:absolute;border:1px solid rgba(168,85,247,.08);border-radius:4px}
+.masthead-chip::before{content:'';position:absolute;width:2px;background:rgba(168,85,247,.06);left:50%;transform:translateX(-50%)}
+.masthead-chip::after{content:'';position:absolute;height:2px;background:rgba(168,85,247,.06);top:50%;transform:translateY(-50%)}
+.masthead-glow-1{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.12),transparent 70%);top:-100px;right:-50px;pointer-events:none}
+.masthead-glow-2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%);bottom:-80px;left:10%;pointer-events:none}
+.masthead-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(168,85,247,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 </style>
 </head>
 <body>
@@ -215,32 +241,80 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 
 <!-- MASTHEAD -->
 <header class="masthead">
+  <!-- Tech background elements -->
+  <div class="masthead-tech-bg">
+    <div class="masthead-grid"></div>
+    <div class="masthead-glow-1"></div>
+    <div class="masthead-glow-2"></div>
+    <!-- Circuit traces SVG -->
+    <svg viewBox="0 0 1280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Horizontal lines -->
+      <line x1="0" y1="80" x2="400" y2="80" stroke="rgba(168,85,247,.06)" stroke-width="1"/>
+      <line x1="450" y1="80" x2="1280" y2="80" stroke="rgba(168,85,247,.04)" stroke-width="1" stroke-dasharray="8 4"/>
+      <line x1="0" y1="160" x2="600" y2="160" stroke="rgba(0,212,255,.05)" stroke-width="1"/>
+      <line x1="650" y1="160" x2="1280" y2="160" stroke="rgba(0,212,255,.03)" stroke-width="1" stroke-dasharray="6 6"/>
+      <line x1="0" y1="240" x2="350" y2="240" stroke="rgba(168,85,247,.04)" stroke-width="1"/>
+      <!-- Vertical connections -->
+      <line x1="400" y1="60" x2="400" y2="100" stroke="rgba(168,85,247,.06)" stroke-width="1"/>
+      <line x1="600" y1="140" x2="600" y2="180" stroke="rgba(0,212,255,.05)" stroke-width="1"/>
+      <line x1="800" y1="60" x2="800" y2="280" stroke="rgba(168,85,247,.03)" stroke-width="1" stroke-dasharray="4 8"/>
+      <!-- Nodes/chips -->
+      <rect x="390" y="72" width="20" height="16" rx="3" stroke="rgba(168,85,247,.08)" fill="rgba(168,85,247,.02)" stroke-width="1"/>
+      <rect x="590" y="152" width="20" height="16" rx="3" stroke="rgba(0,212,255,.08)" fill="rgba(0,212,255,.02)" stroke-width="1"/>
+      <rect x="790" y="120" width="24" height="20" rx="3" stroke="rgba(168,85,247,.06)" fill="rgba(168,85,247,.02)" stroke-width="1"/>
+      <!-- Diagonal traces -->
+      <line x1="200" y1="40" x2="350" y2="80" stroke="rgba(168,85,247,.04)" stroke-width="1"/>
+      <line x1="900" y1="60" x2="1100" y2="160" stroke="rgba(0,212,255,.03)" stroke-width="1"/>
+      <!-- Small dots (solder points) -->
+      <circle cx="400" cy="80" r="3" fill="rgba(168,85,247,.12)"/>
+      <circle cx="600" cy="160" r="3" fill="rgba(0,212,255,.1)"/>
+      <circle cx="800" cy="130" r="3" fill="rgba(168,85,247,.1)"/>
+      <circle cx="200" cy="40" r="2" fill="rgba(168,85,247,.08)"/>
+      <circle cx="350" cy="80" r="2" fill="rgba(168,85,247,.08)"/>
+      <circle cx="1100" cy="160" r="2" fill="rgba(0,212,255,.06)"/>
+    </svg>
+  </div>
   <div class="masthead-inner">
     <div>
       <div class="eyebrow">
         <div class="eyebrow-line"></div>
         <span class="eyebrow-text">Comscore Plan Metrix · Agosto 2025</span>
       </div>
-      <h1 class="brand-title">Defesa Comercial<span>Tecnologia</span></h1>
+      <h1 class="brand-title">Defesa Comercial — Tecnologia</h1>
       <p class="brand-sub">Multi-Platform · Brasil · Total Audience · Estratégia de Dados</p>
     </div>
     <div class="header-kpis">
       <div class="hkpi"><div class="hkpi-label">Internet Total</div><div class="hkpi-val c-sky">117,3<span style="font-size:16px"> MM</span></div><div class="hkpi-sub">usuários únicos</div></div>
-      <div class="hkpi"><div class="hkpi-label"><img src="https://upload.wikimedia.org/wikipedia/pt/thumb/6/6d/Terra_Logo.png/250px-Terra_Logo.png" class="hkpi-logo hkpi-logo-terra"></div><div class="hkpi-val c-amber">59,0<span style="font-size:16px"> MM</span></div><div class="hkpi-sub">reach 50,4%</div></div>
-      <div class="hkpi"><div class="hkpi-label"><img src="https://logospng.org/wp-content/uploads/vivo.jpg" class="hkpi-logo hkpi-logo-vivo"></div><div class="hkpi-val c-violet">21,9<span style="font-size:16px"> MM</span></div><div class="hkpi-sub">reach 18,6%</div></div>
+      <div class="hkpi"><div class="hkpi-label"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Terra_Logo.svg/500px-Terra_Logo.svg.png" class="hkpi-logo hkpi-logo-terra"></div><div class="hkpi-val c-amber">59,0<span style="font-size:16px"> MM</span></div><div class="hkpi-sub">reach 50,4%</div></div>
+      <div class="hkpi"><div class="hkpi-label"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Logo_VIVO.svg/960px-Logo_VIVO.svg.png" class="hkpi-logo hkpi-logo-vivo"></div><div class="hkpi-val c-violet">21,9<span style="font-size:16px"> MM</span></div><div class="hkpi-sub">reach 18,6%</div></div>
     </div>
   </div>
 </header>
 
 <!-- CONTROLS -->
-<div class="controls">
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="scrollTo_(0)">🌐 Internet Total</button>
-    <button class="nav-tab" onclick="scrollTo_('terra')"><img src="https://upload.wikimedia.org/wikipedia/pt/thumb/6/6d/Terra_Logo.png/250px-Terra_Logo.png" class="brand-logo-nav brand-logo-terra"> Terra</button>
-    <button class="nav-tab" onclick="scrollTo_('vivo')"><img src="https://logospng.org/wp-content/uploads/vivo.jpg" class="brand-logo-nav brand-logo-vivo"> Vivo</button>
-    <button class="nav-tab" onclick="scrollTo_('comp')">📊 Concorrência</button>
-    <button class="nav-tab" onclick="scrollTo_('copa')">⚽ Copa 2026</button>
+<!-- Sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Navegação</span>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
   </div>
+  <div class="sidebar-section">Dados de Audiência</div>
+  <button class="sidebar-item active" onclick="goTo(0)"><span class="sidebar-icon">🌐</span>Internet Total</button>
+  <button class="sidebar-item" onclick="goTo('terra')"><span class="sidebar-icon">🟠</span>Terra</button>
+  <button class="sidebar-item" onclick="goTo('vivo')"><span class="sidebar-icon">🟣</span>Vivo</button>
+  <div class="sidebar-section">Análises</div>
+  <button class="sidebar-item" onclick="goTo('comp')"><span class="sidebar-icon">📊</span>Concorrência</button>
+  <button class="sidebar-item" onclick="goTo('copa')"><span class="sidebar-icon">⚽</span>Copa 2026</button>
+  <div class="sidebar-section">Terra Editorial</div>
+  <button class="sidebar-item" onclick="goTo('editorial')"><span class="sidebar-icon">📰</span>Byte & GameOn</button>
+  <div class="sidebar-section">Vivo Ads</div>
+  <button class="sidebar-item" onclick="goTo('vivoads')"><span class="sidebar-icon">📡</span>Vivo Ads Data</button>
+  <button class="sidebar-item" onclick="goTo('vivotrack')"><span class="sidebar-icon">📶</span>Vivo Ads Track</button>
+</nav>
+
+<div class="controls">
+  <button class="menu-btn" onclick="openSidebar()">☰ Menu</button>
   <div class="ctrl-btns">
     <button class="btn btn-ghost" onclick="toggleTheme()">☀ Tema</button>
     <button class="btn btn-amber" onclick="exportPDF()">📄 Exportar PDF</button>
@@ -299,9 +373,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 
   <div class="sub-header"><div class="sub-icon sub-icon-sky">📱</div><div class="sub-title">Internet & Comunicação Digital</div><div class="sub-line"></div></div>
   <div class="grid g3 anim" style="margin-bottom:14px">
-    <div class="card" data-accent="sky"><div class="kpi-lbl">1ª Busca = Internet</div><div class="kpi-val c-sky">80,9%</div><div class="kpi-sub">94,8 MM · pesquisam online primeiro</div></div>
-    <div class="card" data-accent="sky"><div class="kpi-lbl">Preocupados c/ Segurança</div><div class="kpi-val c-sky">75,9%</div><div class="kpi-sub">88,9 MM · dados pessoais online</div></div>
-    <div class="card" data-accent="sky"><div class="kpi-lbl">Internet = Entretenimento</div><div class="kpi-val c-sky">72,9%</div><div class="kpi-sub">85,5 MM · principal fonte</div></div>
+    <div class="card" data-accent="sky"><div class="kpi-lbl">1ª Busca = Internet</div><div class="kpi-val c-sky">94,8 MM</div><div class="kpi-sub">Composição: 80,9% · Reach: —</div></div>
+    <div class="card" data-accent="sky"><div class="kpi-lbl">Segurança de Dados</div><div class="kpi-val c-sky">89,0 MM</div><div class="kpi-sub">Composição: 75,9% · Reach: —</div></div>
+    <div class="card" data-accent="sky"><div class="kpi-lbl">Internet = Entretenimento</div><div class="kpi-val c-sky">85,5 MM</div><div class="kpi-sub">Composição: 72,9% · Reach: —</div></div>
   </div>
   <div class="grid g2 anim" style="margin-bottom:14px">
     <div class="card">
@@ -414,7 +488,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 
 <!-- ═══ SEÇÃO 2 — TERRA ═══ -->
 <div class="section-wrap">
-  <div class="sec-header"><div><h2 class="sec-title sec-title--terra"><img src="https://upload.wikimedia.org/wikipedia/pt/thumb/6/6d/Terra_Logo.png/250px-Terra_Logo.png" class="sec-logo sec-logo-terra">| Dados de Audiência</h2><p class="sec-desc">Perfil da audiência Terra no segmento Tecnologia · Agosto 2025</p></div></div>
+  <div class="sec-header"><div><h2 class="sec-title sec-title--terra"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Terra_Logo.svg/500px-Terra_Logo.svg.png" class="sec-logo sec-logo-terra">| Dados de Audiência</h2><p class="sec-desc">Perfil da audiência Terra no segmento Tecnologia · Agosto 2025</p></div></div>
 
   <div class="grid g4 anim" style="margin-bottom:14px">
     <div class="card anim-d1" data-accent="amber" data-glow="amber"><div class="kpi-lbl">Usuários Únicos · Terra</div><div class="kpi-val c-amber">59,0 MM</div><div class="kpi-sub">Reach 50,4% da internet</div></div>
@@ -436,9 +510,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 
   <div class="sub-header"><div class="sub-icon sub-icon-amber">📱</div><div class="sub-title">Internet & Comunicação Digital</div><div class="sub-line"></div></div>
   <div class="grid g3 anim" style="margin-bottom:14px">
-    <div class="card" data-accent="amber"><div class="kpi-lbl">1ª Busca = Internet</div><div class="kpi-val c-amber">82,2%</div><div class="kpi-sub">R 51,2% · acima da média</div></div>
-    <div class="card" data-accent="amber"><div class="kpi-lbl">Segurança Dados Online</div><div class="kpi-val c-amber">76,4%</div><div class="kpi-sub">R 50,7% · preocupação alta</div></div>
-    <div class="card" data-accent="amber"><div class="kpi-lbl">Redes Sociais Diário</div><div class="kpi-val c-amber">72,5%</div><div class="kpi-sub">R 50,5% · engajamento alto</div></div>
+    <div class="card" data-accent="amber"><div class="kpi-lbl">1ª Busca = Internet</div><div class="kpi-val c-amber">48,5 MM</div><div class="kpi-sub">Composição: 82,2% · Reach: 51,2%</div></div>
+    <div class="card" data-accent="amber"><div class="kpi-lbl">Segurança de Dados</div><div class="kpi-val c-amber">45,1 MM</div><div class="kpi-sub">Composição: 76,4% · Reach: 50,7%</div></div>
+    <div class="card" data-accent="amber"><div class="kpi-lbl">Redes Sociais Diário</div><div class="kpi-val c-amber">42,8 MM</div><div class="kpi-sub">Composição: 72,5% · Reach: 50,5%</div></div>
   </div>
   <div class="grid g2 anim" style="margin-bottom:14px">
     <div class="card">
@@ -547,7 +621,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 
 <!-- ═══ SEÇÃO 3 — VIVO ═══ -->
 <div class="section-wrap">
-  <div class="sec-header"><div><h2 class="sec-title sec-title--vivo"><img src="https://logospng.org/wp-content/uploads/vivo.jpg" class="sec-logo sec-logo-vivo">| Dados de Audiência</h2><p class="sec-desc">Base Vivo no segmento Tecnologia · Agosto 2025</p></div></div>
+  <div class="sec-header"><div><h2 class="sec-title sec-title--vivo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Logo_VIVO.svg/960px-Logo_VIVO.svg.png" class="sec-logo sec-logo-vivo">| Dados de Audiência</h2><p class="sec-desc">Base Vivo no segmento Tecnologia · Agosto 2025</p></div></div>
 
   <div class="grid g4 anim" style="margin-bottom:14px">
     <div class="card anim-d1" data-accent="violet" data-glow="violet"><div class="kpi-lbl">Base Vivo</div><div class="kpi-val c-violet">21,9 MM</div><div class="kpi-sub">Reach 18,6%</div></div>
@@ -571,9 +645,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 
   <div class="sub-header"><div class="sub-icon sub-icon-violet">📱</div><div class="sub-title">Internet & Comunicação Digital</div><div class="sub-line"></div></div>
   <div class="grid g3 anim" style="margin-bottom:14px">
-    <div class="card" data-accent="violet"><div class="kpi-lbl">1ª Busca = Internet</div><div class="kpi-val c-violet">82,2%</div><div class="kpi-sub">R 19,1% · base mobile-first</div></div>
-    <div class="card" data-accent="violet"><div class="kpi-lbl">Perdido sem Celular</div><div class="kpi-val c-violet">61,4%</div><div class="kpi-sub">R 19,4% · maior dos 3 canais</div></div>
-    <div class="card" data-accent="violet"><div class="kpi-lbl">Segurança Dados</div><div class="kpi-val c-violet">76,4%</div><div class="kpi-sub">R 19,5% · sobre-representado</div></div>
+    <div class="card" data-accent="violet"><div class="kpi-lbl">1ª Busca = Internet</div><div class="kpi-val c-violet">18,0 MM</div><div class="kpi-sub">Composição: 82,2% · Reach: 19,1%</div></div>
+    <div class="card" data-accent="violet"><div class="kpi-lbl">Perdido sem Celular</div><div class="kpi-val c-violet">13,4 MM</div><div class="kpi-sub">Composição: 61,4% · Reach: 19,4%</div></div>
+    <div class="card" data-accent="violet"><div class="kpi-lbl">Segurança de Dados</div><div class="kpi-val c-violet">16,7 MM</div><div class="kpi-sub">Composição: 76,4% · Reach: 19,5%</div></div>
   </div>
   <div class="grid g2 anim" style="margin-bottom:14px">
     <div class="card">
@@ -795,8 +869,8 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
       <div><div class="kpi-lbl">Esportes na TV</div><div class="kpi-val c-mint" style="font-size:32px">72,6 MM</div><div class="kpi-sub">62,6% da internet</div></div>
     </div>
     <div class="grid g3">
-      <div class="hl-box"><div class="hl-icon"><img src="https://upload.wikimedia.org/wikipedia/pt/thumb/6/6d/Terra_Logo.png/250px-Terra_Logo.png" class="brand-logo-icon brand-logo-terra"></div><div class="hl-txt"><strong>Terra:</strong> R 57,3% em Smart TV intenders (11,9 MM) e R 51,1% em smartphone (14 MM). Canal de consideração editorial.</div></div>
-      <div class="hl-box"><div class="hl-icon"><img src="https://logospng.org/wp-content/uploads/vivo.jpg" class="brand-logo-icon brand-logo-vivo"></div><div class="hl-txt"><strong>Vivo:</strong> Base high-ARPU (11,6% gastam R$120+). Push mobile em dias de jogo converte intenção em venda.</div></div>
+      <div class="hl-box"><div class="hl-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Terra_Logo.svg/500px-Terra_Logo.svg.png" class="brand-logo-icon brand-logo-terra" style="border-radius:6px"></div><div class="hl-txt"><strong>Terra:</strong> R 57,3% em Smart TV intenders (11,9 MM) e R 51,1% em smartphone (14 MM). Canal de consideração editorial.</div></div>
+      <div class="hl-box"><div class="hl-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Logo_VIVO.svg/960px-Logo_VIVO.svg.png" class="brand-logo-icon brand-logo-vivo"></div><div class="hl-txt"><strong>Vivo:</strong> Base high-ARPU (11,6% gastam R$120+). Push mobile em dias de jogo converte intenção em venda.</div></div>
       <div class="hl-box"><div class="hl-icon">🏆</div><div class="hl-txt"><strong>Combo:</strong> Terra (59 MM, editorial) + Vivo (21,9 MM, performance) = 81 MM de touchpoints. Full-funnel Copa.</div></div>
     </div>
   </div>
@@ -817,6 +891,345 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
   </div>
 </div>
 
+
+
+<div class="bp-divider" id="editorial"><div class="bp-divider-circle"></div><div class="bp-divider-circle"></div><div class="bp-divider-circle"></div></div>
+
+<!-- ═══ TERRA EDITORIAL — BYTE & GAMEON ═══ -->
+<div class="section-wrap">
+  <div class="sec-header"><div><h2 class="sec-title sec-title--terra"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Terra_Logo.svg/500px-Terra_Logo.svg.png" class="sec-logo sec-logo-terra">Editorial · Byte & GameOn</h2><p class="sec-desc">Audiência dos canais de tecnologia e games do portal Terra. Conteúdo próprio · GA4 · Jan–Dez 2025.</p></div></div>
+
+  <div class="grid g4 anim" style="margin-bottom:14px">
+    <div class="card anim-d1" data-accent="amber" data-glow="amber"><div class="kpi-lbl">Total de Usuários</div><div class="kpi-val c-amber">46,8 MM</div><div class="kpi-sub">Jan–Dez 2025 · Byte + GameOn</div></div>
+    <div class="card anim-d2" data-accent="amber"><div class="kpi-lbl">Visualizações</div><div class="kpi-val c-amber">175,7 MM</div><div class="kpi-sub">+2.428% vs período anterior</div></div>
+    <div class="card anim-d3" data-accent="mint"><div class="kpi-lbl">Taxa de Rejeição</div><div class="kpi-val c-mint">20,3%</div><div class="kpi-sub">-27% vs anterior · alta retenção</div></div>
+    <div class="card anim-d4" data-accent="amber"><div class="kpi-lbl">PVs por Usuário</div><div class="kpi-val c-amber">3,76</div><div class="kpi-sub">engajamento acima da média</div></div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-amber">📈</div><div class="sub-title">Evolução Mensal — Usuários & Visualizações (2025)</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">👥 Usuários por Mês (MM)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Mar 2025</span><span class="bar-pct c-amber">9,6 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="90"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Abr 2025</span><span class="bar-pct c-amber">10,7 MM ★</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Mai 2025</span><span class="bar-pct c-amber">9,5 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="89"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Jun 2025</span><span class="bar-pct c-amber">7,1 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="66"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Jul 2025</span><span class="bar-pct c-amber">6,4 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="60"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Ago 2025</span><span class="bar-pct c-amber">5,4 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="50"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Set 2025</span><span class="bar-pct c-amber">4,5 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="42"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Out 2025</span><span class="bar-pct c-amber">4,5 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="42"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Nov 2025</span><span class="bar-pct c-amber">5,8 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="54"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Dez 2025</span><span class="bar-pct c-amber">5,7 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="53"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Jan 2026</span><span class="bar-pct c-amber">5,0 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="47"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Fev 2026</span><span class="bar-pct c-amber">4,5 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="42"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">👁 Visualizações por Mês (MM)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Mar 2025</span><span class="bar-pct c-sky">29,6 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="87"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Abr 2025</span><span class="bar-pct c-sky">34,0 MM ★</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Mai 2025</span><span class="bar-pct c-sky">22,3 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="66"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Jun 2025</span><span class="bar-pct c-sky">15,7 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="46"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Jul 2025</span><span class="bar-pct c-sky">12,3 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="36"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Ago 2025</span><span class="bar-pct c-sky">9,0 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="26"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Set 2025</span><span class="bar-pct c-sky">8,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="24"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Out 2025</span><span class="bar-pct c-sky">8,8 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="26"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Nov 2025</span><span class="bar-pct c-sky">10,8 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="32"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Dez 2025</span><span class="bar-pct c-sky">10,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="30"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Jan 2026</span><span class="bar-pct c-sky">9,7 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="29"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Fev 2026</span><span class="bar-pct c-sky">8,4 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="25"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-amber">👥</div><div class="sub-title">Perfil da Audiência — Gênero & Faixa Etária</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">👤 Gênero</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Masculino</span><span class="bar-pct c-amber">59,3%</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="59.3"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Feminino</span><span class="bar-pct c-sky">40,7%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="40.7"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">📊 Faixa Etária (Masc. / Fem.)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">18-24</span><span class="bar-pct c-amber">17% M · 8% F</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="25"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">25-34</span><span class="bar-pct c-amber">17% M · 13% F</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="30"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">35-44</span><span class="bar-pct c-amber">14% M · 10% F</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="24"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">45-54</span><span class="bar-pct c-amber">21% M · 9% F</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="30"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">55-64</span><span class="bar-pct c-sky">12% M · 9% F</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="21"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">65+</span><span class="bar-pct c-sky">10% M · 8% F</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="18"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-amber">🔗</div><div class="sub-title">Fontes de Tráfego & Top Artigos</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🔗 Principais Origens de Tráfego</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Google (orgânico)</span><span class="bar-pct c-amber">28,1 MM · 111,9 MM PVs</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Direto</span><span class="bar-pct c-amber">22,4 MM · 55,5 MM PVs</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="80"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Google News</span><span class="bar-pct c-sky">719K · 3,1 MM PVs</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="3"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Taboola</span><span class="bar-pct c-sky">459K · 1,3 MM PVs</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="2"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Bing</span><span class="bar-pct c-sky">123K · 126K PVs</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="0.5"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Portal Terra</span><span class="bar-pct c-sky">103K · 1,2 MM PVs</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="0.4"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🏆 Top 10 Artigos — Byte & GameOn (2025)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Criança encomendou 70 mil doces na Amazon</span><span class="bar-pct c-amber" style="font-size:10px">1,9 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">China alterou a rotação da Terra</span><span class="bar-pct c-amber" style="font-size:10px">1,3 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="66"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Sílica: 9 usos incríveis que você pode dar</span><span class="bar-pct c-amber" style="font-size:10px">1,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="64"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Menina de 11 anos vira multimilionária</span><span class="bar-pct c-amber" style="font-size:10px">1,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="62"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Mãe de Elon Musk revelou teste do filho</span><span class="bar-pct c-amber" style="font-size:10px">1,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="61"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Síndrome ligada ao consumo de cannabis</span><span class="bar-pct c-sky" style="font-size:10px">920K</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="48"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Bilionários: recuperação histórica</span><span class="bar-pct c-sky" style="font-size:10px">761K</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="40"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Google Maps captura objeto a 27 mil km/h</span><span class="bar-pct c-sky" style="font-size:10px">739K</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="39"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Anel de metal caiu do céu no Quênia</span><span class="bar-pct c-sky" style="font-size:10px">731K</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="38"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl" style="font-size:11px">Dias do celular estão contados (Musk)</span><span class="bar-pct c-sky" style="font-size:10px">728K</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="38"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-amber">📝</div><div class="sub-title">Insights — Byte & GameOn</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="ins-mini" style="border-top-color:var(--amber)"><h5 style="color:var(--amber)">📈 175 MM de Visualizações em 2025</h5><p>Os canais Byte e GameOn do Terra geraram <strong>175,7 MM de pageviews</strong> com 46,8 MM de usuários únicos. Crescimento de <strong>+2.428% em PVs</strong> e taxa de rejeição de apenas 20,3% — indicador de <strong>conteúdo altamente engajante</strong>.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--amber)"><h5 style="color:var(--amber)">👨 59% Masculino · Pico 45-54 anos</h5><p>Audiência <strong>59,3% masculina</strong> — alinhada com o perfil comprador de tech. Faixa 45-54 lidera entre homens (21%) e 25-34 entre mulheres (13%). O público que mais lê é o mesmo que mais compra: <strong>decisores tech maduros</strong>.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--sky)"><h5 style="color:var(--sky)">🔍 Google = 60% do Tráfego</h5><p>Google orgânico entrega <strong>28,1 MM de usuários</strong> com 111,9 MM PVs. Tráfego direto soma 22,4 MM. O conteúdo do Byte e GameOn é <strong>discovery-friendly</strong> — ideal para native ads e branded content de tech.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--sky)"><h5 style="color:var(--sky)">🏆 Top Artigos: Viral + Ciência + Tech</h5><p>Os 15 artigos mais lidos somam <strong>+13 MM de usuários</strong>. Temas que viralizam: curiosidades científicas, tech dos bilionários e descobertas espaciais. Formato <strong>Xataka</strong> prova que conteúdo tech premium gera audiência massiva no Terra.</p></div>
+  </div>
+</div>
+
+<div class="bp-divider" id="vivoads"><div class="bp-divider-circle"></div><div class="bp-divider-circle"></div><div class="bp-divider-circle"></div></div>
+
+<!-- ═══ VIVO ADS — DADOS FIRST-PARTY ═══ -->
+<div class="section-wrap">
+  <div class="sec-header"><div><h2 class="sec-title sec-title--vivo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Logo_VIVO.svg/960px-Logo_VIVO.svg.png" class="sec-logo sec-logo-vivo">Vivo Ads · Dados First-Party</h2><p class="sec-desc">Audiências first-party Vivo Ads segmentadas por app/comportamento. Dados de uso real — Share % dentro de cada categoria.</p></div></div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">📱</div><div class="sub-title">Fabricantes de Aparelhos — Share por Marca</div><div class="sub-line"></div></div>
+  <div class="grid g4 anim" style="margin-bottom:14px">
+    <div class="card" data-accent="violet" data-glow="violet"><div class="kpi-lbl">Total Categoria</div><div class="kpi-val c-violet">23,0 MM</div><div class="kpi-sub">usuários com app de fabricante</div></div>
+    <div class="card" data-accent="violet"><div class="kpi-lbl">Apple</div><div class="kpi-val c-violet">64,3%</div><div class="kpi-sub">14,8 MM · líder absoluta</div></div>
+    <div class="card" data-accent="violet"><div class="kpi-lbl">Motorola</div><div class="kpi-val c-violet">25,2%</div><div class="kpi-sub">5,8 MM · 2ª posição</div></div>
+    <div class="card" data-accent="amber"><div class="kpi-lbl">Samsung</div><div class="kpi-val c-amber">18,1%</div><div class="kpi-sub">4,2 MM · 3ª posição</div></div>
+  </div>
+  <div class="card anim" style="margin-bottom:14px">
+    <div class="kpi-lbl" style="margin-bottom:16px">📱 Share por Fabricante — Apps Instalados (% da categoria)</div>
+    <div class="bars">
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Apple</span><span class="bar-pct c-violet">64,3%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="64.3"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Motorola</span><span class="bar-pct c-violet">25,2%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="25.2"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Samsung</span><span class="bar-pct c-amber">18,1%</span></div><div class="bar-track"><div class="bar-fill bf-amber" data-w="18.1"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">LG</span><span class="bar-pct c-sky">1,0%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="1"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Xiaomi</span><span class="bar-pct c-sky">0,2%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="0.2"></div></div></div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">📺</div><div class="sub-title">Streaming de Vídeo — Share por Plataforma</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">📺 Streaming Vídeo — 22,8 MM usuários (% share)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Globoplay</span><span class="bar-pct c-violet">46,6%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="46.6"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Netflix</span><span class="bar-pct c-violet">46,2%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="46.2"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Amazon Prime</span><span class="bar-pct c-violet">30,5%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="30.5"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Disney+</span><span class="bar-pct c-violet">17,9%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="17.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">HBO Max</span><span class="bar-pct c-violet">5,4%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="5.4"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Crunchyroll</span><span class="bar-pct c-sky">2,3%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="2.3"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🎵 Streaming Música — 32,9 MM usuários (% share)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Spotify</span><span class="bar-pct c-violet">~70%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="70"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">YouTube Music</span><span class="bar-pct c-violet">~18%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="18"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Deezer</span><span class="bar-pct c-sky">~8%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="8"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Apple Music</span><span class="bar-pct c-sky">~4%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="4"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">🎮</div><div class="sub-title">Games — Share por Título / Plataforma</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🎮 Games — 12,3 MM usuários (% share)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Roblox</span><span class="bar-pct c-violet">36,9%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="36.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Discord</span><span class="bar-pct c-violet">18,9%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="18.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Free Fire</span><span class="bar-pct c-violet">14,8%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="14.8"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Twitch</span><span class="bar-pct c-violet">8,4%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="8.4"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Clash of Clans</span><span class="bar-pct c-sky">8,0%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="8"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Xbox Live</span><span class="bar-pct c-sky">7,0%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="7"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Minecraft</span><span class="bar-pct c-sky">6,5%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="6.5"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">PlayStation App</span><span class="bar-pct c-sky">5,8%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="5.8"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Steam</span><span class="bar-pct c-sky">4,9%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="4.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">eFootball / FIFA</span><span class="bar-pct c-sky">7,6%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="7.6"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">💻 Notebooks — 312K usuários (% share)</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Dell</span><span class="bar-pct c-violet">57,0%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="57"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Lenovo</span><span class="bar-pct c-violet">20,3%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="20.3"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">VAIO</span><span class="bar-pct c-violet">9,1%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="9.1"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Positivo</span><span class="bar-pct c-sky">7,5%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="7.5"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Acer</span><span class="bar-pct c-sky">4,4%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="4.4"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">🏠</div><div class="sub-title">Casa Inteligente & Tecnologia — Share</div><div class="sub-line"></div></div>
+  <div class="grid g3 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🏠 Casa Inteligente — 2,7 MM</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Google Home</span><span class="bar-pct c-violet">73,4%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="73.4"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Amazon Alexa</span><span class="bar-pct c-violet">10,5%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="10.5"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Ezviz</span><span class="bar-pct c-sky">8,3%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="8.3"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">LG ThinQ</span><span class="bar-pct c-sky">2,6%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="2.6"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🔍 Portais Tech — 1,1 MM</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">TudoCelular</span><span class="bar-pct c-violet">52,9%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="52.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Tecnoblog</span><span class="bar-pct c-violet">28,8%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="28.8"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">TecMundo</span><span class="bar-pct c-violet">27,3%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="27.3"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🤖 Chatbot / IA — 4,5 MM</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">ChatGPT</span><span class="bar-pct c-violet">~85%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="85"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Outros IA</span><span class="bar-pct c-sky">~15%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="15"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">📊</div><div class="sub-title">Categorias Tech — Visão de Share Geral</div><div class="sub-line"></div></div>
+  <div class="card anim" style="margin-bottom:14px">
+    <div class="kpi-lbl" style="margin-bottom:16px">📊 Participação das Categorias Tech no Ecossistema Vivo Ads (% do total geral)</div>
+    <div class="bars">
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Streaming Música</span><span class="bar-pct c-violet">4,89%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="49"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Fabricantes Aparelhos</span><span class="bar-pct c-violet">3,42%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="34"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Streaming Vídeo</span><span class="bar-pct c-violet">3,38%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="34"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Edição Vídeo/Foto</span><span class="bar-pct c-violet">2,28%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="23"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Games</span><span class="bar-pct c-violet">1,83%</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="18"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Games Casuais</span><span class="bar-pct c-sky">1,09%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="11"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Antivírus</span><span class="bar-pct c-sky">1,02%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="10"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Chatbot / IA</span><span class="bar-pct c-sky">0,67%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="7"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Games Competitivos</span><span class="bar-pct c-sky">0,62%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="6"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Casa Inteligente</span><span class="bar-pct c-sky">0,41%</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="4"></div></div></div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">📝</div><div class="sub-title">Insights — Vivo Ads First-Party</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">📱 Apple Lidera em Apps de Fabricante</h5><p>Apple domina com <strong>64,3% de share</strong> nos apps de fabricante — refletindo a base premium da Vivo. Motorola (25,2%) e Samsung (18,1%) completam o pódio. Ideal para campanhas de <strong>trade-up e acessórios</strong>.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">📺 Globoplay = Netflix na Base Vivo</h5><p>Empate técnico: Globoplay <strong>46,6%</strong> vs Netflix <strong>46,2%</strong>. Amazon Prime em 3º com 30,5%. A base Vivo consome <strong>streaming multi-plataforma</strong> — oportunidade para bundles e cross-sell.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">🎮 Roblox Domina Gaming</h5><p>Roblox lidera com <strong>36,9% de share</strong> seguido por Discord (18,9%) e Free Fire (14,8%). eFootball + FIFA somam <strong>7,6%</strong> — audiência chave para ativação Copa 2026. Consoles (Xbox 7%, PS 5,8%) + PC (Steam 4,9%).</p></div>
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">💻 Dell Lidera Notebooks</h5><p>Dell com <strong>57% de share</strong>, Lenovo 20,3%, VAIO 9,1%. Na Casa Inteligente, Google Home domina com <strong>73,4%</strong>. Dados first-party permitem <strong>segmentação por marca e comportamento real</strong> de uso.</p></div>
+  </div>
+</div>
+
+
+<div class="bp-divider" id="vivotrack"><div class="bp-divider-circle"></div><div class="bp-divider-circle"></div><div class="bp-divider-circle"></div></div>
+
+<!-- ═══ VIVO ADS TRACK ═══ -->
+<div class="section-wrap">
+  <div class="sec-header"><div><h2 class="sec-title sec-title--vivo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Logo_VIVO.svg/960px-Logo_VIVO.svg.png" class="sec-logo sec-logo-vivo">Vivo Ads Track · Audiências</h2><p class="sec-desc">Segmentos first-party disponíveis para ativação programática. Display Size = alcance total · YouTube Users = ativação via Google/YouTube.</p></div></div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">📶</div><div class="sub-title">Audiências Tech — Display & YouTube</div><div class="sub-line"></div></div>
+  <div class="grid g4 anim" style="margin-bottom:14px">
+    <div class="card" data-accent="violet" data-glow="violet"><div class="kpi-lbl">Fabricantes Aparelhos</div><div class="kpi-val c-violet">60 MM</div><div class="kpi-sub">Display · 22 MM YouTube</div></div>
+    <div class="card" data-accent="violet"><div class="kpi-lbl">Streaming Vídeo</div><div class="kpi-val c-violet">57 MM</div><div class="kpi-sub">Display · 22 MM YouTube</div></div>
+    <div class="card" data-accent="violet"><div class="kpi-lbl">Streaming Música</div><div class="kpi-val c-violet">75 MM</div><div class="kpi-sub">Display · 29 MM YouTube</div></div>
+    <div class="card" data-accent="sky"><div class="kpi-lbl">Tecnologia</div><div class="kpi-val c-sky">5 MM</div><div class="kpi-sub">Display · 2 MM YouTube</div></div>
+  </div>
+
+  <div class="card anim" style="margin-bottom:14px">
+    <div class="kpi-lbl" style="margin-bottom:16px">📱 Audiências por Marca de Aparelho — Display Size</div>
+    <div class="bars">
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Samsung</span><span class="bar-pct c-violet">48 MM Display · 18 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="80"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Apple / iOS</span><span class="bar-pct c-violet">25 MM Display · 8,4 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="42"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Motorola</span><span class="bar-pct c-violet">25 MM Display · 9,6 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="42"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Xiaomi</span><span class="bar-pct c-sky">22 MM Display · 8,5 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="37"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Celular Top de Linha</span><span class="bar-pct c-sky">18 MM Display · 6,7 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="30"></div></div></div>
+      <div class="bar-item"><div class="bar-row"><span class="bar-lbl">LG</span><span class="bar-pct c-sky">1,7 MM Display · 600K YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="3"></div></div></div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">🎮</div><div class="sub-title">Gaming & Entretenimento — Audiências Track</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🎮 Gaming — Display Size</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Loja Gamer</span><span class="bar-pct c-violet">29 MM · 10 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Portais Gamers</span><span class="bar-pct c-violet">18 MM · 6,2 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="62"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Gamers (perfil)</span><span class="bar-pct c-violet">16 MM · 6,5 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="55"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Games Cultura Geek</span><span class="bar-pct c-sky">6,8 MM · 2,8 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="23"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Jogos Casuais</span><span class="bar-pct c-sky">6,1 MM · 2,3 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="21"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Streaming Games</span><span class="bar-pct c-sky">5,4 MM · 1,9 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="19"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Geeks</span><span class="bar-pct c-sky">1,5 MM · 600K YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="5"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">📺 Entretenimento & Lifestyle — Display Size</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Streaming Música</span><span class="bar-pct c-violet">75 MM · 29 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Streaming Vídeo</span><span class="bar-pct c-violet">57 MM · 22 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="76"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">TV & Novelas</span><span class="bar-pct c-violet">14 MM · 6,3 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="19"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Ingressos</span><span class="bar-pct c-sky">15 MM · 6,4 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="20"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Futebol</span><span class="bar-pct c-sky">13 MM · 5 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="17"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Marcas Esportivas</span><span class="bar-pct c-sky">14 MM · 6,1 MM YT</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="19"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">🏠</div><div class="sub-title">Casa Inteligente, Conectividade & Perfil Tech</div><div class="sub-line"></div></div>
+  <div class="grid g3 anim" style="margin-bottom:14px">
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">🏠 IoT & Conectividade</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Casa Inteligente</span><span class="bar-pct c-violet">8,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="55"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Comparador Celular</span><span class="bar-pct c-violet">28 MM</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Tecnologia</span><span class="bar-pct c-sky">5 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="18"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Ferramentas Gamer</span><span class="bar-pct c-sky">510K</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="2"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">📶 Rede & Dispositivo</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Android</span><span class="bar-pct c-violet">98 MM</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">4G</span><span class="bar-pct c-violet">83 MM</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="85"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">5G</span><span class="bar-pct c-sky">43 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="44"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Celular Básico</span><span class="bar-pct c-sky">4,7 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="5"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kpi-lbl" style="margin-bottom:16px">⚽ Esportes & Eventos</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Esportes Diversos</span><span class="bar-pct c-violet">26 MM</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="100"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Futebol</span><span class="bar-pct c-violet">13 MM</span></div><div class="bar-track"><div class="bar-fill bf-violet" data-w="50"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Flamengo</span><span class="bar-pct c-sky">5,9 MM</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="23"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Gamescom Latam</span><span class="bar-pct c-sky">67K</span></div><div class="bar-track"><div class="bar-fill bf-sky" data-w="0.3"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon sub-icon-violet">📝</div><div class="sub-title">Insights — Vivo Ads Track</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">📱 Samsung Lidera em Device Tracking</h5><p>Samsung com <strong>48 MM no Display</strong> — maior audiência por dispositivo. Apple/iOS com 25 MM e Motorola 25 MM. Permite <strong>segmentação por marca real do aparelho</strong> para campanhas de trade-up.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">🎮 29 MM de Gamers Ativáveis</h5><p>Loja Gamer (29 MM) + Portais Gamers (18 MM) + Gamers perfil (16 MM). <strong>Copa 2026: eFootball/FIFA + Futebol (13 MM)</strong> = audiência para campanhas de games esportivos e acessórios.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">📶 43 MM em 5G</h5><p><strong>43 MM de usuários 5G no Display</strong> — audiência premium com dispositivos de última geração. Ideal para campanhas de <strong>streaming 4K, cloud gaming e IoT</strong>.</p></div>
+    <div class="ins-mini" style="border-top-color:var(--violet)"><h5 style="color:var(--violet)">🏠 Casa Inteligente: 8,2 MM</h5><p>Audiência de <strong>8,2 MM em casa inteligente</strong> + 28 MM comparando celulares. Comportamento real de uso permite <strong>segmentação por afinidade tech comprovada</strong>.</p></div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-copy"><strong>©2026 Comscore, Inc.</strong> · Plan Metrix Audience Profile · Agosto 2025<br>Multi-Platform · Brasil · Total Audience · Segmento Tecnologia</div>
@@ -830,7 +1243,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 const scrollTopBtn=document.getElementById('scroll-top');
 window.addEventListener('scroll',()=>{scrollTopBtn.classList.toggle('visible',window.scrollY>400)},{passive:true});
 function toggleTheme(){document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'}
-function scrollTo_(id){if(id===0){window.scrollTo({top:0,behavior:'smooth'});return}const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sidebarOverlay').classList.add('open')}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open')}
+function goTo(id){closeSidebar();setTimeout(()=>{if(id===0){window.scrollTo({top:0,behavior:'smooth'});return}const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},200);document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));event.target.closest('.sidebar-item').classList.add('active')}
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('vis');e.target.querySelectorAll('.bar-fill[data-w]').forEach(f=>{f.style.width=f.dataset.w+'%';f.removeAttribute('data-w')});io.unobserve(e.target)})},{threshold:0.08});
 document.querySelectorAll('.anim,.card,.trio-col').forEach(el=>{if(!el.classList.contains('anim'))el.classList.add('anim');io.observe(el)});
 function exportPDF(){window.print()}
