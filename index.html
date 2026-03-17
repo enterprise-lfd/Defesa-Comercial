@@ -233,6 +233,48 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
 .masthead-glow-1{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.12),transparent 70%);top:-100px;right:-50px;pointer-events:none}
 .masthead-glow-2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%);bottom:-80px;left:10%;pointer-events:none}
 .masthead-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(168,85,247,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+
+[data-theme="light"] .masthead{background:linear-gradient(160deg,#F0F0F8 0%,#E8E8F2 45%,#E0E0EE 100%);border-bottom-color:rgba(100,50,200,.1)}
+[data-theme="light"] .masthead::before{background:radial-gradient(ellipse at center bottom,rgba(168,85,247,.08) 0%,rgba(0,212,255,.05) 40%,transparent 70%)}
+[data-theme="light"] .masthead-grid{background-image:linear-gradient(rgba(100,50,200,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(100,50,200,.04) 1px,transparent 1px)}
+[data-theme="light"] .masthead-glow-1{background:radial-gradient(circle,rgba(168,85,247,.06),transparent 70%)}
+[data-theme="light"] .masthead-glow-2{background:radial-gradient(circle,rgba(0,212,255,.04),transparent 70%)}
+[data-theme="light"] .masthead-tech-bg svg line{stroke:rgba(100,50,200,.06)!important}
+[data-theme="light"] .masthead-tech-bg svg rect{stroke:rgba(100,50,200,.08)!important;fill:rgba(100,50,200,.02)!important}
+[data-theme="light"] .masthead-tech-bg svg circle{fill:rgba(100,50,200,.08)!important}
+[data-theme="light"] .brand-title{color:var(--txt)}
+[data-theme="light"] .brand-sub{color:var(--txt2)}
+[data-theme="light"] .eyebrow-text{color:#7C3AED}
+[data-theme="light"] .hkpi{background:rgba(255,255,255,.7);border-color:rgba(100,50,200,.12)}
+[data-theme="light"] .hkpi-label{color:var(--txt3)}
+[data-theme="light"] .hkpi-sub{color:var(--txt2)}
+[data-theme="light"] .controls{background:rgba(240,240,248,.92);border-bottom-color:rgba(100,50,200,.08)}
+[data-theme="light"] .menu-btn{background:rgba(100,50,200,.06);border-color:rgba(100,50,200,.12);color:var(--txt2)}
+[data-theme="light"] .menu-btn:hover{background:rgba(100,50,200,.1);color:var(--txt)}
+[data-theme="light"] .btn-ghost{background:rgba(100,50,200,.05);border-color:rgba(100,50,200,.12);color:var(--txt2)}
+[data-theme="light"] .btn-amber{background:linear-gradient(135deg,#8B5CF6,#A855F7,#C084FC);color:#fff}
+
+.glossary{max-width:1280px;margin:0 auto;padding:0 52px 24px}
+.glossary-toggle{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.glossary-toggle:hover .glossary-title{color:var(--txt)}
+.glossary-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--txt2);transition:color .2s}
+.glossary-arrow{font-size:18px;color:var(--txt3);transition:transform .3s}
+.glossary-arrow.open{transform:rotate(180deg)}
+.glossary-content{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.glossary-content.open{max-height:3000px}
+.glossary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px 0}
+@media(max-width:700px){.glossary-grid{grid-template-columns:1fr}}
+.glossary-item{padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:border-color .2s}
+.glossary-item:hover{border-color:var(--border2)}
+.glossary-section-tag{display:inline-block;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.glossary-term{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px}
+.glossary-def{font-size:11px;color:var(--txt2);line-height:1.6;font-weight:300}
+.glossary-source{display:flex;align-items:center;gap:8px;padding:16px 18px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
+.glossary-source-icon{font-size:18px;flex-shrink:0}
+.glossary-source-info{flex:1}
+.glossary-source-name{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:2px}
+.glossary-source-desc{font-size:10px;color:var(--txt3);line-height:1.5}
+.glossary-source-tag{padding:3px 10px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -1230,6 +1272,127 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-h
   </div>
 </div>
 
+<!-- GLOSSÁRIO -->
+<div class="glossary">
+  <div class="glossary-toggle" onclick="toggleGlossary()">
+    <span class="glossary-title">📋 Glossário & Fontes de Dados</span>
+    <span class="glossary-arrow" id="glossaryArrow">▼</span>
+  </div>
+  <div class="glossary-content" id="glossaryContent">
+
+    <!-- Fontes por Seção -->
+    <div style="padding-top:16px;margin-bottom:12px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Fontes de Dados por Seção</div>
+
+    <div class="glossary-source">
+      <div class="glossary-source-icon">🌐</div>
+      <div class="glossary-source-info">
+        <div class="glossary-source-name">Seções 1, 2 e 3 — Internet Total, Terra & Vivo</div>
+        <div class="glossary-source-desc">Comscore Plan Metrix Multi-Platform · Agosto 2025 · Brasil · Total Audience · Home & Work · Base: 117.264.604</div>
+      </div>
+      <span class="glossary-source-tag" style="background:var(--sky-dim);color:var(--sky)">Comscore</span>
+    </div>
+
+    <div class="glossary-source">
+      <div class="glossary-source-icon">📊</div>
+      <div class="glossary-source-info">
+        <div class="glossary-source-name">Seção Concorrência — Terra vs Portais</div>
+        <div class="glossary-source-desc">Comscore Plan Metrix Multi-Platform · Agosto 2025 · Portais: Terra, Globo, UOL, R7, IG, CNN Brasil</div>
+      </div>
+      <span class="glossary-source-tag" style="background:var(--amber-dim);color:var(--amber)">Comscore</span>
+    </div>
+
+    <div class="glossary-source">
+      <div class="glossary-source-icon">⚽</div>
+      <div class="glossary-source-info">
+        <div class="glossary-source-name">Seção Copa 2026</div>
+        <div class="glossary-source-desc">Comscore Plan Metrix Multi-Platform · Agosto 2025 · Dados de esportes, torcidas e intenção de compra tech</div>
+      </div>
+      <span class="glossary-source-tag" style="background:var(--mint-dim);color:var(--mint)">Comscore</span>
+    </div>
+
+    <div class="glossary-source">
+      <div class="glossary-source-icon">📰</div>
+      <div class="glossary-source-info">
+        <div class="glossary-source-name">Seção Terra Editorial — Byte & GameOn</div>
+        <div class="glossary-source-desc">Google Analytics 4 (GA4) · Conteúdo Próprio · Jan–Dez 2025 · Canais: Byte, GameOn · Fonte: Xataka</div>
+      </div>
+      <span class="glossary-source-tag" style="background:var(--amber-dim);color:var(--amber)">GA4</span>
+    </div>
+
+    <div class="glossary-source">
+      <div class="glossary-source-icon">📡</div>
+      <div class="glossary-source-info">
+        <div class="glossary-source-name">Seção Vivo Ads — Dados First-Party</div>
+        <div class="glossary-source-desc">Vivo Ads Data · Categorias por app/comportamento · Share % dentro de cada categoria · Dados de uso real</div>
+      </div>
+      <span class="glossary-source-tag" style="background:var(--violet-dim);color:var(--violet)">Vivo Ads</span>
+    </div>
+
+    <div class="glossary-source">
+      <div class="glossary-source-icon">📶</div>
+      <div class="glossary-source-info">
+        <div class="glossary-source-name">Seção Vivo Ads Track — Audiências</div>
+        <div class="glossary-source-desc">Vivo Ads Track · Segmentos first-party para ativação programática · Display Size & YouTube Users</div>
+      </div>
+      <span class="glossary-source-tag" style="background:var(--violet-dim);color:var(--violet)">Vivo Ads Track</span>
+    </div>
+
+    <!-- Termos -->
+    <div style="padding-top:20px;margin-bottom:12px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Termos & Métricas</div>
+
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <div class="glossary-term">Reach (%)</div>
+        <div class="glossary-def">Percentual da base de internet que acessa determinado portal ou canal. Ex: Terra Reach 50,4% = metade da internet brasileira passa pelo Terra.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Composição (%)</div>
+        <div class="glossary-def">Distribuição percentual de uma métrica dentro da audiência de um canal. Ex: 44,4% da audiência Terra é 45+ anos.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Público-alvo (000)</div>
+        <div class="glossary-def">Volume absoluto em milhares de usuários únicos que atendem a um critério. Multiplicar por 1.000 para obter o valor real.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Any Agree</div>
+        <div class="glossary-def">Soma de "concordo totalmente" e "concordo parcialmente" em atitudes e opiniões. Métrica padrão Comscore para mensurar afinidade.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Intenders (N12m)</div>
+        <div class="glossary-def">Consumidores que pretendem comprar determinado produto nos próximos 12 meses. Indicador de intenção de compra.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">L12m / N12m</div>
+        <div class="glossary-def">L12m = Last 12 months (últimos 12 meses). N12m = Next 12 months (próximos 12 meses). Referências temporais Comscore.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Share (%)</div>
+        <div class="glossary-def">Participação percentual de um app, marca ou plataforma dentro de uma categoria. Usado nas seções Vivo Ads.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Display Size</div>
+        <div class="glossary-def">Alcance total de um segmento Vivo Ads Track em formatos display (banners, interstitials, native). Volume de impressões ativáveis.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">YouTube Users</div>
+        <div class="glossary-def">Subconjunto do Display Size ativável via Google/YouTube. Audiência disponível para campanhas de vídeo no YouTube.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">First-Party Data</div>
+        <div class="glossary-def">Dados coletados diretamente pela Vivo sobre o comportamento dos seus usuários (apps instalados, uso de dados, localização). Não depende de cookies.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Multi-Platform</div>
+        <div class="glossary-def">Métrica Comscore que combina Desktop + Mobile (browser + app), eliminando duplicação de usuários entre dispositivos.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">PVs / Pageviews</div>
+        <div class="glossary-def">Total de páginas visualizadas. Usado na seção Terra Editorial (GA4) para medir volume de consumo de conteúdo Byte e GameOn.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-copy"><strong>©2026 Comscore, Inc.</strong> · Plan Metrix Audience Profile · Agosto 2025<br>Multi-Platform · Brasil · Total Audience · Segmento Tecnologia</div>
@@ -1249,6 +1412,7 @@ function goTo(id){closeSidebar();setTimeout(()=>{if(id===0){window.scrollTo({top
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('vis');e.target.querySelectorAll('.bar-fill[data-w]').forEach(f=>{f.style.width=f.dataset.w+'%';f.removeAttribute('data-w')});io.unobserve(e.target)})},{threshold:0.08});
 document.querySelectorAll('.anim,.card,.trio-col').forEach(el=>{if(!el.classList.contains('anim'))el.classList.add('anim');io.observe(el)});
 function exportPDF(){window.print()}
+function toggleGlossary(){const content=document.getElementById('glossaryContent');const arrow=document.getElementById('glossaryArrow');content.classList.toggle('open');arrow.classList.toggle('open')}
 
 /* BG Canvas */
 (function(){const c=document.getElementById('bg-canvas'),x=c.getContext('2d');const t=['CPU','GPU','4K','8K','OLED','RAM','SSD','NVMe','5G','WiFi','USB-C','BT5','120Hz','HDR','AI','ML','IoT','ARM','x86'];let cells=[];function build(){cells=[];const W=c.width,H=c.height;const cW=200,rH=60,cols=Math.ceil(W/cW)+1,rows=Math.ceil(H/rH)+1;for(let r=0;r<rows;r++)for(let cl=0;cl<cols;cl++){cells.push({x:cl*cW+(r%2)*cW*.5+(Math.random()-.5)*28,y:r*rH+(Math.random()-.5)*14,t:t[Math.floor(Math.random()*t.length)],s:10+Math.floor(Math.random()*3),a:.028+Math.random()*.022})}}function draw(){x.clearRect(0,0,c.width,c.height);const d=document.documentElement.dataset.theme!=='light';cells.forEach(cl=>{x.font=`400 ${cl.s}px 'Space Mono',monospace`;x.fillStyle=d?`rgba(168,85,247,${cl.a})`:`rgba(100,50,200,${cl.a*1.4})`;x.fillText(cl.t,cl.x,cl.y)})}function resize(){c.width=window.innerWidth;c.height=Math.max(document.body.scrollHeight,window.innerHeight);build();draw()}document.fonts.load("400 12px 'Space Mono'").then(resize).catch(resize);new MutationObserver(()=>draw()).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});let raf;window.addEventListener('resize',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(resize)});let lH=0;setInterval(()=>{const h=Math.max(document.body.scrollHeight,window.innerHeight);if(h!==lH){lH=h;resize()}},900)})();
