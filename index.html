@@ -116,6 +116,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
 .sub-icon{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:rgba(27,158,75,.06)}
 .sub-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--txt)}
 .sub-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+
+.trend-chart{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;overflow:hidden}
+.trend-bar-month{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.trend-month-lbl{font-size:11px;font-weight:600;color:var(--txt2);min-width:32px}
+.trend-bar-stack{flex:1;display:flex;gap:2px;height:22px;border-radius:6px;overflow:hidden}
+.trend-seg{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0}
+.trend-seg-verde{background:linear-gradient(90deg,#1B9E4B,#22C55E)}
+.trend-seg-amarelo{background:linear-gradient(90deg,#D97706,#FACC15)}
+.trend-seg-azul{background:linear-gradient(90deg,#2563EB,#60A5FA)}
+.trend-seg-coral{background:linear-gradient(90deg,#E11D48,#FB7185)}
+.trend-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
+.trend-legend-item{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:600;color:var(--txt2)}
+.trend-legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.trend-event{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:.06em;color:#fff;margin-left:4px;white-space:nowrap}
 .question-card{background:linear-gradient(135deg,var(--bg2),var(--bg));border:1px solid var(--border);border-left:3px solid var(--verde);border-radius:16px;padding:16px 20px;margin-bottom:16px}
 .question-text{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--txt);margin-bottom:4px}
 .question-meta{font-size:10px;color:var(--txt3);font-weight:500;letter-spacing:.06em}
@@ -247,6 +261,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
   <button class="sidebar-item" onclick="navTo('beleza')"><span class="sidebar-emoji">💄</span>Beleza & Vaidade</button>
   <button class="sidebar-item" onclick="navTo('familia')"><span class="sidebar-emoji">👨‍👩‍👧</span>Família & Lar</button>
   <button class="sidebar-item" onclick="navTo('compras')"><span class="sidebar-emoji">🛒</span>Compras & Marcas</button>
+  <button class="sidebar-item" onclick="navTo('tendencias')"><span class="sidebar-emoji">📈</span>Tendências de Busca</button>
   <div class="sidebar-group">Pesquisa Exclusiva</div>
   <button class="sidebar-item" onclick="navTo('pesquisa')"><span class="sidebar-emoji">🔬</span>Paixões & Celebrações</button>
 </nav>
@@ -668,6 +683,103 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
 
 
 
+
+<!-- ═══ TENDÊNCIAS DE BUSCA ═══ -->
+<section class="section" id="tendencias">
+  <div class="sec-badge" style="background:rgba(37,99,235,.08);color:var(--azul)">📈 Google Trends · Year in Search 2025</div>
+  <h2 class="sec-title">Quando o Brasil <em>pesquisa</em> suas paixões<span class="sec-accent" style="color:var(--azul)">sazonalidade de buscas revela o calendário emocional brasileiro</span></h2>
+  <p class="sec-desc">Dados do Google Trends e Think with Google mostram como eventos e datas sazonais influenciam o comportamento de busca e consumo dos brasileiros.</p>
+
+  <div class="grid g4 anim" style="margin-bottom:16px">
+    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">⚽</div><div class="card-val verde">#1</div><div class="card-lbl">Futebol</div><div class="card-sub">tema mais buscado 2025</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid #E11D48"><div class="card-icon">🎭</div><div class="card-val coral">+10%</div><div class="card-lbl">Carnaval 2026</div><div class="card-sub">buscas crescendo em dez/25</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid #D97706"><div class="card-icon">🛒</div><div class="card-val amarelo">89%</div><div class="card-lbl">Conhecem BF</div><div class="card-sub">67% já compraram</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--azul)"><div class="card-icon">💝</div><div class="card-val azul">200 MM</div><div class="card-lbl">Views Dia Mães</div><div class="card-sub">YouTube mai/2024</div></div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon" style="background:rgba(37,99,235,.06)">📊</div><div class="sub-title">Calendário Sazonal de Buscas — Picos de Interesse</div><div class="sub-line"></div></div>
+  <div class="trend-chart anim">
+    <div class="card-lbl" style="margin-bottom:14px">📊 Intensidade relativa de busca por tema ao longo do ano (Google Trends)</div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">JAN</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="15"></div><div class="trend-seg trend-seg-verde" data-w="25"></div><div class="trend-seg trend-seg-azul" data-w="8"></div><div class="trend-seg trend-seg-amarelo" data-w="5"></div></div><span class="trend-event" style="background:#E11D48">Pré-Carnaval</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">FEV</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="90"></div><div class="trend-seg trend-seg-verde" data-w="20"></div><div class="trend-seg trend-seg-azul" data-w="10"></div><div class="trend-seg trend-seg-amarelo" data-w="3"></div></div><span class="trend-event" style="background:#E11D48">🎭 CARNAVAL</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">MAR</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="8"></div><div class="trend-seg trend-seg-verde" data-w="30"></div><div class="trend-seg trend-seg-azul" data-w="12"></div><div class="trend-seg trend-seg-amarelo" data-w="20"></div></div><span class="trend-event" style="background:#D97706">Consumidor</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">ABR</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="30"></div><div class="trend-seg trend-seg-azul" data-w="15"></div><div class="trend-seg trend-seg-amarelo" data-w="8"></div></div></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">MAI</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="25"></div><div class="trend-seg trend-seg-azul" data-w="40"></div><div class="trend-seg trend-seg-amarelo" data-w="12"></div></div><span class="trend-event" style="background:var(--azul)">💝 Dia Mães</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">JUN</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="85"></div><div class="trend-seg trend-seg-azul" data-w="20"></div><div class="trend-seg trend-seg-amarelo" data-w="65"></div></div><span class="trend-event" style="background:var(--verde)">⚽ COPA</span><span class="trend-event" style="background:#D97706">🌽 São João</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">JUL</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="90"></div><div class="trend-seg trend-seg-azul" data-w="15"></div><div class="trend-seg trend-seg-amarelo" data-w="20"></div></div><span class="trend-event" style="background:var(--verde)">⚽ COPA</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">AGO</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="40"></div><div class="trend-seg trend-seg-azul" data-w="35"></div><div class="trend-seg trend-seg-amarelo" data-w="10"></div></div><span class="trend-event" style="background:var(--azul)">👨 Pais</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">SET</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="35"></div><div class="trend-seg trend-seg-azul" data-w="12"></div><div class="trend-seg trend-seg-amarelo" data-w="8"></div></div></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">OUT</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="8"></div><div class="trend-seg trend-seg-verde" data-w="35"></div><div class="trend-seg trend-seg-azul" data-w="20"></div><div class="trend-seg trend-seg-amarelo" data-w="15"></div></div><span class="trend-event" style="background:var(--azul)">👧 Crianças</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">NOV</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="30"></div><div class="trend-seg trend-seg-azul" data-w="15"></div><div class="trend-seg trend-seg-amarelo" data-w="95"></div></div><span class="trend-event" style="background:#D97706">🖤 BLACK FRIDAY</span></div>
+    <div class="trend-bar-month"><span class="trend-month-lbl">DEZ</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="10"></div><div class="trend-seg trend-seg-verde" data-w="25"></div><div class="trend-seg trend-seg-azul" data-w="30"></div><div class="trend-seg trend-seg-amarelo" data-w="70"></div></div><span class="trend-event" style="background:var(--verde)">🎄 Natal</span></div>
+    <div class="trend-legend">
+      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:var(--verde)"></div>Esportes / Futebol</div>
+      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:#E11D48"></div>Carnaval / Festas</div>
+      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:var(--azul)"></div>Família / Presentes</div>
+      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:#D97706"></div>Compras / Consumo</div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon" style="background:rgba(27,158,75,.06)">⚽</div><div class="sub-title">Grandes Eventos = Picos de Consumo</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-lbl">⚽ Copa do Mundo — Impacto nas Buscas</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Camiseta seleção</span><span class="bar-pct verde">+850%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Futebol (Jun/Jul)</span><span class="bar-pct verde">+400%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="47"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">TV / Smart TV</span><span class="bar-pct verde">+180%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="21"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Churrasco + Cerveja</span><span class="bar-pct verde">+120%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="14"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Delivery / Comida</span><span class="bar-pct verde">+90%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="11"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">🎭 Carnaval — Impacto nas Buscas (Fev)</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Fantasia carnaval</span><span class="bar-pct coral" style="color:#E11D48">+3.200%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Bloquinhos 2026</span><span class="bar-pct coral" style="color:#E11D48">+1.500%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="47"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Abadás</span><span class="bar-pct coral" style="color:#E11D48">+900%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="28"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Maquiagem / Glitter</span><span class="bar-pct coral" style="color:#E11D48">+600%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="19"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Cerveja (pico fev)</span><span class="bar-pct coral" style="color:#E11D48">+150%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="5"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g2 anim" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-lbl">🖤 Black Friday — Impacto (Nov)</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Black Friday ofertas</span><span class="bar-pct amarelo" style="color:#D97706">+2.500%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Celular promoção</span><span class="bar-pct amarelo" style="color:#D97706">+800%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="32"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">TV 4K barata</span><span class="bar-pct amarelo" style="color:#D97706">+650%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="26"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Cupom desconto</span><span class="bar-pct amarelo" style="color:#D97706">+500%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="20"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Lista planej. (Jul)</span><span class="bar-pct amarelo" style="color:#D97706">48%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="19"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">🌽 São João + 🎄 Natal — Picos Regionais</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Festa junina (Jun)</span><span class="bar-pct amarelo" style="color:#D97706">+1.800%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Comida típica (Jun)</span><span class="bar-pct amarelo" style="color:#D97706">+700%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="39"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Presente Natal (Dez)</span><span class="bar-pct azul" style="color:var(--azul)">+1.200%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="67"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Receita ceia (Dez)</span><span class="bar-pct azul" style="color:var(--azul)">+900%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="50"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Dia das Mães (Mai)</span><span class="bar-pct azul" style="color:var(--azul)">+600%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="33"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header"><div class="sub-icon" style="background:rgba(217,119,6,.06)">💡</div><div class="sub-title">O que os Dados de Busca Revelam</div><div class="sub-line"></div></div>
+  <div class="grid g3 anim" style="margin-bottom:16px">
+    <div class="insight" data-emoji="📅"><div class="insight-title" style="color:var(--azul)">Carnaval começa em outubro</div><p>Buscas por "carnaval" <strong>começam a subir 4 meses antes da festa</strong>. Em janeiro, o volume explode. Marcas que ativam em outubro saem na frente.</p></div>
+    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Copa 2026: o maior pico do ano</div><p>Em anos de Copa, <strong>futebol domina Jun/Jul com +400% de buscas</strong>. O efeito cascata atinge TVs, cerveja, churrasco, delivery e moda esportiva.</p></div>
+    <div class="insight" data-emoji="🛒"><div class="insight-title" style="color:#D97706">BF: 48% planejam desde julho</div><p><strong>89% conhecem a Black Friday</strong> e <strong>48% têm lista pronta em julho</strong>. A jornada começa 5 meses antes — conteúdo antecipado captura essa audiência.</p></div>
+  </div>
+  <div class="grid g2 anim">
+    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:#D97706">São João: pico invisível do marketing</div><p>Festas juninas geram <strong>+1.800% de buscas em junho</strong> — rivaliza com Carnaval em intensidade regional. No Nordeste, é o maior evento do ano. Comida típica e moda junina movimentam bilhões.</p></div>
+    <div class="insight" data-emoji="📈"><div class="insight-title" style="color:var(--azul)">O brasileiro pesquisa com emoção</div><p>Em 2025, brasileiros passaram a pesquisar <strong>"como se falassem com alguém"</strong> — buscas com "me conta sobre..." cresceram significativamente. As paixões brasileiras são conversas que o Terra media.</p></div>
+  </div>
+</section>
+
+
 <!-- ═══ PESQUISA PROPRIETÁRIA TERRA INSIGHTS ═══ -->
 <section class="section" id="pesquisa" style="border-top:3px solid var(--verde)">
   <div class="sec-badge" style="background:rgba(27,158,75,.12);color:var(--verde)">🔬 Pesquisa Proprietária</div>
@@ -938,7 +1050,7 @@ const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting)return;
     e.target.classList.add('vis');
-    e.target.querySelectorAll('.bar-fill[data-w]').forEach(f=>{
+    e.target.querySelectorAll('.bar-fill[data-w],.trend-seg[data-w]').forEach(f=>{
       f.style.width=f.dataset.w+'%';
     });
     io.unobserve(e.target);
