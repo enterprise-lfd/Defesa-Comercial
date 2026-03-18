@@ -61,12 +61,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
 @media(max-width:800px){.g2,.g3,.g4{grid-template-columns:1fr}}
 @media(min-width:801px) and (max-width:1000px){.g3,.g4{grid-template-columns:1fr 1fr}}
 
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
 .card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.08)}
-.card-icon{font-size:32px;margin-bottom:12px}
-.card-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:6px}
-.card-val{font-family:'Playfair Display',serif;font-size:36px;font-weight:800;line-height:1.1;margin-bottom:4px}
-.card-sub{font-size:12px;color:var(--txt2);font-weight:400}
+.card-icon{font-size:24px;margin-bottom:8px}
+.card-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.card-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;line-height:1.1;margin-bottom:3px}
+.card-sub{font-size:11px;color:var(--txt2);font-weight:400}
 .card-val.verde{color:var(--verde)}
 .card-val.amarelo{color:#D97706}
 .card-val.azul{color:var(--azul)}
@@ -85,15 +85,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
 .bf-coral{background:linear-gradient(90deg,#E11D48,var(--coral))}
 
 /* ═══ INSIGHT CARDS ═══ */
-.insight{background:linear-gradient(135deg,var(--bg2),var(--bg));border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden}
+.insight{background:linear-gradient(135deg,var(--bg2),var(--bg));border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden}
 .insight::before{content:attr(data-emoji);position:absolute;right:16px;top:16px;font-size:48px;opacity:.08;pointer-events:none}
 .insight-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px}
 .insight p{font-size:13px;color:var(--txt2);line-height:1.7}
 .insight strong{color:var(--txt);font-weight:700}
 
 /* ═══ BIG STAT ═══ */
-.big-stat{text-align:center;padding:48px 24px;background:linear-gradient(135deg,rgba(27,158,75,.04),rgba(250,204,21,.04));border-radius:24px;border:1px solid var(--border);margin-bottom:16px}
-.big-stat-val{font-family:'Playfair Display',serif;font-size:clamp(48px,8vw,72px);font-weight:800;line-height:1}
+.big-stat{text-align:center;padding:32px 20px;background:linear-gradient(135deg,rgba(27,158,75,.04),rgba(250,204,21,.04));border-radius:24px;border:1px solid var(--border);margin-bottom:16px}
+.big-stat-val{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,56px);font-weight:800;line-height:1}
 .big-stat-lbl{font-size:15px;color:var(--txt2);margin-top:8px;font-weight:400}
 .big-stat-note{font-family:'Caveat',cursive;font-size:18px;color:var(--verde);margin-top:8px}
 
@@ -117,7 +117,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div style="position:relative;z-index:1">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> Comscore Plan Metrix · Agosto 2025 · 117,3 MM de brasileiros</div>
+    <img src="https://p2.trrsf.com/image/fget/cf/306/474/smart/images.terra.com/2025/01/31/image-(1)-1h7qzxcg8wgtz.png" alt="Terra Insights" style="height:50px;margin-bottom:16px;filter:brightness(0) invert(1);opacity:.9" crossorigin="anonymous" referrerpolicy="no-referrer"><div class="hero-badge"><span class="hero-badge-dot"></span> Terra Insights · Março 2026</div>
     <h1 class="hero-title">Paixões<br><em>Brasileiras</em></h1>
     <p class="hero-sub">O que move, emociona e conecta 117 milhões de brasileiros na internet — das arquibancadas à mesa do churrasco.</p>
     <div class="hero-kpis">
@@ -200,6 +200,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <button class="nav-pill" onclick="goTo('beleza')">💄 Beleza & Vaidade</button>
     <button class="nav-pill" onclick="goTo('familia')">👨‍👩‍👧 Família & Lar</button>
     <button class="nav-pill" onclick="goTo('compras')">🛒 Compras & Marcas</button>
+    <button class="nav-pill" onclick="goTo('pesquisa')">🔬 Pesquisa Terra</button>
   </div>
 </nav>
 
@@ -258,6 +259,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Futebol feminino cresce</div><p><strong>22 MM</strong> assistem futebol feminino — <strong>18,8%</strong> da internet. Quase metade da audiência do masculino. Uma revolução em andamento.</p></div>
     <div class="insight" data-emoji="🥊"><div class="insight-title" style="color:var(--verde)">MMA + Boxe: 31 MM de fãs</div><p>Lutas mobilizam <strong>31,1 MM</strong> de brasileiros. MMA (13 MM) e Boxe (18,2 MM) superam basquete e F1 individualmente.</p></div>
   </div>
+  <div class="grid g3 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="🏖"><div class="insight-title" style="color:var(--verde)">Vôlei de praia: DNA brasileiro</div><p><strong>17,5 MM</strong> assistem vôlei de praia — mais que basquete (15,6 MM). Esporte que nasceu nas areias brasileiras segue como paixão nacional.</p></div>
+    <div class="insight" data-emoji="🏟"><div class="insight-title" style="color:var(--verde)">23 MM vão ao estádio</div><p><strong>19,6% da internet</strong> assiste esporte presencialmente. São 23 MM que compram ingresso, camiseta e cerveja — mercado de experiência ao vivo.</p></div>
+    <div class="insight" data-emoji="🛹"><div class="insight-title" style="color:var(--verde)">Skate: 16,5 MM após Olimpíadas</div><p>O efeito Rayssa Leal é real: <strong>16,5 MM assistem skate</strong> (14,1%). Supera natação (14,8 MM) e surfe (11,9 MM). Nova geração de fãs.</p></div>
+  </div>
 </section>
 
 <!-- ═══ SEÇÃO 2: CHURRASCO & MESA ═══ -->
@@ -311,6 +317,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <div class="insight" data-emoji="🔥"><div class="insight-title" style="color:#D97706">Churrasco > Shopping</div><p><strong>38,2 MM fazem churrasco</strong> (32,6%) vs 30,5 MM vão ao shopping (26%). O churrasco supera o shopping como programa favorito do brasileiro.</p></div>
     <div class="insight" data-emoji="🍽"><div class="insight-title" style="color:#D97706">Regionais vencem McDonald's</div><p>Restaurantes regionais/outros somam <strong>30,4 MM</strong> — superando McDonald's (25,4 MM) e BK (21,3 MM). O paladar brasileiro valoriza o local.</p></div>
   </div>
+  <div class="grid g3 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="🌱"><div class="insight-title" style="color:#D97706">Plant-based: 39,6 MM já consomem</div><p><strong>33,8% consomem produtos de origem vegetal</strong> (leite de amêndoa, carne de soja). O Brasil abraça a alimentação alternativa sem abandonar o churrasco.</p></div>
+    <div class="insight" data-emoji="☕"><div class="insight-title" style="color:#D97706">Café: a bebida mais democrática</div><p><strong>76,8 MM tomam café em casa</strong> — mais que qualquer outro hábito alimentar. Além disso, <strong>18,8 MM visitam casa de amigos</strong> para tomar café. Café une o Brasil.</p></div>
+    <div class="insight" data-emoji="🍕"><div class="insight-title" style="color:#D97706">Praticidade e indulgência</div><p><strong>62% se permitem comer besteiras</strong> (72,7 MM) mas <strong>60,7% acham fast food lixo</strong> (71,2 MM). O brasileiro vive o paradoxo da indulgência consciente.</p></div>
+  </div>
 </section>
 
 <!-- ═══ SEÇÃO 3: MÚSICA & FESTAS ═══ -->
@@ -361,6 +372,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <div class="insight" data-emoji="🎵"><div class="insight-title" style="color:var(--azul)">Música > Esporte praticado</div><p><strong>68,5 MM ouvem música</strong> como lazer (58,4%) vs 64,6 MM praticam esporte (55%). Música é a atividade recreativa #1 do Brasil.</p></div>
     <div class="insight" data-emoji="🎤"><div class="insight-title" style="color:var(--azul)">21 MM cantam como hobby</div><p><strong>18% da internet</strong> canta como atividade de lazer. O karaokê no churrasco não é mito — é dado Comscore.</p></div>
   </div>
+  <div class="grid g2 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="🎮"><div class="insight-title" style="color:var(--azul)">Gaming: 19,8 MM assistem e jogam</div><p><strong>16,9% frequentam eventos de gaming</strong> ou assistem streams. A cultura gamer é uma das formas de entretenimento que mais cresce no Brasil digital.</p></div>
+    <div class="insight" data-emoji="🎄"><div class="insight-title" style="color:var(--azul)">Natal é a celebração #1</div><p><strong>76,3% celebram Natal e Ano Novo</strong> (89,5 MM) — a data mais importante do calendário emocional brasileiro. <strong>75% celebram Dia dos Pais/Mães</strong> (88 MM).</p></div>
+  </div>
 </section>
 
 <!-- ═══ SEÇÃO 4: PRAIA & LAZER ═══ -->
@@ -398,6 +413,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
   <div class="grid g2 anim">
     <div class="insight" data-emoji="✈️"><div class="insight-title" style="color:var(--azul)">Viagem é sonho (e plano)</div><p><strong>67,1% gostariam de viajar pro exterior</strong> (78,7 MM) mas <strong>63,2% preferem férias no Brasil</strong>. O turismo interno vence. Preço é fator #1 na escolha (69,6%).</p></div>
     <div class="insight" data-emoji="🏖"><div class="insight-title" style="color:var(--azul)">Praia supera tudo ao ar livre</div><p><strong>42 MM vão à praia</strong> — mais que parques (25,7 MM) e excursões (21,4 MM) somados. A praia é o lazer outdoor definitivo do brasileiro.</p></div>
+  </div>
+  <div class="grid g3 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="🎲"><div class="insight-title" style="color:var(--azul)">14,7 MM sonham com a loteria</div><p><strong>12,5% jogam na loteria</strong> — o sonho de mudar de vida é parte da cultura brasileira. Números, promessas e palpites movem um mercado bilionário.</p></div>
+    <div class="insight" data-emoji="🛫"><div class="insight-title" style="color:var(--azul)">Internet planeja a viagem</div><p><strong>67,7% usam internet para planejar viagens</strong> (79,3 MM). O Terra é ponto de passagem natural para quem pesquisa destinos, promoções e roteiros.</p></div>
+    <div class="insight" data-emoji="📸"><div class="insight-title" style="color:var(--azul)">19 MM são fotógrafos amadores</div><p><strong>16,3% praticam fotografia como hobby</strong> — essencial para viagens e redes sociais. Smartphones bons de câmera e acessórios encontram público cativo.</p></div>
   </div>
 </section>
 
@@ -445,6 +465,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <div class="insight" data-emoji="🍺"><div class="insight-title" style="color:#D97706">Heineken destrona Brahma</div><p>Heineken é a cerveja #1 do Brasil digital: <strong>18,7 MM</strong> consumidores, superando Brahma (15,5 MM). Amstel em 2º (16,5 MM). A premiunização é real.</p></div>
     <div class="insight" data-emoji="🍷"><div class="insight-title" style="color:#D97706">Vinho cresce: 25,8 MM</div><p><strong>22% da internet</strong> consome vinho, com <strong>89% preferindo tinto</strong> e <strong>96% em garrafa</strong>. O brasileiro está cada vez mais sofisticado nas escolhas.</p></div>
   </div>
+  <div class="grid g3 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="⚡"><div class="insight-title" style="color:#D97706">Energéticos: 34,6 MM</div><p><strong>29,5% consomem energéticos</strong> — quase um terço da internet. É a bebida da produtividade, do gaming e das baladas. Mercado em alta entre jovens.</p></div>
+    <div class="insight" data-emoji="🥂"><div class="insight-title" style="color:#D97706">19,6 MM frequentam bares</div><p><strong>16,7% vão a bares</strong> como lazer regular. O "happy hour" brasileiro é ritual social. Cervejas premium + petiscos + amigos = a fórmula perfeita.</p></div>
+    <div class="insight" data-emoji="🍺"><div class="insight-title" style="color:#D97706">Lata vence garrafa: 35 MM vs 27 MM</div><p><strong>30,1% preferem cerveja em lata</strong> (35,3 MM) contra 23,6% em garrafa (27,6 MM). Praticidade do churrasco e da praia empurra a lata pro topo.</p></div>
+  </div>
 </section>
 
 <!-- ═══ SEÇÃO 6: BELEZA & VAIDADE ═══ -->
@@ -489,6 +514,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <div class="insight" data-emoji="🌸"><div class="insight-title" style="color:#E11D48">O Boticário: marca #1 do Brasil</div><p><strong>40,8 MM</strong> usam O Boticário — <strong>34,8% da internet</strong>. É a marca de beleza mais usada do país. Natura vem em 2º com 26,7 MM (22,8%).</p></div>
     <div class="insight" data-emoji="☀️"><div class="insight-title" style="color:#E11D48">Protetor solar: rotina de 35 MM</div><p><strong>30,3% usam protetor no rosto</strong> e 28,9% no corpo. O brasileiro está cada vez mais consciente dos cuidados com a pele — mercado em crescimento acelerado.</p></div>
   </div>
+  <div class="grid g3 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="💄"><div class="insight-title" style="color:#E11D48">Maquiagem = autoconfiança</div><p><strong>36% dizem que maquiagem aumenta autoconfiança</strong> (42,2 MM). <strong>61,5% sempre compram os mesmos produtos</strong> de beleza — fidelidade é altíssima nesse segmento.</p></div>
+    <div class="insight" data-emoji="🧴"><div class="insight-title" style="color:#E11D48">Colgate: 67,4% do Brasil</div><p><strong>79 MM usam Colgate</strong> — a marca de higiene mais presente nos lares brasileiros. Dove (sabonete) com 28,6 MM e Rexona (desodorante) com 28,6 MM completam o pódio.</p></div>
+    <div class="insight" data-emoji="💊"><div class="insight-title" style="color:#E11D48">Saúde não tem preço: 82,1%</div><p><strong>96,3 MM pagariam qualquer coisa pela saúde</strong>. O mercado de bem-estar cresce impulsionado por <strong>58,4% que confiam em homeopatia</strong> e 55,3% que fazem check-up preventivo.</p></div>
+  </div>
 </section>
 
 <!-- ═══ SEÇÃO 7: FAMÍLIA & LAR ═══ -->
@@ -513,6 +543,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
   <div class="grid g2 anim">
     <div class="insight" data-emoji="🏠"><div class="insight-title" style="color:var(--verde)">O lar brasileiro é social</div><p><strong>65,5% adoram receber</strong> (76,8 MM) e <strong>80% preferem noite em casa</strong> (93,8 MM). Mas "em casa" não é "sozinho" — é churrasco, jogo na TV, música alta e família reunida.</p></div>
     <div class="insight" data-emoji="👶"><div class="insight-title" style="color:var(--verde)">Filhos influenciam 33%</div><p><strong>32,9% dizem que filhos influenciam compras</strong> (38,6 MM). A família é núcleo de decisão de consumo — de eletrônicos a alimentos.</p></div>
+  </div>
+  <div class="grid g3 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="🐾"><div class="insight-title" style="color:var(--verde)">82,5 MM têm pet como família</div><p><strong>70,3% consideram o pet parte da família</strong>. O mercado pet brasileiro é o 3º maior do mundo — ração premium, plano de saúde animal e acessórios movem bilhões.</p></div>
+    <div class="insight" data-emoji="🔨"><div class="insight-title" style="color:var(--verde)">95,8 MM querem melhorar a casa</div><p><strong>81,7% buscam novas ideias para a casa</strong>. De reformas a decoração, o brasileiro investe no lar — impulsionado pelo tempo em casa e pelo orgulho do espaço próprio.</p></div>
+    <div class="insight" data-emoji="🍳"><div class="insight-title" style="color:var(--verde)">Cozinha: o coração do lar</div><p><strong>60,2% dizem que a cozinha é o cômodo mais importante</strong> (70,6 MM). Não é a sala, não é o quarto — é onde a família se encontra, cozinha junto e compartilha.</p></div>
   </div>
 </section>
 
@@ -570,14 +605,155 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <div class="insight" data-emoji="🇧🇷"><div class="insight-title" style="color:var(--verde)">O brasileiro compra brasileiro</div><p><strong>74,6% preferem produtos nacionais</strong> (87,4 MM). O patriotismo de consumo é real e massivo — oportunidade para marcas locais.</p></div>
     <div class="insight" data-emoji="🛒"><div class="insight-title" style="color:var(--azul)">Paradoxo: fiel mas caça preço</div><p><strong>74,6% são fiéis à marca</strong> mas <strong>65,3% trocam se outra estiver em promoção</strong>. O brasileiro é leal — até o desconto aparecer.</p></div>
   </div>
+  <div class="grid g3 anim" style="margin-top:16px">
+    <div class="insight" data-emoji="🎰"><div class="insight-title" style="color:var(--verde)">61,2% amam sorteios e promoções</div><p><strong>71,7 MM gostam de participar de promoções</strong> com sorteio. Mecânicas de "concorra a" e "raspe e ganhe" são irresistíveis para o consumidor brasileiro.</p></div>
+    <div class="insight" data-emoji="🚗"><div class="insight-title" style="color:var(--azul)">Carro: aparência importa</div><p><strong>58,4% escolhem carro pelo visual</strong> (68,5 MM) e <strong>54,4% querem que seja divertido de dirigir</strong>. O carro no Brasil é extensão da personalidade — não só transporte.</p></div>
+    <div class="insight" data-emoji="📱"><div class="insight-title" style="color:#D97706">Internet planeja 57,3% das compras</div><p><strong>67,2 MM usam internet para planejar compras</strong>. E <strong>45,5% pesquisam na internet produtos que veem na TV</strong>. O Terra é o cruzamento perfeito desses dois mundos.</p></div>
+  </div>
 </section>
 
 </main>
 
+
+<!-- ═══ PESQUISA PROPRIETÁRIA TERRA INSIGHTS ═══ -->
+<section class="section" id="pesquisa" style="border-top:3px solid var(--verde)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+    <img src="https://p2.trrsf.com/image/fget/cf/306/474/smart/images.terra.com/2025/01/31/image-(1)-1h7qzxcg8wgtz.png" alt="Terra Insights" style="height:36px" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <div class="sec-badge" style="background:rgba(27,158,75,.12);color:var(--verde);margin:0">🔬 Pesquisa Proprietária</div>
+  </div>
+  <h2 class="sec-title">Pesquisa Exclusiva: <em>Paixões & Celebrações</em><span class="sec-accent" style="color:var(--verde)">2.500 respondentes · Pesquisa proprietária Terra Insights · Março 2026</span></h2>
+  <p class="sec-desc">Dados exclusivos coletados pelo Terra Insights com 2.500 brasileiros de todas as regiões. A pesquisa revela como o brasileiro se conecta com eventos, celebrações e paixões nacionais.</p>
+
+  <div class="grid g4 anim" style="margin-bottom:16px">
+    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">📊</div><div class="card-val verde">2.500</div><div class="card-lbl">Respondentes</div><div class="card-sub">55,6% homens · 39,9% mulheres</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--azul)"><div class="card-icon">🧑</div><div class="card-val azul">46,2%</div><div class="card-lbl">16-24 anos</div><div class="card-sub">maioria jovem e digital</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid #D97706"><div class="card-icon">🗺</div><div class="card-val amarelo">35,2%</div><div class="card-lbl">Sudeste</div><div class="card-sub">+ NE 26,7% · N 13% · CO 12,4% · S 12,7%</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid #E11D48"><div class="card-icon">💰</div><div class="card-val coral">64,5%</div><div class="card-lbl">Até 1 SM</div><div class="card-sub">perfil popular e conectado</div></div>
+  </div>
+
+  <div class="grid g2 anim" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-lbl">🎉 Frequência em Eventos Sociais e Celebrações</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Várias vezes/mês</span><span class="bar-pct verde">27,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Algumas vezes/ano</span><span class="bar-pct verde">22,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="81"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Pelo menos 1x/mês</span><span class="bar-pct verde">20,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="72"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Raramente</span><span class="bar-pct" style="color:var(--txt3)">15,0%</span><div class="bar-track"><div class="bar-fill" data-w="54" style="background:var(--border2)"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Quase nunca</span><span class="bar-pct" style="color:var(--txt3)">15,1%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">🎵 O que MAIS motiva a participar de celebrações?</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Música e dança</span><span class="bar-pct azul" style="color:var(--azul)">30,4%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Comidas típicas</span><span class="bar-pct amarelo" style="color:#D97706">25,8%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="85"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Tradição cultural</span><span class="bar-pct verde">14,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="47"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Convívio social</span><span class="bar-pct verde">8,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="26"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Decoração</span><span class="bar-pct" style="color:var(--txt3)">5,0%</span><div class="bar-track"><div class="bar-fill" data-w="16" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-stat anim" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(27,158,75,.06),rgba(37,99,235,.04))">
+    <div class="big-stat-val verde">69,9%</div>
+    <div class="big-stat-lbl">participam de eventos sociais pelo menos algumas vezes ao ano</div>
+    <div class="big-stat-note">🎉 O brasileiro é um povo que celebra junto — 7 em cada 10</div>
+  </div>
+
+  <div class="grid g2 anim" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-lbl">⚽ Como acompanha jogos da Seleção na Copa?</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Eventos públicos/telões</span><span class="bar-pct verde">31,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Em casa c/ amigos/família</span><span class="bar-pct verde">26,5%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="84"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Bares e restaurantes</span><span class="bar-pct amarelo" style="color:#D97706">15,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="49"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sozinho (TV/streaming)</span><span class="bar-pct" style="color:var(--txt3)">11,4%</span><div class="bar-track"><div class="bar-fill" data-w="36" style="background:var(--border2)"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Não acompanho</span><span class="bar-pct" style="color:var(--txt3)">15,3%</span><div class="bar-track"><div class="bar-fill" data-w="49" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">😊 Sentimento que mais representa na Copa</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Orgulho e emoção coletiva</span><span class="bar-pct verde">30,1%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Ansiedade e expectativa</span><span class="bar-pct azul" style="color:var(--azul)">30,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Alegria e descontração</span><span class="bar-pct amarelo" style="color:#D97706">22,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="73"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Incômodo</span><span class="bar-pct" style="color:var(--txt3)">16,9%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g2 anim" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-lbl">🏟 Onde se sente mais conectado às pessoas?</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Festas populares</span><span class="bar-pct verde">33,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Celebrações familiares</span><span class="bar-pct verde">17,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="53"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Shows e festivais</span><span class="bar-pct azul" style="color:var(--azul)">14,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="44"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Eventos esportivos</span><span class="bar-pct amarelo" style="color:#D97706">14,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="43"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Eventos religiosos</span><span class="bar-pct" style="color:var(--txt3)">7,4%</span><div class="bar-track"><div class="bar-fill" data-w="22" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">🔥 O que MAIS espera vivenciar no São João?</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Diversão c/ amigos e família</span><span class="bar-pct verde">39,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Resgate das tradições</span><span class="bar-pct amarelo" style="color:#D97706">16,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="43"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Eventos maiores</span><span class="bar-pct azul" style="color:var(--azul)">10,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="26"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Experiências novas</span><span class="bar-pct azul" style="color:var(--azul)">9,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="23"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sem expectativas</span><span class="bar-pct" style="color:var(--txt3)">17,0%</span><div class="bar-track"><div class="bar-fill" data-w="43" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g3 anim" style="margin-bottom:16px">
+    <div class="card" style="text-align:center"><div class="card-icon">⚽</div><div class="card-val verde">35,3%</div><div class="card-lbl">Futebol</div><div class="card-sub">paixão #1 do brasileiro</div></div>
+    <div class="card" style="text-align:center"><div class="card-icon">🌽</div><div class="card-val amarelo">11,0%</div><div class="card-lbl">São João</div><div class="card-sub">2ª celebração favorita</div></div>
+    <div class="card" style="text-align:center"><div class="card-icon">🎵</div><div class="card-val azul">9,7%</div><div class="card-lbl">Música e Shows</div><div class="card-sub">3ª paixão declarada</div></div>
+  </div>
+
+  <div class="grid g2 anim" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-lbl">📊 Copa do Mundo influencia rotina social?</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Influencia muito (muda hábitos)</span><span class="bar-pct verde">27,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Influencia bastante (saio +)</span><span class="bar-pct verde">21,9%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="81"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Influencia um pouco</span><span class="bar-pct amarelo" style="color:#D97706">20,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="77"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Não influencia em nada</span><span class="bar-pct" style="color:var(--txt3)">18,6%</span><div class="bar-track"><div class="bar-fill" data-w="69" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">🤝 Celebrar em grupo é mais importante?</div>
+      <div class="bars" style="margin-top:14px">
+        <div class="bar-row"><span class="bar-lbl">Muito mais importante</span><span class="bar-pct verde">38,9%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Um pouco mais importante</span><span class="bar-pct verde">26,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="67"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Indiferente</span><span class="bar-pct" style="color:var(--txt3)">15,6%</span><div class="bar-track"><div class="bar-fill" data-w="40" style="background:var(--border2)"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Não é importante</span><span class="bar-pct" style="color:var(--txt3)">12,2%</span><div class="bar-track"><div class="bar-fill" data-w="31" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-stat anim" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(27,158,75,.04))">
+    <div class="big-stat-val azul">59,2%</div>
+    <div class="big-stat-lbl">dizem que eventos presenciais são essenciais ou fortalecem vínculos</div>
+    <div class="big-stat-note">🤝 O brasileiro precisa de presença — digital complementa, não substitui</div>
+  </div>
+
+  <div class="grid g3 anim" style="margin-bottom:16px">
+    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Copa muda a rotina de 49% dos brasileiros</div><p><strong>27% dizem que a Copa muda seus hábitos</strong> e 21,9% saem mais e se reúnem. Somados, <strong>48,9% têm a rotina transformada</strong>. Eventos públicos e telões lideram (31,4%).</p></div>
+    <div class="insight" data-emoji="🎵"><div class="insight-title" style="color:var(--azul)">Música e comida movem celebrações</div><p><strong>30,4% vão por música e dança</strong> e <strong>25,8% pela comida típica</strong>. Juntos, somam 56,2% — mais da metade da motivação. Festivais gastronômicos e musicais são a fórmula perfeita.</p></div>
+    <div class="insight" data-emoji="🤝"><div class="insight-title" style="color:#D97706">65% preferem celebrar em grupo</div><p><strong>38,9% dizem que celebrar em grupo é muito mais importante</strong> e 26,2% que é um pouco mais. Total: <strong>65,1% valorizam o coletivo</strong>. O brasileiro é gregário por natureza.</p></div>
+  </div>
+
+  <div class="grid g2 anim">
+    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:var(--verde)">São João: 57,6% têm alto envolvimento</div><p><strong>40,3% dizem que São João é uma das celebrações favoritas</strong> e 17,3% sempre tentam participar. O Nordeste lidera (43,8% "muito alto"), mas a festa é nacional — até o Sul engaja 34,9%.</p></div>
+    <div class="insight" data-emoji="🏟"><div class="insight-title" style="color:var(--azul)">Festas populares conectam mais que qualquer outro evento</div><p><strong>33,3% se sentem mais conectados em festas populares</strong> — superando celebrações familiares (17,6%), shows (14,6%) e esportes (14,4%). As festas regionais são o verdadeiro tecido social do Brasil.</p></div>
+  </div>
+</section>
+
 <!-- FONTE -->
 <div class="fonte">
-  <strong>Fonte:</strong> Comscore Plan Metrix Multi-Platform · Agosto 2025 · Brasil · Total Audience · Home & Work · Base: 117.264.604 usuários únicos<br>
-  <strong>Pesquisa:</strong> Hub de Pesquisas Terra · <strong>Design:</strong> Estudo editorial "Paixões Brasileiras" · Dados auditados Comscore, Inc.
+  <strong>Fontes:</strong> Comscore Plan Metrix Multi-Platform · Agosto 2025 · Base: 117.264.604 | Pesquisa Proprietária Terra Insights · Março 2026 · 2.500 respondentes<br>
+  <strong>Pesquisa:</strong> Hub de Pesquisas Terra Insights · <strong>Design:</strong> Estudo editorial "Paixões Brasileiras" · Dados auditados Comscore + dados exclusivos Terra Insights
 </div>
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
