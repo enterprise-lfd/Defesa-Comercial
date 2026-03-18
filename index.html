@@ -97,6 +97,34 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
 .big-stat-lbl{font-size:15px;color:var(--txt2);margin-top:8px;font-weight:400}
 .big-stat-note{font-family:'Caveat',cursive;font-size:18px;color:var(--verde);margin-top:8px}
 
+
+.sub-header{display:flex;align-items:center;gap:10px;margin:32px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.sub-icon{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:rgba(27,158,75,.06)}
+.sub-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--txt)}
+.sub-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+.question-card{background:linear-gradient(135deg,rgba(27,158,75,.03),var(--bg));border:1px solid var(--border);border-left:3px solid var(--verde);border-radius:16px;padding:20px;margin-bottom:12px}
+.question-text{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--txt);margin-bottom:4px}
+.question-meta{font-size:10px;color:var(--txt3);font-weight:500;letter-spacing:.06em}
+.methodology-box{background:linear-gradient(135deg,rgba(37,99,235,.04),rgba(27,158,75,.03));border:1px solid rgba(37,99,235,.1);border-radius:16px;padding:20px;margin-bottom:24px}
+.methodology-box p{font-size:12px;color:var(--txt2);line-height:1.7}
+.methodology-box strong{color:var(--txt)}
+.glossary-section{max-width:1120px;margin:0 auto;padding:0 32px 48px}
+.glossary-toggle{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.glossary-toggle:hover .glossary-title{color:var(--txt)}
+.glossary-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--txt2);transition:color .2s}
+.glossary-arrow{font-size:16px;color:var(--txt3);transition:transform .3s}
+.glossary-arrow.open{transform:rotate(180deg)}
+.glossary-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.glossary-body.open{max-height:4000px}
+.glossary-source{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
+.glossary-source-icon{font-size:18px;flex-shrink:0}
+.glossary-source-name{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:2px}
+.glossary-source-desc{font-size:10px;color:var(--txt3);line-height:1.5}
+.glossary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 0}
+@media(max-width:700px){.glossary-grid{grid-template-columns:1fr}}
+.glossary-item{padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px}
+.glossary-term{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.glossary-def{font-size:10px;color:var(--txt2);line-height:1.6}
 /* ═══ FONTE ═══ */
 .fonte{max-width:1120px;margin:0 auto;padding:24px 32px 64px;font-size:10px;color:var(--txt3);text-align:center;line-height:1.8}
 .fonte strong{color:var(--txt2)}
@@ -622,70 +650,116 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
     <div class="sec-badge" style="background:rgba(27,158,75,.12);color:var(--verde);margin:0">🔬 Pesquisa Proprietária</div>
   </div>
   <h2 class="sec-title">Pesquisa Exclusiva: <em>Paixões & Celebrações</em><span class="sec-accent" style="color:var(--verde)">2.500 respondentes · Pesquisa proprietária Terra Insights · Março 2026</span></h2>
-  <p class="sec-desc">Dados exclusivos coletados pelo Terra Insights com 2.500 brasileiros de todas as regiões. A pesquisa revela como o brasileiro se conecta com eventos, celebrações e paixões nacionais.</p>
+  <p class="sec-desc">Dados exclusivos coletados pelo Terra Insights com 2.500 brasileiros de todas as regiões do país, revelando como o brasileiro vive, celebra e se conecta com suas paixões nacionais.</p>
+
+  <div class="methodology-box anim">
+    <p>📋 <strong>Metodologia:</strong> Pesquisa quantitativa online com <strong>2.500 respondentes</strong>, coletada em março de 2026. A amostra foi desenhada seguindo os <strong>padrões metodológicos estipulados pelo IBGE</strong> para representatividade demográfica e regional. Coleta, armazenamento e tratamento dos dados seguem rigorosamente todos os <strong>requisitos regulatórios da LGPD</strong> (Lei Geral de Proteção de Dados — Lei nº 13.709/2018), incluindo consentimento explícito dos participantes, anonimização dos dados individuais e finalidade específica de uso para fins de pesquisa de mercado. Margem de erro: ±2 p.p. com 95% de confiança.</p>
+  </div>
 
   <div class="grid g4 anim" style="margin-bottom:16px">
     <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">📊</div><div class="card-val verde">2.500</div><div class="card-lbl">Respondentes</div><div class="card-sub">55,6% homens · 39,9% mulheres</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--azul)"><div class="card-icon">🧑</div><div class="card-val azul">46,2%</div><div class="card-lbl">16-24 anos</div><div class="card-sub">maioria jovem e digital</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #D97706"><div class="card-icon">🗺</div><div class="card-val amarelo">35,2%</div><div class="card-lbl">Sudeste</div><div class="card-sub">+ NE 26,7% · N 13% · CO 12,4% · S 12,7%</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #E11D48"><div class="card-icon">💰</div><div class="card-val coral">64,5%</div><div class="card-lbl">Até 1 SM</div><div class="card-sub">perfil popular e conectado</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--azul)"><div class="card-icon">🧑</div><div class="card-val azul">46,2%</div><div class="card-lbl">16-24 anos</div><div class="card-sub">+ 32,6% 25-34 · jovem e digital</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid #D97706"><div class="card-icon">🗺</div><div class="card-val amarelo">35,2%</div><div class="card-lbl">Sudeste</div><div class="card-sub">NE 26,7% · N 13% · CO 12,4% · S 12,7%</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid #E11D48"><div class="card-icon">💰</div><div class="card-val coral">64,5%</div><div class="card-lbl">Até 1 SM</div><div class="card-sub">+ 23% até 2 SM · perfil popular</div></div>
   </div>
 
-  <div class="grid g2 anim" style="margin-bottom:16px">
+  <!-- P1: Frequência em eventos -->
+  <div class="sub-header"><div class="sub-icon">🎉</div><div class="sub-title">Frequência em Eventos Sociais</div><div class="sub-line"></div></div>
+  <div class="question-card"><div class="question-text">"Com que frequência você participa de eventos sociais ou celebrações presenciais?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
     <div class="card">
-      <div class="card-lbl">🎉 Frequência em Eventos Sociais e Celebrações</div>
-      <div class="bars" style="margin-top:14px">
+      <div class="card-lbl">📊 Frequência Geral</div>
+      <div class="bars" style="margin-top:12px">
         <div class="bar-row"><span class="bar-lbl">Várias vezes/mês</span><span class="bar-pct verde">27,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Algumas vezes/ano</span><span class="bar-pct verde">22,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="81"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Pelo menos 1x/mês</span><span class="bar-pct verde">20,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="72"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">1x por mês</span><span class="bar-pct verde">20,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="72"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Raramente</span><span class="bar-pct" style="color:var(--txt3)">15,0%</span><div class="bar-track"><div class="bar-fill" data-w="54" style="background:var(--border2)"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Quase nunca</span><span class="bar-pct" style="color:var(--txt3)">15,1%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-lbl">🎵 O que MAIS motiva a participar de celebrações?</div>
-      <div class="bars" style="margin-top:14px">
+      <div class="card-lbl">📊 Destaque por Região</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Centro-Oeste (várias/mês)</span><span class="bar-pct verde">44,5%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Norte (várias/mês)</span><span class="bar-pct verde">28,1%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="63"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sul (várias/mês)</span><span class="bar-pct verde">27,7%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="62"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Nordeste (várias/mês)</span><span class="bar-pct verde">25,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="57"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sudeste (várias/mês)</span><span class="bar-pct" style="color:var(--txt3)">23,0%</span><div class="bar-track"><div class="bar-fill" data-w="52" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="insight anim" data-emoji="🎉" style="margin-bottom:24px"><div class="insight-title" style="color:var(--verde)">70% dos brasileiros são socialmente ativos</div><p><strong>69,9% participam de eventos pelo menos algumas vezes ao ano</strong>. O Centro-Oeste surpreende como a região mais festeira (44,5% várias vezes/mês). Jovens 16-24 lideram: <strong>31,1% vão a eventos várias vezes por mês</strong>. O brasileiro é, por natureza, um ser social e celebratório.</p></div>
+
+  <!-- P2: Motivação -->
+  <div class="sub-header"><div class="sub-icon">🎵</div><div class="sub-title">Motivação para Celebrar</div><div class="sub-line"></div></div>
+  <div class="question-card"><div class="question-text">"De forma geral, o que MAIS motiva você a participar de eventos e celebrações?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
+    <div class="card">
+      <div class="card-lbl">🎵 Motivação Geral</div>
+      <div class="bars" style="margin-top:12px">
         <div class="bar-row"><span class="bar-lbl">Música e dança</span><span class="bar-pct azul" style="color:var(--azul)">30,4%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Comidas típicas</span><span class="bar-pct amarelo" style="color:#D97706">25,8%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="85"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Não participo</span><span class="bar-pct" style="color:var(--txt3)">16,6%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Tradição cultural</span><span class="bar-pct verde">14,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="47"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Convívio social</span><span class="bar-pct verde">8,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="26"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Decoração</span><span class="bar-pct" style="color:var(--txt3)">5,0%</span><div class="bar-track"><div class="bar-fill" data-w="16" style="background:var(--border2)"></div></div></div>
       </div>
     </div>
-  </div>
-
-  <div class="big-stat anim" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(27,158,75,.06),rgba(37,99,235,.04))">
-    <div class="big-stat-val verde">69,9%</div>
-    <div class="big-stat-lbl">participam de eventos sociais pelo menos algumas vezes ao ano</div>
-    <div class="big-stat-note">🎉 O brasileiro é um povo que celebra junto — 7 em cada 10</div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
     <div class="card">
-      <div class="card-lbl">⚽ Como acompanha jogos da Seleção na Copa?</div>
-      <div class="bars" style="margin-top:14px">
+      <div class="card-lbl">📊 Música & Dança por Região</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Centro-Oeste</span><span class="bar-pct azul" style="color:var(--azul)">50,0%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Norte</span><span class="bar-pct azul" style="color:var(--azul)">33,3%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="67"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Nordeste</span><span class="bar-pct azul" style="color:var(--azul)">30,3%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="61"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sul</span><span class="bar-pct azul" style="color:var(--azul)">29,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="59"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sudeste</span><span class="bar-pct azul" style="color:var(--azul)">22,7%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="45"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="insight anim" data-emoji="🎵" style="margin-bottom:24px"><div class="insight-title" style="color:var(--azul)">Música + comida = 56% da motivação</div><p><strong>Música e dança (30,4%) + comidas típicas (25,8%) = 56,2%</strong> da motivação total. No Centro-Oeste, música lidera com 50% — o dobro do Sudeste. Mulheres valorizam mais comida típica (28,3%) e homens a música (32%). A receita para eventos de sucesso é clara: <strong>boa música e comida regional</strong>.</p></div>
+
+  <!-- P3: Copa do Mundo -->
+  <div class="sub-header"><div class="sub-icon" style="background:rgba(27,158,75,.08)">⚽</div><div class="sub-title">A Copa do Mundo na Vida do Brasileiro</div><div class="sub-line"></div></div>
+  <div class="question-card"><div class="question-text">"Como você costuma acompanhar jogos da Seleção Brasileira em Copas do Mundo?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
+    <div class="card">
+      <div class="card-lbl">⚽ Como Assiste Copa — Geral</div>
+      <div class="bars" style="margin-top:12px">
         <div class="bar-row"><span class="bar-lbl">Eventos públicos/telões</span><span class="bar-pct verde">31,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Em casa c/ amigos/família</span><span class="bar-pct verde">26,5%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="84"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Bares e restaurantes</span><span class="bar-pct amarelo" style="color:#D97706">15,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="49"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sozinho (TV/streaming)</span><span class="bar-pct" style="color:var(--txt3)">11,4%</span><div class="bar-track"><div class="bar-fill" data-w="36" style="background:var(--border2)"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Não acompanho</span><span class="bar-pct" style="color:var(--txt3)">15,3%</span><div class="bar-track"><div class="bar-fill" data-w="49" style="background:var(--border2)"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sozinho (TV/streaming)</span><span class="bar-pct" style="color:var(--txt3)">11,4%</span><div class="bar-track"><div class="bar-fill" data-w="36" style="background:var(--border2)"></div></div></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-lbl">😊 Sentimento que mais representa na Copa</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Orgulho e emoção coletiva</span><span class="bar-pct verde">30,1%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+      <div class="card-lbl">😊 Sentimento na Copa — Geral</div>
+      <div class="bars" style="margin-top:12px">
         <div class="bar-row"><span class="bar-lbl">Ansiedade e expectativa</span><span class="bar-pct azul" style="color:var(--azul)">30,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Orgulho e emoção coletiva</span><span class="bar-pct verde">30,1%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="98"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Alegria e descontração</span><span class="bar-pct amarelo" style="color:#D97706">22,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="73"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Incômodo</span><span class="bar-pct" style="color:var(--txt3)">16,9%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
       </div>
     </div>
   </div>
+  <div class="question-card"><div class="question-text">"O quanto a Copa do Mundo influencia sua rotina social?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
+  <div class="big-stat anim" style="margin-bottom:12px;background:linear-gradient(135deg,rgba(27,158,75,.06),rgba(37,99,235,.04))">
+    <div class="big-stat-val verde">48,9%</div>
+    <div class="big-stat-lbl">dizem que a Copa influencia bastante ou muda seus hábitos</div>
+    <div class="big-stat-note">⚽ Quase metade do Brasil muda a rotina pela Copa</div>
+  </div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
+    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Copa é evento social, não individual</div><p><strong>73,3% assistem Copa em grupo</strong> (telões 31,4% + casa 26,5% + bares 15,4%). Apenas 11,4% assistem sozinhos. O Centro-Oeste lidera em telões (45,2%) e o Norte em casa com família (30,6%). <strong>Copa é pretexto para reunir pessoas.</strong></p></div>
+    <div class="insight" data-emoji="💚"><div class="insight-title" style="color:var(--verde)">Orgulho + ansiedade dominam</div><p><strong>30,6% sentem ansiedade</strong> e <strong>30,1% sentem orgulho coletivo</strong> — juntos, 60,7% vivem a Copa emocionalmente. No Centro-Oeste, orgulho chega a 38,7%. Jovens 16-24 são os mais orgulhosos (33,3%).</p></div>
+  </div>
 
-  <div class="grid g2 anim" style="margin-bottom:16px">
+  <!-- P4: Conexão em eventos -->
+  <div class="sub-header"><div class="sub-icon" style="background:rgba(37,99,235,.06)">🤝</div><div class="sub-title">Conexão & Pertencimento</div><div class="sub-line"></div></div>
+  <div class="question-card"><div class="question-text">"Em qual tipo de evento você se sente mais conectado(a) às pessoas?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
     <div class="card">
-      <div class="card-lbl">🏟 Onde se sente mais conectado às pessoas?</div>
-      <div class="bars" style="margin-top:14px">
+      <div class="card-lbl">🏟 Tipo de Evento que Conecta</div>
+      <div class="bars" style="margin-top:12px">
         <div class="bar-row"><span class="bar-lbl">Festas populares</span><span class="bar-pct verde">33,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Celebrações familiares</span><span class="bar-pct verde">17,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="53"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Shows e festivais</span><span class="bar-pct azul" style="color:var(--azul)">14,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="44"></div></div></div>
@@ -694,59 +768,87 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
       </div>
     </div>
     <div class="card">
-      <div class="card-lbl">🔥 O que MAIS espera vivenciar no São João?</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Diversão c/ amigos e família</span><span class="bar-pct verde">39,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Resgate das tradições</span><span class="bar-pct amarelo" style="color:#D97706">16,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="43"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Eventos maiores</span><span class="bar-pct azul" style="color:var(--azul)">10,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="26"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Experiências novas</span><span class="bar-pct azul" style="color:var(--azul)">9,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="23"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sem expectativas</span><span class="bar-pct" style="color:var(--txt3)">17,0%</span><div class="bar-track"><div class="bar-fill" data-w="43" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">⚽</div><div class="card-val verde">35,3%</div><div class="card-lbl">Futebol</div><div class="card-sub">paixão #1 do brasileiro</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🌽</div><div class="card-val amarelo">11,0%</div><div class="card-lbl">São João</div><div class="card-sub">2ª celebração favorita</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🎵</div><div class="card-val azul">9,7%</div><div class="card-lbl">Música e Shows</div><div class="card-sub">3ª paixão declarada</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">📊 Copa do Mundo influencia rotina social?</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Influencia muito (muda hábitos)</span><span class="bar-pct verde">27,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Influencia bastante (saio +)</span><span class="bar-pct verde">21,9%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="81"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Influencia um pouco</span><span class="bar-pct amarelo" style="color:#D97706">20,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="77"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Não influencia em nada</span><span class="bar-pct" style="color:var(--txt3)">18,6%</span><div class="bar-track"><div class="bar-fill" data-w="69" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
       <div class="card-lbl">🤝 Celebrar em grupo é mais importante?</div>
-      <div class="bars" style="margin-top:14px">
+      <div class="bars" style="margin-top:12px">
         <div class="bar-row"><span class="bar-lbl">Muito mais importante</span><span class="bar-pct verde">38,9%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Um pouco mais importante</span><span class="bar-pct verde">26,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="67"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Um pouco mais</span><span class="bar-pct verde">26,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="67"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Indiferente</span><span class="bar-pct" style="color:var(--txt3)">15,6%</span><div class="bar-track"><div class="bar-fill" data-w="40" style="background:var(--border2)"></div></div></div>
         <div class="bar-row"><span class="bar-lbl">Não é importante</span><span class="bar-pct" style="color:var(--txt3)">12,2%</span><div class="bar-track"><div class="bar-fill" data-w="31" style="background:var(--border2)"></div></div></div>
       </div>
     </div>
   </div>
-
-  <div class="big-stat anim" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(27,158,75,.04))">
+  <div class="big-stat anim" style="margin-bottom:12px;background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(27,158,75,.04))">
     <div class="big-stat-val azul">59,2%</div>
     <div class="big-stat-lbl">dizem que eventos presenciais são essenciais ou fortalecem vínculos</div>
     <div class="big-stat-note">🤝 O brasileiro precisa de presença — digital complementa, não substitui</div>
   </div>
+  <div class="insight anim" data-emoji="🤝" style="margin-bottom:24px"><div class="insight-title" style="color:var(--azul)">Festas populares são o tecido social do Brasil</div><p><strong>33,3% se sentem mais conectados em festas populares</strong> — quase o dobro de celebrações familiares (17,6%). E <strong>65,1% dizem que celebrar em grupo é mais importante</strong> (38,9% "muito" + 26,2% "um pouco"). No Centro-Oeste, 56,5% dizem "muito mais importante". O Brasil se encontra na festa.</p></div>
 
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Copa muda a rotina de 49% dos brasileiros</div><p><strong>27% dizem que a Copa muda seus hábitos</strong> e 21,9% saem mais e se reúnem. Somados, <strong>48,9% têm a rotina transformada</strong>. Eventos públicos e telões lideram (31,4%).</p></div>
-    <div class="insight" data-emoji="🎵"><div class="insight-title" style="color:var(--azul)">Música e comida movem celebrações</div><p><strong>30,4% vão por música e dança</strong> e <strong>25,8% pela comida típica</strong>. Juntos, somam 56,2% — mais da metade da motivação. Festivais gastronômicos e musicais são a fórmula perfeita.</p></div>
-    <div class="insight" data-emoji="🤝"><div class="insight-title" style="color:#D97706">65% preferem celebrar em grupo</div><p><strong>38,9% dizem que celebrar em grupo é muito mais importante</strong> e 26,2% que é um pouco mais. Total: <strong>65,1% valorizam o coletivo</strong>. O brasileiro é gregário por natureza.</p></div>
+  <!-- P5: São João -->
+  <div class="sub-header"><div class="sub-icon" style="background:rgba(217,119,6,.06)">🌽</div><div class="sub-title">São João — A Festa do Brasil</div><div class="sub-line"></div></div>
+  <div class="question-card"><div class="question-text">"Neste ano, o que você mais espera vivenciar no São João?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
+    <div class="card">
+      <div class="card-lbl">🌽 Expectativas para São João</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Diversão c/ amigos/família</span><span class="bar-pct verde">39,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Resgate de tradições</span><span class="bar-pct amarelo" style="color:#D97706">16,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="43"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sem expectativas</span><span class="bar-pct" style="color:var(--txt3)">17,0%</span><div class="bar-track"><div class="bar-fill" data-w="43" style="background:var(--border2)"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Eventos grandes</span><span class="bar-pct azul" style="color:var(--azul)">10,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="26"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Experiências novas</span><span class="bar-pct azul" style="color:var(--azul)">9,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="23"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">🔥 Envolvimento emocional com São João</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Muito alto (favorita!)</span><span class="bar-pct verde">40,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Alto (sempre participo)</span><span class="bar-pct verde">17,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="43"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Médio</span><span class="bar-pct" style="color:var(--txt3)">17,1%</span><div class="bar-track"><div class="bar-fill" data-w="42" style="background:var(--border2)"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Nenhum</span><span class="bar-pct" style="color:var(--txt3)">15,7%</span><div class="bar-track"><div class="bar-fill" data-w="39" style="background:var(--border2)"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Baixo</span><span class="bar-pct" style="color:var(--txt3)">9,6%</span><div class="bar-track"><div class="bar-fill" data-w="24" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="question-card"><div class="question-text">"O que MAIS te atrai nas celebrações de São João?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
+  <div class="grid g3 anim" style="margin-bottom:12px">
+    <div class="card" style="text-align:center"><div class="card-icon">❤️</div><div class="card-val verde">28,6%</div><div class="card-lbl">Pertencimento</div><div class="card-sub">sentimento #1 no São João</div></div>
+    <div class="card" style="text-align:center"><div class="card-icon">👫</div><div class="card-val azul">24,6%</div><div class="card-lbl">Convivência</div><div class="card-sub">estar com pessoas</div></div>
+    <div class="card" style="text-align:center"><div class="card-icon">🎭</div><div class="card-val amarelo">17,0%</div><div class="card-lbl">Emoção</div><div class="card-sub">entretenimento e diversão</div></div>
+  </div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
+    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:#D97706">São João: 57,6% com alto envolvimento</div><p><strong>40,3% dizem "muito alto"</strong> e 17,3% "alto" — total de 57,6% altamente engajados. No Nordeste, 43,8% "muito alto" e no Centro-Oeste 55,2%. Festas públicas (35%) e eventos privados (26,5%) dividem preferência. <strong>São João é a 2ª maior paixão festiva do Brasil.</strong></p></div>
+    <div class="insight" data-emoji="❤️"><div class="insight-title" style="color:var(--verde)">Pertencimento é o sentimento #1</div><p><strong>28,6% são atraídos pelo sentimento de pertencimento</strong> e 24,6% pela convivência — juntos, 53,2% vão ao São João para se sentir parte de algo maior. No Centro-Oeste, pertencimento chega a 45,5%. <strong>Não é só festa — é identidade.</strong></p></div>
   </div>
 
+  <!-- P6: Paixões do brasileiro -->
+  <div class="sub-header"><div class="sub-icon" style="background:rgba(225,29,72,.06)">💚</div><div class="sub-title">As Verdadeiras Paixões do Brasileiro</div><div class="sub-line"></div></div>
+  <div class="question-card"><div class="question-text">"Quais celebrações você considera verdadeiras paixões do brasileiro?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta múltipla</div></div>
+  <div class="grid g2 anim" style="margin-bottom:12px">
+    <div class="card">
+      <div class="card-lbl">💚 As Paixões Brasileiras</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">⚽ Futebol</span><span class="bar-pct verde">35,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">👨‍👩‍👧 Datas familiares</span><span class="bar-pct verde">11,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="33"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">🌽 Festas Juninas</span><span class="bar-pct amarelo" style="color:#D97706">11,0%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="31"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">🎵 Música e shows</span><span class="bar-pct azul" style="color:var(--azul)">9,7%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="27"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">🎭 Carnaval</span><span class="bar-pct coral" style="color:#E11D48">6,7%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="19"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">🏛 Festas regionais</span><span class="bar-pct" style="color:var(--txt3)">5,4%</span><div class="bar-track"><div class="bar-fill" data-w="15" style="background:var(--border2)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">⚽ Futebol como paixão — por Região</div>
+      <div class="bars" style="margin-top:12px">
+        <div class="bar-row"><span class="bar-lbl">Centro-Oeste</span><span class="bar-pct verde">55,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sul</span><span class="bar-pct verde">45,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="81"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Norte</span><span class="bar-pct verde">44,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="80"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Nordeste</span><span class="bar-pct verde">41,5%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="75"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">Sudeste</span><span class="bar-pct verde">38,7%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="70"></div></div></div>
+      </div>
+    </div>
+  </div>
   <div class="grid g2 anim">
-    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:var(--verde)">São João: 57,6% têm alto envolvimento</div><p><strong>40,3% dizem que São João é uma das celebrações favoritas</strong> e 17,3% sempre tentam participar. O Nordeste lidera (43,8% "muito alto"), mas a festa é nacional — até o Sul engaja 34,9%.</p></div>
-    <div class="insight" data-emoji="🏟"><div class="insight-title" style="color:var(--azul)">Festas populares conectam mais que qualquer outro evento</div><p><strong>33,3% se sentem mais conectados em festas populares</strong> — superando celebrações familiares (17,6%), shows (14,6%) e esportes (14,4%). As festas regionais são o verdadeiro tecido social do Brasil.</p></div>
+    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Futebol: paixão incontestável</div><p><strong>35,3% elegem futebol</strong> como a maior paixão — 3x mais que o 2º colocado. No Centro-Oeste chega a 55,6%. Entre homens, 51,1% dizem futebol (vs 32,2% mulheres). Independente de gênero, região ou renda, <strong>futebol é unanimidade</strong>.</p></div>
+    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:#D97706">São João supera Carnaval</div><p><strong>Festas Juninas (11%) superam Carnaval (6,7%)</strong> como paixão declarada. No Nordeste, São João chega a 18,2% — quase empatado com futebol. <strong>A festa mais brasileira não é o Carnaval — é o São João.</strong></p></div>
   </div>
 </section>
 
@@ -756,9 +858,43 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line
   <strong>Pesquisa:</strong> Hub de Pesquisas Terra Insights · <strong>Design:</strong> Estudo editorial "Paixões Brasileiras" · Dados auditados Comscore + dados exclusivos Terra Insights
 </div>
 
+
+<!-- GLOSSÁRIO -->
+<div class="glossary-section">
+  <div class="glossary-toggle" onclick="toggleGlossary()">
+    <span class="glossary-title">📋 Glossário & Fontes de Dados</span>
+    <span class="glossary-arrow" id="glossaryArrow">▼</span>
+  </div>
+  <div class="glossary-body" id="glossaryBody">
+    <div style="padding-top:16px;margin-bottom:8px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Fontes de Dados</div>
+
+    <div class="glossary-source">
+      <div class="glossary-source-icon">🌐</div>
+      <div><div class="glossary-source-name">Comscore Plan Metrix Multi-Platform · Agosto 2025</div><div class="glossary-source-desc">Base: 117.264.604 usuários únicos · Brasil · Total Audience · Home & Work · Seções: Esportes, Churrasco & Mesa, Música & Festas, Praia & Lazer, Cerveja & Drinks, Beleza & Vaidade, Família & Lar, Compras & Marcas, Contexto</div></div>
+    </div>
+    <div class="glossary-source">
+      <div class="glossary-source-icon">🔬</div>
+      <div><div class="glossary-source-name">Pesquisa Proprietária Terra Insights · Março 2026</div><div class="glossary-source-desc">2.500 respondentes · Pesquisa quantitativa online · Padrões IBGE · LGPD compliant · Margem de erro ±2 p.p. (95% confiança) · Seção: Pesquisa Exclusiva Paixões & Celebrações</div></div>
+    </div>
+
+    <div style="padding-top:16px;margin-bottom:8px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Termos & Métricas</div>
+    <div class="glossary-grid">
+      <div class="glossary-item"><div class="glossary-term">Any Agree</div><div class="glossary-def">Soma de "concordo totalmente" + "concordo parcialmente". Métrica padrão Comscore para mensurar afinidade atitudinal.</div></div>
+      <div class="glossary-item"><div class="glossary-term">L12m / N12m</div><div class="glossary-def">Last 12 months / Next 12 months. Referências temporais para consumo passado e intenção futura.</div></div>
+      <div class="glossary-item"><div class="glossary-term">Multi-Platform</div><div class="glossary-def">Desktop + Mobile (browser + app) com deduplicação de usuários entre dispositivos. Padrão Comscore.</div></div>
+      <div class="glossary-item"><div class="glossary-term">Consumidores (L12m)</div><div class="glossary-def">Respondentes que consumiram determinado produto ou serviço nos últimos 12 meses.</div></div>
+      <div class="glossary-item"><div class="glossary-term">LGPD</div><div class="glossary-def">Lei Geral de Proteção de Dados (Lei nº 13.709/2018). Garante consentimento, anonimização e finalidade específica na coleta de dados.</div></div>
+      <div class="glossary-item"><div class="glossary-term">IBGE</div><div class="glossary-def">Instituto Brasileiro de Geografia e Estatística. Padrões de representatividade demográfica e regional usados na pesquisa proprietária.</div></div>
+      <div class="glossary-item"><div class="glossary-term">Margem de Erro</div><div class="glossary-def">±2 pontos percentuais com 95% de confiança para a pesquisa proprietária (n=2.500).</div></div>
+      <div class="glossary-item"><div class="glossary-term">Pesquisa Proprietária</div><div class="glossary-def">Dados exclusivos coletados pelo Terra Insights, não disponíveis em outras fontes. Metodologia quantitativa online.</div></div>
+    </div>
+  </div>
+</div>
+
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
+function toggleGlossary(){const b=document.getElementById("glossaryBody"),a=document.getElementById("glossaryArrow");b.classList.toggle("open");a.classList.toggle("open")}
 // Scroll top button
 const st=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{st.classList.toggle('visible',window.scrollY>400)},{passive:true});
