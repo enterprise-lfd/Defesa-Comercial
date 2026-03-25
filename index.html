@@ -1,1066 +1,236 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brasilidades · Paixões Brasileiras · Comscore Plan Metrix 2025</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross-Visits · Portais de Notícias · Terra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;0,800;1,400&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --verde:#1B9E4B;--verde2:#22C55E;--amarelo:#FACC15;--amarelo2:#FDE68A;
-  --azul:#2563EB;--azul2:#60A5FA;--coral:#FB7185;--coral2:#FDA4AF;
-  --bg:#FFFCF5;--bg2:#FFF8EB;--bg3:#FEF3C7;
-  --txt:#1C1917;--txt2:#57534E;--txt3:#A8A29E;
-  --card:rgba(255,255,255,.85);--card-h:rgba(255,255,255,.95);
-  --border:rgba(0,0,0,.06);--border2:rgba(0,0,0,.1);
-  --shadow:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04)
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
-
-/* ═══ HERO ═══ */
-.hero{position:relative;min-height:520px;background:linear-gradient(170deg,#1B9E4B 0%,#166534 35%,#14532D 70%,#052E16 100%);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30Z' fill='none' stroke='rgba(255,255,255,.03)' stroke-width='1'/%3E%3C/svg%3E");pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:120px;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
-.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(250,204,21,.15),transparent 60%);top:-100px;right:-100px;pointer-events:none}
-.hero-glow2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.1),transparent 60%);bottom:-150px;left:-100px;pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);backdrop-filter:blur(8px);margin-bottom:24px}
-.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--amarelo);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,80px);font-weight:800;color:#fff;line-height:1.05;margin-bottom:16px}
-.hero-title em{font-style:italic;color:var(--amarelo);font-weight:600}
-.hero-sub{font-size:18px;color:rgba(255,255,255,.6);font-weight:300;max-width:600px;margin:0 auto 32px}
-.hero-kpis{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.hero-kpi{background:rgba(255,255,255,.14);border:1px solid rgba(250,204,21,.25);border-radius:16px;padding:16px 28px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);text-align:center;min-width:140px;box-shadow:0 4px 16px rgba(0,0,0,.1),0 0 0 1px rgba(27,158,75,.1)}
-.hero-kpi-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:#fff}
-.hero-kpi-lbl{font-size:11px;color:rgba(255,255,255,.75);font-weight:600;letter-spacing:.04em;margin-top:4px}
-
-/* ═══ SIDEBAR NAV ═══ */
-
-.sidebar{position:fixed;left:0;top:0;width:280px;height:100vh;background:rgba(255,252,245,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-right:1px solid var(--border2);z-index:200;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:20px 0;box-shadow:4px 0 24px rgba(0,0,0,.06)}
-.sidebar.open{transform:translateX(0)}
-.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:199;opacity:0;pointer-events:none;transition:opacity .3s}
-.sidebar-overlay.open{opacity:1;pointer-events:auto}
-.sidebar-header{padding:16px 20px;border-bottom:1px solid var(--border);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.sidebar-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--txt)}
-.sidebar-close{background:none;border:none;color:var(--txt2);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:all .2s;font-family:'DM Sans',sans-serif}
-.sidebar-close:hover{background:rgba(27,158,75,.08);color:var(--txt)}
-.sidebar-group{padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
-.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
-.sidebar-item:hover{background:rgba(27,158,75,.05);color:var(--txt)}
-.sidebar-item.active{background:linear-gradient(90deg,rgba(27,158,75,.06),rgba(250,204,21,.04));color:var(--verde);border-right:3px solid;border-image:linear-gradient(to bottom,var(--verde),var(--amarelo)) 1}
-.sidebar-emoji{font-size:16px;width:24px;text-align:center;flex-shrink:0}
-.menu-btn{display:flex;align-items:center;gap:7px;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(27,158,75,.25);background:rgba(27,158,75,.06);color:var(--verde);font-family:'DM Sans',sans-serif;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.menu-btn:hover{background:rgba(27,158,75,.12);color:var(--verde);border-color:rgba(27,158,75,.35)}
-.nav-sticky{position:sticky;top:0;z-index:100;background:rgba(255,252,245,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:2px solid transparent;border-image:linear-gradient(90deg,var(--verde),var(--amarelo),var(--verde)) 1;padding:10px 0}
-.nav-sticky-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center}
-@media print{.sidebar,.sidebar-overlay,.menu-btn,.nav-sticky{display:none!important}}
-
-
-/* ═══ SECTIONS ═══ */
-.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
-.section{padding:64px 0 48px}
-
-.section:nth-child(odd){background:linear-gradient(180deg,rgba(27,158,75,.02) 0%,transparent 100%)}
-.section:nth-child(even){background:linear-gradient(180deg,rgba(250,204,21,.03) 0%,transparent 100%)}
-.section+.section{border-top:2px solid transparent;border-image:linear-gradient(90deg,var(--verde),var(--amarelo),var(--verde)) 1}
-
-.sec-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;background:linear-gradient(135deg,rgba(27,158,75,.08),rgba(250,204,21,.06));border:1px solid rgba(27,158,75,.15);color:var(--verde)}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1.15;margin-bottom:8px}
-.sec-desc{font-size:15px;color:var(--txt2);max-width:640px;margin-bottom:36px;font-weight:300}
-.sec-accent{font-family:'Caveat',cursive;font-size:22px;font-weight:600;display:block;margin-top:4px}
-
-/* ═══ CARDS ═══ */
-.grid{display:grid;gap:16px}
-.g2{grid-template-columns:1fr 1fr}
-.g3{grid-template-columns:1fr 1fr 1fr}
-.g4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:800px){.g2,.g3,.g4{grid-template-columns:1fr}}
-@media(min-width:801px) and (max-width:1000px){.g3,.g4{grid-template-columns:1fr 1fr}}
-
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(27,158,75,.08),0 4px 16px rgba(250,204,21,.04)}
-.card-icon{font-size:24px;margin-bottom:8px}
-.card-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
-.card-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;line-height:1.1;margin-bottom:3px}
-.card-sub{font-size:11px;color:var(--txt2);font-weight:400}
-.card-val.verde{color:var(--verde)}
-.card-val.amarelo{color:#D97706}
-.card-val.azul{color:var(--azul)}
-.card-val.coral{color:#E11D48}
-
-/* ═══ BARS ═══ */
-.bars{display:flex;flex-direction:column;gap:10px}
-.bar-row{display:flex;align-items:center;gap:12px}
-.bar-lbl{font-size:13px;font-weight:500;color:var(--txt);min-width:120px}
-.bar-pct{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;min-width:55px;text-align:right}
-.bar-track{flex:1;height:6px;background:rgba(0,0,0,.04);border-radius:100px;overflow:hidden}
-.bar-fill{height:100%;border-radius:100px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-.bf-verde{background:linear-gradient(90deg,var(--verde),var(--verde2))}
-.bf-amarelo{background:linear-gradient(90deg,#D97706,var(--amarelo))}
-.bf-azul{background:linear-gradient(90deg,var(--azul),var(--azul2))}
-.bf-coral{background:linear-gradient(90deg,#E11D48,var(--coral))}
-
-/* ═══ INSIGHT CARDS ═══ */
-.insight{background:linear-gradient(135deg,var(--bg2),var(--bg));border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden}
-.insight::before{content:attr(data-emoji);position:absolute;right:16px;top:16px;font-size:48px;opacity:.08;pointer-events:none}
-.insight-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px}
-.insight p{font-size:13px;color:var(--txt2);line-height:1.7}
-.insight strong{color:var(--txt);font-weight:700}
-
-/* ═══ BIG STAT ═══ */
-.big-stat{text-align:center;padding:32px 20px;border-top:3px solid;border-image:linear-gradient(90deg,var(--verde),var(--amarelo)) 1;background:linear-gradient(135deg,rgba(27,158,75,.03),rgba(250,204,21,.02));background:linear-gradient(135deg,rgba(27,158,75,.04),rgba(250,204,21,.04));border-radius:24px;border:1px solid var(--border);margin-bottom:16px}
-.big-stat-val{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,56px);font-weight:800;line-height:1}
-.big-stat-lbl{font-size:15px;color:var(--txt2);margin-top:8px;font-weight:400}
-.big-stat-note{font-family:'Caveat',cursive;font-size:18px;color:var(--verde);margin-top:8px}
-
-
-.sub-header{display:flex;align-items:center;gap:10px;margin:28px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.sub-icon{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:linear-gradient(135deg,rgba(27,158,75,.08),rgba(250,204,21,.06))}
-.sub-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--txt)}
-.sub-line{flex:1;height:1px;background:linear-gradient(90deg,var(--verde),var(--amarelo),transparent)}
-
-.trend-chart{background:linear-gradient(135deg,rgba(27,158,75,.02),rgba(250,204,21,.02));border:1px solid rgba(27,158,75,.1);border-radius:16px;padding:20px;margin-bottom:16px;overflow:hidden}
-.trend-bar-month{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.trend-month-lbl{font-size:11px;font-weight:600;color:var(--txt2);min-width:32px}
-.trend-bar-stack{flex:1;display:flex;gap:2px;height:22px;border-radius:6px;overflow:hidden}
-.trend-seg{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0}
-.trend-seg-verde{background:linear-gradient(90deg,#1B9E4B,#22C55E)}
-.trend-seg-amarelo{background:linear-gradient(90deg,#D97706,#FACC15)}
-.trend-seg-azul{background:linear-gradient(90deg,#2563EB,#60A5FA)}
-.trend-seg-coral{background:linear-gradient(90deg,#E11D48,#FB7185)}
-.trend-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
-.trend-legend-item{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:600;color:var(--txt2)}
-.trend-legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-.trend-event{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:700;letter-spacing:.06em;color:#fff;margin-left:4px;white-space:nowrap}
-.question-card{background:linear-gradient(135deg,rgba(27,158,75,.03),rgba(250,204,21,.02));border:1px solid rgba(27,158,75,.1);border-left:3px solid var(--verde);border-radius:16px;padding:16px 20px;margin-bottom:16px}
-.question-text{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--txt);margin-bottom:4px}
-.question-meta{font-size:10px;color:var(--txt3);font-weight:500;letter-spacing:.06em}
-.methodology-box{background:linear-gradient(135deg,rgba(27,158,75,.04),rgba(250,204,21,.03));border:1px solid rgba(27,158,75,.12);border-radius:16px;padding:20px;margin-bottom:24px}
-.methodology-box p{font-size:12px;color:var(--txt2);line-height:1.7}
-.methodology-box strong{color:var(--txt)}
-.glossary-section{max-width:1120px;margin:0 auto;padding:0 32px 48px}
-.glossary-toggle{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:2px solid transparent;border-image:linear-gradient(90deg,var(--verde),var(--amarelo),transparent) 1;cursor:pointer;user-select:none}
-.glossary-toggle:hover .glossary-title{color:var(--txt)}
-.glossary-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--txt2);transition:color .2s}
-.glossary-arrow{font-size:16px;color:var(--txt3);transition:transform .3s}
-.glossary-arrow.open{transform:rotate(180deg)}
-.glossary-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
-.glossary-body.open{max-height:4000px}
-.glossary-source{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(135deg,rgba(27,158,75,.02),rgba(250,204,21,.01));border:1px solid rgba(27,158,75,.08);border-radius:12px;margin-bottom:8px}
-.glossary-source-icon{font-size:18px;flex-shrink:0}
-.glossary-source-name{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:2px}
-.glossary-source-desc{font-size:10px;color:var(--txt3);line-height:1.5}
-.glossary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 0}
-@media(max-width:700px){.glossary-grid{grid-template-columns:1fr}}
-.glossary-item{padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px}
-.glossary-term{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:3px}
-.glossary-def{font-size:10px;color:var(--txt2);line-height:1.6}
-/* ═══ FONTE ═══ */
-.fonte{max-width:1120px;margin:0 auto;padding:24px 32px 64px;font-size:10px;color:var(--txt3);text-align:center;line-height:1.8}
-.fonte strong{color:var(--txt2)}
-
-/* ═══ SCROLL TOP ═══ */
-.scroll-top{position:fixed;right:24px;bottom:24px;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--verde),#D97706);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 4px 16px rgba(27,158,75,.3);opacity:0;transform:translateY(20px);transition:all .3s;z-index:99}
+:root{--bg:#FAFAF8;--bg2:#F0F0EC;--bg3:#E8E8E2;--card:#FFFFFF;--border:#E5E5DF;--border2:#D4D4CC;--txt:#1A1A17;--txt2:#6B6B60;--txt3:#9B9B8F;--shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.03);--terra:#F57C00;--terra2:#FF9800;--globo:#E53935;--uol:#6A1B9A;--r7:#1E88E5;--cnn:#CC0000;--ig:#43A047;--accent:#F57C00;--teal:#0D9488;--gold:#D97706}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
+.masthead{background:linear-gradient(160deg,#1A0A00 0%,#2D1500 40%,#3D2000 100%);padding:48px 32px 40px;position:relative;overflow:hidden}
+.masthead::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 80%,rgba(245,124,0,.12) 0%,transparent 60%)}
+.masthead-inner{max-width:1120px;margin:0 auto;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.eyebrow-line{width:32px;height:2px;background:var(--terra)}
+.eyebrow-text{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+.brand-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:800;color:#F5F5F0;line-height:1.15;margin-bottom:6px}
+.brand-sub{font-size:13px;color:rgba(245,245,240,.45);font-weight:500}
+.hkpi-row{display:flex;gap:16px;flex-wrap:wrap}
+.hkpi{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(245,124,0,.12);border-radius:12px;padding:14px 20px;text-align:center;min-width:120px}
+.hkpi-val{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:800;color:var(--terra)}
+.hkpi-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,245,240,.5);margin-bottom:2px}
+.hkpi-sub{font-size:10px;color:rgba(245,245,240,.35);margin-top:2px}
+.hkpi-logo{height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:.7}
+.page{max-width:1120px;margin:0 auto;padding:0 32px 64px}
+.section{padding:40px 0 0;border-top:1px solid var(--border)}
+.section:first-child{border-top:none}
+.sec-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.5vw,34px);font-weight:800;color:var(--txt);line-height:1.2;margin-bottom:6px}
+.sec-desc{font-size:13px;color:var(--txt2);max-width:700px;margin-bottom:28px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+@media(max-width:900px){.g3,.g4,.g6{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.g2,.g3,.g4,.g6{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.kpi-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:6px}
+.kpi-val{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:800;line-height:1.1}
+.kpi-sub{font-size:11px;color:var(--txt2);margin-top:4px}
+.c-terra{color:var(--terra)}.c-globo{color:var(--globo)}.c-uol{color:var(--uol)}.c-r7{color:var(--r7)}.c-cnn{color:var(--cnn)}.c-ig{color:var(--ig)}.c-teal{color:var(--teal)}.c-gold{color:var(--gold)}
+.sub-header{display:flex;align-items:center;gap:10px;margin:28px 0 16px}
+.sub-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:rgba(245,124,0,.06)}
+.sub-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--txt)}
+.sub-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
+.bar-lbl{font-size:12px;font-weight:600;color:var(--txt)}
+.bar-pct{font-family:'Space Mono',monospace;font-size:12px;font-weight:700}
+.bar-track{height:8px;background:var(--bg2);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0}
+.bf-terra{background:linear-gradient(90deg,var(--terra),var(--terra2))}.bf-globo{background:linear-gradient(90deg,var(--globo),#EF5350)}.bf-uol{background:linear-gradient(90deg,var(--uol),#8E24AA)}.bf-r7{background:linear-gradient(90deg,var(--r7),#42A5F5)}.bf-cnn{background:linear-gradient(90deg,var(--cnn),#E53935)}.bf-ig{background:linear-gradient(90deg,var(--ig),#66BB6A)}.bf-teal{background:linear-gradient(90deg,var(--teal),#2DD4BF)}.bf-gold{background:linear-gradient(90deg,var(--gold),#FACC15)}
+.bar-item{margin-bottom:4px}
+.ins-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--terra);border-radius:14px;padding:20px}
+.ins-card h4{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.ins-card p{font-size:12px;color:var(--txt2);line-height:1.7}
+.big-stat{text-align:center;padding:32px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)}
+.big-stat-val{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,7vw,60px);font-weight:800;line-height:1}
+.big-stat-lbl{font-size:14px;color:var(--txt2);margin-top:8px;max-width:500px;margin-left:auto;margin-right:auto}
+.big-stat-note{font-size:11px;color:var(--txt3);margin-top:6px}
+.cross-matrix{width:100%;border-collapse:collapse;font-size:11px}
+.cross-matrix th{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:8px 6px;text-align:center;border-bottom:2px solid var(--border)}
+.cross-matrix td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--border);font-weight:600;font-family:'Space Mono',monospace;font-size:10px}
+.cross-matrix .row-header{text-align:left;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--txt);font-size:12px}
+.cross-matrix .highlight{background:rgba(245,124,0,.06);color:var(--terra);font-weight:700}
+.cross-matrix .self{background:var(--bg2);color:var(--txt3)}
+.footer{max-width:1120px;margin:0 auto;padding:24px 32px 48px;text-align:center;font-size:10px;color:var(--txt3);line-height:1.8}
+.footer strong{color:var(--txt2)}
+.anim{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.anim.vis{opacity:1;transform:none}
+.scroll-top{position:fixed;right:24px;bottom:24px;width:44px;height:44px;border-radius:50%;background:var(--terra);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 4px 16px rgba(245,124,0,.3);opacity:0;transform:translateY(20px);transition:all .3s;z-index:99}
 .scroll-top.visible{opacity:1;transform:translateY(0)}
-
-/* ═══ ANIMATIONS ═══ */
-.anim{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-.anim.vis{opacity:1;transform:translateY(0)}
+@media print{.scroll-top{display:none!important}}
 </style>
 </head>
 <body>
 
-<!-- ═══ HERO ═══ -->
-<header class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div style="position:relative;z-index:1">
-    <div class="hero-badge"><span class="hero-badge-dot"></span> Terra Insights · Março 2026</div>
-    <h1 class="hero-title">Paixões<br><em>Brasileiras</em></h1>
-    <p class="hero-sub">O que move, emociona e conecta 117 milhões de brasileiros na internet — das arquibancadas à mesa do churrasco.</p>
-    <div class="hero-kpis">
-      <div class="hero-kpi"><div class="hero-kpi-val">117,3<span style="font-size:16px">MM</span></div><div class="hero-kpi-lbl">Internet Brasil</div></div>
-      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--amarelo)">69%</div><div class="hero-kpi-lbl">Assistem Esportes</div></div>
-      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--amarelo)">77%</div><div class="hero-kpi-lbl">Música é Vida</div></div>
-      <div class="hero-kpi"><div class="hero-kpi-val" style="color:var(--amarelo)">33%</div><div class="hero-kpi-lbl">Fazem Churrasco</div></div>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Comscore Cross-Visits · Fevereiro 2026</span></div>
+      <h1 class="brand-title">Audiência Exclusiva:<br>Cross-Visits entre Portais</h1>
+      <p class="brand-sub">Desktop & Mobile MMX Multi-Platform · Brasil · Total Audience · Top Properties</p>
+    </div>
+    <div class="hkpi-row">
+      <div class="hkpi"><div class="hkpi-lbl"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Terra_Logo.svg/500px-Terra_Logo.svg.png" class="hkpi-logo" crossorigin="anonymous" referrerpolicy="no-referrer"></div><div class="hkpi-val">53,4<span style="font-size:14px"> MM</span></div><div class="hkpi-sub">visitantes únicos</div></div>
+      <div class="hkpi"><div class="hkpi-lbl">Audiência Exclusiva</div><div class="hkpi-val" style="color:#2DD4BF">13,2<span style="font-size:14px"> MM</span></div><div class="hkpi-sub">não alcançados pela Globo</div></div>
+      <div class="hkpi"><div class="hkpi-lbl">Excl. vs UOL</div><div class="hkpi-val" style="color:#2DD4BF">15,2<span style="font-size:14px"> MM</span></div><div class="hkpi-sub">não visitam o UOL</div></div>
     </div>
   </div>
 </header>
 
+<div class="page">
 
-<!-- ═══ CONTEXTO ═══ -->
-<section class="wrap" style="padding:48px 32px 0">
-  <div class="sec-badge" style="background:rgba(27,158,75,.08);color:var(--verde)">🇧🇷 O Retrato Digital do Brasil</div>
-  <h2 class="sec-title" style="max-width:740px">O que <em>117 milhões</em> de brasileiros revelam sobre si mesmos<span class="sec-accent" style="color:var(--verde)">dados que emocionam — e vendem</span></h2>
-  <p class="sec-desc" style="max-width:740px;margin-bottom:32px">O Brasil digital não é feito só de cliques e pageviews. Por trás dos 117,3 milhões de usuários da internet brasileira existe um povo que valoriza a família, respeita suas tradições, se emociona com o futebol, canta no churrasco e acredita que amanhã pode ser melhor. Esta pesquisa revela, com dados auditados Comscore, as <strong>paixões que definem o brasileiro</strong> — e que movem mercados inteiros.</p>
+<!-- ═══ PANORAMA ═══ -->
+<div class="section" id="panorama">
+  <div class="sec-badge" style="background:rgba(245,124,0,.08);color:var(--terra)">🌐 Panorama Geral</div>
+  <h2 class="sec-title">6 portais, 1 mapa de audiência</h2>
+  <p class="sec-desc">Comscore Cross-Visits · Fevereiro 2026 · Multi-Platform · Audiência compartilhada e exclusiva entre os principais portais de notícias do Brasil.</p>
 
-  <div class="grid g4 anim" style="margin-bottom:24px">
-    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">🙏</div><div class="card-val verde">86,3%</div><div class="card-lbl">Fé é muito importante</div><div class="card-sub">101,2 MM — a fé move o Brasil</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #D97706"><div class="card-icon">👨‍👩‍👧</div><div class="card-val amarelo">86,7%</div><div class="card-lbl">Família é prioridade</div><div class="card-sub">101,7 MM amam tempo em família</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--azul)"><div class="card-icon">🎓</div><div class="card-val azul">94,6%</div><div class="card-lbl">Aprender é pra sempre</div><div class="card-sub">110,9 MM — nunca param de estudar</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #E11D48"><div class="card-icon">🏠</div><div class="card-val coral">86,6%</div><div class="card-lbl">Lar doce lar</div><div class="card-sub">101,6 MM — casa é o melhor lugar</div></div>
-  </div>
-
-  <div class="grid g3 anim" style="margin-bottom:24px">
-    <div class="card" style="text-align:center"><div class="card-icon">🤝</div><div class="card-val verde">84,4%</div><div class="card-lbl">Respeito às tradições</div><div class="card-sub">99 MM valorizam costumes e crenças</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">😊</div><div class="card-val amarelo">87,6%</div><div class="card-lbl">Viver com bom humor</div><div class="card-sub">102,7 MM — alegria é estilo de vida</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">💪</div><div class="card-val azul">91,9%</div><div class="card-lbl">Aproveitar oportunidades</div><div class="card-sub">107,8 MM agarram chances na vida</div></div>
-  </div>
-
-  <div class="grid g4 anim" style="margin-bottom:24px">
-    <div class="card" style="text-align:center"><div class="card-icon">🐾</div><div class="card-val verde">70,3%</div><div class="card-lbl">Pet é família</div><div class="card-sub">82,5 MM consideram pet família</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🌍</div><div class="card-val azul">78,4%</div><div class="card-lbl">Curiosos por culturas</div><div class="card-sub">91,9 MM se interessam por outras culturas</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🎯</div><div class="card-val coral">90,2%</div><div class="card-lbl">Nunca desistir</div><div class="card-sub">105,7 MM — se não deu, tenta de novo</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">👫</div><div class="card-val amarelo">82,5%</div><div class="card-lbl">Amigos de verdade</div><div class="card-sub">96,7 MM querem amigos pra vida toda</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:24px">
-    <div class="insight" data-emoji="🙏">
-      <div class="insight-title" style="color:var(--verde)">Um povo de fé e tradição</div>
-      <p><strong>86,3% dizem que a fé é muito importante</strong> (101,2 MM) e <strong>84,4% respeitam costumes e crenças tradicionais</strong> (99 MM). O Brasil é profundamente espiritual — e isso molda decisões de consumo, datas comemorativas e comportamento. <strong>67,4% se consideram pessoas espirituais</strong> (79 MM).</p>
-    </div>
-    <div class="insight" data-emoji="🏠">
-      <div class="insight-title" style="color:#D97706">Família, lar e bom humor</div>
-      <p><strong>86,7% amam tempo em família</strong> e <strong>86,6% dizem que casa é o melhor lugar do mundo</strong>. Para completar, <strong>87,6% vivem com bom humor</strong> — o famoso "jeitinho brasileiro" traduzido em dado. <strong>70,3% consideram o pet parte da família</strong> (82,5 MM).</p>
-    </div>
-  </div>
-
-  <div class="big-stat anim" style="margin-bottom:16px">
-    <div class="big-stat-val verde">95,6%</div>
-    <div class="big-stat-lbl">acreditam que é importante estar bem informado sobre as coisas</div>
-    <div class="big-stat-note">📰 112,1 MM — o brasileiro mais conectado e informado da história</div>
-  </div>
-
-  <div class="grid g3 anim" style="margin-bottom:8px">
-    <div class="insight" data-emoji="🎉">
-      <div class="insight-title" style="color:var(--verde)">Celebrações importam</div>
-      <p><strong>76,3% celebram Natal/Ano Novo</strong> (89,5 MM), <strong>75% Dia dos Pais/Mães</strong> (88 MM), <strong>69,2% o aniversário</strong> (81,1 MM) e <strong>36,6% o Carnaval</strong> (43 MM). O calendário brasileiro é feito de abraços.</p>
-    </div>
-    <div class="insight" data-emoji="🚀">
-      <div class="insight-title" style="color:var(--azul)">Empreendedor por natureza</div>
-      <p><strong>70,5% querem ter o próprio negócio</strong> (82,7 MM), <strong>72% querem chegar ao topo</strong> (84,5 MM) e <strong>68,8% buscam renda extra</strong> (80,7 MM). O brasileiro é trabalhador, ambicioso e resiliente.</p>
-    </div>
-    <div class="insight" data-emoji="❤️">
-      <div class="insight-title" style="color:#E11D48">Acolhedor e inclusivo</div>
-      <p><strong>77,7% aceitam pessoas como são</strong>, independente de orientação sexual (91,2 MM). <strong>75,2% não julgam o estilo de vida dos outros</strong> (88,2 MM). O Brasil digital é diverso e acolhedor.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SIDEBAR ═══ -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-<nav class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <span class="sidebar-title">Navegação</span>
-    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
-  </div>
-  <div class="sidebar-group">Brasilidades</div>
-  <button class="sidebar-item active" onclick="navTo('esportes')"><span class="sidebar-emoji">⚽</span>Esportes</button>
-  <button class="sidebar-item" onclick="navTo('churrasco')"><span class="sidebar-emoji">🥩</span>Churrasco & Mesa</button>
-  <button class="sidebar-item" onclick="navTo('musica')"><span class="sidebar-emoji">🎵</span>Música & Festas</button>
-  <button class="sidebar-item" onclick="navTo('praia')"><span class="sidebar-emoji">🏖</span>Praia & Lazer</button>
-  <button class="sidebar-item" onclick="navTo('cerveja')"><span class="sidebar-emoji">🍺</span>Cerveja & Drinks</button>
-  <button class="sidebar-item" onclick="navTo('beleza')"><span class="sidebar-emoji">💄</span>Beleza & Vaidade</button>
-  <button class="sidebar-item" onclick="navTo('familia')"><span class="sidebar-emoji">👨‍👩‍👧</span>Família & Lar</button>
-  <button class="sidebar-item" onclick="navTo('compras')"><span class="sidebar-emoji">🛒</span>Compras & Marcas</button>
-  <button class="sidebar-item" onclick="navTo('tendencias')"><span class="sidebar-emoji">📈</span>Tendências de Busca</button>
-  <div class="sidebar-group">Pesquisa Exclusiva</div>
-  <button class="sidebar-item" onclick="navTo('pesquisa')"><span class="sidebar-emoji">🔬</span>Paixões & Celebrações</button>
-</nav>
-
-<!-- ═══ STICKY NAV ═══ -->
-<div class="nav-sticky">
-  <div class="nav-sticky-inner">
-    <button class="menu-btn" onclick="openSidebar()">☰ Menu</button>
+  <div class="grid g6 anim" style="margin-bottom:14px">
+    <div class="card" style="text-align:center;border-top:3px solid var(--globo)"><div class="kpi-lbl">Globo</div><div class="kpi-val c-globo">72,5</div><div class="kpi-sub">MM visitantes</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--uol)"><div class="kpi-lbl">UOL</div><div class="kpi-val c-uol">67,2</div><div class="kpi-sub">MM visitantes</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">Terra</div><div class="kpi-val c-terra">53,4</div><div class="kpi-sub">MM visitantes</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--r7)"><div class="kpi-lbl">R7</div><div class="kpi-val c-r7">47,7</div><div class="kpi-sub">MM visitantes</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--cnn)"><div class="kpi-lbl">CNN</div><div class="kpi-val c-cnn">28,7</div><div class="kpi-sub">MM visitantes</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--ig)"><div class="kpi-lbl">IG</div><div class="kpi-val c-ig">24,2</div><div class="kpi-sub">MM visitantes</div></div>
   </div>
 </div>
 
-<main class="wrap">
+<!-- ═══ TERRA: AUDIÊNCIA EXCLUSIVA ═══ -->
+<div class="section" id="exclusiva">
+  <div class="sec-badge" style="background:rgba(245,124,0,.08);color:var(--terra)">🔥 Diferencial Terra</div>
+  <h2 class="sec-title">A audiência do Terra que ninguém mais alcança</h2>
+  <p class="sec-desc">Milhões de brasileiros visitam o Terra e NÃO visitam os portais concorrentes. Essa audiência exclusiva é inacessível por qualquer outro veículo.</p>
 
-<!-- ═══ SEÇÃO 1: ESPORTES ═══ -->
-<section class="section" id="esportes">
-  <div class="sec-badge" style="background:rgba(27,158,75,.08);color:var(--verde)">⚽ Paixão Nacional</div>
-  <h2 class="sec-title">O Brasil é uma <em>nação esportiva</em><span class="sec-accent" style="color:var(--verde)">80,9 MM assistem esportes — 69% da internet</span></h2>
-  <p class="sec-desc">Do futebol ao vôlei, do MMA à F1 — o brasileiro vive o esporte como poucos. E quando o assunto é torcer, ninguém fica de fora.</p>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">⚽</div><div class="card-lbl">Futebol Total</div><div class="card-val verde">55,6 MM</div><div class="card-sub">47,4% da internet assistem</div></div>
-    <div class="card"><div class="card-icon">📺</div><div class="card-lbl">Esportes na TV</div><div class="card-val verde">75,3 MM</div><div class="card-sub">64,2% assistem na televisão</div></div>
-    <div class="card"><div class="card-icon">🏟</div><div class="card-lbl">Presencial</div><div class="card-val verde">23,0 MM</div><div class="card-sub">19,6% vão ao estádio/arena</div></div>
-    <div class="card"><div class="card-icon">📱</div><div class="card-lbl">Esporte Online</div><div class="card-val verde">44,9 MM</div><div class="card-sub">38,3% assistem via internet</div></div>
+  <div class="big-stat anim" style="margin-bottom:14px;border-top:3px solid var(--terra)">
+    <div class="big-stat-val c-terra">32,6 MM</div>
+    <div class="big-stat-lbl">visitam o Terra e <strong>NÃO</strong> visitam a CNN Brasil</div>
+    <div class="big-stat-note">60,9% da audiência Terra é exclusiva vs CNN</div>
   </div>
 
-  <div class="grid g2 anim" style="margin-bottom:16px">
+  <div class="sub-header"><div class="sub-icon">🔒</div><div class="sub-title">Audiência Terra NÃO Alcançada pelos Concorrentes</div><div class="sub-line"></div></div>
+  <div class="grid g2 anim" style="margin-bottom:14px">
     <div class="card">
-      <div class="card-lbl">🏆 Esportes Mais Assistidos (TV + Internet)</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Futebol Masc.</span><span class="bar-pct verde">53,1 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="84"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Futebol Fem.</span><span class="bar-pct verde">22,0 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="35"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Ginástica/Olimp.</span><span class="bar-pct verde">20,6 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="33"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Vôlei</span><span class="bar-pct verde">20,4 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="32"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Boxe</span><span class="bar-pct verde">18,2 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="29"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Vôlei de Praia</span><span class="bar-pct verde">17,5 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="28"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">F1</span><span class="bar-pct verde">17,4 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="28"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Skate</span><span class="bar-pct verde">16,5 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="26"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Basquete</span><span class="bar-pct verde">15,6 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="25"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">MMA</span><span class="bar-pct verde">13,0 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="21"></div></div></div>
+      <div class="kpi-lbl" style="margin-bottom:16px">🔒 % do Terra que NÃO visita cada concorrente</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs IG Portal</span><span class="bar-pct c-terra">66,1% · 35,3 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="66.1"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs CNN Brasil</span><span class="bar-pct c-terra">60,9% · 32,6 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="60.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs R7 Portal</span><span class="bar-pct c-terra">48,9% · 26,1 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="48.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs UOL</span><span class="bar-pct c-terra">28,5% · 15,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="28.5"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs Globo</span><span class="bar-pct c-terra">24,7% · 13,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="24.7"></div></div></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-lbl">🏟 Times do Coração — Maiores Torcidas</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Sem time</span><span class="bar-pct" style="color:var(--txt3)">31,0 MM</span><div class="bar-track"><div class="bar-fill" data-w="100" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Corinthians</span><span class="bar-pct verde">13,0 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="42"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Flamengo</span><span class="bar-pct coral" style="color:#E11D48">12,5 MM</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="40"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">São Paulo</span><span class="bar-pct coral" style="color:#E11D48">6,7 MM</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="22"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Palmeiras</span><span class="bar-pct verde">6,1 MM</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="20"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">SP Teams (Total)</span><span class="bar-pct azul" style="color:var(--azul)">29,5 MM</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="95"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">RJ Teams (Total)</span><span class="bar-pct azul" style="color:var(--azul)">18,1 MM</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="58"></div></div></div>
+      <div class="kpi-lbl" style="margin-bottom:16px">📊 Comparativo: exclusividade de cada portal vs Globo</div>
+      <div class="bars">
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">R7 vs Globo</span><span class="bar-pct c-r7">26,9% · 12,8 MM</span></div><div class="bar-track"><div class="bar-fill bf-r7" data-w="26.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Terra vs Globo</span><span class="bar-pct c-terra">24,7% · 13,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="24.7"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">UOL vs Globo</span><span class="bar-pct c-uol">25,9% · 17,4 MM</span></div><div class="bar-track"><div class="bar-fill bf-uol" data-w="25.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">IG vs Globo</span><span class="bar-pct c-ig">15,9% · 3,8 MM</span></div><div class="bar-track"><div class="bar-fill bf-ig" data-w="15.9"></div></div></div>
+        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">CNN vs Globo</span><span class="bar-pct c-cnn">11,7% · 3,4 MM</span></div><div class="bar-track"><div class="bar-fill bf-cnn" data-w="11.7"></div></div></div>
       </div>
     </div>
   </div>
 
-
-  <div class="grid g3 anim" style="margin-bottom:16px;margin-top:16px">
-    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">🏃</div><div class="card-val verde">55,0%</div><div class="card-lbl">Praticam Esporte</div><div class="card-sub">64,6 MM são ativos fisicamente</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">🎫</div><div class="card-lbl">Apostas Esportivas</div><div class="card-val verde">48,0%</div><div class="card-sub">56,3 MM se empolgam em grandes jogos</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">🏐</div><div class="card-lbl">Surf</div><div class="card-val verde">11,9 MM</div><div class="card-sub">10,2% — paixão tropical</div></div>
-  </div>
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Futebol feminino cresce</div><p><strong>22 MM</strong> assistem futebol feminino — <strong>18,8%</strong> da internet. Quase metade da audiência do masculino. Uma revolução em andamento.</p></div>
-    <div class="insight" data-emoji="🥊"><div class="insight-title" style="color:var(--verde)">MMA + Boxe: 31 MM de fãs</div><p>Lutas mobilizam <strong>31,1 MM</strong> de brasileiros. MMA (13 MM) e Boxe (18,2 MM) superam basquete e F1 individualmente.</p></div>
-  </div>
-  <div class="grid g3 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="🏖"><div class="insight-title" style="color:var(--verde)">Vôlei de praia: DNA brasileiro</div><p><strong>17,5 MM</strong> assistem vôlei de praia — mais que basquete (15,6 MM). Esporte que nasceu nas areias brasileiras segue como paixão nacional.</p></div>
-    <div class="insight" data-emoji="🏟"><div class="insight-title" style="color:var(--verde)">23 MM vão ao estádio</div><p><strong>19,6% da internet</strong> assiste esporte presencialmente. São 23 MM que compram ingresso, camiseta e cerveja — mercado de experiência ao vivo.</p></div>
-    <div class="insight" data-emoji="🛹"><div class="insight-title" style="color:var(--verde)">Skate: 16,5 MM após Olimpíadas</div><p>O efeito Rayssa Leal é real: <strong>16,5 MM assistem skate</strong> (14,1%). Supera natação (14,8 MM) e surfe (11,9 MM). Nova geração de fãs.</p></div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 2: CHURRASCO & MESA ═══ -->
-<section class="section" id="churrasco">
-  <div class="sec-badge" style="background:rgba(217,119,6,.08);color:#D97706">🥩 Na Mesa do Brasileiro</div>
-  <h2 class="sec-title">Churrasco, café e <em>comida boa</em><span class="sec-accent" style="color:#D97706">38,2 MM vão ao churrasco — 32,6% da internet</span></h2>
-  <p class="sec-desc">O brasileiro come com paixão. Do churrasco no domingo ao restaurante na sexta, da aula de culinária ao café de todo dia.</p>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">🔥</div><div class="card-lbl">Churrasco</div><div class="card-val amarelo">38,2 MM</div><div class="card-sub">32,6% fazem churrasco</div></div>
-    <div class="card"><div class="card-icon">☕</div><div class="card-lbl">Café em Casa</div><div class="card-val amarelo">76,8 MM</div><div class="card-sub">65,5% tomam café em casa</div></div>
-    <div class="card"><div class="card-icon">🍽</div><div class="card-lbl">Restaurantes</div><div class="card-val amarelo">39,0 MM</div><div class="card-sub">33,2% comem fora</div></div>
-    <div class="card"><div class="card-icon">👨‍🍳</div><div class="card-lbl">Aulas de Culinária</div><div class="card-val amarelo">41,4 MM</div><div class="card-sub">35,3% fazem aulas/cozinham</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🍔 Fast Food — Marcas Favoritas</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Outros/Regionais</span><span class="bar-pct amarelo" style="color:#D97706">30,4 MM · 25,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">McDonald's</span><span class="bar-pct amarelo" style="color:#D97706">25,4 MM · 21,7%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="84"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Burger King</span><span class="bar-pct amarelo" style="color:#D97706">21,3 MM · 18,2%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="70"></div></div></div>
-      </div>
+  <div class="grid g3 anim" style="margin-bottom:14px">
+    <div class="ins-card" style="border-left-color:var(--terra)">
+      <h4 style="color:var(--terra)">35,3 MM não visitam o IG</h4>
+      <p><strong>66,1% da audiência Terra é exclusiva vs IG</strong>. São 35,3 MM de pessoas que o IG simplesmente não alcança. Campanhas no Terra atingem mais que o dobro da audiência total do IG.</p>
     </div>
-    <div class="card">
-      <div class="card-lbl">🥗 Atitudes sobre Comida</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Pago mais por qualidade</span><span class="bar-pct verde">76,9%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="77"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Gosto de experimentar</span><span class="bar-pct verde">60,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="60"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Adoro cozinhar</span><span class="bar-pct verde">56,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="56"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Dieta equilibrada</span><span class="bar-pct verde">52,1%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="52"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Fast food é lixo</span><span class="bar-pct coral" style="color:#E11D48">60,7%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="61"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Me permito besteiras</span><span class="bar-pct amarelo" style="color:#D97706">62,0%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="62"></div></div></div>
-      </div>
+    <div class="ins-card" style="border-left-color:var(--terra)">
+      <h4 style="color:var(--terra)">32,6 MM não visitam a CNN</h4>
+      <p><strong>60,9% da audiência Terra é exclusiva vs CNN</strong>. A CNN alcança 28,7 MM no total — o Terra tem mais audiência exclusiva vs CNN (32,6 MM) do que a CNN tem de audiência total.</p>
     </div>
-  </div>
-
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">🍕</div><div class="card-val amarelo">31,0 MM</div><div class="card-lbl">Pizza Congelada</div><div class="card-sub">26,5% consomem · praticidade</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🌱</div><div class="card-val verde">50,9%</div><div class="card-lbl">Orgânico vale + caro</div><div class="card-sub">59,7 MM pagariam mais</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🥬</div><div class="card-val verde">33,8%</div><div class="card-lbl">Plant-based</div><div class="card-sub">39,6 MM consomem origem vegetal</div></div>
-  </div>
-  <div class="big-stat anim" style="background:linear-gradient(135deg,rgba(217,119,6,.06),rgba(250,204,21,.04))">
-    <div class="big-stat-val" style="color:#D97706">76,8 <span style="font-size:32px">MM</span></div>
-    <div class="big-stat-lbl">brasileiros tomam café em casa todos os dias</div>
-    <div class="big-stat-note">☕ 65,5% da internet — a maior paixão silenciosa do Brasil</div>
-  </div>
-
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="🔥"><div class="insight-title" style="color:#D97706">Churrasco > Shopping</div><p><strong>38,2 MM fazem churrasco</strong> (32,6%) vs 30,5 MM vão ao shopping (26%). O churrasco supera o shopping como programa favorito do brasileiro.</p></div>
-    <div class="insight" data-emoji="🍽"><div class="insight-title" style="color:#D97706">Regionais vencem McDonald's</div><p>Restaurantes regionais/outros somam <strong>30,4 MM</strong> — superando McDonald's (25,4 MM) e BK (21,3 MM). O paladar brasileiro valoriza o local.</p></div>
-  </div>
-  <div class="grid g3 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="🌱"><div class="insight-title" style="color:#D97706">Plant-based: 39,6 MM já consomem</div><p><strong>33,8% consomem produtos de origem vegetal</strong> (leite de amêndoa, carne de soja). O Brasil abraça a alimentação alternativa sem abandonar o churrasco.</p></div>
-    <div class="insight" data-emoji="☕"><div class="insight-title" style="color:#D97706">Café: a bebida mais democrática</div><p><strong>76,8 MM tomam café em casa</strong> — mais que qualquer outro hábito alimentar. Além disso, <strong>18,8 MM visitam casa de amigos</strong> para tomar café. Café une o Brasil.</p></div>
-    <div class="insight" data-emoji="🍕"><div class="insight-title" style="color:#D97706">Praticidade e indulgência</div><p><strong>62% se permitem comer besteiras</strong> (72,7 MM) mas <strong>60,7% acham fast food lixo</strong> (71,2 MM). O brasileiro vive o paradoxo da indulgência consciente.</p></div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 3: MÚSICA & FESTAS ═══ -->
-<section class="section" id="musica">
-  <div class="sec-badge" style="background:rgba(37,99,235,.08);color:var(--azul)">🎵 Ritmo na Veia</div>
-  <h2 class="sec-title">Música é <em>vida</em><span class="sec-accent" style="color:var(--azul)">90,4 MM dizem que música é essencial — 77,1%</span></h2>
-  <p class="sec-desc">De shows a karaokê no churrasco, de festivais a playlists no trabalho. Música é a trilha sonora de tudo que o brasileiro faz.</p>
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">🎵</div><div class="card-lbl">Música é essencial</div><div class="card-val azul">77,1%</div><div class="card-sub">90,4 MM concordam</div></div>
-    <div class="card"><div class="card-icon">🎤</div><div class="card-lbl">Ouvem música</div><div class="card-val azul">68,5 MM</div><div class="card-sub">58,4% como lazer principal</div></div>
-    <div class="card"><div class="card-icon">🎪</div><div class="card-lbl">Vão a Shows</div><div class="card-val azul">17,1 MM</div><div class="card-sub">14,5% frequentam shows</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🎭 Atividades Culturais — O que o brasileiro faz</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Ouvir música</span><span class="bar-pct azul" style="color:var(--azul)">68,5 MM · 58,4%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Cantar</span><span class="bar-pct azul" style="color:var(--azul)">21,1 MM · 18,0%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="31"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Gaming/streams</span><span class="bar-pct azul" style="color:var(--azul)">19,8 MM · 16,9%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="29"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Shows/concertos</span><span class="bar-pct azul" style="color:var(--azul)">17,1 MM · 14,5%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="25"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Museus/exposições</span><span class="bar-pct azul" style="color:var(--azul)">15,3 MM · 13,1%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="22"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Baladas/dançar</span><span class="bar-pct azul" style="color:var(--azul)">12,7 MM · 10,8%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="19"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🏃 Esportes Praticados — Não só torcedor</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Caminhada</span><span class="bar-pct verde">28,0 MM · 23,9%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Futebol</span><span class="bar-pct verde">14,5 MM · 12,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="52"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Corrida</span><span class="bar-pct verde">10,8 MM · 9,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="39"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Aeróbica</span><span class="bar-pct verde">10,3 MM · 8,8%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="37"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Ciclismo</span><span class="bar-pct verde">9,9 MM · 8,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="35"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Dança</span><span class="bar-pct verde">7,2 MM · 6,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="26"></div></div></div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">🎄</div><div class="card-val azul">76,3%</div><div class="card-lbl">Natal & Ano Novo</div><div class="card-sub">89,5 MM celebram</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🎉</div><div class="card-val azul">36,6%</div><div class="card-lbl">Carnaval</div><div class="card-sub">43 MM curtem o Carnaval</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🎂</div><div class="card-val azul">69,2%</div><div class="card-lbl">Aniversário</div><div class="card-sub">81,1 MM celebram</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🇧🇷</div><div class="card-val azul">58,5%</div><div class="card-lbl">Feriados Nacionais</div><div class="card-sub">68,6 MM celebram</div></div>
-  </div>
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="🎵"><div class="insight-title" style="color:var(--azul)">Música > Esporte praticado</div><p><strong>68,5 MM ouvem música</strong> como lazer (58,4%) vs 64,6 MM praticam esporte (55%). Música é a atividade recreativa #1 do Brasil.</p></div>
-    <div class="insight" data-emoji="🎤"><div class="insight-title" style="color:var(--azul)">21 MM cantam como hobby</div><p><strong>18% da internet</strong> canta como atividade de lazer. O karaokê no churrasco não é mito — é dado Comscore.</p></div>
-  </div>
-  <div class="grid g2 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="🎮"><div class="insight-title" style="color:var(--azul)">Gaming: 19,8 MM assistem e jogam</div><p><strong>16,9% frequentam eventos de gaming</strong> ou assistem streams. A cultura gamer é uma das formas de entretenimento que mais cresce no Brasil digital.</p></div>
-    <div class="insight" data-emoji="🎄"><div class="insight-title" style="color:var(--azul)">Natal é a celebração #1</div><p><strong>76,3% celebram Natal e Ano Novo</strong> (89,5 MM) — a data mais importante do calendário emocional brasileiro. <strong>75% celebram Dia dos Pais/Mães</strong> (88 MM).</p></div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 4: PRAIA & LAZER ═══ -->
-<section class="section" id="praia">
-  <div class="sec-badge" style="background:rgba(37,99,235,.08);color:var(--azul)">🏖 Alma Tropical</div>
-  <h2 class="sec-title">Praia, parque e <em>ar livre</em><span class="sec-accent" style="color:var(--azul)">42 MM vão à praia — 35,8% da internet</span></h2>
-  <p class="sec-desc">O brasileiro vive ao ar livre. Da praia ao parque, do passeio no shopping ao encontro com amigos, o lazer é social e presencial.</p>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">🏖</div><div class="card-lbl">Praia</div><div class="card-val azul">42,0 MM</div><div class="card-sub">35,8% vão à praia</div></div>
-    <div class="card"><div class="card-icon">🌳</div><div class="card-lbl">Parques</div><div class="card-val azul">25,7 MM</div><div class="card-sub">21,9% passeiam em parques</div></div>
-    <div class="card"><div class="card-icon">👫</div><div class="card-lbl">Encontro Amigos</div><div class="card-val azul">31,6 MM</div><div class="card-sub">27,0% se encontram</div></div>
-    <div class="card"><div class="card-icon">🚗</div><div class="card-lbl">Excursões</div><div class="card-val azul">21,4 MM</div><div class="card-sub">18,2% viajam pela região</div></div>
-  </div>
-
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">✈️</div><div class="card-val azul">35,3%</div><div class="card-lbl">Pretendem voar</div><div class="card-sub">41,4 MM planejam viagem de avião</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🏨</div><div class="card-val azul">27,5%</div><div class="card-lbl">Hotel L12m</div><div class="card-sub">32,3 MM se hospedaram</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🎲</div><div class="card-val azul">12,5%</div><div class="card-lbl">Loteria</div><div class="card-sub">14,7 MM — sonho grande</div></div>
-  </div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="big-stat" style="background:linear-gradient(135deg,rgba(37,99,235,.05),rgba(96,165,250,.04))">
-      <div class="big-stat-val" style="color:var(--azul)">80%</div>
-      <div class="big-stat-lbl">preferem uma noite tranquila em casa</div>
-      <div class="big-stat-note">🏠 93,8 MM — mas quando saem, vão com tudo</div>
-    </div>
-    <div class="big-stat" style="background:linear-gradient(135deg,rgba(27,158,75,.05),rgba(34,197,94,.04))">
-      <div class="big-stat-val verde">63,2%</div>
-      <div class="big-stat-lbl">preferem férias no Brasil</div>
-      <div class="big-stat-note">🇧🇷 74,1 MM — turismo interno supera o desejo de viajar</div>
-    </div>
-  </div>
-
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="✈️"><div class="insight-title" style="color:var(--azul)">Viagem é sonho (e plano)</div><p><strong>67,1% gostariam de viajar pro exterior</strong> (78,7 MM) mas <strong>63,2% preferem férias no Brasil</strong>. O turismo interno vence. Preço é fator #1 na escolha (69,6%).</p></div>
-    <div class="insight" data-emoji="🏖"><div class="insight-title" style="color:var(--azul)">Praia supera tudo ao ar livre</div><p><strong>42 MM vão à praia</strong> — mais que parques (25,7 MM) e excursões (21,4 MM) somados. A praia é o lazer outdoor definitivo do brasileiro.</p></div>
-  </div>
-  <div class="grid g3 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="🎲"><div class="insight-title" style="color:var(--azul)">14,7 MM sonham com a loteria</div><p><strong>12,5% jogam na loteria</strong> — o sonho de mudar de vida é parte da cultura brasileira. Números, promessas e palpites movem um mercado bilionário.</p></div>
-    <div class="insight" data-emoji="🛫"><div class="insight-title" style="color:var(--azul)">Internet planeja a viagem</div><p><strong>67,7% usam internet para planejar viagens</strong> (79,3 MM). O Terra é ponto de passagem natural para quem pesquisa destinos, promoções e roteiros.</p></div>
-    <div class="insight" data-emoji="📸"><div class="insight-title" style="color:var(--azul)">19 MM são fotógrafos amadores</div><p><strong>16,3% praticam fotografia como hobby</strong> — essencial para viagens e redes sociais. Smartphones bons de câmera e acessórios encontram público cativo.</p></div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 5: CERVEJA & DRINKS ═══ -->
-<section class="section" id="cerveja">
-  <div class="sec-badge" style="background:rgba(217,119,6,.08);color:#D97706">🍺 Saúde!</div>
-  <h2 class="sec-title">Cerveja, vinho e <em>bons drinks</em><span class="sec-accent" style="color:#D97706">51,3 MM bebem cerveja — 43,8% da internet</span></h2>
-  <p class="sec-desc">Da gelada no churrasco ao vinho no jantar, o brasileiro sabe celebrar. E cada vez mais, aprecia qualidade.</p>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">🍺</div><div class="card-lbl">Cerveja</div><div class="card-val amarelo">51,3 MM</div><div class="card-sub">43,8% consumidores</div></div>
-    <div class="card"><div class="card-icon">🍷</div><div class="card-lbl">Vinho</div><div class="card-val amarelo">25,8 MM</div><div class="card-sub">22,0% consumidores</div></div>
-    <div class="card"><div class="card-icon">🥃</div><div class="card-lbl">Whisky</div><div class="card-val amarelo">13,1 MM</div><div class="card-sub">11,1% consumidores</div></div>
-    <div class="card"><div class="card-icon">⚡</div><div class="card-lbl">Energético</div><div class="card-val amarelo">34,6 MM</div><div class="card-sub">29,5% consumidores</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🍺 Cervejas Favoritas — Marcas (consumo L12m)</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Heineken</span><span class="bar-pct amarelo" style="color:#D97706">18,7 MM · 15,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Amstel</span><span class="bar-pct amarelo" style="color:#D97706">16,5 MM · 14,1%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="88"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Brahma</span><span class="bar-pct amarelo" style="color:#D97706">15,5 MM · 13,2%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="83"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Budweiser</span><span class="bar-pct amarelo" style="color:#D97706">10,6 MM · 9,0%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="57"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🍺 Perfil de Consumo — Cerveja</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Em lata</span><span class="bar-pct amarelo" style="color:#D97706">35,3 MM · 30,1%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Regular</span><span class="bar-pct amarelo" style="color:#D97706">34,2 MM · 29,2%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="97"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Em garrafa</span><span class="bar-pct amarelo" style="color:#D97706">27,6 MM · 23,6%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="78"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Puro malte</span><span class="bar-pct amarelo" style="color:#D97706">18,6 MM · 15,8%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="53"></div></div></div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">🍸</div><div class="card-val amarelo">12,4 MM</div><div class="card-lbl">Vodka</div><div class="card-sub">10,5% consumidores</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🥂</div><div class="card-val amarelo">42,8 MM</div><div class="card-lbl">Beb. Alcoólicas (s/ cerveja)</div><div class="card-sub">36,5% — além da gelada</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🍺</div><div class="card-val amarelo">19,6 MM</div><div class="card-lbl">Bares</div><div class="card-sub">16,7% frequentam bares</div></div>
-  </div>
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="🍺"><div class="insight-title" style="color:#D97706">Heineken destrona Brahma</div><p>Heineken é a cerveja #1 do Brasil digital: <strong>18,7 MM</strong> consumidores, superando Brahma (15,5 MM). Amstel em 2º (16,5 MM). A premiunização é real.</p></div>
-    <div class="insight" data-emoji="🍷"><div class="insight-title" style="color:#D97706">Vinho cresce: 25,8 MM</div><p><strong>22% da internet</strong> consome vinho, com <strong>89% preferindo tinto</strong> e <strong>96% em garrafa</strong>. O brasileiro está cada vez mais sofisticado nas escolhas.</p></div>
-  </div>
-  <div class="grid g3 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="⚡"><div class="insight-title" style="color:#D97706">Energéticos: 34,6 MM</div><p><strong>29,5% consomem energéticos</strong> — quase um terço da internet. É a bebida da produtividade, do gaming e das baladas. Mercado em alta entre jovens.</p></div>
-    <div class="insight" data-emoji="🥂"><div class="insight-title" style="color:#D97706">19,6 MM frequentam bares</div><p><strong>16,7% vão a bares</strong> como lazer regular. O "happy hour" brasileiro é ritual social. Cervejas premium + petiscos + amigos = a fórmula perfeita.</p></div>
-    <div class="insight" data-emoji="🍺"><div class="insight-title" style="color:#D97706">Lata vence garrafa: 35 MM vs 27 MM</div><p><strong>30,1% preferem cerveja em lata</strong> (35,3 MM) contra 23,6% em garrafa (27,6 MM). Praticidade do churrasco e da praia empurra a lata pro topo.</p></div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 6: BELEZA & VAIDADE ═══ -->
-<section class="section" id="beleza">
-  <div class="sec-badge" style="background:rgba(225,29,72,.08);color:#E11D48">💄 Vaidade Nacional</div>
-  <h2 class="sec-title">Perfume, cuidado e <em>autoestima</em><span class="sec-accent" style="color:#E11D48">89,3% pagam mais por qualidade pessoal</span></h2>
-  <p class="sec-desc">O Brasil é o 4º maior mercado de beleza do mundo. Perfume, protetor solar e cuidado pessoal são prioridade absoluta.</p>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">🌸</div><div class="card-lbl">Perfume</div><div class="card-val coral">66,3 MM</div><div class="card-sub">56,6% usam perfume</div></div>
-    <div class="card"><div class="card-icon">☀️</div><div class="card-lbl">Protetor Solar</div><div class="card-val coral">35,5 MM</div><div class="card-sub">30,3% usam no rosto</div></div>
-    <div class="card"><div class="card-icon">🧴</div><div class="card-lbl">O Boticário</div><div class="card-val coral">40,8 MM</div><div class="card-sub">34,8% usam a marca</div></div>
-    <div class="card"><div class="card-icon">💅</div><div class="card-lbl">Natura</div><div class="card-val coral">26,7 MM</div><div class="card-sub">22,8% usam a marca</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🌸 Marcas de Perfume — O Boticário reina</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">O Boticário</span><span class="bar-pct coral" style="color:#E11D48">40,8 MM · 34,8%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Natura</span><span class="bar-pct coral" style="color:#E11D48">26,7 MM · 22,8%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="66"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">L'Acqua di Fiori</span><span class="bar-pct coral" style="color:#E11D48">21,4 MM · 18,2%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="52"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🛍 Venda Direta — Marcas Brasileiras</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Compradores L12m</span><span class="bar-pct coral" style="color:#E11D48">33,6 MM · 28,6%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">O Boticário</span><span class="bar-pct coral" style="color:#E11D48">17,9 MM · 15,3%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="53"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Natura</span><span class="bar-pct coral" style="color:#E11D48">15,2 MM · 13,0%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="45"></div></div></div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">💊</div><div class="card-val coral">82,1%</div><div class="card-lbl">Pago qualquer coisa pela saúde</div><div class="card-sub">96,3 MM — saúde não tem preço</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🧴</div><div class="card-val coral">45,7%</div><div class="card-lbl">Gastam muito com cosméticos</div><div class="card-sub">53,6 MM investem em beleza</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">💅</div><div class="card-val coral">63,3%</div><div class="card-lbl">Skincare rejuvenesce</div><div class="card-sub">74,3 MM acreditam</div></div>
-  </div>
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="🌸"><div class="insight-title" style="color:#E11D48">O Boticário: marca #1 do Brasil</div><p><strong>40,8 MM</strong> usam O Boticário — <strong>34,8% da internet</strong>. É a marca de beleza mais usada do país. Natura vem em 2º com 26,7 MM (22,8%).</p></div>
-    <div class="insight" data-emoji="☀️"><div class="insight-title" style="color:#E11D48">Protetor solar: rotina de 35 MM</div><p><strong>30,3% usam protetor no rosto</strong> e 28,9% no corpo. O brasileiro está cada vez mais consciente dos cuidados com a pele — mercado em crescimento acelerado.</p></div>
-  </div>
-  <div class="grid g3 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="💄"><div class="insight-title" style="color:#E11D48">Maquiagem = autoconfiança</div><p><strong>36% dizem que maquiagem aumenta autoconfiança</strong> (42,2 MM). <strong>61,5% sempre compram os mesmos produtos</strong> de beleza — fidelidade é altíssima nesse segmento.</p></div>
-    <div class="insight" data-emoji="🧴"><div class="insight-title" style="color:#E11D48">Colgate: 67,4% do Brasil</div><p><strong>79 MM usam Colgate</strong> — a marca de higiene mais presente nos lares brasileiros. Dove (sabonete) com 28,6 MM e Rexona (desodorante) com 28,6 MM completam o pódio.</p></div>
-    <div class="insight" data-emoji="💊"><div class="insight-title" style="color:#E11D48">Saúde não tem preço: 82,1%</div><p><strong>96,3 MM pagariam qualquer coisa pela saúde</strong>. O mercado de bem-estar cresce impulsionado por <strong>58,4% que confiam em homeopatia</strong> e 55,3% que fazem check-up preventivo.</p></div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 7: FAMÍLIA & LAR ═══ -->
-<section class="section" id="familia">
-  <div class="sec-badge" style="background:rgba(27,158,75,.08);color:var(--verde)">👨‍👩‍👧 Família é Tudo</div>
-  <h2 class="sec-title">Casa, família e <em>receber bem</em><span class="sec-accent" style="color:var(--verde)">65,5% adoram receber pessoas em casa</span></h2>
-  <p class="sec-desc">O brasileiro é hospitaleiro por natureza. Receber amigos, cozinhar para a família e ficar em casa são prazeres inegociáveis.</p>
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">🏠</div><div class="card-lbl">Receber em Casa</div><div class="card-val verde">76,8 MM</div><div class="card-sub">65,5% adoram receber</div></div>
-    <div class="card"><div class="card-icon">👨‍🍳</div><div class="card-lbl">Adoram Cozinhar</div><div class="card-val verde">66,1 MM</div><div class="card-sub">56,4% gostam de cozinhar</div></div>
-    <div class="card"><div class="card-icon">🎨</div><div class="card-lbl">Artes & Cultura</div><div class="card-val verde">58,9 MM</div><div class="card-sub">50,2% interessados</div></div>
-  </div>
-
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">🐾</div><div class="card-val verde">70,3%</div><div class="card-lbl">Pet é família</div><div class="card-sub">82,5 MM — amor incondicional</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🍳</div><div class="card-val verde">60,2%</div><div class="card-lbl">Cozinha é o coração</div><div class="card-sub">70,6 MM — cômodo mais importante</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🔨</div><div class="card-val verde">81,7%</div><div class="card-lbl">Melhorar a casa</div><div class="card-sub">95,8 MM buscam ideias</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">💑</div><div class="card-val verde">81,8%</div><div class="card-lbl">Relacionamento duradouro</div><div class="card-sub">96 MM valorizam parceiro fixo</div></div>
-  </div>
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="🏠"><div class="insight-title" style="color:var(--verde)">O lar brasileiro é social</div><p><strong>65,5% adoram receber</strong> (76,8 MM) e <strong>80% preferem noite em casa</strong> (93,8 MM). Mas "em casa" não é "sozinho" — é churrasco, jogo na TV, música alta e família reunida.</p></div>
-    <div class="insight" data-emoji="👶"><div class="insight-title" style="color:var(--verde)">Filhos influenciam 33%</div><p><strong>32,9% dizem que filhos influenciam compras</strong> (38,6 MM). A família é núcleo de decisão de consumo — de eletrônicos a alimentos.</p></div>
-  </div>
-  <div class="grid g3 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="🐾"><div class="insight-title" style="color:var(--verde)">82,5 MM têm pet como família</div><p><strong>70,3% consideram o pet parte da família</strong>. O mercado pet brasileiro é o 3º maior do mundo — ração premium, plano de saúde animal e acessórios movem bilhões.</p></div>
-    <div class="insight" data-emoji="🔨"><div class="insight-title" style="color:var(--verde)">95,8 MM querem melhorar a casa</div><p><strong>81,7% buscam novas ideias para a casa</strong>. De reformas a decoração, o brasileiro investe no lar — impulsionado pelo tempo em casa e pelo orgulho do espaço próprio.</p></div>
-    <div class="insight" data-emoji="🍳"><div class="insight-title" style="color:var(--verde)">Cozinha: o coração do lar</div><p><strong>60,2% dizem que a cozinha é o cômodo mais importante</strong> (70,6 MM). Não é a sala, não é o quarto — é onde a família se encontra, cozinha junto e compartilha.</p></div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 8: COMPRAS & MARCAS ═══ -->
-<section class="section" id="compras">
-  <div class="sec-badge" style="background:rgba(37,99,235,.08);color:var(--azul)">🛒 Jeito Brasileiro de Comprar</div>
-  <h2 class="sec-title">Promoções, marcas e <em>custo-benefício</em><span class="sec-accent" style="color:var(--azul)">75,4% buscam o menor preço possível</span></h2>
-  <p class="sec-desc">O brasileiro é fiel, pesquisador e esperto. Compra parcelado, espera promoção, mas paga mais por qualidade quando reconhece valor.</p>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card"><div class="card-icon">💰</div><div class="card-lbl">Menor Preço</div><div class="card-val azul">75,4%</div><div class="card-sub">88,4 MM buscam menor preço</div></div>
-    <div class="card"><div class="card-icon">🇧🇷</div><div class="card-lbl">Compro Nacional</div><div class="card-val verde">74,6%</div><div class="card-sub">87,4 MM preferem BR</div></div>
-    <div class="card"><div class="card-icon">❤️</div><div class="card-lbl">Fiel à Marca</div><div class="card-val coral">74,6%</div><div class="card-sub">87,4 MM repetem marcas</div></div>
-    <div class="card"><div class="card-icon">📱</div><div class="card-lbl">Compra Online</div><div class="card-val azul">67,2%</div><div class="card-sub">78,8 MM compram online</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🛍 Atitudes de Compra</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Qualidade > Preço</span><span class="bar-pct verde">82,8%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="83"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Produto = Vida mais fácil</span><span class="bar-pct verde">87,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="88"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Espero promoção</span><span class="bar-pct amarelo" style="color:#D97706">64,1%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="64"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Gosto de sorteios</span><span class="bar-pct amarelo" style="color:#D97706">61,2%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="61"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Compro por impulso</span><span class="bar-pct coral" style="color:#E11D48">31,5%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="32"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Pago por marcas</span><span class="bar-pct azul" style="color:var(--azul)">62,9%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="63"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🌍 Influência & Confiança</div>
-      <div class="bars" style="margin-top:14px">
-        <div class="bar-row"><span class="bar-lbl">Peço conselho</span><span class="bar-pct azul" style="color:var(--azul)">54,1%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="54"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Dou conselho</span><span class="bar-pct azul" style="color:var(--azul)">45,4%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="45"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Marcas tradicionais</span><span class="bar-pct verde">66,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="67"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Design importa</span><span class="bar-pct amarelo" style="color:#D97706">59,7%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="60"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Online é seguro</span><span class="bar-pct verde">51,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="51"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Prefiro parcelar</span><span class="bar-pct amarelo" style="color:#D97706">40,1%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="40"></div></div></div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">🚗</div><div class="card-val azul">58,4%</div><div class="card-lbl">Carro bonito importa</div><div class="card-sub">68,5 MM escolhem carro pelo visual</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🏥</div><div class="card-val azul">82,6%</div><div class="card-lbl">Manter a forma</div><div class="card-sub">96,8 MM acham importante</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">💡</div><div class="card-val azul">43,1%</div><div class="card-lbl">Inovação me atrai</div><div class="card-sub">50,5 MM gostam de produtos inovadores</div></div>
-  </div>
-  <div class="big-stat anim" style="background:linear-gradient(135deg,rgba(27,158,75,.06),rgba(250,204,21,.03))">
-    <div class="big-stat-val verde">74,6%</div>
-    <div class="big-stat-lbl">compram produtos nacionais sempre que possível</div>
-    <div class="big-stat-note">🇧🇷 87,4 MM de brasileiros que valorizam o "Made in Brazil"</div>
-  </div>
-
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="🇧🇷"><div class="insight-title" style="color:var(--verde)">O brasileiro compra brasileiro</div><p><strong>74,6% preferem produtos nacionais</strong> (87,4 MM). O patriotismo de consumo é real e massivo — oportunidade para marcas locais.</p></div>
-    <div class="insight" data-emoji="🛒"><div class="insight-title" style="color:var(--azul)">Paradoxo: fiel mas caça preço</div><p><strong>74,6% são fiéis à marca</strong> mas <strong>65,3% trocam se outra estiver em promoção</strong>. O brasileiro é leal — até o desconto aparecer.</p></div>
-  </div>
-  <div class="grid g3 anim" style="margin-top:16px">
-    <div class="insight" data-emoji="🎰"><div class="insight-title" style="color:var(--verde)">61,2% amam sorteios e promoções</div><p><strong>71,7 MM gostam de participar de promoções</strong> com sorteio. Mecânicas de "concorra a" e "raspe e ganhe" são irresistíveis para o consumidor brasileiro.</p></div>
-    <div class="insight" data-emoji="🚗"><div class="insight-title" style="color:var(--azul)">Carro: aparência importa</div><p><strong>58,4% escolhem carro pelo visual</strong> (68,5 MM) e <strong>54,4% querem que seja divertido de dirigir</strong>. O carro no Brasil é extensão da personalidade — não só transporte.</p></div>
-    <div class="insight" data-emoji="📱"><div class="insight-title" style="color:#D97706">Internet planeja 57,3% das compras</div><p><strong>67,2 MM usam internet para planejar compras</strong>. E <strong>45,5% pesquisam na internet produtos que veem na TV</strong>. O Terra é o cruzamento perfeito desses dois mundos.</p></div>
-  </div>
-</section>
-
-
-
-
-<!-- ═══ TENDÊNCIAS DE BUSCA ═══ -->
-<section class="section" id="tendencias">
-  <div class="sec-badge" style="background:rgba(37,99,235,.08);color:var(--azul)">📈 Google Trends · Year in Search 2025</div>
-  <h2 class="sec-title">Quando o Brasil <em>pesquisa</em> suas paixões<span class="sec-accent" style="color:var(--azul)">sazonalidade de buscas revela o calendário emocional brasileiro</span></h2>
-  <p class="sec-desc">Dados do Google Trends e Think with Google mostram como eventos e datas sazonais influenciam o comportamento de busca e consumo dos brasileiros.</p>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">⚽</div><div class="card-val verde">#1</div><div class="card-lbl">Futebol</div><div class="card-sub">tema mais buscado 2025</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #E11D48"><div class="card-icon">🎭</div><div class="card-val coral">+10%</div><div class="card-lbl">Carnaval 2026</div><div class="card-sub">buscas crescendo em dez/25</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #D97706"><div class="card-icon">🛒</div><div class="card-val amarelo">89%</div><div class="card-lbl">Conhecem BF</div><div class="card-sub">67% já compraram</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--azul)"><div class="card-icon">💝</div><div class="card-val azul">200 MM</div><div class="card-lbl">Views Dia Mães</div><div class="card-sub">YouTube mai/2024</div></div>
-  </div>
-
-  <div class="sub-header"><div class="sub-icon" style="background:rgba(37,99,235,.06)">📊</div><div class="sub-title">Calendário Sazonal de Buscas — Picos de Interesse</div><div class="sub-line"></div></div>
-  <div class="trend-chart anim">
-    <div class="card-lbl" style="margin-bottom:14px">📊 Intensidade relativa de busca por tema ao longo do ano (Google Trends)</div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">JAN</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="15"></div><div class="trend-seg trend-seg-verde" data-w="25"></div><div class="trend-seg trend-seg-azul" data-w="8"></div><div class="trend-seg trend-seg-amarelo" data-w="5"></div></div><span class="trend-event" style="background:#E11D48">Pré-Carnaval</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">FEV</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="90"></div><div class="trend-seg trend-seg-verde" data-w="20"></div><div class="trend-seg trend-seg-azul" data-w="10"></div><div class="trend-seg trend-seg-amarelo" data-w="3"></div></div><span class="trend-event" style="background:#E11D48">🎭 CARNAVAL</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">MAR</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="8"></div><div class="trend-seg trend-seg-verde" data-w="30"></div><div class="trend-seg trend-seg-azul" data-w="12"></div><div class="trend-seg trend-seg-amarelo" data-w="20"></div></div><span class="trend-event" style="background:#D97706">Consumidor</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">ABR</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="30"></div><div class="trend-seg trend-seg-azul" data-w="15"></div><div class="trend-seg trend-seg-amarelo" data-w="8"></div></div></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">MAI</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="25"></div><div class="trend-seg trend-seg-azul" data-w="40"></div><div class="trend-seg trend-seg-amarelo" data-w="12"></div></div><span class="trend-event" style="background:var(--azul)">💝 Dia Mães</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">JUN</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="85"></div><div class="trend-seg trend-seg-azul" data-w="20"></div><div class="trend-seg trend-seg-amarelo" data-w="65"></div></div><span class="trend-event" style="background:var(--verde)">⚽ COPA</span><span class="trend-event" style="background:#D97706">🌽 São João</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">JUL</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="90"></div><div class="trend-seg trend-seg-azul" data-w="15"></div><div class="trend-seg trend-seg-amarelo" data-w="20"></div></div><span class="trend-event" style="background:var(--verde)">⚽ COPA</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">AGO</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="40"></div><div class="trend-seg trend-seg-azul" data-w="35"></div><div class="trend-seg trend-seg-amarelo" data-w="10"></div></div><span class="trend-event" style="background:var(--azul)">👨 Pais</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">SET</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="35"></div><div class="trend-seg trend-seg-azul" data-w="12"></div><div class="trend-seg trend-seg-amarelo" data-w="8"></div></div></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">OUT</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="8"></div><div class="trend-seg trend-seg-verde" data-w="35"></div><div class="trend-seg trend-seg-azul" data-w="20"></div><div class="trend-seg trend-seg-amarelo" data-w="15"></div></div><span class="trend-event" style="background:var(--azul)">👧 Crianças</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">NOV</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="3"></div><div class="trend-seg trend-seg-verde" data-w="30"></div><div class="trend-seg trend-seg-azul" data-w="15"></div><div class="trend-seg trend-seg-amarelo" data-w="95"></div></div><span class="trend-event" style="background:#D97706">🖤 BLACK FRIDAY</span></div>
-    <div class="trend-bar-month"><span class="trend-month-lbl">DEZ</span><div class="trend-bar-stack"><div class="trend-seg trend-seg-coral" data-w="10"></div><div class="trend-seg trend-seg-verde" data-w="25"></div><div class="trend-seg trend-seg-azul" data-w="30"></div><div class="trend-seg trend-seg-amarelo" data-w="70"></div></div><span class="trend-event" style="background:var(--verde)">🎄 Natal</span></div>
-    <div class="trend-legend">
-      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:var(--verde)"></div>Esportes / Futebol</div>
-      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:#E11D48"></div>Carnaval / Festas</div>
-      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:var(--azul)"></div>Família / Presentes</div>
-      <div class="trend-legend-item"><div class="trend-legend-dot" style="background:#D97706"></div>Compras / Consumo</div>
-    </div>
-  </div>
-
-  <div class="sub-header"><div class="sub-icon" style="background:rgba(27,158,75,.06)">⚽</div><div class="sub-title">Grandes Eventos = Picos de Consumo</div><div class="sub-line"></div></div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">⚽ Copa do Mundo — Impacto nas Buscas</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Camiseta seleção</span><span class="bar-pct verde">+850%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Futebol (Jun/Jul)</span><span class="bar-pct verde">+400%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="47"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">TV / Smart TV</span><span class="bar-pct verde">+180%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="21"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Churrasco + Cerveja</span><span class="bar-pct verde">+120%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="14"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Delivery / Comida</span><span class="bar-pct verde">+90%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="11"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🎭 Carnaval — Impacto nas Buscas (Fev)</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Fantasia carnaval</span><span class="bar-pct coral" style="color:#E11D48">+3.200%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Bloquinhos 2026</span><span class="bar-pct coral" style="color:#E11D48">+1.500%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="47"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Abadás</span><span class="bar-pct coral" style="color:#E11D48">+900%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="28"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Maquiagem / Glitter</span><span class="bar-pct coral" style="color:#E11D48">+600%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="19"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Cerveja (pico fev)</span><span class="bar-pct coral" style="color:#E11D48">+150%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="5"></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🖤 Black Friday — Impacto (Nov)</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Black Friday ofertas</span><span class="bar-pct amarelo" style="color:#D97706">+2.500%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Celular promoção</span><span class="bar-pct amarelo" style="color:#D97706">+800%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="32"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">TV 4K barata</span><span class="bar-pct amarelo" style="color:#D97706">+650%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="26"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Cupom desconto</span><span class="bar-pct amarelo" style="color:#D97706">+500%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="20"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Lista planej. (Jul)</span><span class="bar-pct amarelo" style="color:#D97706">48%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="19"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🌽 São João + 🎄 Natal — Picos Regionais</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Festa junina (Jun)</span><span class="bar-pct amarelo" style="color:#D97706">+1.800%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Comida típica (Jun)</span><span class="bar-pct amarelo" style="color:#D97706">+700%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="39"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Presente Natal (Dez)</span><span class="bar-pct azul" style="color:var(--azul)">+1.200%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="67"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Receita ceia (Dez)</span><span class="bar-pct azul" style="color:var(--azul)">+900%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="50"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Dia das Mães (Mai)</span><span class="bar-pct azul" style="color:var(--azul)">+600%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="33"></div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sub-header"><div class="sub-icon" style="background:rgba(217,119,6,.06)">💡</div><div class="sub-title">O que os Dados de Busca Revelam</div><div class="sub-line"></div></div>
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="insight" data-emoji="📅"><div class="insight-title" style="color:var(--azul)">Carnaval começa em outubro</div><p>Buscas por "carnaval" <strong>começam a subir 4 meses antes da festa</strong>. Em janeiro, o volume explode. Marcas que ativam em outubro saem na frente.</p></div>
-    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Copa 2026: o maior pico do ano</div><p>Em anos de Copa, <strong>futebol domina Jun/Jul com +400% de buscas</strong>. O efeito cascata atinge TVs, cerveja, churrasco, delivery e moda esportiva.</p></div>
-    <div class="insight" data-emoji="🛒"><div class="insight-title" style="color:#D97706">BF: 48% planejam desde julho</div><p><strong>89% conhecem a Black Friday</strong> e <strong>48% têm lista pronta em julho</strong>. A jornada começa 5 meses antes — conteúdo antecipado captura essa audiência.</p></div>
-  </div>
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:#D97706">São João: pico invisível do marketing</div><p>Festas juninas geram <strong>+1.800% de buscas em junho</strong> — rivaliza com Carnaval em intensidade regional. No Nordeste, é o maior evento do ano. Comida típica e moda junina movimentam bilhões.</p></div>
-    <div class="insight" data-emoji="📈"><div class="insight-title" style="color:var(--azul)">O brasileiro pesquisa com emoção</div><p>Em 2025, brasileiros passaram a pesquisar <strong>"como se falassem com alguém"</strong> — buscas com "me conta sobre..." cresceram significativamente. As paixões brasileiras são conversas que o Terra media.</p></div>
-  </div>
-</section>
-
-
-<!-- ═══ PESQUISA PROPRIETÁRIA TERRA INSIGHTS ═══ -->
-<section class="section" id="pesquisa" style="border-top:3px solid var(--verde)">
-  <div class="sec-badge" style="background:rgba(27,158,75,.12);color:var(--verde)">🔬 Pesquisa Proprietária</div>
-  <h2 class="sec-title">Pesquisa Exclusiva: <em>Paixões & Celebrações</em><span class="sec-accent" style="color:var(--verde)">2.500 respondentes · Pesquisa proprietária Terra Insights · Março 2026</span></h2>
-  <p class="sec-desc">Dados exclusivos coletados pelo Terra Insights com 2.500 brasileiros de todas as regiões do país, revelando como o brasileiro vive, celebra e se conecta com suas paixões nacionais.</p>
-
-  <div class="methodology-box anim">
-    <p>📋 <strong>Metodologia:</strong> Pesquisa quantitativa online com <strong>2.500 respondentes</strong>, coletada em março de 2026. A amostra foi desenhada seguindo os <strong>padrões metodológicos estipulados pelo IBGE</strong> para representatividade demográfica e regional. Coleta, armazenamento e tratamento dos dados seguem rigorosamente todos os <strong>requisitos regulatórios da LGPD</strong> (Lei Geral de Proteção de Dados — Lei nº 13.709/2018), incluindo consentimento explícito dos participantes, anonimização dos dados individuais e finalidade específica de uso para fins de pesquisa de mercado. Margem de erro: ±2 p.p. com 95% de confiança.</p>
-  </div>
-
-  <div class="grid g4 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center;border-top:3px solid var(--verde)"><div class="card-icon">📊</div><div class="card-val verde">2.500</div><div class="card-lbl">Respondentes</div><div class="card-sub">55,6% homens · 39,9% mulheres</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--azul)"><div class="card-icon">🧑</div><div class="card-val azul">46,2%</div><div class="card-lbl">16-24 anos</div><div class="card-sub">+ 32,6% 25-34 · jovem e digital</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #D97706"><div class="card-icon">🗺</div><div class="card-val amarelo">35,2%</div><div class="card-lbl">Sudeste</div><div class="card-sub">NE 26,7% · N 13% · CO 12,4% · S 12,7%</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid #E11D48"><div class="card-icon">💰</div><div class="card-val coral">64,5%</div><div class="card-lbl">Até 1 SM</div><div class="card-sub">+ 23% até 2 SM · perfil popular</div></div>
-  </div>
-
-  <!-- P1: Frequência em eventos -->
-  <div class="sub-header"><div class="sub-icon">🎉</div><div class="sub-title">Frequência em Eventos Sociais</div><div class="sub-line"></div></div>
-  <div class="question-card"><div class="question-text">"Com que frequência você participa de eventos sociais ou celebrações presenciais?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">📊 Frequência Geral</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Várias vezes/mês</span><span class="bar-pct verde">27,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Algumas vezes/ano</span><span class="bar-pct verde">22,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="81"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">1x por mês</span><span class="bar-pct verde">20,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="72"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Raramente</span><span class="bar-pct" style="color:var(--txt3)">15,0%</span><div class="bar-track"><div class="bar-fill" data-w="54" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Quase nunca</span><span class="bar-pct" style="color:var(--txt3)">15,1%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">📊 Destaque por Região</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Centro-Oeste (várias/mês)</span><span class="bar-pct verde">44,5%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Norte (várias/mês)</span><span class="bar-pct verde">28,1%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="63"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sul (várias/mês)</span><span class="bar-pct verde">27,7%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="62"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Nordeste (várias/mês)</span><span class="bar-pct verde">25,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="57"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sudeste (várias/mês)</span><span class="bar-pct" style="color:var(--txt3)">23,0%</span><div class="bar-track"><div class="bar-fill" data-w="52" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="insight anim" data-emoji="🎉" style="margin-bottom:16px"><div class="insight-title" style="color:var(--verde)">70% dos brasileiros são socialmente ativos</div><p><strong>69,9% participam de eventos pelo menos algumas vezes ao ano</strong>. O Centro-Oeste surpreende como a região mais festeira (44,5% várias vezes/mês). Jovens 16-24 lideram: <strong>31,1% vão a eventos várias vezes por mês</strong>. O brasileiro é, por natureza, um ser social e celebratório.</p></div>
-
-  <!-- P2: Motivação -->
-  <div class="sub-header"><div class="sub-icon">🎵</div><div class="sub-title">Motivação para Celebrar</div><div class="sub-line"></div></div>
-  <div class="question-card"><div class="question-text">"De forma geral, o que MAIS motiva você a participar de eventos e celebrações?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🎵 Motivação Geral</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Música e dança</span><span class="bar-pct azul" style="color:var(--azul)">30,4%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Comidas típicas</span><span class="bar-pct amarelo" style="color:#D97706">25,8%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="85"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Não participo</span><span class="bar-pct" style="color:var(--txt3)">16,6%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Tradição cultural</span><span class="bar-pct verde">14,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="47"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Convívio social</span><span class="bar-pct verde">8,0%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="26"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Decoração</span><span class="bar-pct" style="color:var(--txt3)">5,0%</span><div class="bar-track"><div class="bar-fill" data-w="16" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">📊 Música & Dança por Região</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Centro-Oeste</span><span class="bar-pct azul" style="color:var(--azul)">50,0%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Norte</span><span class="bar-pct azul" style="color:var(--azul)">33,3%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="67"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Nordeste</span><span class="bar-pct azul" style="color:var(--azul)">30,3%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="61"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sul</span><span class="bar-pct azul" style="color:var(--azul)">29,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="59"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sudeste</span><span class="bar-pct azul" style="color:var(--azul)">22,7%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="45"></div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="insight anim" data-emoji="🎵" style="margin-bottom:16px"><div class="insight-title" style="color:var(--azul)">Música + comida = 56% da motivação</div><p><strong>Música e dança (30,4%) + comidas típicas (25,8%) = 56,2%</strong> da motivação total. No Centro-Oeste, música lidera com 50% — o dobro do Sudeste. Mulheres valorizam mais comida típica (28,3%) e homens a música (32%). A receita para eventos de sucesso é clara: <strong>boa música e comida regional</strong>.</p></div>
-
-  <!-- P3: Copa do Mundo -->
-  <div class="sub-header"><div class="sub-icon" style="background:rgba(27,158,75,.08)">⚽</div><div class="sub-title">A Copa do Mundo na Vida do Brasileiro</div><div class="sub-line"></div></div>
-  <div class="question-card"><div class="question-text">"Como você costuma acompanhar jogos da Seleção Brasileira em Copas do Mundo?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">⚽ Como Assiste Copa — Geral</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Eventos públicos/telões</span><span class="bar-pct verde">31,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Em casa c/ amigos/família</span><span class="bar-pct verde">26,5%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="84"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Bares e restaurantes</span><span class="bar-pct amarelo" style="color:#D97706">15,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="49"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Não acompanho</span><span class="bar-pct" style="color:var(--txt3)">15,3%</span><div class="bar-track"><div class="bar-fill" data-w="49" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sozinho (TV/streaming)</span><span class="bar-pct" style="color:var(--txt3)">11,4%</span><div class="bar-track"><div class="bar-fill" data-w="36" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">😊 Sentimento na Copa — Geral</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Ansiedade e expectativa</span><span class="bar-pct azul" style="color:var(--azul)">30,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Orgulho e emoção coletiva</span><span class="bar-pct verde">30,1%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="98"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Alegria e descontração</span><span class="bar-pct amarelo" style="color:#D97706">22,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="73"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Incômodo</span><span class="bar-pct" style="color:var(--txt3)">16,9%</span><div class="bar-track"><div class="bar-fill" data-w="55" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="question-card"><div class="question-text">"O quanto a Copa do Mundo influencia sua rotina social?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
-  <div class="big-stat anim" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(27,158,75,.06),rgba(37,99,235,.04))">
-    <div class="big-stat-val verde">48,9%</div>
-    <div class="big-stat-lbl">dizem que a Copa influencia bastante ou muda seus hábitos</div>
-    <div class="big-stat-note">⚽ Quase metade do Brasil muda a rotina pela Copa</div>
-  </div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Copa é evento social, não individual</div><p><strong>73,3% assistem Copa em grupo</strong> (telões 31,4% + casa 26,5% + bares 15,4%). Apenas 11,4% assistem sozinhos. O Centro-Oeste lidera em telões (45,2%) e o Norte em casa com família (30,6%). <strong>Copa é pretexto para reunir pessoas.</strong></p></div>
-    <div class="insight" data-emoji="💚"><div class="insight-title" style="color:var(--verde)">Orgulho + ansiedade dominam</div><p><strong>30,6% sentem ansiedade</strong> e <strong>30,1% sentem orgulho coletivo</strong> — juntos, 60,7% vivem a Copa emocionalmente. No Centro-Oeste, orgulho chega a 38,7%. Jovens 16-24 são os mais orgulhosos (33,3%).</p></div>
-  </div>
-
-  <!-- P4: Conexão em eventos -->
-  <div class="sub-header"><div class="sub-icon" style="background:rgba(37,99,235,.06)">🤝</div><div class="sub-title">Conexão & Pertencimento</div><div class="sub-line"></div></div>
-  <div class="question-card"><div class="question-text">"Em qual tipo de evento você se sente mais conectado(a) às pessoas?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🏟 Tipo de Evento que Conecta</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Festas populares</span><span class="bar-pct verde">33,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Celebrações familiares</span><span class="bar-pct verde">17,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="53"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Shows e festivais</span><span class="bar-pct azul" style="color:var(--azul)">14,6%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="44"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Eventos esportivos</span><span class="bar-pct amarelo" style="color:#D97706">14,4%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="43"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Eventos religiosos</span><span class="bar-pct" style="color:var(--txt3)">7,4%</span><div class="bar-track"><div class="bar-fill" data-w="22" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🤝 Celebrar em grupo é mais importante?</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Muito mais importante</span><span class="bar-pct verde">38,9%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Um pouco mais</span><span class="bar-pct verde">26,2%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="67"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Indiferente</span><span class="bar-pct" style="color:var(--txt3)">15,6%</span><div class="bar-track"><div class="bar-fill" data-w="40" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Não é importante</span><span class="bar-pct" style="color:var(--txt3)">12,2%</span><div class="bar-track"><div class="bar-fill" data-w="31" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="big-stat anim" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(27,158,75,.04))">
-    <div class="big-stat-val azul">59,2%</div>
-    <div class="big-stat-lbl">dizem que eventos presenciais são essenciais ou fortalecem vínculos</div>
-    <div class="big-stat-note">🤝 O brasileiro precisa de presença — digital complementa, não substitui</div>
-  </div>
-  <div class="insight anim" data-emoji="🤝" style="margin-bottom:16px"><div class="insight-title" style="color:var(--azul)">Festas populares são o tecido social do Brasil</div><p><strong>33,3% se sentem mais conectados em festas populares</strong> — quase o dobro de celebrações familiares (17,6%). E <strong>65,1% dizem que celebrar em grupo é mais importante</strong> (38,9% "muito" + 26,2% "um pouco"). No Centro-Oeste, 56,5% dizem "muito mais importante". O Brasil se encontra na festa.</p></div>
-
-  <!-- P5: São João -->
-  <div class="sub-header"><div class="sub-icon" style="background:rgba(217,119,6,.06)">🌽</div><div class="sub-title">São João — A Festa do Brasil</div><div class="sub-line"></div></div>
-  <div class="question-card"><div class="question-text">"Neste ano, o que você mais espera vivenciar no São João?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">🌽 Expectativas para São João</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Diversão c/ amigos/família</span><span class="bar-pct verde">39,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Resgate de tradições</span><span class="bar-pct amarelo" style="color:#D97706">16,9%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="43"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sem expectativas</span><span class="bar-pct" style="color:var(--txt3)">17,0%</span><div class="bar-track"><div class="bar-fill" data-w="43" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Eventos grandes</span><span class="bar-pct azul" style="color:var(--azul)">10,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="26"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Experiências novas</span><span class="bar-pct azul" style="color:var(--azul)">9,2%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="23"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">🔥 Envolvimento emocional com São João</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Muito alto (favorita!)</span><span class="bar-pct verde">40,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Alto (sempre participo)</span><span class="bar-pct verde">17,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="43"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Médio</span><span class="bar-pct" style="color:var(--txt3)">17,1%</span><div class="bar-track"><div class="bar-fill" data-w="42" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Nenhum</span><span class="bar-pct" style="color:var(--txt3)">15,7%</span><div class="bar-track"><div class="bar-fill" data-w="39" style="background:var(--border2)"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Baixo</span><span class="bar-pct" style="color:var(--txt3)">9,6%</span><div class="bar-track"><div class="bar-fill" data-w="24" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="question-card"><div class="question-text">"O que MAIS te atrai nas celebrações de São João?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta única</div></div>
-  <div class="grid g3 anim" style="margin-bottom:16px">
-    <div class="card" style="text-align:center"><div class="card-icon">❤️</div><div class="card-val verde">28,6%</div><div class="card-lbl">Pertencimento</div><div class="card-sub">sentimento #1 no São João</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">👫</div><div class="card-val azul">24,6%</div><div class="card-lbl">Convivência</div><div class="card-sub">estar com pessoas</div></div>
-    <div class="card" style="text-align:center"><div class="card-icon">🎭</div><div class="card-val amarelo">17,0%</div><div class="card-lbl">Emoção</div><div class="card-sub">entretenimento e diversão</div></div>
-  </div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:#D97706">São João: 57,6% com alto envolvimento</div><p><strong>40,3% dizem "muito alto"</strong> e 17,3% "alto" — total de 57,6% altamente engajados. No Nordeste, 43,8% "muito alto" e no Centro-Oeste 55,2%. Festas públicas (35%) e eventos privados (26,5%) dividem preferência. <strong>São João é a 2ª maior paixão festiva do Brasil.</strong></p></div>
-    <div class="insight" data-emoji="❤️"><div class="insight-title" style="color:var(--verde)">Pertencimento é o sentimento #1</div><p><strong>28,6% são atraídos pelo sentimento de pertencimento</strong> e 24,6% pela convivência — juntos, 53,2% vão ao São João para se sentir parte de algo maior. No Centro-Oeste, pertencimento chega a 45,5%. <strong>Não é só festa — é identidade.</strong></p></div>
-  </div>
-
-  <!-- P6: Paixões do brasileiro -->
-  <div class="sub-header"><div class="sub-icon" style="background:rgba(225,29,72,.06)">💚</div><div class="sub-title">As Verdadeiras Paixões do Brasileiro</div><div class="sub-line"></div></div>
-  <div class="question-card"><div class="question-text">"Quais celebrações você considera verdadeiras paixões do brasileiro?"</div><div class="question-meta">Base: 2.500 respondentes · Resposta múltipla</div></div>
-  <div class="grid g2 anim" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-lbl">💚 As Paixões Brasileiras</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">⚽ Futebol</span><span class="bar-pct verde">35,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">👨‍👩‍👧 Datas familiares</span><span class="bar-pct verde">11,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="33"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">🌽 Festas Juninas</span><span class="bar-pct amarelo" style="color:#D97706">11,0%</span><div class="bar-track"><div class="bar-fill bf-amarelo" data-w="31"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">🎵 Música e shows</span><span class="bar-pct azul" style="color:var(--azul)">9,7%</span><div class="bar-track"><div class="bar-fill bf-azul" data-w="27"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">🎭 Carnaval</span><span class="bar-pct coral" style="color:#E11D48">6,7%</span><div class="bar-track"><div class="bar-fill bf-coral" data-w="19"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">🏛 Festas regionais</span><span class="bar-pct" style="color:var(--txt3)">5,4%</span><div class="bar-track"><div class="bar-fill" data-w="15" style="background:var(--border2)"></div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-lbl">⚽ Futebol como paixão — por Região</div>
-      <div class="bars" style="margin-top:12px">
-        <div class="bar-row"><span class="bar-lbl">Centro-Oeste</span><span class="bar-pct verde">55,6%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="100"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sul</span><span class="bar-pct verde">45,3%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="81"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Norte</span><span class="bar-pct verde">44,4%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="80"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Nordeste</span><span class="bar-pct verde">41,5%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="75"></div></div></div>
-        <div class="bar-row"><span class="bar-lbl">Sudeste</span><span class="bar-pct verde">38,7%</span><div class="bar-track"><div class="bar-fill bf-verde" data-w="70"></div></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="grid g2 anim">
-    <div class="insight" data-emoji="⚽"><div class="insight-title" style="color:var(--verde)">Futebol: paixão incontestável</div><p><strong>35,3% elegem futebol</strong> como a maior paixão — 3x mais que o 2º colocado. No Centro-Oeste chega a 55,6%. Entre homens, 51,1% dizem futebol (vs 32,2% mulheres). Independente de gênero, região ou renda, <strong>futebol é unanimidade</strong>.</p></div>
-    <div class="insight" data-emoji="🌽"><div class="insight-title" style="color:#D97706">São João supera Carnaval</div><p><strong>Festas Juninas (11%) superam Carnaval (6,7%)</strong> como paixão declarada. No Nordeste, São João chega a 18,2% — quase empatado com futebol. <strong>A festa mais brasileira não é o Carnaval — é o São João.</strong></p></div>
-  </div>
-</section>
-
-</main>
-
-<!-- FONTE -->
-<div class="fonte">
-  <strong>Fontes:</strong> Comscore Plan Metrix Multi-Platform · Agosto 2025 · Base: 117.264.604 | Pesquisa Proprietária Terra Insights · Março 2026 · 2.500 respondentes<br>
-  <strong>Pesquisa:</strong> Hub de Pesquisas Terra Insights · <strong>Design:</strong> Estudo editorial "Paixões Brasileiras" · Dados auditados Comscore + dados exclusivos Terra Insights
-</div>
-
-
-<!-- GLOSSÁRIO -->
-<div class="glossary-section">
-  <div class="glossary-toggle" onclick="toggleGlossary()">
-    <span class="glossary-title">📋 Glossário & Fontes de Dados</span>
-    <span class="glossary-arrow" id="glossaryArrow">▼</span>
-  </div>
-  <div class="glossary-body" id="glossaryBody">
-    <div style="padding-top:16px;margin-bottom:8px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Fontes de Dados</div>
-
-    <div class="glossary-source">
-      <div class="glossary-source-icon">🌐</div>
-      <div><div class="glossary-source-name">Comscore Plan Metrix Multi-Platform · Agosto 2025</div><div class="glossary-source-desc">Base: 117.264.604 usuários únicos · Brasil · Total Audience · Home & Work · Seções: Esportes, Churrasco & Mesa, Música & Festas, Praia & Lazer, Cerveja & Drinks, Beleza & Vaidade, Família & Lar, Compras & Marcas, Contexto</div></div>
-    </div>
-    <div class="glossary-source">
-      <div class="glossary-source-icon">🔬</div>
-      <div><div class="glossary-source-name">Pesquisa Proprietária Terra Insights · Março 2026</div><div class="glossary-source-desc">2.500 respondentes · Pesquisa quantitativa online · Padrões IBGE · LGPD compliant · Margem de erro ±2 p.p. (95% confiança) · Seção: Pesquisa Exclusiva Paixões & Celebrações</div></div>
-    </div>
-
-    <div style="padding-top:16px;margin-bottom:8px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)">Termos & Métricas</div>
-    <div class="glossary-grid">
-      <div class="glossary-item"><div class="glossary-term">Any Agree</div><div class="glossary-def">Soma de "concordo totalmente" + "concordo parcialmente". Métrica padrão Comscore para mensurar afinidade atitudinal.</div></div>
-      <div class="glossary-item"><div class="glossary-term">L12m / N12m</div><div class="glossary-def">Last 12 months / Next 12 months. Referências temporais para consumo passado e intenção futura.</div></div>
-      <div class="glossary-item"><div class="glossary-term">Multi-Platform</div><div class="glossary-def">Desktop + Mobile (browser + app) com deduplicação de usuários entre dispositivos. Padrão Comscore.</div></div>
-      <div class="glossary-item"><div class="glossary-term">Consumidores (L12m)</div><div class="glossary-def">Respondentes que consumiram determinado produto ou serviço nos últimos 12 meses.</div></div>
-      <div class="glossary-item"><div class="glossary-term">LGPD</div><div class="glossary-def">Lei Geral de Proteção de Dados (Lei nº 13.709/2018). Garante consentimento, anonimização e finalidade específica na coleta de dados.</div></div>
-      <div class="glossary-item"><div class="glossary-term">IBGE</div><div class="glossary-def">Instituto Brasileiro de Geografia e Estatística. Padrões de representatividade demográfica e regional usados na pesquisa proprietária.</div></div>
-      <div class="glossary-item"><div class="glossary-term">Margem de Erro</div><div class="glossary-def">±2 pontos percentuais com 95% de confiança para a pesquisa proprietária (n=2.500).</div></div>
-      <div class="glossary-item"><div class="glossary-term">Pesquisa Proprietária</div><div class="glossary-def">Dados exclusivos coletados pelo Terra Insights, não disponíveis em outras fontes. Metodologia quantitativa online.</div></div>
+    <div class="ins-card" style="border-left-color:var(--terra)">
+      <h4 style="color:var(--terra)">15,2 MM não visitam o UOL</h4>
+      <p><strong>28,5% da audiência Terra é inacessível pelo UOL</strong>. São 15,2 MM — equivalente a mais da metade da audiência total da CNN. Sem o Terra, essas pessoas ficam fora do plano de mídia.</p>
     </div>
   </div>
 </div>
+
+<!-- ═══ MATRIZ CROSS-VISITS ═══ -->
+<div class="section" id="matriz">
+  <div class="sec-badge" style="background:rgba(13,148,136,.08);color:var(--teal)">📊 Matriz Completa</div>
+  <h2 class="sec-title">Quem visita quem: a matriz de sobreposição</h2>
+  <p class="sec-desc">% da audiência de cada portal (coluna) que também visita cada linha. Quanto menor o %, mais exclusiva é a audiência.</p>
+
+  <div class="card anim" style="overflow-x:auto;margin-bottom:14px">
+    <table class="cross-matrix">
+      <thead>
+        <tr><th class="row-header">Visitantes de →</th><th style="color:var(--cnn)">CNN</th><th style="color:var(--globo)">Globo</th><th style="color:var(--ig)">IG</th><th style="color:var(--r7)">R7</th><th style="color:var(--terra)">Terra</th><th style="color:var(--uol)">UOL</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-header">CNN Brasil</td><td class="self">100%</td><td>35,0%</td><td>54,6%</td><td>44,9%</td><td class="highlight">39,1%</td><td>36,4%</td></tr>
+        <tr><td class="row-header">Globo</td><td>88,3%</td><td class="self">100%</td><td>84,1%</td><td>73,1%</td><td class="highlight">75,3%</td><td>74,1%</td></tr>
+        <tr><td class="row-header">IG Portal</td><td>46,1%</td><td>28,1%</td><td class="self">100%</td><td>38,0%</td><td class="highlight">33,9%</td><td>29,0%</td></tr>
+        <tr><td class="row-header">R7 Portal</td><td>74,6%</td><td>48,1%</td><td>74,9%</td><td class="self">100%</td><td class="highlight">51,1%</td><td>50,7%</td></tr>
+        <tr><td class="row-header" style="color:var(--terra)"><strong>Terra Brasil</strong></td><td class="highlight">72,8%</td><td class="highlight">55,5%</td><td class="highlight">74,9%</td><td class="highlight">57,3%</td><td class="self" style="background:rgba(245,124,0,.08)">100%</td><td class="highlight">56,8%</td></tr>
+        <tr><td class="row-header">UOL</td><td>85,1%</td><td>68,7%</td><td>80,4%</td><td>71,4%</td><td class="highlight">71,5%</td><td class="self">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="ins-card" style="border-left-color:var(--teal)">
+      <h4 style="color:var(--teal)">Terra: o portal mais independente</h4>
+      <p>A coluna Terra mostra os menores índices de sobreposição: apenas <strong>39,1% da CNN</strong>, <strong>33,9% do IG</strong> e <strong>51,1% da R7</strong> também visitam o Terra. Isso significa que a audiência do Terra é significativamente diferente e complementar a qualquer plano de mídia.</p>
+    </div>
+    <div class="ins-card" style="border-left-color:var(--gold)">
+      <h4 style="color:var(--gold)">Globo e UOL: alta sobreposição entre si</h4>
+      <p><strong>74,1% da Globo também visita o UOL</strong> e 68,7% do UOL visita a Globo. A sobreposição é altíssima — investir nos dois é pagar duas vezes pela mesma audiência. O Terra oferece <strong>24,7% de audiência que a Globo não alcança</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ARGUMENTO COMERCIAL ═══ -->
+<div class="section" id="argumento">
+  <div class="sec-badge" style="background:rgba(217,119,6,.08);color:var(--gold)">💼 Argumento Comercial</div>
+  <h2 class="sec-title">Por que incluir o Terra no plano de mídia</h2>
+  <p class="sec-desc">Dados Comscore comprovam: o Terra entrega audiência incremental que nenhum outro portal alcança.</p>
+
+  <div class="grid g3 anim" style="margin-bottom:14px">
+    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">vs CNN + IG + R7</div><div class="kpi-val c-terra">13,2 MM</div><div class="kpi-sub">audiência Terra exclusiva vs CNN+IG combinados</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">Reach Incremental</div><div class="kpi-val c-terra">+24,7%</div><div class="kpi-sub">audiência que a Globo não alcança</div></div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">Complemento ao UOL</div><div class="kpi-val c-terra">+15,2 MM</div><div class="kpi-sub">audiência incremental ao UOL</div></div>
+  </div>
+
+  <div class="grid g2 anim" style="margin-bottom:14px">
+    <div class="ins-card" style="border-left-color:var(--terra)">
+      <h4 style="color:var(--terra)">O Terra não é substituível</h4>
+      <p>Nenhum portal consegue replicar a audiência do Terra: <strong>35,3 MM não visitam o IG</strong>, <strong>32,6 MM não visitam a CNN</strong>, <strong>26,1 MM não visitam a R7</strong>. Se o Terra sai do plano, essas dezenas de milhões de brasileiros ficam fora do alcance. <strong>Não é redundância — é reach único.</strong></p>
+    </div>
+    <div class="ins-card" style="border-left-color:var(--gold)">
+      <h4 style="color:var(--gold)">O plano otimizado inclui Terra</h4>
+      <p>Um plano com <strong>Globo + UOL + Terra</strong> maximiza cobertura com mínima sobreposição. A Globo cobre a base massiva (72,5 MM), o UOL complementa (67,2 MM com 74% de sobreposição com Globo), e o <strong>Terra adiciona 13-15 MM de audiência genuinamente incremental</strong> que nenhum dos dois alcança.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer class="footer">
+  <strong>Fonte:</strong> Comscore Cross-Visits · Desktop & Mobile MMX Multi-Platform · Brasil · Fevereiro 2026 · Total Audience<br>
+  <strong>Portais analisados:</strong> CNN Brasil, Globo, IG Portal, R7 Portal, Terra Brasil, UOL · <strong>©2026 Comscore, Inc.</strong>
+</footer>
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-function toggleGlossary(){const b=document.getElementById("glossaryBody"),a=document.getElementById("glossaryArrow");b.classList.toggle("open");a.classList.toggle("open")}
-// Scroll top button
 const st=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{st.classList.toggle('visible',window.scrollY>400)},{passive:true});
-
-// Sidebar nav
-function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sidebarOverlay').classList.add('open')}
-function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open')}
-function navTo(id){
-  closeSidebar();
-  setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},250);
-  document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
-  if(event&&event.target){const btn=event.target.closest('.sidebar-item');if(btn)btn.classList.add('active')}
-}
-
-// Intersection observer for animations
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    e.target.classList.add('vis');
-    e.target.querySelectorAll('.bar-fill[data-w],.trend-seg[data-w]').forEach(f=>{
-      f.style.width=f.dataset.w+'%';
-    });
-    io.unobserve(e.target);
-  });
-},{threshold:0.08});
-document.querySelectorAll('.anim').forEach(el=>io.observe(el));
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('vis');e.target.querySelectorAll('.bar-fill[data-w]').forEach(f=>{f.style.width=f.dataset.w+'%';f.removeAttribute('data-w')});io.unobserve(e.target)})},{threshold:0.08});
+document.querySelectorAll('.anim,.card').forEach(el=>{if(!el.classList.contains('anim'))el.classList.add('anim');io.observe(el)});
 </script>
 </body>
 </html>
