@@ -1,236 +1,757 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cross-Visits · Portais de Notícias · Terra</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;0,800;1,400&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivo Ads Track — Audiências Disponíveis</title>
 <style>
-:root{--bg:#FAFAF8;--bg2:#F0F0EC;--bg3:#E8E8E2;--card:#FFFFFF;--border:#E5E5DF;--border2:#D4D4CC;--txt:#1A1A17;--txt2:#6B6B60;--txt3:#9B9B8F;--shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.03);--terra:#F57C00;--terra2:#FF9800;--globo:#E53935;--uol:#6A1B9A;--r7:#1E88E5;--cnn:#CC0000;--ig:#43A047;--accent:#F57C00;--teal:#0D9488;--gold:#D97706}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
-.masthead{background:linear-gradient(160deg,#1A0A00 0%,#2D1500 40%,#3D2000 100%);padding:48px 32px 40px;position:relative;overflow:hidden}
-.masthead::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 80%,rgba(245,124,0,.12) 0%,transparent 60%)}
-.masthead-inner{max-width:1120px;margin:0 auto;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
-.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.eyebrow-line{width:32px;height:2px;background:var(--terra)}
-.eyebrow-text{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
-.brand-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:800;color:#F5F5F0;line-height:1.15;margin-bottom:6px}
-.brand-sub{font-size:13px;color:rgba(245,245,240,.45);font-weight:500}
-.hkpi-row{display:flex;gap:16px;flex-wrap:wrap}
-.hkpi{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(245,124,0,.12);border-radius:12px;padding:14px 20px;text-align:center;min-width:120px}
-.hkpi-val{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:800;color:var(--terra)}
-.hkpi-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,245,240,.5);margin-bottom:2px}
-.hkpi-sub{font-size:10px;color:rgba(245,245,240,.35);margin-top:2px}
-.hkpi-logo{height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:.7}
-.page{max-width:1120px;margin:0 auto;padding:0 32px 64px}
-.section{padding:40px 0 0;border-top:1px solid var(--border)}
-.section:first-child{border-top:none}
-.sec-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
-.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.5vw,34px);font-weight:800;color:var(--txt);line-height:1.2;margin-bottom:6px}
-.sec-desc{font-size:13px;color:var(--txt2);max-width:700px;margin-bottom:28px}
-.grid{display:grid;gap:14px}
-.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
-@media(max-width:900px){.g3,.g4,.g6{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.g2,.g3,.g4,.g6{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
-.card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.06)}
-.kpi-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:6px}
-.kpi-val{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:800;line-height:1.1}
-.kpi-sub{font-size:11px;color:var(--txt2);margin-top:4px}
-.c-terra{color:var(--terra)}.c-globo{color:var(--globo)}.c-uol{color:var(--uol)}.c-r7{color:var(--r7)}.c-cnn{color:var(--cnn)}.c-ig{color:var(--ig)}.c-teal{color:var(--teal)}.c-gold{color:var(--gold)}
-.sub-header{display:flex;align-items:center;gap:10px;margin:28px 0 16px}
-.sub-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:rgba(245,124,0,.06)}
-.sub-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--txt)}
-.sub-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
-.bars{display:flex;flex-direction:column;gap:8px}
-.bar-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
-.bar-lbl{font-size:12px;font-weight:600;color:var(--txt)}
-.bar-pct{font-family:'Space Mono',monospace;font-size:12px;font-weight:700}
-.bar-track{height:8px;background:var(--bg2);border-radius:99px;overflow:hidden}
-.bar-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.4,0,.2,1);width:0}
-.bf-terra{background:linear-gradient(90deg,var(--terra),var(--terra2))}.bf-globo{background:linear-gradient(90deg,var(--globo),#EF5350)}.bf-uol{background:linear-gradient(90deg,var(--uol),#8E24AA)}.bf-r7{background:linear-gradient(90deg,var(--r7),#42A5F5)}.bf-cnn{background:linear-gradient(90deg,var(--cnn),#E53935)}.bf-ig{background:linear-gradient(90deg,var(--ig),#66BB6A)}.bf-teal{background:linear-gradient(90deg,var(--teal),#2DD4BF)}.bf-gold{background:linear-gradient(90deg,var(--gold),#FACC15)}
-.bar-item{margin-bottom:4px}
-.ins-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--terra);border-radius:14px;padding:20px}
-.ins-card h4{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;margin-bottom:6px}
-.ins-card p{font-size:12px;color:var(--txt2);line-height:1.7}
-.big-stat{text-align:center;padding:32px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)}
-.big-stat-val{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,7vw,60px);font-weight:800;line-height:1}
-.big-stat-lbl{font-size:14px;color:var(--txt2);margin-top:8px;max-width:500px;margin-left:auto;margin-right:auto}
-.big-stat-note{font-size:11px;color:var(--txt3);margin-top:6px}
-.cross-matrix{width:100%;border-collapse:collapse;font-size:11px}
-.cross-matrix th{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:8px 6px;text-align:center;border-bottom:2px solid var(--border)}
-.cross-matrix td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--border);font-weight:600;font-family:'Space Mono',monospace;font-size:10px}
-.cross-matrix .row-header{text-align:left;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--txt);font-size:12px}
-.cross-matrix .highlight{background:rgba(245,124,0,.06);color:var(--terra);font-weight:700}
-.cross-matrix .self{background:var(--bg2);color:var(--txt3)}
-.footer{max-width:1120px;margin:0 auto;padding:24px 32px 48px;text-align:center;font-size:10px;color:var(--txt3);line-height:1.8}
-.footer strong{color:var(--txt2)}
-.anim{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.anim.vis{opacity:1;transform:none}
-.scroll-top{position:fixed;right:24px;bottom:24px;width:44px;height:44px;border-radius:50%;background:var(--terra);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 4px 16px rgba(245,124,0,.3);opacity:0;transform:translateY(20px);transition:all .3s;z-index:99}
-.scroll-top.visible{opacity:1;transform:translateY(0)}
-@media print{.scroll-top{display:none!important}}
+  @import url('https://fonts.googleapis.com/css2?family=Vivo+Sans:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Barlow+Condensed:wght@600;700;800&display=swap');
+
+  :root {
+    --vivo-purple: #660099;
+    --vivo-purple-dark: #4a006e;
+    --vivo-purple-light: #9b2fc8;
+    --vivo-grape: #2d0042;
+    --vivo-white: #ffffff;
+    --vivo-offwhite: #f5f0fa;
+    --vivo-gray: #e8e0f0;
+    --accent-magenta: #cc00aa;
+    --accent-cyan: #00b8d4;
+    --text-dark: #1a0028;
+    --text-mid: #5a3a72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--vivo-grape);
+    color: var(--vivo-white);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--vivo-grape) 0%, var(--vivo-purple-dark) 40%, var(--vivo-purple) 100%);
+    padding: 56px 60px 48px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--accent-magenta);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(204,0,170,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(102,0,153,0.4) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+    position: relative; z-index: 2;
+  }
+
+  /* Vivo logo SVG inline */
+  .vivo-logo-svg {
+    height: 44px;
+  }
+
+  .logo-divider {
+    width: 2px;
+    height: 40px;
+    background: rgba(255,255,255,0.35);
+  }
+
+  .logo-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-magenta);
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(38px, 5vw, 62px);
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--vivo-white);
+    margin-bottom: 16px;
+  }
+
+  .hero-title span {
+    color: var(--accent-magenta);
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 18px 24px;
+    backdrop-filter: blur(8px);
+    min-width: 160px;
+  }
+
+  .hero-stat .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--vivo-white);
+    line-height: 1;
+  }
+
+  .hero-stat .num span { color: var(--accent-magenta); }
+
+  .hero-stat .lbl {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  /* ── BODY ── */
+  .page-body {
+    background: var(--vivo-offwhite);
+    color: var(--text-dark);
+    padding: 48px 60px 80px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    margin-top: 52px;
+  }
+
+  .section-header:first-child { margin-top: 0; }
+
+  .section-badge {
+    background: var(--vivo-purple);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--vivo-purple-dark);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--vivo-gray), transparent);
+  }
+
+  /* ── TABLE ── */
+  .audience-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(102,0,153,0.07);
+    margin-bottom: 8px;
+  }
+
+  .audience-table thead tr {
+    background: linear-gradient(90deg, var(--vivo-purple-dark), var(--vivo-purple));
+  }
+
+  .audience-table thead th {
+    padding: 14px 18px;
+    text-align: left;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .audience-table thead th:last-child,
+  .audience-table thead th:nth-child(2),
+  .audience-table thead th:nth-child(3) {
+    text-align: right;
+  }
+
+  .audience-table tbody tr {
+    border-bottom: 1px solid #f0eaf7;
+    transition: background 0.15s;
+  }
+
+  .audience-table tbody tr:hover {
+    background: #fdf7ff;
+  }
+
+  .audience-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .audience-table tbody td {
+    padding: 11px 18px;
+    font-size: 13.5px;
+    color: var(--text-dark);
+  }
+
+  .audience-table tbody td:nth-child(2),
+  .audience-table tbody td:nth-child(3) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--vivo-purple);
+  }
+
+  .audience-table tbody td.no-data {
+    color: #bbb;
+    font-style: italic;
+  }
+
+  .row-highlight {
+    background: linear-gradient(90deg, #fdf0ff, #fff) !important;
+  }
+
+  .row-highlight td:first-child {
+    font-weight: 600;
+    color: var(--vivo-purple-dark);
+  }
+
+  /* Bar visual */
+  .bar-cell { width: 120px; }
+  .bar-wrap {
+    height: 6px;
+    background: #ede8f5;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--vivo-purple), var(--accent-magenta));
+  }
+
+  /* ── GRID CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .aud-card {
+    background: #fff;
+    border: 1px solid var(--vivo-gray);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 1px 8px rgba(102,0,153,0.05);
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aud-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--vivo-purple), var(--accent-magenta));
+    border-radius: 0;
+  }
+
+  .aud-card:hover {
+    box-shadow: 0 4px 20px rgba(102,0,153,0.12);
+    transform: translateY(-2px);
+  }
+
+  .card-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+    line-height: 1.4;
+    padding-left: 10px;
+  }
+
+  .card-metrics {
+    display: flex;
+    gap: 12px;
+    padding-left: 10px;
+  }
+
+  .card-metric {
+    flex: 1;
+  }
+
+  .card-metric .val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--vivo-purple);
+    line-height: 1;
+  }
+
+  .card-metric .tag {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-top: 2px;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--vivo-grape);
+    padding: 36px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    border-top: 3px solid var(--vivo-purple);
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .footer-logo {
+    opacity: 0.5;
+    height: 28px;
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .hero { background: #660099 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
 </style>
 </head>
 <body>
 
-<header class="masthead">
-  <div class="masthead-inner">
-    <div>
-      <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Comscore Cross-Visits · Fevereiro 2026</span></div>
-      <h1 class="brand-title">Audiência Exclusiva:<br>Cross-Visits entre Portais</h1>
-      <p class="brand-sub">Desktop & Mobile MMX Multi-Platform · Brasil · Total Audience · Top Properties</p>
-    </div>
-    <div class="hkpi-row">
-      <div class="hkpi"><div class="hkpi-lbl"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Terra_Logo.svg/500px-Terra_Logo.svg.png" class="hkpi-logo" crossorigin="anonymous" referrerpolicy="no-referrer"></div><div class="hkpi-val">53,4<span style="font-size:14px"> MM</span></div><div class="hkpi-sub">visitantes únicos</div></div>
-      <div class="hkpi"><div class="hkpi-lbl">Audiência Exclusiva</div><div class="hkpi-val" style="color:#2DD4BF">13,2<span style="font-size:14px"> MM</span></div><div class="hkpi-sub">não alcançados pela Globo</div></div>
-      <div class="hkpi"><div class="hkpi-lbl">Excl. vs UOL</div><div class="hkpi-val" style="color:#2DD4BF">15,2<span style="font-size:14px"> MM</span></div><div class="hkpi-sub">não visitam o UOL</div></div>
-    </div>
-  </div>
-</header>
-
-<div class="page">
-
-<!-- ═══ PANORAMA ═══ -->
-<div class="section" id="panorama">
-  <div class="sec-badge" style="background:rgba(245,124,0,.08);color:var(--terra)">🌐 Panorama Geral</div>
-  <h2 class="sec-title">6 portais, 1 mapa de audiência</h2>
-  <p class="sec-desc">Comscore Cross-Visits · Fevereiro 2026 · Multi-Platform · Audiência compartilhada e exclusiva entre os principais portais de notícias do Brasil.</p>
-
-  <div class="grid g6 anim" style="margin-bottom:14px">
-    <div class="card" style="text-align:center;border-top:3px solid var(--globo)"><div class="kpi-lbl">Globo</div><div class="kpi-val c-globo">72,5</div><div class="kpi-sub">MM visitantes</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--uol)"><div class="kpi-lbl">UOL</div><div class="kpi-val c-uol">67,2</div><div class="kpi-sub">MM visitantes</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">Terra</div><div class="kpi-val c-terra">53,4</div><div class="kpi-sub">MM visitantes</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--r7)"><div class="kpi-lbl">R7</div><div class="kpi-val c-r7">47,7</div><div class="kpi-sub">MM visitantes</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--cnn)"><div class="kpi-lbl">CNN</div><div class="kpi-val c-cnn">28,7</div><div class="kpi-sub">MM visitantes</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--ig)"><div class="kpi-lbl">IG</div><div class="kpi-val c-ig">24,2</div><div class="kpi-sub">MM visitantes</div></div>
-  </div>
-</div>
-
-<!-- ═══ TERRA: AUDIÊNCIA EXCLUSIVA ═══ -->
-<div class="section" id="exclusiva">
-  <div class="sec-badge" style="background:rgba(245,124,0,.08);color:var(--terra)">🔥 Diferencial Terra</div>
-  <h2 class="sec-title">A audiência do Terra que ninguém mais alcança</h2>
-  <p class="sec-desc">Milhões de brasileiros visitam o Terra e NÃO visitam os portais concorrentes. Essa audiência exclusiva é inacessível por qualquer outro veículo.</p>
-
-  <div class="big-stat anim" style="margin-bottom:14px;border-top:3px solid var(--terra)">
-    <div class="big-stat-val c-terra">32,6 MM</div>
-    <div class="big-stat-lbl">visitam o Terra e <strong>NÃO</strong> visitam a CNN Brasil</div>
-    <div class="big-stat-note">60,9% da audiência Terra é exclusiva vs CNN</div>
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="logo-area">
+    <!-- Vivo logo SVG -->
+    <svg class="vivo-logo-svg" viewBox="0 0 120 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="120" height="44" rx="8" fill="white"/>
+      <text x="12" y="31" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#660099" letter-spacing="-1">vivo</text>
+      <circle cx="102" cy="22" r="12" fill="#660099"/>
+      <circle cx="102" cy="22" r="8" fill="#cc00aa"/>
+    </svg>
+    <div class="logo-divider"></div>
+    <div class="logo-label">Ads Track</div>
   </div>
 
-  <div class="sub-header"><div class="sub-icon">🔒</div><div class="sub-title">Audiência Terra NÃO Alcançada pelos Concorrentes</div><div class="sub-line"></div></div>
-  <div class="grid g2 anim" style="margin-bottom:14px">
-    <div class="card">
-      <div class="kpi-lbl" style="margin-bottom:16px">🔒 % do Terra que NÃO visita cada concorrente</div>
-      <div class="bars">
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs IG Portal</span><span class="bar-pct c-terra">66,1% · 35,3 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="66.1"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs CNN Brasil</span><span class="bar-pct c-terra">60,9% · 32,6 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="60.9"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs R7 Portal</span><span class="bar-pct c-terra">48,9% · 26,1 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="48.9"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs UOL</span><span class="bar-pct c-terra">28,5% · 15,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="28.5"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">vs Globo</span><span class="bar-pct c-terra">24,7% · 13,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="24.7"></div></div></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">📡 Relatório de Audiências</div>
+    <h1 class="hero-title">Vivo Ads <span>Track</span><br>Audiências Disponíveis</h1>
+    <p class="hero-subtitle">
+      Catálogo completo de segmentos de audiência disponíveis na plataforma Vivo Ads Track, com alcance em Display e YouTube.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">190<span>M</span></div>
+        <div class="lbl">Alcance Display Máx.</div>
       </div>
-    </div>
-    <div class="card">
-      <div class="kpi-lbl" style="margin-bottom:16px">📊 Comparativo: exclusividade de cada portal vs Globo</div>
-      <div class="bars">
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">R7 vs Globo</span><span class="bar-pct c-r7">26,9% · 12,8 MM</span></div><div class="bar-track"><div class="bar-fill bf-r7" data-w="26.9"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">Terra vs Globo</span><span class="bar-pct c-terra">24,7% · 13,2 MM</span></div><div class="bar-track"><div class="bar-fill bf-terra" data-w="24.7"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">UOL vs Globo</span><span class="bar-pct c-uol">25,9% · 17,4 MM</span></div><div class="bar-track"><div class="bar-fill bf-uol" data-w="25.9"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">IG vs Globo</span><span class="bar-pct c-ig">15,9% · 3,8 MM</span></div><div class="bar-track"><div class="bar-fill bf-ig" data-w="15.9"></div></div></div>
-        <div class="bar-item"><div class="bar-row"><span class="bar-lbl">CNN vs Globo</span><span class="bar-pct c-cnn">11,7% · 3,4 MM</span></div><div class="bar-track"><div class="bar-fill bf-cnn" data-w="11.7"></div></div></div>
+      <div class="hero-stat">
+        <div class="num">99<span>M</span></div>
+        <div class="lbl">Usuários YouTube Máx.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">250<span>+</span></div>
+        <div class="lbl">Segmentos Ativos</div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="grid g3 anim" style="margin-bottom:14px">
-    <div class="ins-card" style="border-left-color:var(--terra)">
-      <h4 style="color:var(--terra)">35,3 MM não visitam o IG</h4>
-      <p><strong>66,1% da audiência Terra é exclusiva vs IG</strong>. São 35,3 MM de pessoas que o IG simplesmente não alcança. Campanhas no Terra atingem mais que o dobro da audiência total do IG.</p>
-    </div>
-    <div class="ins-card" style="border-left-color:var(--terra)">
-      <h4 style="color:var(--terra)">32,6 MM não visitam a CNN</h4>
-      <p><strong>60,9% da audiência Terra é exclusiva vs CNN</strong>. A CNN alcança 28,7 MM no total — o Terra tem mais audiência exclusiva vs CNN (32,6 MM) do que a CNN tem de audiência total.</p>
-    </div>
-    <div class="ins-card" style="border-left-color:var(--terra)">
-      <h4 style="color:var(--terra)">15,2 MM não visitam o UOL</h4>
-      <p><strong>28,5% da audiência Terra é inacessível pelo UOL</strong>. São 15,2 MM — equivalente a mais da metade da audiência total da CNN. Sem o Terra, essas pessoas ficam fora do plano de mídia.</p>
-    </div>
+<!-- ══ BODY ══ -->
+<div class="page-body">
+
+  <!-- ══ SEÇÃO 1: TOP ALCANCE ══ -->
+  <div class="section-header">
+    <div class="section-badge">01</div>
+    <div class="section-title">Grandes Alcances — Base & Terra</div>
+    <div class="section-line"></div>
+  </div>
+
+  <table class="audience-table">
+    <thead>
+      <tr>
+        <th>Audiência</th>
+        <th>Display</th>
+        <th>YouTube</th>
+        <th class="bar-cell">Escala</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight"><td>All Users of Terra Brasil GA4</td><td>190.000.000</td><td>99.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>All Users of Terra Brasil First Party Data</td><td>150.000.000</td><td>81.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:79%"></div></div></td></tr>
+      <tr><td>Users who have not seen web interstitials</td><td>150.000.000</td><td>58.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:79%"></div></div></td></tr>
+      <tr><td>Users who viewed web interstitials</td><td>98.000.000</td><td>55.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:52%"></div></div></td></tr>
+      <tr><td>Video Views</td><td>60.000.000</td><td>32.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:32%"></div></div></td></tr>
+      <tr><td>Casual Readers</td><td>42.000.000</td><td>24.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:22%"></div></div></td></tr>
+      <tr><td>Loyal Readers</td><td>35.000.000</td><td>19.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
+      <tr><td>Brand Lovers</td><td>19.300.000</td><td>17.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:10%"></div></div></td></tr>
+      <tr><td>Partner Type Interno</td><td>32.000.000</td><td>26.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:17%"></div></div></td></tr>
+      <tr><td>Partner Type Interno & Brand Lovers</td><td>8.200.000</td><td>8.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:4%"></div></div></td></tr>
+      <tr><td>FPD (GA4) — MDivo_Cliente Vivo</td><td>37.000.000</td><td>29.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:19%"></div></div></td></tr>
+      <tr><td>FPD — Usuários Logados</td><td>8.700.000</td><td>7.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:5%"></div></div></td></tr>
+      <tr><td>FPD — VIVO users</td><td>350.000</td><td>200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SEÇÃO 2: FLAT ALCANCE TOTAL / COMPORTAMENTAIS ══ -->
+  <div class="section-header">
+    <div class="section-badge">02</div>
+    <div class="section-title">Segmentos de Interesse — Comportamentais</div>
+    <div class="section-line"></div>
+  </div>
+
+  <table class="audience-table">
+    <thead>
+      <tr>
+        <th>Audiência</th>
+        <th>Display</th>
+        <th>YouTube</th>
+        <th class="bar-cell">Escala</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight"><td>FLAT — Alcance Total</td><td>120.000.000</td><td>42.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>Comunicação Tradicional</td><td>110.000.000</td><td>40.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:92%"></div></div></td></tr>
+      <tr><td>Redes Sociais Tradicionais</td><td>110.000.000</td><td>40.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:92%"></div></div></td></tr>
+      <tr><td>Redes Sociais Específicas</td><td>100.000.000</td><td>38.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:83%"></div></div></td></tr>
+      <tr><td>Redes Sociais Vídeo</td><td>100.000.000</td><td>39.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:83%"></div></div></td></tr>
+      <tr><td>Usuários Android</td><td>98.000.000</td><td>36.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:82%"></div></div></td></tr>
+      <tr><td>Videoconferência</td><td>96.000.000</td><td>36.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:80%"></div></div></td></tr>
+      <tr><td>Consumo Digital</td><td>95.000.000</td><td>35.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:79%"></div></div></td></tr>
+      <tr><td>Compra Online</td><td>91.000.000</td><td>33.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:76%"></div></div></td></tr>
+      <tr><td>RCS</td><td>86.000.000</td><td>32.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
+      <tr><td>Usuários 4G</td><td>83.000.000</td><td>29.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:69%"></div></div></td></tr>
+      <tr><td>Bancos Tradicionais</td><td>81.000.000</td><td>31.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:68%"></div></div></td></tr>
+      <tr><td>Streaming Música</td><td>75.000.000</td><td>29.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:63%"></div></div></td></tr>
+      <tr><td>Fintechs</td><td>73.000.000</td><td>26.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:61%"></div></div></td></tr>
+      <tr><td>Pagamento Digital</td><td>72.000.000</td><td>27.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:60%"></div></div></td></tr>
+      <tr><td>Carentes</td><td>67.000.000</td><td>24.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:56%"></div></div></td></tr>
+      <tr><td>Notícias</td><td>67.000.000</td><td>26.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:56%"></div></div></td></tr>
+      <tr><td>Fabricantes de Aparelhos</td><td>60.000.000</td><td>22.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:50%"></div></div></td></tr>
+      <tr><td>Streaming Vídeo</td><td>57.000.000</td><td>22.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:48%"></div></div></td></tr>
+      <tr><td>Com Recarga 3 Meses</td><td>55.000.000</td><td>17.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:46%"></div></div></td></tr>
+      <tr><td>Baixo Risco Serasa</td><td>53.000.000</td><td>20.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:44%"></div></div></td></tr>
+      <tr><td>Apostas</td><td>48.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div></td></tr>
+      <tr><td>Usuários Samsung</td><td>48.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div></td></tr>
+      <tr><td>Usuários Meu Vivo</td><td>44.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:37%"></div></div></td></tr>
+      <tr><td>Alto Risco Serasa</td><td>43.000.000</td><td>14.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div></td></tr>
+      <tr><td>Usuários 5G</td><td>43.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div></td></tr>
+      <tr><td>Inadimplentes</td><td>41.000.000</td><td>12.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:34%"></div></div></td></tr>
+      <tr><td>Estoura Pacote de Dados</td><td>40.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:33%"></div></div></td></tr>
+      <tr><td>Apps Bancos</td><td>38.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:32%"></div></div></td></tr>
+      <tr><td>Nova Classe Média</td><td>33.000.000</td><td>12.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:28%"></div></div></td></tr>
+      <tr><td>Delivery</td><td>30.000.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:25%"></div></div></td></tr>
+      <tr><td>Loja Gamer</td><td>29.000.000</td><td>10.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:24%"></div></div></td></tr>
+      <tr><td>Comparador de Celular</td><td>28.000.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:23%"></div></div></td></tr>
+      <tr><td>Esportes Diversos</td><td>26.000.000</td><td>10.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:22%"></div></div></td></tr>
+      <tr><td>Apps Finanças</td><td>25.000.000</td><td>10.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
+      <tr><td>Usuários Apple</td><td>25.000.000</td><td>8.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
+      <tr><td>Usuários Motorola</td><td>25.000.000</td><td>9.600.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
+      <tr><td>Usuários iOS</td><td>25.000.000</td><td>8.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
+      <tr><td>Bancos Específicos</td><td>23.000.000</td><td>8.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:19%"></div></div></td></tr>
+      <tr><td>Usuários Xiaomi</td><td>22.000.000</td><td>8.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
+      <tr><td>Adulto Digital Classe Média</td><td>21.000.000</td><td>7.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
+      <tr><td>Concorrência</td><td>21.000.000</td><td>8.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
+      <tr><td>Beleza</td><td>20.000.000</td><td>7.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:17%"></div></div></td></tr>
+      <tr><td>Sênior Vida Confortável</td><td>20.000.000</td><td>9.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:17%"></div></div></td></tr>
+      <tr><td>Celular Top de Linha</td><td>18.000.000</td><td>6.700.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:15%"></div></div></td></tr>
+      <tr><td>Portais Gamers</td><td>18.000.000</td><td>6.200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:15%"></div></div></td></tr>
+      <tr><td>Gamers</td><td>16.000.000</td><td>6.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
+      <tr><td>Juventude Trabalhadora</td><td>16.000.000</td><td>5.600.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
+      <tr><td>Médio Risco Serasa</td><td>16.000.000</td><td>5.700.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SEÇÃO 3: DEMOGRÁFICOS ══ -->
+  <div class="section-header">
+    <div class="section-badge">03</div>
+    <div class="section-title">Segmentos Demográficos</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="aud-card"><div class="card-name">Ciente Casa</div><div class="card-metrics"><div class="card-metric"><div class="val">58M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">21M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Plano Controle</div><div class="card-metrics"><div class="card-metric"><div class="val">18M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">12M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Púrpura</div><div class="card-metrics"><div class="card-metric"><div class="val">17M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">11M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Classe C</div><div class="card-metrics"><div class="card-metric"><div class="val">15M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">9,9M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Gênero Masculino</div><div class="card-metrics"><div class="card-metric"><div class="val">15M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">9,5M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Gênero Feminino</div><div class="card-metrics"><div class="card-metric"><div class="val">14M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">8,9M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Plano Pré</div><div class="card-metrics"><div class="card-metric"><div class="val">12M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">7,4M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Score Serasa Baixo Risco</div><div class="card-metrics"><div class="card-metric"><div class="val">12M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">8,2M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Silver</div><div class="card-metrics"><div class="card-metric"><div class="val">3M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,9M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Gold</div><div class="card-metrics"><div class="card-metric"><div class="val">2M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,3M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Platinum</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">630K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Plano Pós</div><div class="card-metrics"><div class="card-metric"><div class="val">4M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">2,5M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Plano Easy</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">690K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Fibra BL</div><div class="card-metrics"><div class="card-metric"><div class="val">5,8M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">2,4M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Classe B</div><div class="card-metrics"><div class="card-metric"><div class="val">8,4M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,1M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Classe A</div><div class="card-metrics"><div class="card-metric"><div class="val">1,2M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">680K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Classe D</div><div class="card-metrics"><div class="card-metric"><div class="val">8,6M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,4M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Classe E</div><div class="card-metrics"><div class="card-metric"><div class="val">1,4M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1M</div><div class="tag">YouTube</div></div></div></div>
+  </div>
+
+  <!-- ══ SEÇÃO: FAIXAS ETÁRIAS ══ -->
+  <div class="section-header">
+    <div class="section-badge">04</div>
+    <div class="section-title">Segmentos por Faixa Etária</div>
+    <div class="section-line"></div>
+  </div>
+
+  <table class="audience-table">
+    <thead>
+      <tr><th>Faixa Etária</th><th>Display</th><th>YouTube</th><th class="bar-cell">Escala</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>18 a 20 anos</td><td>530.000</td><td>430.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:14%"></div></div></td></tr>
+      <tr><td>21 a 24 anos</td><td>2.000.000</td><td>1.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:52%"></div></div></td></tr>
+      <tr><td>25 a 29 anos</td><td>3.500.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:90%"></div></div></td></tr>
+      <tr class="row-highlight"><td>30 a 34 anos</td><td>3.700.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:95%"></div></div></td></tr>
+      <tr class="row-highlight"><td>35 a 39 anos</td><td>3.900.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr class="row-highlight"><td>40 a 44 anos</td><td>3.900.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>45 a 49 anos</td><td>3.500.000</td><td>2.100.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:90%"></div></div></td></tr>
+      <tr><td>50 a 54 anos</td><td>2.800.000</td><td>1.700.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
+      <tr><td>55 a 59 anos</td><td>2.300.000</td><td>1.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:59%"></div></div></td></tr>
+      <tr><td>60 a 64 anos</td><td>2.000.000</td><td>1.200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:51%"></div></div></td></tr>
+      <tr><td>65 a 69 anos</td><td>1.500.000</td><td>930.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:38%"></div></div></td></tr>
+      <tr><td>70 a 74 anos</td><td>1.000.000</td><td>620.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:26%"></div></div></td></tr>
+      <tr><td>75 anos ou mais</td><td>1.000.000</td><td>610.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:26%"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SEÇÃO 5: DDD / UF ══ -->
+  <div class="section-header">
+    <div class="section-badge">05</div>
+    <div class="section-title">Segmentos por DDD / UF</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="aud-card"><div class="card-name">DDD/UF São Paulo (SP)</div><div class="card-metrics"><div class="card-metric"><div class="val">9M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,6M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Rio de Janeiro (RJ)</div><div class="card-metrics"><div class="card-metric"><div class="val">2,7M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,7M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Minas Gerais (MG)</div><div class="card-metrics"><div class="card-metric"><div class="val">4,6M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">2,8M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Bahia (BA)</div><div class="card-metrics"><div class="card-metric"><div class="val">1,7M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Pernambuco (PE)</div><div class="card-metrics"><div class="card-metric"><div class="val">990K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">610K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Ceará (CE)</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">680K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Pará (PA)</div><div class="card-metrics"><div class="card-metric"><div class="val">1,1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">690K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Rio Grande do Sul (RS)</div><div class="card-metrics"><div class="card-metric"><div class="val">2,3M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,4M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Paraná (PR)</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">650K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Santa Catarina (SC)</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">640K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Amazonas (AM)</div><div class="card-metrics"><div class="card-metric"><div class="val">710K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">460K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Goiás (GO)</div><div class="card-metrics"><div class="card-metric"><div class="val">730K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">440K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Mato Grosso (MT)</div><div class="card-metrics"><div class="card-metric"><div class="val">800K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">460K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Dist. Federal (DF)</div><div class="card-metrics"><div class="card-metric"><div class="val">700K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">470K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Maranhão (MA)</div><div class="card-metrics"><div class="card-metric"><div class="val">660K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">390K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Espírito Santo (ES)</div><div class="card-metrics"><div class="card-metric"><div class="val">1,3M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">770K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Acre (AC)</div><div class="card-metrics"><div class="card-metric"><div class="val">8,5M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,4M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">DDD/UF Mato Grosso do Sul (MS)</div><div class="card-metrics"><div class="card-metric"><div class="val">560K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">320K</div><div class="tag">YouTube</div></div></div></div>
+  </div>
+
+  <!-- ══ SEÇÃO 6: EVENTOS MAPEADOS ══ -->
+  <div class="section-header">
+    <div class="section-badge">06</div>
+    <div class="section-title">Eventos Mapeados — Vivo Ads Track</div>
+    <div class="section-line"></div>
+  </div>
+
+  <table class="audience-table">
+    <thead>
+      <tr><th>Evento</th><th>Display</th><th>YouTube</th><th class="bar-cell">Escala</th></tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight"><td>Rock In Rio</td><td>89.000</td><td>37.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>The Town 2025</td><td>54.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:61%"></div></div></td></tr>
+      <tr><td>Beauty Fair 2025</td><td>54.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:61%"></div></div></td></tr>
+      <tr><td>Carnaval Sambódromo SP (Anhembi)</td><td>59.000</td><td>27.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:66%"></div></div></td></tr>
+      <tr><td>Carnaval Sapucaí (RJ)</td><td>55.000</td><td>25.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:62%"></div></div></td></tr>
+      <tr><td>Lollapalooza</td><td>48.000</td><td>20.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:54%"></div></div></td></tr>
+      <tr><td>Parada do Orgulho LGBTQIA+</td><td>58.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:65%"></div></div></td></tr>
+      <tr><td>Festa do Peão de Barretos</td><td>33.000</td><td>13.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:37%"></div></div></td></tr>
+      <tr><td>BGS (Brasil Game Show)</td><td>40.000</td><td>16.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:45%"></div></div></td></tr>
+      <tr><td>Gamescom Latam</td><td>67.000</td><td>31.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:75%"></div></div></td></tr>
+      <tr><td>Tomorrowland</td><td>10.000</td><td>6.700</td><td><div class="bar-wrap"><div class="bar-fill" style="width:11%"></div></div></td></tr>
+      <tr><td>CCXP</td><td>18.000</td><td>8.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:20%"></div></div></td></tr>
+      <tr><td>Oktoberfest Blumenau</td><td>18.000</td><td>8.300</td><td><div class="bar-wrap"><div class="bar-fill" style="width:20%"></div></div></td></tr>
+      <tr><td>São Paulo Fashion Week 2024</td><td>7.000</td><td>3.300</td><td><div class="bar-wrap"><div class="bar-fill" style="width:8%"></div></div></td></tr>
+      <tr><td>Festival ITU 2025</td><td>19.000</td><td>8.400</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
+      <tr><td>Terra Verão 2025</td><td>26.000</td><td>12.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:29%"></div></div></td></tr>
+      <tr><td>SBC Summit RJ 2025</td><td>14.000</td><td>6.600</td><td><div class="bar-wrap"><div class="bar-fill" style="width:16%"></div></div></td></tr>
+      <tr><td>Agrishow</td><td>64.000</td><td>27.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
+      <tr><td>Expointer</td><td>51.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:57%"></div></div></td></tr>
+      <tr><td>Visitantes Aeroporto Guarulhos (Cumbica)</td><td>690.000</td><td>290.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>Visitantes Aeroporto Congonhas</td><td>400.000</td><td>170.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:58%"></div></div></td></tr>
+      <tr><td>Público Sala VIP Guarulhos</td><td>140.000</td><td>60.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:20%"></div></div></td></tr>
+      <tr><td>Público Sala VIP Congonhas</td><td>64.000</td><td>27.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:9%"></div></div></td></tr>
+      <tr><td>Clientes Transitantes Shoppings Luxo</td><td>330.000</td><td>140.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:48%"></div></div></td></tr>
+      <tr><td>Possíveis Frequentadores Carrefour SP</td><td>500.000</td><td>230.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
+      <tr><td>Frequentadores Hopi Hari</td><td>93.000</td><td>39.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
+      <tr><td>Possíveis Clientes Postos Vibra</td><td>2.700.000</td><td>1.200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>Show Metallica</td><td>5.400</td><td>2.500</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
+      <tr><td>Show Maroon 5</td><td>2.800</td><td>1.100</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
+      <tr><td>NFL SP</td><td>1.200</td><td>500</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SEÇÃO 7: TIMES DE FUTEBOL ══ -->
+  <div class="section-header">
+    <div class="section-badge">07</div>
+    <div class="section-title">Times de Futebol — Login Terra Rachas</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="aud-card"><div class="card-name">Flamengo</div><div class="card-metrics"><div class="card-metric"><div class="val">41K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">30K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Corinthians</div><div class="card-metrics"><div class="card-metric"><div class="val">34K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">31K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Palmeiras</div><div class="card-metrics"><div class="card-metric"><div class="val">110K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">46K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">São Paulo FC</div><div class="card-metrics"><div class="card-metric"><div class="val">97K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">38K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Grêmio</div><div class="card-metrics"><div class="card-metric"><div class="val">54K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">21K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Internacional</div><div class="card-metrics"><div class="card-metric"><div class="val">49K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">18K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Vasco</div><div class="card-metrics"><div class="card-metric"><div class="val">48K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">21K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Botafogo</div><div class="card-metrics"><div class="card-metric"><div class="val">47K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">20K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Cruzeiro</div><div class="card-metrics"><div class="card-metric"><div class="val">46K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">19K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Fluminense</div><div class="card-metrics"><div class="card-metric"><div class="val">41K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">18K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Santos</div><div class="card-metrics"><div class="card-metric"><div class="val">64K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">25K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Atlético Mineiro</div><div class="card-metrics"><div class="card-metric"><div class="val">1,8K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">980</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Torcedores Atlético MG (BI)</div><div class="card-metrics"><div class="card-metric"><div class="val">39K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">16K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Bahia</div><div class="card-metrics"><div class="card-metric"><div class="val">18K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">7,9K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Bragantino</div><div class="card-metrics"><div class="card-metric"><div class="val">9,4K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">3,1K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Chapecoense</div><div class="card-metrics"><div class="card-metric"><div class="val">3,9K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1K</div><div class="tag">YouTube</div></div></div></div>
+  </div>
+
+  <!-- ══ SEÇÃO 8: TERRA TEMÁTICAS ══ -->
+  <div class="section-header">
+    <div class="section-badge">08</div>
+    <div class="section-title">Audiências Temáticas — Portal Terra</div>
+    <div class="section-line"></div>
+  </div>
+
+  <table class="audience-table">
+    <thead>
+      <tr><th>Seção / Temática</th><th>Display</th><th>YouTube</th><th class="bar-cell">Escala</th></tr>
+    </thead>
+    <tbody>
+      <tr class="row-highlight"><td>Diversão</td><td>22.000.000</td><td>19.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
+      <tr class="row-highlight"><td>Vida e Estilo</td><td>20.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:91%"></div></div></td></tr>
+      <tr><td>Notícias (Terra)</td><td>18.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:82%"></div></div></td></tr>
+      <tr><td>Esportes</td><td>15.000.000</td><td>13.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:68%"></div></div></td></tr>
+      <tr><td>Byte (Tech)</td><td>13.000.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:59%"></div></div></td></tr>
+      <tr><td>Esportes / Futebol / Flamengo</td><td>5.900.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:27%"></div></div></td></tr>
+      <tr><td>Economia</td><td>6.300.000</td><td>8.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:29%"></div></div></td></tr>
+      <tr><td>Redação Terra</td><td>8.400.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:38%"></div></div></td></tr>
+      <tr><td>Nós</td><td>2.000.000</td><td>4.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:9%"></div></div></td></tr>
+      <tr><td>Capa</td><td>2.900.000</td><td>2.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
+      <tr><td>GameOn</td><td>33.000</td><td>17.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
+      <tr><td>GAMES / Cultura Geek Alcance</td><td>6.800.000</td><td>2.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:31%"></div></div></td></tr>
+      <tr><td>Audiência (GA4) Velvet</td><td>1.500.000</td><td>940.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:7%"></div></div></td></tr>
+      <tr><td>Terra Source Social (all)</td><td>700.000</td><td>500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:3%"></div></div></td></tr>
+      <tr><td>Terra Source Social (Facebook)</td><td>180.000</td><td>72.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
+      <tr><td>Terra Source Social (Instagram)</td><td>12.000</td><td>6.300</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SEÇÃO 9: YOUTUBE EXCLUSIVOS ══ -->
+  <div class="section-header">
+    <div class="section-badge">09</div>
+    <div class="section-title">Audiências Exclusivas YouTube — Canal TerraBrasil</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="aud-card"><div class="card-name">Viewed any video from a channel — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">5,5M</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Liked any video from a channel — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">440K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Subscribed to a channel — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">210K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Added any video from a channel to a playlist — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">11K</div><div class="tag">YouTube</div></div></div></div>
+    <div class="aud-card"><div class="card-name">Visited a channel page — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">29K</div><div class="tag">YouTube</div></div></div></div>
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="doc-footer">
+  <div>
+    <svg height="28" viewBox="0 0 120 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo">
+      <rect width="120" height="44" rx="8" fill="white" fill-opacity="0.15"/>
+      <text x="12" y="31" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="white" letter-spacing="-1">vivo</text>
+      <circle cx="102" cy="22" r="12" fill="white" fill-opacity="0.3"/>
+      <circle cx="102" cy="22" r="8" fill="white" fill-opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="footer-note">
+    Material de uso exclusivo para apresentação comercial. Dados de audiência referentes à plataforma Vivo Ads Track e Portal Terra. Os números representam estimativas de alcance e podem variar conforme período de análise. Confidencial.
   </div>
 </div>
 
-<!-- ═══ MATRIZ CROSS-VISITS ═══ -->
-<div class="section" id="matriz">
-  <div class="sec-badge" style="background:rgba(13,148,136,.08);color:var(--teal)">📊 Matriz Completa</div>
-  <h2 class="sec-title">Quem visita quem: a matriz de sobreposição</h2>
-  <p class="sec-desc">% da audiência de cada portal (coluna) que também visita cada linha. Quanto menor o %, mais exclusiva é a audiência.</p>
-
-  <div class="card anim" style="overflow-x:auto;margin-bottom:14px">
-    <table class="cross-matrix">
-      <thead>
-        <tr><th class="row-header">Visitantes de →</th><th style="color:var(--cnn)">CNN</th><th style="color:var(--globo)">Globo</th><th style="color:var(--ig)">IG</th><th style="color:var(--r7)">R7</th><th style="color:var(--terra)">Terra</th><th style="color:var(--uol)">UOL</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="row-header">CNN Brasil</td><td class="self">100%</td><td>35,0%</td><td>54,6%</td><td>44,9%</td><td class="highlight">39,1%</td><td>36,4%</td></tr>
-        <tr><td class="row-header">Globo</td><td>88,3%</td><td class="self">100%</td><td>84,1%</td><td>73,1%</td><td class="highlight">75,3%</td><td>74,1%</td></tr>
-        <tr><td class="row-header">IG Portal</td><td>46,1%</td><td>28,1%</td><td class="self">100%</td><td>38,0%</td><td class="highlight">33,9%</td><td>29,0%</td></tr>
-        <tr><td class="row-header">R7 Portal</td><td>74,6%</td><td>48,1%</td><td>74,9%</td><td class="self">100%</td><td class="highlight">51,1%</td><td>50,7%</td></tr>
-        <tr><td class="row-header" style="color:var(--terra)"><strong>Terra Brasil</strong></td><td class="highlight">72,8%</td><td class="highlight">55,5%</td><td class="highlight">74,9%</td><td class="highlight">57,3%</td><td class="self" style="background:rgba(245,124,0,.08)">100%</td><td class="highlight">56,8%</td></tr>
-        <tr><td class="row-header">UOL</td><td>85,1%</td><td>68,7%</td><td>80,4%</td><td>71,4%</td><td class="highlight">71,5%</td><td class="self">100%</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:14px">
-    <div class="ins-card" style="border-left-color:var(--teal)">
-      <h4 style="color:var(--teal)">Terra: o portal mais independente</h4>
-      <p>A coluna Terra mostra os menores índices de sobreposição: apenas <strong>39,1% da CNN</strong>, <strong>33,9% do IG</strong> e <strong>51,1% da R7</strong> também visitam o Terra. Isso significa que a audiência do Terra é significativamente diferente e complementar a qualquer plano de mídia.</p>
-    </div>
-    <div class="ins-card" style="border-left-color:var(--gold)">
-      <h4 style="color:var(--gold)">Globo e UOL: alta sobreposição entre si</h4>
-      <p><strong>74,1% da Globo também visita o UOL</strong> e 68,7% do UOL visita a Globo. A sobreposição é altíssima — investir nos dois é pagar duas vezes pela mesma audiência. O Terra oferece <strong>24,7% de audiência que a Globo não alcança</strong>.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ ARGUMENTO COMERCIAL ═══ -->
-<div class="section" id="argumento">
-  <div class="sec-badge" style="background:rgba(217,119,6,.08);color:var(--gold)">💼 Argumento Comercial</div>
-  <h2 class="sec-title">Por que incluir o Terra no plano de mídia</h2>
-  <p class="sec-desc">Dados Comscore comprovam: o Terra entrega audiência incremental que nenhum outro portal alcança.</p>
-
-  <div class="grid g3 anim" style="margin-bottom:14px">
-    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">vs CNN + IG + R7</div><div class="kpi-val c-terra">13,2 MM</div><div class="kpi-sub">audiência Terra exclusiva vs CNN+IG combinados</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">Reach Incremental</div><div class="kpi-val c-terra">+24,7%</div><div class="kpi-sub">audiência que a Globo não alcança</div></div>
-    <div class="card" style="text-align:center;border-top:3px solid var(--terra)"><div class="kpi-lbl">Complemento ao UOL</div><div class="kpi-val c-terra">+15,2 MM</div><div class="kpi-sub">audiência incremental ao UOL</div></div>
-  </div>
-
-  <div class="grid g2 anim" style="margin-bottom:14px">
-    <div class="ins-card" style="border-left-color:var(--terra)">
-      <h4 style="color:var(--terra)">O Terra não é substituível</h4>
-      <p>Nenhum portal consegue replicar a audiência do Terra: <strong>35,3 MM não visitam o IG</strong>, <strong>32,6 MM não visitam a CNN</strong>, <strong>26,1 MM não visitam a R7</strong>. Se o Terra sai do plano, essas dezenas de milhões de brasileiros ficam fora do alcance. <strong>Não é redundância — é reach único.</strong></p>
-    </div>
-    <div class="ins-card" style="border-left-color:var(--gold)">
-      <h4 style="color:var(--gold)">O plano otimizado inclui Terra</h4>
-      <p>Um plano com <strong>Globo + UOL + Terra</strong> maximiza cobertura com mínima sobreposição. A Globo cobre a base massiva (72,5 MM), o UOL complementa (67,2 MM com 74% de sobreposição com Globo), e o <strong>Terra adiciona 13-15 MM de audiência genuinamente incremental</strong> que nenhum dos dois alcança.</p>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<footer class="footer">
-  <strong>Fonte:</strong> Comscore Cross-Visits · Desktop & Mobile MMX Multi-Platform · Brasil · Fevereiro 2026 · Total Audience<br>
-  <strong>Portais analisados:</strong> CNN Brasil, Globo, IG Portal, R7 Portal, Terra Brasil, UOL · <strong>©2026 Comscore, Inc.</strong>
-</footer>
-
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-<script>
-const st=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>{st.classList.toggle('visible',window.scrollY>400)},{passive:true});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('vis');e.target.querySelectorAll('.bar-fill[data-w]').forEach(f=>{f.style.width=f.dataset.w+'%';f.removeAttribute('data-w')});io.unobserve(e.target)})},{threshold:0.08});
-document.querySelectorAll('.anim,.card').forEach(el=>{if(!el.classList.contains('anim'))el.classList.add('anim');io.observe(el)});
-</script>
 </body>
 </html>
