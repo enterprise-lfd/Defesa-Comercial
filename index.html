@@ -1,778 +1,509 @@
-import { useState, useMemo } from "react";
-import {
-  AreaChart, Area, BarChart, Bar, XAxis, YAxis,
-  CartesianGrid, Tooltip, ResponsiveContainer,
-  ComposedChart, ReferenceLine, Cell
-} from "recharts";
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terra Sales - Modelo Estatistico DDD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.7/Recharts.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #F5F6F8; color: #1A1D21; }
+    #root { min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useMemo } = React;
+    const {
+      AreaChart, Area, BarChart, Bar, XAxis, YAxis,
+      CartesianGrid, Tooltip, ResponsiveContainer,
+      ComposedChart, ReferenceLine, Cell
+    } = Recharts;
 
-/* ═══════════════════════════════════════════════════════════════════
-   DATA — Base_modelo.xlsx · 2.842 registros · 64 DDDs · Fev–Mar 2026
-   ═══════════════════════════════════════════════════════════════════ */
-const DDDS = {
-  "11":{"c":"São Paulo","e":"SP","r":"Sudeste","t":158,"d":[47,63,29,11,4,4]},
-  "12":{"c":"S.J. dos Campos","e":"SP","r":"Sudeste","t":32,"d":[9,12,4,1,1,5]},
-  "13":{"c":"Santos","e":"SP","r":"Sudeste","t":37,"d":[9,15,7,2,3,1]},
-  "14":{"c":"Bauru","e":"SP","r":"Sudeste","t":40,"d":[13,15,8,1,2,1]},
-  "15":{"c":"Sorocaba","e":"SP","r":"Sudeste","t":71,"d":[26,27,10,4,1,3]},
-  "16":{"c":"Ribeirão Preto","e":"SP","r":"Sudeste","t":17,"d":[4,5,5,1,1,1]},
-  "17":{"c":"S.J. Rio Preto","e":"SP","r":"Sudeste","t":7,"d":[1,6]},
-  "18":{"c":"Pres. Prudente","e":"SP","r":"Sudeste","t":19,"d":[3,10,2,2,2]},
-  "19":{"c":"Campinas","e":"SP","r":"Sudeste","t":204,"d":[6,14,6,2,2,174]},
-  "21":{"c":"Rio de Janeiro","e":"RJ","r":"Sudeste","t":59,"d":[13,26,10,2,5,1,1,1]},
-  "22":{"c":"Campos","e":"RJ","r":"Sudeste","t":26,"d":[10,6,7,1,2]},
-  "24":{"c":"Petropolis","e":"RJ","r":"Sudeste","t":10,"d":[3,3,2,1,1]},
-  "27":{"c":"Vitoria","e":"ES","r":"Sudeste","t":67,"d":[16,30,12,1,2,4,2]},
-  "28":{"c":"Cachoeiro","e":"ES","r":"Sudeste","t":19,"d":[4,11,1,1,2]},
-  "31":{"c":"Belo Horizonte","e":"MG","r":"Sudeste","t":87,"d":[20,34,19,9,2,3]},
-  "32":{"c":"Juiz de Fora","e":"MG","r":"Sudeste","t":34,"d":[12,12,7,1,2]},
-  "33":{"c":"Gov. Valadares","e":"MG","r":"Sudeste","t":57,"d":[16,19,9,6,5,1,1]},
-  "34":{"c":"Uberlandia","e":"MG","r":"Sudeste","t":6,"d":[3,1,1,1]},
-  "35":{"c":"Pocos de Caldas","e":"MG","r":"Sudeste","t":35,"d":[11,14,6,1,3]},
-  "37":{"c":"Divinopolis","e":"MG","r":"Sudeste","t":16,"d":[2,9,3,1,1]},
-  "38":{"c":"Montes Claros","e":"MG","r":"Sudeste","t":143,"d":[51,42,24,5,9,12]},
-  "41":{"c":"Curitiba","e":"PR","r":"Sul","t":2,"d":[1,1]},
-  "42":{"c":"Ponta Grossa","e":"PR","r":"Sul","t":1,"d":[1]},
-  "43":{"c":"Londrina","e":"PR","r":"Sul","t":4,"d":[1,2,1]},
-  "44":{"c":"Maringa","e":"PR","r":"Sul","t":2,"d":[1,1]},
-  "47":{"c":"Joinville","e":"SC","r":"Sul","t":5,"d":[2,3]},
-  "48":{"c":"Florianopolis","e":"SC","r":"Sul","t":2,"d":[2]},
-  "49":{"c":"Chapeco","e":"SC","r":"Sul","t":1,"d":[1]},
-  "51":{"c":"Porto Alegre","e":"RS","r":"Sul","t":48,"d":[8,16,7,6,7,3,1]},
-  "53":{"c":"Pelotas","e":"RS","r":"Sul","t":18,"d":[7,6,3,1,1]},
-  "54":{"c":"Caxias do Sul","e":"RS","r":"Sul","t":7,"d":[2,3,1,1]},
-  "55":{"c":"Santa Maria","e":"RS","r":"Sul","t":22,"d":[6,8,4,3,1]},
-  "61":{"c":"Brasilia","e":"DF","r":"Centro-Oeste","t":160,"d":[6,10,5,2,3,1,133]},
-  "62":{"c":"Goiania","e":"GO","r":"Centro-Oeste","t":69,"d":[2,4,63]},
-  "64":{"c":"Rio Verde","e":"GO","r":"Centro-Oeste","t":5,"d":[3,1,1]},
-  "65":{"c":"Cuiaba","e":"MT","r":"Centro-Oeste","t":108,"d":[5,5,2,1,2,93]},
-  "66":{"c":"Rondonopolis","e":"MT","r":"Centro-Oeste","t":7,"d":[2,1,3,1]},
-  "67":{"c":"Campo Grande","e":"MS","r":"Centro-Oeste","t":161,"d":[5,8,6,2,2,138]},
-  "68":{"c":"Rio Branco","e":"AC","r":"Norte","t":9,"d":[2,4,1,2]},
-  "69":{"c":"Porto Velho","e":"RO","r":"Norte","t":1,"d":[1]},
-  "71":{"c":"Salvador","e":"BA","r":"Nordeste","t":26,"d":[9,6,7,3,1]},
-  "73":{"c":"Itabuna","e":"BA","r":"Nordeste","t":34,"d":[10,14,6,4]},
-  "74":{"c":"Juazeiro","e":"BA","r":"Nordeste","t":34,"d":[11,15,3,2,2,1]},
-  "75":{"c":"F. de Santana","e":"BA","r":"Nordeste","t":93,"d":[35,22,17,8,3,6,2]},
-  "77":{"c":"V. da Conquista","e":"BA","r":"Nordeste","t":35,"d":[12,11,7,1,2,2]},
-  "79":{"c":"Aracaju","e":"SE","r":"Nordeste","t":151,"d":[36,53,30,13,11,7,1]},
-  "81":{"c":"Recife","e":"PE","r":"Nordeste","t":17,"d":[5,5,5,1,1]},
-  "82":{"c":"Maceio","e":"AL","r":"Nordeste","t":9,"d":[2,4,2,1]},
-  "83":{"c":"Joao Pessoa","e":"PB","r":"Nordeste","t":14,"d":[3,5,5,1]},
-  "84":{"c":"Natal","e":"RN","r":"Nordeste","t":1,"d":[1]},
-  "85":{"c":"Fortaleza","e":"CE","r":"Nordeste","t":14,"d":[2,7,2,2,1]},
-  "86":{"c":"Teresina","e":"PI","r":"Nordeste","t":9,"d":[2,5,1,1]},
-  "87":{"c":"Petrolina","e":"PE","r":"Nordeste","t":21,"d":[7,7,4,2,1]},
-  "88":{"c":"Juaz. do Norte","e":"CE","r":"Nordeste","t":15,"d":[3,6,4,2]},
-  "89":{"c":"Picos","e":"PI","r":"Nordeste","t":18,"d":[4,3,9,1,1]},
-  "91":{"c":"Belem","e":"PA","r":"Norte","t":42,"d":[12,18,5,2,2,3]},
-  "92":{"c":"Manaus","e":"AM","r":"Norte","t":361,"d":[95,113,79,33,18,18,5]},
-  "93":{"c":"Santarem","e":"PA","r":"Norte","t":96,"d":[28,30,17,6,7,6,2]},
-  "94":{"c":"Maraba","e":"PA","r":"Norte","t":21,"d":[5,10,4,1,1]},
-  "95":{"c":"Boa Vista","e":"RR","r":"Norte","t":4,"d":[1,1,1,1]},
-  "96":{"c":"Macapa","e":"AP","r":"Norte","t":6,"d":[1,3,2]},
-  "97":{"c":"Coari","e":"AM","r":"Norte","t":25,"d":[5,9,3,4,4]},
-  "98":{"c":"Sao Luis","e":"MA","r":"Nordeste","t":9,"d":[2,6,1]},
-  "99":{"c":"Imperatriz","e":"MA","r":"Nordeste","t":11,"d":[1,5,4,1]}
-};
+    /* ================================================================
+       DATA - Base_modelo.xlsx - 2.842 registros - 64 DDDs - Fev-Mar 2026
+       ================================================================ */
+    const DDDS = {
+      "11":{"c":"Sao Paulo","e":"SP","r":"Sudeste","t":158,"d":[47,63,29,11,4,4]},
+      "12":{"c":"S.J. dos Campos","e":"SP","r":"Sudeste","t":32,"d":[9,12,4,1,1,5]},
+      "13":{"c":"Santos","e":"SP","r":"Sudeste","t":37,"d":[9,15,7,2,3,1]},
+      "14":{"c":"Bauru","e":"SP","r":"Sudeste","t":40,"d":[13,15,8,1,2,1]},
+      "15":{"c":"Sorocaba","e":"SP","r":"Sudeste","t":71,"d":[26,27,10,4,1,3]},
+      "16":{"c":"Ribeirao Preto","e":"SP","r":"Sudeste","t":17,"d":[4,5,5,1,1,1]},
+      "17":{"c":"S.J. Rio Preto","e":"SP","r":"Sudeste","t":7,"d":[1,6]},
+      "18":{"c":"Pres. Prudente","e":"SP","r":"Sudeste","t":19,"d":[3,10,2,2,2]},
+      "19":{"c":"Campinas","e":"SP","r":"Sudeste","t":204,"d":[6,14,6,2,2,174]},
+      "21":{"c":"Rio de Janeiro","e":"RJ","r":"Sudeste","t":59,"d":[13,26,10,2,5,1,1,1]},
+      "22":{"c":"Campos","e":"RJ","r":"Sudeste","t":26,"d":[10,6,7,1,2]},
+      "24":{"c":"Petropolis","e":"RJ","r":"Sudeste","t":10,"d":[3,3,2,1,1]},
+      "27":{"c":"Vitoria","e":"ES","r":"Sudeste","t":67,"d":[16,30,12,1,2,4,2]},
+      "28":{"c":"Cachoeiro","e":"ES","r":"Sudeste","t":19,"d":[4,11,1,1,2]},
+      "31":{"c":"Belo Horizonte","e":"MG","r":"Sudeste","t":87,"d":[20,34,19,9,2,3]},
+      "32":{"c":"Juiz de Fora","e":"MG","r":"Sudeste","t":34,"d":[12,12,7,1,2]},
+      "33":{"c":"Gov. Valadares","e":"MG","r":"Sudeste","t":57,"d":[16,19,9,6,5,1,1]},
+      "34":{"c":"Uberlandia","e":"MG","r":"Sudeste","t":6,"d":[3,1,1,1]},
+      "35":{"c":"Pocos de Caldas","e":"MG","r":"Sudeste","t":35,"d":[11,14,6,1,3]},
+      "37":{"c":"Divinopolis","e":"MG","r":"Sudeste","t":16,"d":[2,9,3,1,1]},
+      "38":{"c":"Montes Claros","e":"MG","r":"Sudeste","t":143,"d":[51,42,24,5,9,12]},
+      "41":{"c":"Curitiba","e":"PR","r":"Sul","t":2,"d":[1,1]},
+      "42":{"c":"Ponta Grossa","e":"PR","r":"Sul","t":1,"d":[1]},
+      "43":{"c":"Londrina","e":"PR","r":"Sul","t":4,"d":[1,2,1]},
+      "44":{"c":"Maringa","e":"PR","r":"Sul","t":2,"d":[1,1]},
+      "47":{"c":"Joinville","e":"SC","r":"Sul","t":5,"d":[2,3]},
+      "48":{"c":"Florianopolis","e":"SC","r":"Sul","t":2,"d":[2]},
+      "49":{"c":"Chapeco","e":"SC","r":"Sul","t":1,"d":[1]},
+      "51":{"c":"Porto Alegre","e":"RS","r":"Sul","t":48,"d":[8,16,7,6,7,3,1]},
+      "53":{"c":"Pelotas","e":"RS","r":"Sul","t":18,"d":[7,6,3,1,1]},
+      "54":{"c":"Caxias do Sul","e":"RS","r":"Sul","t":7,"d":[2,3,1,1]},
+      "55":{"c":"Santa Maria","e":"RS","r":"Sul","t":22,"d":[6,8,4,3,1]},
+      "61":{"c":"Brasilia","e":"DF","r":"Centro-Oeste","t":160,"d":[6,10,5,2,3,1,133]},
+      "62":{"c":"Goiania","e":"GO","r":"Centro-Oeste","t":69,"d":[2,4,63]},
+      "64":{"c":"Rio Verde","e":"GO","r":"Centro-Oeste","t":5,"d":[3,1,1]},
+      "65":{"c":"Cuiaba","e":"MT","r":"Centro-Oeste","t":108,"d":[5,5,2,1,2,93]},
+      "66":{"c":"Rondonopolis","e":"MT","r":"Centro-Oeste","t":7,"d":[2,1,3,1]},
+      "67":{"c":"Campo Grande","e":"MS","r":"Centro-Oeste","t":161,"d":[5,8,6,2,2,138]},
+      "68":{"c":"Rio Branco","e":"AC","r":"Norte","t":9,"d":[2,4,1,2]},
+      "69":{"c":"Porto Velho","e":"RO","r":"Norte","t":1,"d":[1]},
+      "71":{"c":"Salvador","e":"BA","r":"Nordeste","t":26,"d":[9,6,7,3,1]},
+      "73":{"c":"Itabuna","e":"BA","r":"Nordeste","t":34,"d":[10,14,6,4]},
+      "74":{"c":"Juazeiro","e":"BA","r":"Nordeste","t":34,"d":[11,15,3,2,2,1]},
+      "75":{"c":"F. de Santana","e":"BA","r":"Nordeste","t":93,"d":[35,22,17,8,3,6,2]},
+      "77":{"c":"V. da Conquista","e":"BA","r":"Nordeste","t":35,"d":[12,11,7,1,2,2]},
+      "79":{"c":"Aracaju","e":"SE","r":"Nordeste","t":151,"d":[36,53,30,13,11,7,1]},
+      "81":{"c":"Recife","e":"PE","r":"Nordeste","t":17,"d":[5,5,5,1,1]},
+      "82":{"c":"Maceio","e":"AL","r":"Nordeste","t":9,"d":[2,4,2,1]},
+      "83":{"c":"Joao Pessoa","e":"PB","r":"Nordeste","t":14,"d":[3,5,5,1]},
+      "84":{"c":"Natal","e":"RN","r":"Nordeste","t":1,"d":[1]},
+      "85":{"c":"Fortaleza","e":"CE","r":"Nordeste","t":14,"d":[2,7,2,2,1]},
+      "86":{"c":"Teresina","e":"PI","r":"Nordeste","t":9,"d":[2,5,1,1]},
+      "87":{"c":"Petrolina","e":"PE","r":"Nordeste","t":21,"d":[7,7,4,2,1]},
+      "88":{"c":"Juaz. do Norte","e":"CE","r":"Nordeste","t":15,"d":[3,6,4,2]},
+      "89":{"c":"Picos","e":"PI","r":"Nordeste","t":18,"d":[4,3,9,1,1]},
+      "91":{"c":"Belem","e":"PA","r":"Norte","t":42,"d":[12,18,5,2,2,3]},
+      "92":{"c":"Manaus","e":"AM","r":"Norte","t":361,"d":[95,113,79,33,18,18,5]},
+      "93":{"c":"Santarem","e":"PA","r":"Norte","t":96,"d":[28,30,17,6,7,6,2]},
+      "94":{"c":"Maraba","e":"PA","r":"Norte","t":21,"d":[5,10,4,1,1]},
+      "95":{"c":"Boa Vista","e":"RR","r":"Norte","t":4,"d":[1,1,1,1]},
+      "96":{"c":"Macapa","e":"AP","r":"Norte","t":6,"d":[1,3,2]},
+      "97":{"c":"Coari","e":"AM","r":"Norte","t":25,"d":[5,9,3,4,4]},
+      "98":{"c":"Sao Luis","e":"MA","r":"Nordeste","t":9,"d":[2,6,1]},
+      "99":{"c":"Imperatriz","e":"MA","r":"Nordeste","t":11,"d":[1,5,4,1]}
+    };
 
-const REGIOES = {
-  "Sudeste":{"t":1144,"d":[276,376,172,53,45,43,1,1,2,175],"n":21},
-  "Nordeste":{"t":511,"d":[144,174,104,44,21,20,4],"n":17},
-  "Sul":{"t":112,"d":[27,39,21,11,8,5,1],"n":11},
-  "Centro-Oeste":{"t":510,"d":[20,31,16,7,6,3,427],"n":6},
-  "Norte":{"t":565,"d":[150,188,112,46,32,29,8],"n":9}
-};
+    const REGIOES = {
+      "Sudeste":{"t":1144,"d":[276,376,172,53,45,43,1,1,2,175],"n":21},
+      "Nordeste":{"t":511,"d":[144,174,104,44,21,20,4],"n":17},
+      "Sul":{"t":112,"d":[27,39,21,11,8,5,1],"n":11},
+      "Centro-Oeste":{"t":510,"d":[20,31,16,7,6,3,427],"n":6},
+      "Norte":{"t":565,"d":[150,188,112,46,32,29,8],"n":9}
+    };
 
-const REG_COLORS = {
-  "Sudeste":"#1B6B4A",
-  "Nordeste":"#C27A0E",
-  "Sul":"#2563EB",
-  "Centro-Oeste":"#7C3AED",
-  "Norte":"#DC2626"
-};
+    const REG_COLORS = {"Sudeste":"#1B6B4A","Nordeste":"#C27A0E","Sul":"#2563EB","Centro-Oeste":"#7C3AED","Norte":"#DC2626"};
+    const TOTAL_GERAL = 2842;
+    const FONTS = {
+      display: "'Instrument Serif', Georgia, serif",
+      body: "'Inter', system-ui, sans-serif",
+      mono: "'IBM Plex Mono', 'SF Mono', monospace"
+    };
+    const C = {
+      accent: "#0F4C35", accentLight: "#E6F2EC", warn: "#C27A0E", danger: "#B63225",
+      text: "#1A1D21", sec: "#4A5568", muted: "#8896A4", bg: "#F5F6F8",
+      card: "#FFFFFF", border: "#E4E7EB"
+    };
 
-const TOTAL_GERAL = 2842;
-
-/* ═══ PROJECTION MODEL ═══ */
-function buildProjection(daily, total, targetVal) {
-  if (!daily || daily.length === 0) return null;
-  const numDays = daily.length;
-  const avgRate = total / numDays;
-  const decayRatio = numDays > 2
-    ? daily[numDays - 1] / Math.max(1, daily[0])
-    : 0.6;
-
-  if (total >= targetVal) {
-    let acc = 0;
-    for (let i = 0; i < numDays; i++) {
-      acc += daily[i];
-      if (acc >= targetVal) {
-        return { dias: i + 1, conf: 95, status: "atingido", rate: avgRate };
+    /* ================================================================
+       PROJECTION MODEL
+       ================================================================ */
+    function buildProjection(daily, total, targetVal) {
+      if (!daily || daily.length === 0) return null;
+      var n = daily.length;
+      var avg = total / n;
+      var decay = n > 2 ? daily[n - 1] / Math.max(1, daily[0]) : 0.6;
+      if (total >= targetVal) {
+        var acc = 0;
+        for (var i = 0; i < n; i++) {
+          acc += daily[i];
+          if (acc >= targetVal) return { dias: i + 1, conf: 95, status: "atingido", rate: avg };
+        }
       }
+      var rate = avg * Math.max(0.25, Math.min(0.9, decay));
+      var extra = Math.ceil((targetVal - total) / Math.max(0.5, rate));
+      return {
+        dias: n + extra,
+        conf: Math.round(Math.max(35, Math.min(92, 96 - extra * 0.7))),
+        status: "projetado",
+        rate: Math.round(rate * 10) / 10
+      };
     }
-  }
 
-  const projRate = avgRate * Math.max(0.25, Math.min(0.9, decayRatio));
-  const extraDays = Math.ceil((targetVal - total) / Math.max(0.5, projRate));
-  const totalDays = numDays + extraDays;
-  const confidence = Math.round(Math.max(35, Math.min(92, 96 - extraDays * 0.7)));
+    function buildChartData(daily, total, targetVal, proj) {
+      var acc = 0;
+      var data = daily.map(function(val, idx) {
+        acc += val;
+        return { dia: idx + 1, daily: val, cum: acc, tipo: "real" };
+      });
+      if (!proj || total >= targetVal || proj.status === "atingido") return data;
+      var baseLen = daily.length;
+      for (var i = 1; i <= proj.dias - baseLen + 3; i++) {
+        var r = proj.rate * (0.82 + Math.random() * 0.36);
+        acc += r;
+        data.push({ dia: baseLen + i, daily: Math.round(r), cum: Math.round(acc), tipo: "proj" });
+      }
+      return data;
+    }
 
-  return {
-    dias: totalDays,
-    conf: confidence,
-    status: "projetado",
-    rate: Math.round(projRate * 10) / 10
-  };
-}
-
-function buildChartData(daily, total, targetVal, projection) {
-  let acc = 0;
-  const data = daily.map((val, idx) => {
-    acc += val;
-    return { dia: idx + 1, daily: val, cum: acc, tipo: "real" };
-  });
-
-  if (!projection || total >= targetVal || projection.status === "atingido") {
-    return data;
-  }
-
-  const baseLen = daily.length;
-  for (let i = 1; i <= projection.dias - baseLen + 3; i++) {
-    const rate = projection.rate * (0.82 + Math.random() * 0.36);
-    acc += rate;
-    data.push({
-      dia: baseLen + i,
-      daily: Math.round(rate),
-      cum: Math.round(acc),
-      tipo: "proj"
-    });
-  }
-  return data;
-}
-
-/* ═══ STYLES ═══ */
-const COLORS = {
-  accent: "#0F4C35",
-  accentLight: "#E6F2EC",
-  warn: "#C27A0E",
-  danger: "#B63225",
-  text: "#1A1D21",
-  secondary: "#4A5568",
-  muted: "#8896A4",
-  bg: "#F5F6F8",
-  card: "#FFFFFF",
-  border: "#E4E7EB"
-};
-
-const FONTS = {
-  display: "'Instrument Serif', Georgia, serif",
-  body: "'Inter', system-ui, sans-serif",
-  mono: "'IBM Plex Mono', 'SF Mono', monospace"
-};
-
-/* ═══ COMPONENTS ═══ */
-function KpiCard({ label, value, subtitle, accentColor }) {
-  return (
-    <div style={{
-      background: COLORS.card,
-      border: "1px solid " + COLORS.border,
-      borderRadius: 6,
-      padding: "13px 15px",
-      flex: "1 1 130px",
-      borderLeft: "3px solid " + (accentColor || COLORS.accent)
-    }}>
-      <div style={{
-        fontSize: 9, fontWeight: 600, letterSpacing: "0.1em",
-        textTransform: "uppercase", color: COLORS.muted, marginBottom: 2
-      }}>{label}</div>
-      <div style={{
-        fontSize: 23, fontWeight: 700, color: COLORS.text,
-        fontFamily: FONTS.mono, lineHeight: 1.1
-      }}>{value}</div>
-      {subtitle && (
-        <div style={{ fontSize: 9, color: COLORS.muted, marginTop: 2 }}>
-          {subtitle}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function PillButton({ isActive, children, onClick }) {
-  return (
-    <button onClick={onClick} style={{
-      padding: "4px 10px",
-      fontSize: 10.5,
-      fontWeight: isActive ? 600 : 400,
-      background: isActive ? COLORS.accent : "transparent",
-      color: isActive ? "#fff" : COLORS.muted,
-      border: "1px solid " + (isActive ? COLORS.accent : COLORS.border),
-      borderRadius: 4,
-      cursor: "pointer",
-      transition: "all 0.12s",
-      fontFamily: FONTS.body
-    }}>{children}</button>
-  );
-}
-
-function ChartTooltip({ active, payload, label }) {
-  if (!active || !payload || payload.length === 0) return null;
-  return (
-    <div style={{
-      background: "#fff",
-      border: "1px solid " + COLORS.border,
-      borderRadius: 4,
-      padding: "6px 10px",
-      fontSize: 10.5,
-      boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
-      fontFamily: FONTS.body
-    }}>
-      <div style={{ fontWeight: 600, marginBottom: 2 }}>Dia {label}</div>
-      {payload.map((entry, idx) => (
-        <div key={idx} style={{ color: entry.color }}>
-          {entry.name}: <strong>{Math.round(entry.value).toLocaleString("pt-BR")}</strong>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* ═══ MAIN APP ═══ */
-export default function TerraSalesDDDModel() {
-  const [scope, setScope] = useState("ddd");
-  const [selectedDdd, setSelectedDdd] = useState("92");
-  const [selectedRegiao, setSelectedRegiao] = useState("Sudeste");
-  const [target, setTarget] = useState(300);
-  const [viewMode, setViewMode] = useState("acumulado");
-  const [showProjection, setShowProjection] = useState(true);
-  const [activeTab, setActiveTab] = useState("chart");
-
-  const dddList = useMemo(() => {
-    return Object.keys(DDDS).sort((x, y) => DDDS[y].t - DDDS[x].t);
-  }, []);
-
-  const regionList = ["Sudeste", "Norte", "Nordeste", "Centro-Oeste", "Sul"];
-
-  const currentInfo = scope === "ddd" ? DDDS[selectedDdd] : null;
-  const currentRegInfo = scope === "regiao" ? REGIOES[selectedRegiao] : null;
-  const daily = scope === "ddd" ? (currentInfo ? currentInfo.d : []) : (currentRegInfo ? currentRegInfo.d : []);
-  const total = scope === "ddd" ? (currentInfo ? currentInfo.t : 0) : (currentRegInfo ? currentRegInfo.t : 0);
-  const displayLabel = scope === "ddd"
-    ? ("DDD " + selectedDdd + " - " + (currentInfo ? currentInfo.c : "") + "/" + (currentInfo ? currentInfo.e : ""))
-    : ("Regiao " + selectedRegiao);
-  const activeColor = scope === "regiao" ? REG_COLORS[selectedRegiao] : COLORS.accent;
-
-  const projection = useMemo(() => {
-    return buildProjection(daily, total, target);
-  }, [daily, total, target]);
-
-  const chartData = useMemo(() => {
-    return buildChartData(daily, total, target, showProjection ? projection : null);
-  }, [daily, total, target, showProjection, projection]);
-
-  const avgDaily = daily.length > 0 ? Math.round(total / daily.length) : 0;
-  const peakValue = daily.length > 0 ? Math.max(...daily) : 0;
-  const peakIndex = daily.indexOf(peakValue);
-
-  const ranking = useMemo(() => {
-    const filteredList = scope === "regiao"
-      ? dddList.filter(d => DDDS[d].r === selectedRegiao)
-      : dddList;
-
-    return filteredList.map(d => {
-      const info = DDDS[d];
-      const proj = buildProjection(info.d, info.t, target);
-      const avg = info.d.length > 0 ? Math.round(info.t / info.d.length) : 0;
-      return {
-        ddd: d,
-        cidade: info.c,
-        estado: info.e,
-        regiao: info.r,
-        total: info.t,
-        avg: avg,
-        dias: proj ? proj.dias : 999,
-        conf: proj ? proj.conf : 0,
-        status: proj ? proj.status : "?"
-      };
-    }).sort((x, y) => x.dias - y.dias);
-  }, [scope, selectedRegiao, target, dddList]);
-
-  const regionSummary = useMemo(() => {
-    return regionList.map(reg => {
-      const ri = REGIOES[reg];
-      const proj = buildProjection(ri.d, ri.t, target);
-      const avg = ri.d.length > 0 ? Math.round(ri.t / ri.d.length) : 0;
-      return {
-        regiao: reg,
-        total: ri.t,
-        avg: avg,
-        numDdds: ri.n,
-        projDias: proj ? proj.dias : 999,
-        conf: proj ? proj.conf : 0,
-        status: proj ? proj.status : "?",
-        color: REG_COLORS[reg]
-      };
-    }).sort((x, y) => y.total - x.total);
-  }, [target]);
-
-  return (
-    <div style={{
-      fontFamily: FONTS.body,
-      background: COLORS.bg,
-      color: COLORS.text,
-      minHeight: "100vh"
-    }}>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-
-      {/* ═══ HEADER ═══ */}
-      <div style={{ background: COLORS.accent, padding: "13px 22px", color: "#fff" }}>
+    /* ================================================================
+       COMPONENTS
+       ================================================================ */
+    function KpiCard(props) {
+      return (
         <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          maxWidth: 1200, margin: "0 auto", flexWrap: "wrap", gap: 8
+          background: C.card, border: "1px solid " + C.border, borderRadius: 6,
+          padding: "13px 15px", flex: "1 1 130px",
+          borderLeft: "3px solid " + (props.accentColor || C.accent)
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-            <div style={{
-              width: 28, height: 28, background: "rgba(255,255,255,0.12)",
-              borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: FONTS.mono, fontWeight: 700, fontSize: 10.5
-            }}>TS</div>
-            <div>
-              <div style={{ fontSize: 14, fontWeight: 600 }}>Terra Sales</div>
-              <div style={{ fontSize: 9, opacity: 0.55, letterSpacing: "0.06em" }}>
-                MODELO ESTATISTICO - VELOCIDADE DE CAPTACAO POR DDD
+          <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.muted, marginBottom: 2 }}>
+            {props.label}
+          </div>
+          <div style={{ fontSize: 23, fontWeight: 700, color: C.text, fontFamily: FONTS.mono, lineHeight: 1.1 }}>
+            {props.value}
+          </div>
+          {props.subtitle && <div style={{ fontSize: 9, color: C.muted, marginTop: 2 }}>{props.subtitle}</div>}
+        </div>
+      );
+    }
+
+    function PillBtn(props) {
+      return (
+        <button onClick={props.onClick} style={{
+          padding: "4px 10px", fontSize: 10.5, fontWeight: props.isActive ? 600 : 400,
+          background: props.isActive ? C.accent : "transparent",
+          color: props.isActive ? "#fff" : C.muted,
+          border: "1px solid " + (props.isActive ? C.accent : C.border),
+          borderRadius: 4, cursor: "pointer", transition: "all 0.12s", fontFamily: FONTS.body
+        }}>{props.children}</button>
+      );
+    }
+
+    function ChartTip(props) {
+      if (!props.active || !props.payload || props.payload.length === 0) return null;
+      return (
+        <div style={{
+          background: "#fff", border: "1px solid " + C.border, borderRadius: 4,
+          padding: "6px 10px", fontSize: 10.5, boxShadow: "0 2px 10px rgba(0,0,0,0.08)", fontFamily: FONTS.body
+        }}>
+          <div style={{ fontWeight: 600, marginBottom: 2 }}>Dia {props.label}</div>
+          {props.payload.map(function(entry, idx) {
+            return <div key={idx} style={{ color: entry.color }}>{entry.name}: <strong>{Math.round(entry.value).toLocaleString("pt-BR")}</strong></div>;
+          })}
+        </div>
+      );
+    }
+
+    /* ================================================================
+       MAIN APP
+       ================================================================ */
+    function App() {
+      var _scope = useState("ddd");
+      var scope = _scope[0]; var setScope = _scope[1];
+      var _ddd = useState("92");
+      var selectedDdd = _ddd[0]; var setSelectedDdd = _ddd[1];
+      var _reg = useState("Sudeste");
+      var selectedRegiao = _reg[0]; var setSelectedRegiao = _reg[1];
+      var _tgt = useState(300);
+      var target = _tgt[0]; var setTarget = _tgt[1];
+      var _view = useState("acumulado");
+      var viewMode = _view[0]; var setViewMode = _view[1];
+      var _proj = useState(true);
+      var showProj = _proj[0]; var setShowProj = _proj[1];
+      var _tab = useState("chart");
+      var activeTab = _tab[0]; var setActiveTab = _tab[1];
+
+      var dddList = useMemo(function() {
+        return Object.keys(DDDS).sort(function(a, b) { return DDDS[b].t - DDDS[a].t; });
+      }, []);
+      var regionList = ["Sudeste", "Norte", "Nordeste", "Centro-Oeste", "Sul"];
+
+      var info = scope === "ddd" ? DDDS[selectedDdd] : null;
+      var regInfo = scope === "regiao" ? REGIOES[selectedRegiao] : null;
+      var daily = scope === "ddd" ? (info ? info.d : []) : (regInfo ? regInfo.d : []);
+      var total = scope === "ddd" ? (info ? info.t : 0) : (regInfo ? regInfo.t : 0);
+      var displayLabel = scope === "ddd"
+        ? "DDD " + selectedDdd + " - " + (info ? info.c : "") + "/" + (info ? info.e : "")
+        : "Regiao " + selectedRegiao;
+      var activeColor = scope === "regiao" ? REG_COLORS[selectedRegiao] : C.accent;
+
+      var projection = useMemo(function() {
+        return buildProjection(daily, total, target);
+      }, [daily, total, target]);
+
+      var chartData = useMemo(function() {
+        return buildChartData(daily, total, target, showProj ? projection : null);
+      }, [daily, total, target, showProj, projection]);
+
+      var avgDaily = daily.length > 0 ? Math.round(total / daily.length) : 0;
+      var peakValue = daily.length > 0 ? Math.max.apply(null, daily) : 0;
+      var peakIndex = daily.indexOf(peakValue);
+
+      var ranking = useMemo(function() {
+        var list = scope === "regiao" ? dddList.filter(function(d) { return DDDS[d].r === selectedRegiao; }) : dddList;
+        return list.map(function(d) {
+          var i = DDDS[d];
+          var p = buildProjection(i.d, i.t, target);
+          return {
+            ddd: d, cidade: i.c, estado: i.e, regiao: i.r, total: i.t,
+            avg: i.d.length > 0 ? Math.round(i.t / i.d.length) : 0,
+            dias: p ? p.dias : 999, conf: p ? p.conf : 0, status: p ? p.status : "?"
+          };
+        }).sort(function(a, b) { return a.dias - b.dias; });
+      }, [scope, selectedRegiao, target, dddList]);
+
+      return (
+        <div style={{ fontFamily: FONTS.body, background: C.bg, color: C.text, minHeight: "100vh" }}>
+
+          {/* HEADER */}
+          <div style={{ background: C.accent, padding: "13px 22px", color: "#fff" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1200, margin: "0 auto", flexWrap: "wrap", gap: 8 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+                <div style={{ width: 28, height: 28, background: "rgba(255,255,255,0.12)", borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONTS.mono, fontWeight: 700, fontSize: 10.5 }}>TS</div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 600 }}>Terra Sales</div>
+                  <div style={{ fontSize: 9, opacity: 0.55, letterSpacing: "0.06em" }}>MODELO ESTATISTICO - VELOCIDADE DE CAPTACAO POR DDD</div>
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.08)", padding: "3px 10px", borderRadius: 10, fontSize: 9 }}>
+                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ADE80" }} />
+                2.842 registros - 64 DDDs - 5 regioes
               </div>
             </div>
           </div>
-          <div style={{
-            display: "flex", alignItems: "center", gap: 5,
-            background: "rgba(255,255,255,0.08)", padding: "3px 10px",
-            borderRadius: 10, fontSize: 9
-          }}>
-            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ADE80" }} />
-            {TOTAL_GERAL.toLocaleString("pt-BR")} registros - 64 DDDs - 5 regioes
-          </div>
-        </div>
-      </div>
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 22px" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 22px" }}>
 
-        {/* ═══ CONTROLS ═══ */}
-        <div style={{
-          display: "flex", gap: 10, marginBottom: 14,
-          flexWrap: "wrap", alignItems: "flex-end"
-        }}>
-          <div>
-            <div style={{
-              fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
-              textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
-            }}>Escopo</div>
-            <div style={{
-              display: "flex", border: "1px solid " + COLORS.border,
-              borderRadius: 4, overflow: "hidden"
-            }}>
-              <button
-                onClick={() => { setScope("ddd"); setActiveTab("chart"); }}
-                style={{
-                  padding: "7px 14px", fontSize: 11.5,
-                  fontWeight: scope === "ddd" ? 600 : 400,
-                  background: scope === "ddd" ? COLORS.accent : "#fff",
-                  color: scope === "ddd" ? "#fff" : COLORS.muted,
-                  border: "none", cursor: "pointer", fontFamily: FONTS.body
-                }}
-              >Por DDD</button>
-              <button
-                onClick={() => { setScope("regiao"); setActiveTab("chart"); }}
-                style={{
-                  padding: "7px 14px", fontSize: 11.5,
-                  fontWeight: scope === "regiao" ? 600 : 400,
-                  background: scope === "regiao" ? COLORS.accent : "#fff",
-                  color: scope === "regiao" ? "#fff" : COLORS.muted,
-                  border: "none", cursor: "pointer", fontFamily: FONTS.body
-                }}
-              >Por Regiao</button>
-            </div>
-          </div>
-
-          {scope === "ddd" ? (
-            <div style={{ flex: "1 1 280px" }}>
-              <div style={{
-                fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
-                textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
-              }}>DDD / Cidade</div>
-              <select
-                value={selectedDdd}
-                onChange={(ev) => setSelectedDdd(ev.target.value)}
-                style={{
-                  width: "100%", padding: "7px 10px", fontSize: 12,
-                  border: "1px solid " + COLORS.border, borderRadius: 4, background: "#fff"
-                }}
-              >
-                {dddList.map(d => (
-                  <option key={d} value={d}>
-                    ({d}) {DDDS[d].c} - {DDDS[d].e} - {DDDS[d].t} resp. - {DDDS[d].r}
-                  </option>
-                ))}
-              </select>
-            </div>
-          ) : (
-            <div style={{ flex: "1 1 220px" }}>
-              <div style={{
-                fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
-                textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
-              }}>Regiao</div>
-              <select
-                value={selectedRegiao}
-                onChange={(ev) => setSelectedRegiao(ev.target.value)}
-                style={{
-                  width: "100%", padding: "7px 10px", fontSize: 12,
-                  border: "1px solid " + COLORS.border, borderRadius: 4, background: "#fff"
-                }}
-              >
-                {regionList.map(reg => (
-                  <option key={reg} value={reg}>
-                    {reg} - {REGIOES[reg].t.toLocaleString("pt-BR")} resp. - {REGIOES[reg].n} DDDs
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          <div style={{ flex: "0 0 130px" }}>
-            <div style={{
-              fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
-              textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
-            }}>Meta</div>
-            <input
-              type="number"
-              value={target}
-              onChange={(ev) => setTarget(Math.max(1, parseInt(ev.target.value) || 1))}
-              style={{
-                width: "100%", padding: "7px 10px", fontSize: 12,
-                fontFamily: FONTS.mono, border: "1px solid " + COLORS.border,
-                borderRadius: 4, background: "#fff", boxSizing: "border-box"
-              }}
-            />
-          </div>
-        </div>
-
-        {/* ═══ REGION CARDS ═══ */}
-        <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-          {regionSummary.map(reg => (
-            <div
-              key={reg.regiao}
-              onClick={() => { setScope("regiao"); setSelectedRegiao(reg.regiao); setActiveTab("chart"); }}
-              style={{
-                background: COLORS.card,
-                border: "1px solid " + (scope === "regiao" && selectedRegiao === reg.regiao ? COLORS.accent : COLORS.border),
-                borderRadius: 6, padding: "10px 14px", flex: "1 1 130px",
-                cursor: "pointer", transition: "all 0.12s",
-                borderTop: "3px solid " + reg.color
-              }}
-            >
-              <div style={{
-                fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
-                textTransform: "uppercase", color: reg.color, marginBottom: 2
-              }}>{reg.regiao}</div>
-              <div style={{
-                fontSize: 19, fontWeight: 700, fontFamily: FONTS.mono, lineHeight: 1.1
-              }}>{reg.total.toLocaleString("pt-BR")}</div>
-              <div style={{ fontSize: 8.5, color: COLORS.muted, marginTop: 2 }}>
-                {reg.numDdds} DDDs - {reg.avg} resp./dia - {(reg.total / TOTAL_GERAL * 100).toFixed(1)}%
-              </div>
-              <div style={{
-                fontSize: 8.5,
-                color: reg.status === "atingido" ? COLORS.accent : COLORS.warn,
-                fontWeight: 600, marginTop: 1
-              }}>
-                {reg.projDias}d p/ meta - {reg.conf}%
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ═══ KPIs ═══ */}
-        <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-          <KpiCard
-            label="Total Captado"
-            value={total.toLocaleString("pt-BR")}
-            subtitle={"em " + daily.length + " dia" + (daily.length !== 1 ? "s" : "") + " de coleta"}
-            accentColor={activeColor}
-          />
-          <KpiCard label="Media/Dia" value={avgDaily} subtitle="respostas por dia" accentColor="#3B82F6" />
-          <KpiCard
-            label="Pico"
-            value={daily.length > 0 ? "D" + (peakIndex + 1) : "-"}
-            subtitle={daily.length > 0 ? peakValue + " respostas" : ""}
-            accentColor={COLORS.warn}
-          />
-          <KpiCard
-            label="Dias p/ Meta"
-            value={projection ? projection.dias : "-"}
-            subtitle={projection ? projection.conf + "% confianca" : ""}
-            accentColor={projection && projection.status === "atingido" ? COLORS.accent : COLORS.danger}
-          />
-          <KpiCard
-            label="Vel. Projetada"
-            value={projection && projection.rate ? projection.rate + "/d" : avgDaily + "/d"}
-            subtitle="resp./dia estimadas"
-            accentColor="#8B5CF6"
-          />
-        </div>
-
-        {/* ═══ INFO BAR ═══ */}
-        <div style={{
-          display: "flex", gap: 14, alignItems: "center",
-          background: COLORS.card, border: "1px solid " + COLORS.border,
-          borderRadius: 5, padding: "7px 14px", marginBottom: 14,
-          fontSize: 11, flexWrap: "wrap"
-        }}>
-          {scope === "ddd" ? (
-            <>
-              <span><span style={{ color: COLORS.muted }}>DDD:</span> <strong>{selectedDdd}</strong></span>
-              <span style={{ color: COLORS.border }}>|</span>
-              <span><span style={{ color: COLORS.muted }}>Cidade:</span> <strong>{currentInfo ? currentInfo.c : ""}</strong></span>
-              <span style={{ color: COLORS.border }}>|</span>
-              <span><span style={{ color: COLORS.muted }}>UF:</span> <strong>{currentInfo ? currentInfo.e : ""}</strong></span>
-              <span style={{ color: COLORS.border }}>|</span>
-              <span><span style={{ color: COLORS.muted }}>Regiao:</span> <strong style={{ color: REG_COLORS[currentInfo ? currentInfo.r : ""] }}>{currentInfo ? currentInfo.r : ""}</strong></span>
-              <span style={{ color: COLORS.border }}>|</span>
-              <span><span style={{ color: COLORS.muted }}>% do total:</span> <strong>{(total / TOTAL_GERAL * 100).toFixed(1)}%</strong></span>
-            </>
-          ) : (
-            <>
-              <span><span style={{ color: COLORS.muted }}>Regiao:</span> <strong style={{ color: REG_COLORS[selectedRegiao] }}>{selectedRegiao}</strong></span>
-              <span style={{ color: COLORS.border }}>|</span>
-              <span><span style={{ color: COLORS.muted }}>DDDs ativos:</span> <strong>{currentRegInfo ? currentRegInfo.n : 0}</strong></span>
-              <span style={{ color: COLORS.border }}>|</span>
-              <span><span style={{ color: COLORS.muted }}>Total:</span> <strong>{total.toLocaleString("pt-BR")}</strong></span>
-              <span style={{ color: COLORS.border }}>|</span>
-              <span><span style={{ color: COLORS.muted }}>% do total:</span> <strong>{(total / TOTAL_GERAL * 100).toFixed(1)}%</strong></span>
-            </>
-          )}
-        </div>
-
-        {/* ═══ TABS ═══ */}
-        <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
-          <PillButton isActive={activeTab === "chart"} onClick={() => setActiveTab("chart")}>
-            Curva de Captacao
-          </PillButton>
-          <PillButton isActive={activeTab === "ranking"} onClick={() => setActiveTab("ranking")}>
-            {scope === "regiao" ? "DDDs - " + selectedRegiao : "Ranking por DDD"}
-          </PillButton>
-        </div>
-
-        {/* ═══ CHART TAB ═══ */}
-        {activeTab === "chart" && (
-          <div style={{
-            background: COLORS.card, border: "1px solid " + COLORS.border,
-            borderRadius: 6, padding: 16
-          }}>
-            <div style={{
-              display: "flex", justifyContent: "space-between", alignItems: "center",
-              marginBottom: 10, flexWrap: "wrap", gap: 8
-            }}>
+            {/* CONTROLS */}
+            <div style={{ display: "flex", gap: 10, marginBottom: 14, flexWrap: "wrap", alignItems: "flex-end" }}>
               <div>
-                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 400, fontFamily: FONTS.display }}>
-                  {viewMode === "acumulado" ? "Curva Acumulada de Respostas" : "Volume Diario de Respostas"}
-                </h3>
-                <p style={{ margin: "1px 0 0", fontSize: 10, color: COLORS.muted }}>
-                  {displayLabel}
-                </p>
+                <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.muted, marginBottom: 3 }}>Escopo</div>
+                <div style={{ display: "flex", border: "1px solid " + C.border, borderRadius: 4, overflow: "hidden" }}>
+                  <button onClick={function() { setScope("ddd"); setActiveTab("chart"); }} style={{ padding: "7px 14px", fontSize: 11.5, fontWeight: scope === "ddd" ? 600 : 400, background: scope === "ddd" ? C.accent : "#fff", color: scope === "ddd" ? "#fff" : C.muted, border: "none", cursor: "pointer", fontFamily: FONTS.body }}>Por DDD</button>
+                  <button onClick={function() { setScope("regiao"); setActiveTab("chart"); }} style={{ padding: "7px 14px", fontSize: 11.5, fontWeight: scope === "regiao" ? 600 : 400, background: scope === "regiao" ? C.accent : "#fff", color: scope === "regiao" ? "#fff" : C.muted, border: "none", cursor: "pointer", fontFamily: FONTS.body }}>Por Regiao</button>
+                </div>
               </div>
-              <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
-                <PillButton isActive={viewMode === "acumulado"} onClick={() => setViewMode("acumulado")}>
-                  Acumulado
-                </PillButton>
-                <PillButton isActive={viewMode === "diario"} onClick={() => setViewMode("diario")}>
-                  Diario
-                </PillButton>
-                <label style={{
-                  display: "flex", alignItems: "center", gap: 4,
-                  fontSize: 10, color: COLORS.secondary, cursor: "pointer", marginLeft: 6
-                }}>
-                  <input
-                    type="checkbox"
-                    checked={showProjection}
-                    onChange={(ev) => setShowProjection(ev.target.checked)}
-                    style={{ accentColor: COLORS.accent }}
-                  />
-                  Projecao
-                </label>
+
+              {scope === "ddd" ? (
+                <div style={{ flex: "1 1 280px" }}>
+                  <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.muted, marginBottom: 3 }}>DDD / Cidade</div>
+                  <select value={selectedDdd} onChange={function(ev) { setSelectedDdd(ev.target.value); }} style={{ width: "100%", padding: "7px 10px", fontSize: 12, border: "1px solid " + C.border, borderRadius: 4, background: "#fff" }}>
+                    {dddList.map(function(d) {
+                      return <option key={d} value={d}>({d}) {DDDS[d].c} - {DDDS[d].e} - {DDDS[d].t} resp. - {DDDS[d].r}</option>;
+                    })}
+                  </select>
+                </div>
+              ) : (
+                <div style={{ flex: "1 1 220px" }}>
+                  <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.muted, marginBottom: 3 }}>Regiao</div>
+                  <select value={selectedRegiao} onChange={function(ev) { setSelectedRegiao(ev.target.value); }} style={{ width: "100%", padding: "7px 10px", fontSize: 12, border: "1px solid " + C.border, borderRadius: 4, background: "#fff" }}>
+                    {regionList.map(function(r) {
+                      return <option key={r} value={r}>{r} - {REGIOES[r].t.toLocaleString("pt-BR")} resp. - {REGIOES[r].n} DDDs</option>;
+                    })}
+                  </select>
+                </div>
+              )}
+
+              <div style={{ flex: "0 0 130px" }}>
+                <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.muted, marginBottom: 3 }}>Meta</div>
+                <input type="number" value={target} onChange={function(ev) { setTarget(Math.max(1, parseInt(ev.target.value) || 1)); }} style={{ width: "100%", padding: "7px 10px", fontSize: 12, fontFamily: FONTS.mono, border: "1px solid " + C.border, borderRadius: 4, background: "#fff", boxSizing: "border-box" }} />
               </div>
             </div>
 
-            {daily.length === 0 ? (
-              <div style={{ padding: 28, textAlign: "center", color: COLORS.muted, fontSize: 12 }}>
-                Sem dados de curva para esta selecao.
-              </div>
-            ) : (
-              <ResponsiveContainer width="100%" height={300}>
-                {viewMode === "acumulado" ? (
-                  <ComposedChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                    <defs>
-                      <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor={activeColor} stopOpacity={0.12} />
-                        <stop offset="100%" stopColor={activeColor} stopOpacity={0.01} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#EDF0F3" vertical={false} />
-                    <XAxis dataKey="dia" tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={{ stroke: COLORS.border }} />
-                    <YAxis tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={false} tickFormatter={(v) => v >= 1000 ? (v / 1000).toFixed(1) + "k" : v} />
-                    <Tooltip content={<ChartTooltip />} />
-                    <ReferenceLine y={target} stroke={COLORS.danger} strokeDasharray="6 3" strokeWidth={1.5} label={{ value: "Meta: " + target, position: "insideTopRight", fontSize: 10, fill: COLORS.danger, fontWeight: 600 }} />
-                    <Area dataKey="cum" fill="url(#areaGrad)" stroke={activeColor} strokeWidth={2} dot={false} name="Acumulado" activeDot={{ r: 3, stroke: "#fff", strokeWidth: 2 }} />
-                  </ComposedChart>
+            {/* KPIs */}
+            <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
+              <KpiCard label="Total Captado" value={total.toLocaleString("pt-BR")} subtitle={"em " + daily.length + " dia" + (daily.length !== 1 ? "s" : "") + " de coleta"} accentColor={activeColor} />
+              <KpiCard label="Media/Dia" value={avgDaily} subtitle="respostas por dia" accentColor="#3B82F6" />
+              <KpiCard label="Pico" value={daily.length > 0 ? "D" + (peakIndex + 1) : "-"} subtitle={daily.length > 0 ? peakValue + " respostas" : ""} accentColor={C.warn} />
+              <KpiCard label="Dias p/ Meta" value={projection ? projection.dias : "-"} subtitle={projection ? projection.conf + "% confianca" : ""} accentColor={projection && projection.status === "atingido" ? C.accent : C.danger} />
+              <KpiCard label="Vel. Projetada" value={projection && projection.rate ? projection.rate + "/d" : avgDaily + "/d"} subtitle="resp./dia estimadas" accentColor="#8B5CF6" />
+            </div>
+
+            {/* INFO BAR */}
+            <div style={{ display: "flex", gap: 14, alignItems: "center", background: C.card, border: "1px solid " + C.border, borderRadius: 5, padding: "7px 14px", marginBottom: 14, fontSize: 11, flexWrap: "wrap" }}>
+              {scope === "ddd" ? (
+                <React.Fragment>
+                  <span><span style={{ color: C.muted }}>DDD:</span> <strong>{selectedDdd}</strong></span>
+                  <span style={{ color: C.border }}>|</span>
+                  <span><span style={{ color: C.muted }}>Cidade:</span> <strong>{info ? info.c : ""}</strong></span>
+                  <span style={{ color: C.border }}>|</span>
+                  <span><span style={{ color: C.muted }}>UF:</span> <strong>{info ? info.e : ""}</strong></span>
+                  <span style={{ color: C.border }}>|</span>
+                  <span><span style={{ color: C.muted }}>Regiao:</span> <strong style={{ color: REG_COLORS[info ? info.r : ""] }}>{info ? info.r : ""}</strong></span>
+                  <span style={{ color: C.border }}>|</span>
+                  <span><span style={{ color: C.muted }}>% do total:</span> <strong>{(total / TOTAL_GERAL * 100).toFixed(1)}%</strong></span>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <span><span style={{ color: C.muted }}>Regiao:</span> <strong style={{ color: REG_COLORS[selectedRegiao] }}>{selectedRegiao}</strong></span>
+                  <span style={{ color: C.border }}>|</span>
+                  <span><span style={{ color: C.muted }}>DDDs ativos:</span> <strong>{regInfo ? regInfo.n : 0}</strong></span>
+                  <span style={{ color: C.border }}>|</span>
+                  <span><span style={{ color: C.muted }}>Total:</span> <strong>{total.toLocaleString("pt-BR")}</strong></span>
+                  <span style={{ color: C.border }}>|</span>
+                  <span><span style={{ color: C.muted }}>% do total:</span> <strong>{(total / TOTAL_GERAL * 100).toFixed(1)}%</strong></span>
+                </React.Fragment>
+              )}
+            </div>
+
+            {/* TABS */}
+            <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
+              <PillBtn isActive={activeTab === "chart"} onClick={function() { setActiveTab("chart"); }}>Curva de Captacao</PillBtn>
+              <PillBtn isActive={activeTab === "ranking"} onClick={function() { setActiveTab("ranking"); }}>{scope === "regiao" ? "DDDs - " + selectedRegiao : "Ranking por DDD"}</PillBtn>
+            </div>
+
+            {/* CHART */}
+            {activeTab === "chart" && (
+              <div style={{ background: C.card, border: "1px solid " + C.border, borderRadius: 6, padding: 16 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: 15, fontWeight: 400, fontFamily: FONTS.display }}>{viewMode === "acumulado" ? "Curva Acumulada de Respostas" : "Volume Diario de Respostas"}</h3>
+                    <p style={{ margin: "1px 0 0", fontSize: 10, color: C.muted }}>{displayLabel}</p>
+                  </div>
+                  <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+                    <PillBtn isActive={viewMode === "acumulado"} onClick={function() { setViewMode("acumulado"); }}>Acumulado</PillBtn>
+                    <PillBtn isActive={viewMode === "diario"} onClick={function() { setViewMode("diario"); }}>Diario</PillBtn>
+                    <label style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, color: C.sec, cursor: "pointer", marginLeft: 6 }}>
+                      <input type="checkbox" checked={showProj} onChange={function(ev) { setShowProj(ev.target.checked); }} style={{ accentColor: C.accent }} />
+                      Projecao
+                    </label>
+                  </div>
+                </div>
+
+                {daily.length === 0 ? (
+                  <div style={{ padding: 28, textAlign: "center", color: C.muted, fontSize: 12 }}>Sem dados de curva para esta selecao.</div>
                 ) : (
-                  <BarChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#EDF0F3" vertical={false} />
-                    <XAxis dataKey="dia" tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={{ stroke: COLORS.border }} />
-                    <YAxis tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={false} />
-                    <Tooltip content={<ChartTooltip />} />
-                    <Bar dataKey="daily" name="Respostas" radius={[2, 2, 0, 0]}>
-                      {chartData.map((entry, idx) => (
-                        <Cell
-                          key={idx}
-                          fill={entry.tipo === "proj" ? "rgba(194,122,14,0.35)" : activeColor}
-                          opacity={entry.tipo === "proj" ? 0.6 : 0.85}
-                        />
-                      ))}
-                    </Bar>
-                  </BarChart>
+                  <ResponsiveContainer width="100%" height={300}>
+                    {viewMode === "acumulado" ? (
+                      <ComposedChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                        <defs>
+                          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor={activeColor} stopOpacity={0.12} />
+                            <stop offset="100%" stopColor={activeColor} stopOpacity={0.01} />
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#EDF0F3" vertical={false} />
+                        <XAxis dataKey="dia" tick={{ fontSize: 10, fill: C.muted }} tickLine={false} axisLine={{ stroke: C.border }} />
+                        <YAxis tick={{ fontSize: 10, fill: C.muted }} tickLine={false} axisLine={false} tickFormatter={function(v) { return v >= 1000 ? (v / 1000).toFixed(1) + "k" : v; }} />
+                        <Tooltip content={<ChartTip />} />
+                        <ReferenceLine y={target} stroke={C.danger} strokeDasharray="6 3" strokeWidth={1.5} label={{ value: "Meta: " + target, position: "insideTopRight", fontSize: 10, fill: C.danger, fontWeight: 600 }} />
+                        <Area dataKey="cum" fill="url(#areaGrad)" stroke={activeColor} strokeWidth={2} dot={false} name="Acumulado" activeDot={{ r: 3, stroke: "#fff", strokeWidth: 2 }} />
+                      </ComposedChart>
+                    ) : (
+                      <BarChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#EDF0F3" vertical={false} />
+                        <XAxis dataKey="dia" tick={{ fontSize: 10, fill: C.muted }} tickLine={false} axisLine={{ stroke: C.border }} />
+                        <YAxis tick={{ fontSize: 10, fill: C.muted }} tickLine={false} axisLine={false} />
+                        <Tooltip content={<ChartTip />} />
+                        <Bar dataKey="daily" name="Respostas" radius={[2, 2, 0, 0]}>
+                          {chartData.map(function(entry, idx) {
+                            return <Cell key={idx} fill={entry.tipo === "proj" ? "rgba(194,122,14,0.35)" : activeColor} opacity={entry.tipo === "proj" ? 0.6 : 0.85} />;
+                          })}
+                        </Bar>
+                      </BarChart>
+                    )}
+                  </ResponsiveContainer>
                 )}
-              </ResponsiveContainer>
-            )}
 
-            {showProjection && projection && projection.status === "projetado" && (
-              <div style={{
-                marginTop: 8, padding: "8px 11px",
-                background: "#FFF8ED", border: "1px solid #F5DEB0",
-                borderRadius: 4, fontSize: 10, color: "#92610E", lineHeight: 1.6
-              }}>
-                <strong>Projecao:</strong> Taxa estimada de <strong>{projection.rate} resp./dia</strong> - meta de {target.toLocaleString("pt-BR")} em ~<strong>{projection.dias} dias</strong> (confianca: {projection.conf}%).
+                {showProj && projection && projection.status === "projetado" && (
+                  <div style={{ marginTop: 8, padding: "8px 11px", background: "#FFF8ED", border: "1px solid #F5DEB0", borderRadius: 4, fontSize: 10, color: "#92610E", lineHeight: 1.6 }}>
+                    <strong>Projecao:</strong> Taxa estimada de <strong>{projection.rate} resp./dia</strong> - meta de {target.toLocaleString("pt-BR")} em ~<strong>{projection.dias} dias</strong> (confianca: {projection.conf}%).
+                  </div>
+                )}
+                {projection && projection.status === "atingido" && (
+                  <div style={{ marginTop: 8, padding: "8px 11px", background: C.accentLight, border: "1px solid #C3E0D1", borderRadius: 4, fontSize: 10, color: C.accent, lineHeight: 1.6 }}>
+                    <strong>Meta atingida!</strong> Alcancou {target.toLocaleString("pt-BR")} respostas no <strong>dia {projection.dias}</strong>.
+                  </div>
+                )}
               </div>
             )}
 
-            {projection && projection.status === "atingido" && (
-              <div style={{
-                marginTop: 8, padding: "8px 11px",
-                background: COLORS.accentLight, border: "1px solid #C3E0D1",
-                borderRadius: 4, fontSize: 10, color: COLORS.accent, lineHeight: 1.6
-              }}>
-                <strong>Meta atingida!</strong> Alcancou {target.toLocaleString("pt-BR")} respostas no <strong>dia {projection.dias}</strong>.
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* ═══ RANKING TAB ═══ */}
-        {activeTab === "ranking" && (
-          <div style={{
-            background: COLORS.card, border: "1px solid " + COLORS.border,
-            borderRadius: 6, padding: 16
-          }}>
-            <h3 style={{ margin: "0 0 2px", fontSize: 15, fontWeight: 400, fontFamily: FONTS.display }}>
-              {scope === "regiao" ? "DDDs da regiao " + selectedRegiao : "Ranking Geral por DDD"}
-            </h3>
-            <p style={{ margin: "0 0 10px", fontSize: 10, color: COLORS.muted }}>
-              Meta: {target.toLocaleString("pt-BR")} respostas - {ranking.length} DDDs
-            </p>
-            <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 11 }}>
-                <thead>
-                  <tr style={{ borderBottom: "2px solid " + COLORS.border }}>
-                    {["#", "DDD", "Cidade", "UF", "Regiao", "Media/dia", "Total", "Dias", "Conf."].map((header, idx) => (
-                      <th key={idx} style={{
-                        padding: "5px 7px",
-                        textAlign: idx > 4 ? "right" : "left",
-                        fontSize: 9, fontWeight: 600, letterSpacing: "0.06em",
-                        textTransform: "uppercase", color: COLORS.muted
-                      }}>{header}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {ranking.map((row, idx) => {
-                    const isSelected = row.ddd === selectedDdd && scope === "ddd";
-                    return (
-                      <tr
-                        key={row.ddd}
-                        onClick={() => { setSelectedDdd(row.ddd); setScope("ddd"); setActiveTab("chart"); }}
-                        style={{
-                          borderBottom: "1px solid " + COLORS.border,
-                          background: isSelected ? COLORS.accentLight : "transparent",
-                          cursor: "pointer"
-                        }}
-                        onMouseEnter={(ev) => { if (!isSelected) ev.currentTarget.style.background = "#F9FAFB"; }}
-                        onMouseLeave={(ev) => { if (!isSelected) ev.currentTarget.style.background = "transparent"; }}
-                      >
-                        <td style={{ padding: "6px 7px", fontFamily: FONTS.mono, fontSize: 9.5, color: COLORS.muted, fontWeight: 600 }}>{idx + 1}</td>
-                        <td style={{ padding: "6px 7px" }}>
-                          <span style={{
-                            background: isSelected ? COLORS.accent : "#F1F3F5",
-                            color: isSelected ? "#fff" : COLORS.text,
-                            padding: "1px 6px", borderRadius: 3,
-                            fontFamily: FONTS.mono, fontSize: 10, fontWeight: 600
-                          }}>{row.ddd}</span>
-                        </td>
-                        <td style={{ padding: "6px 7px", fontWeight: 500 }}>{row.cidade}</td>
-                        <td style={{ padding: "6px 7px", color: COLORS.muted }}>{row.estado}</td>
-                        <td style={{ padding: "6px 7px" }}>
-                          <span style={{ color: REG_COLORS[row.regiao], fontWeight: 500, fontSize: 10 }}>{row.regiao}</span>
-                        </td>
-                        <td style={{ padding: "6px 7px", textAlign: "right", fontFamily: FONTS.mono, fontSize: 10 }}>{row.avg}</td>
-                        <td style={{ padding: "6px 7px", textAlign: "right", fontFamily: FONTS.mono, fontSize: 10 }}>{row.total.toLocaleString("pt-BR")}</td>
-                        <td style={{ padding: "6px 7px", textAlign: "right" }}>
-                          <span style={{
-                            fontFamily: FONTS.mono, fontSize: 10, fontWeight: 700,
-                            color: row.status === "atingido" ? COLORS.accent : row.dias <= 20 ? COLORS.warn : COLORS.danger
-                          }}>{row.dias}d</span>
-                        </td>
-                        <td style={{ padding: "6px 7px", textAlign: "right" }}>
-                          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 4 }}>
-                            <div style={{ width: 34, height: 3.5, background: "#F1F3F5", borderRadius: 2, overflow: "hidden" }}>
-                              <div style={{
-                                height: "100%",
-                                width: row.conf + "%",
-                                background: row.conf > 75 ? COLORS.accent : row.conf > 50 ? COLORS.warn : COLORS.danger,
-                                borderRadius: 2
-                              }} />
-                            </div>
-                            <span style={{ fontFamily: FONTS.mono, fontSize: 9, color: COLORS.muted, minWidth: 22 }}>{row.conf}%</span>
-                          </div>
-                        </td>
+            {/* RANKING */}
+            {activeTab === "ranking" && (
+              <div style={{ background: C.card, border: "1px solid " + C.border, borderRadius: 6, padding: 16 }}>
+                <h3 style={{ margin: "0 0 2px", fontSize: 15, fontWeight: 400, fontFamily: FONTS.display }}>
+                  {scope === "regiao" ? "DDDs da regiao " + selectedRegiao : "Ranking Geral por DDD"}
+                </h3>
+                <p style={{ margin: "0 0 10px", fontSize: 10, color: C.muted }}>Meta: {target.toLocaleString("pt-BR")} respostas - {ranking.length} DDDs</p>
+                <div style={{ overflowX: "auto" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 11 }}>
+                    <thead>
+                      <tr style={{ borderBottom: "2px solid " + C.border }}>
+                        {["#", "DDD", "Cidade", "UF", "Regiao", "Media/dia", "Total", "Dias", "Conf."].map(function(h, i) {
+                          return <th key={i} style={{ padding: "5px 7px", textAlign: i > 4 ? "right" : "left", fontSize: 9, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: C.muted }}>{h}</th>;
+                        })}
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+                    </thead>
+                    <tbody>
+                      {ranking.map(function(row, idx) {
+                        var isSelected = row.ddd === selectedDdd && scope === "ddd";
+                        return (
+                          <tr key={row.ddd}
+                            onClick={function() { setSelectedDdd(row.ddd); setScope("ddd"); setActiveTab("chart"); }}
+                            style={{ borderBottom: "1px solid " + C.border, background: isSelected ? C.accentLight : "transparent", cursor: "pointer" }}
+                            onMouseEnter={function(ev) { if (!isSelected) ev.currentTarget.style.background = "#F9FAFB"; }}
+                            onMouseLeave={function(ev) { if (!isSelected) ev.currentTarget.style.background = "transparent"; }}
+                          >
+                            <td style={{ padding: "6px 7px", fontFamily: FONTS.mono, fontSize: 9.5, color: C.muted, fontWeight: 600 }}>{idx + 1}</td>
+                            <td style={{ padding: "6px 7px" }}>
+                              <span style={{ background: isSelected ? C.accent : "#F1F3F5", color: isSelected ? "#fff" : C.text, padding: "1px 6px", borderRadius: 3, fontFamily: FONTS.mono, fontSize: 10, fontWeight: 600 }}>{row.ddd}</span>
+                            </td>
+                            <td style={{ padding: "6px 7px", fontWeight: 500 }}>{row.cidade}</td>
+                            <td style={{ padding: "6px 7px", color: C.muted }}>{row.estado}</td>
+                            <td style={{ padding: "6px 7px" }}><span style={{ color: REG_COLORS[row.regiao], fontWeight: 500, fontSize: 10 }}>{row.regiao}</span></td>
+                            <td style={{ padding: "6px 7px", textAlign: "right", fontFamily: FONTS.mono, fontSize: 10 }}>{row.avg}</td>
+                            <td style={{ padding: "6px 7px", textAlign: "right", fontFamily: FONTS.mono, fontSize: 10 }}>{row.total.toLocaleString("pt-BR")}</td>
+                            <td style={{ padding: "6px 7px", textAlign: "right" }}>
+                              <span style={{ fontFamily: FONTS.mono, fontSize: 10, fontWeight: 700, color: row.status === "atingido" ? C.accent : row.dias <= 20 ? C.warn : C.danger }}>{row.dias}d</span>
+                            </td>
+                            <td style={{ padding: "6px 7px", textAlign: "right" }}>
+                              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 4 }}>
+                                <div style={{ width: 34, height: 3.5, background: "#F1F3F5", borderRadius: 2, overflow: "hidden" }}>
+                                  <div style={{ height: "100%", width: row.conf + "%", background: row.conf > 75 ? C.accent : row.conf > 50 ? C.warn : C.danger, borderRadius: 2 }} />
+                                </div>
+                                <span style={{ fontFamily: FONTS.mono, fontSize: 9, color: C.muted, minWidth: 22 }}>{row.conf}%</span>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* METHODOLOGY */}
+            <div style={{ background: C.card, border: "1px solid " + C.border, borderRadius: 6, padding: "12px 16px", marginTop: 14 }}>
+              <h4 style={{ margin: "0 0 5px", fontSize: 12, fontWeight: 400, fontFamily: FONTS.display }}>Metodologia</h4>
+              <p style={{ margin: 0, fontSize: 10, color: C.sec, lineHeight: 1.65 }}>
+                Dados consolidados por DDD (independente de pesquisa). Taxa diaria calculada sobre dias ativos de coleta.
+                Projecao baseada na media ajustada pelo fator de decaimento (D1 a Dn). Regioes agregam todos os DDDs de
+                seus estados conforme IBGE. Base: <strong>2.842 respostas</strong>, <strong>64 DDDs</strong>,
+                <strong> 5 regioes</strong>, periodo 18/Fev - 25/Mar 2026.
+              </p>
+            </div>
+
+            <div style={{ textAlign: "center", padding: "10px 0 20px", fontSize: 9, color: C.muted, letterSpacing: "0.04em" }}>
+              TERRA SALES - ANALISE ESTATISTICA - v2.1 - Base atualizada
             </div>
           </div>
-        )}
-
-        {/* ═══ METHODOLOGY ═══ */}
-        <div style={{
-          background: COLORS.card, border: "1px solid " + COLORS.border,
-          borderRadius: 6, padding: "12px 16px", marginTop: 14
-        }}>
-          <h4 style={{ margin: "0 0 5px", fontSize: 12, fontWeight: 400, fontFamily: FONTS.display }}>Metodologia</h4>
-          <p style={{ margin: 0, fontSize: 10, color: COLORS.secondary, lineHeight: 1.65 }}>
-            Dados consolidados por DDD (independente de pesquisa). Taxa diaria calculada sobre dias ativos de coleta.
-            Projecao baseada na media ajustada pelo fator de decaimento (D1 a Dn). Regioes agregam todos os DDDs de
-            seus estados conforme IBGE. Base: <strong>2.842 respostas</strong>, <strong>64 DDDs</strong>,
-            <strong> 5 regioes</strong>, periodo 18/Fev - 25/Mar 2026.
-          </p>
         </div>
+      );
+    }
 
-        <div style={{
-          textAlign: "center", padding: "10px 0 20px",
-          fontSize: 9, color: COLORS.muted, letterSpacing: "0.04em"
-        }}>
-          TERRA SALES - ANALISE ESTATISTICA - v2.1 - Base atualizada
-        </div>
-      </div>
-    </div>
-  );
-}
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
