@@ -1,757 +1,778 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vivo Ads Track — Audiências Disponíveis</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Vivo+Sans:wght@400;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Barlow+Condensed:wght@600;700;800&display=swap');
+import { useState, useMemo } from "react";
+import {
+  AreaChart, Area, BarChart, Bar, XAxis, YAxis,
+  CartesianGrid, Tooltip, ResponsiveContainer,
+  ComposedChart, ReferenceLine, Cell
+} from "recharts";
 
-  :root {
-    --vivo-purple: #660099;
-    --vivo-purple-dark: #4a006e;
-    --vivo-purple-light: #9b2fc8;
-    --vivo-grape: #2d0042;
-    --vivo-white: #ffffff;
-    --vivo-offwhite: #f5f0fa;
-    --vivo-gray: #e8e0f0;
-    --accent-magenta: #cc00aa;
-    --accent-cyan: #00b8d4;
-    --text-dark: #1a0028;
-    --text-mid: #5a3a72;
+/* ═══════════════════════════════════════════════════════════════════
+   DATA — Base_modelo.xlsx · 2.842 registros · 64 DDDs · Fev–Mar 2026
+   ═══════════════════════════════════════════════════════════════════ */
+const DDDS = {
+  "11":{"c":"São Paulo","e":"SP","r":"Sudeste","t":158,"d":[47,63,29,11,4,4]},
+  "12":{"c":"S.J. dos Campos","e":"SP","r":"Sudeste","t":32,"d":[9,12,4,1,1,5]},
+  "13":{"c":"Santos","e":"SP","r":"Sudeste","t":37,"d":[9,15,7,2,3,1]},
+  "14":{"c":"Bauru","e":"SP","r":"Sudeste","t":40,"d":[13,15,8,1,2,1]},
+  "15":{"c":"Sorocaba","e":"SP","r":"Sudeste","t":71,"d":[26,27,10,4,1,3]},
+  "16":{"c":"Ribeirão Preto","e":"SP","r":"Sudeste","t":17,"d":[4,5,5,1,1,1]},
+  "17":{"c":"S.J. Rio Preto","e":"SP","r":"Sudeste","t":7,"d":[1,6]},
+  "18":{"c":"Pres. Prudente","e":"SP","r":"Sudeste","t":19,"d":[3,10,2,2,2]},
+  "19":{"c":"Campinas","e":"SP","r":"Sudeste","t":204,"d":[6,14,6,2,2,174]},
+  "21":{"c":"Rio de Janeiro","e":"RJ","r":"Sudeste","t":59,"d":[13,26,10,2,5,1,1,1]},
+  "22":{"c":"Campos","e":"RJ","r":"Sudeste","t":26,"d":[10,6,7,1,2]},
+  "24":{"c":"Petropolis","e":"RJ","r":"Sudeste","t":10,"d":[3,3,2,1,1]},
+  "27":{"c":"Vitoria","e":"ES","r":"Sudeste","t":67,"d":[16,30,12,1,2,4,2]},
+  "28":{"c":"Cachoeiro","e":"ES","r":"Sudeste","t":19,"d":[4,11,1,1,2]},
+  "31":{"c":"Belo Horizonte","e":"MG","r":"Sudeste","t":87,"d":[20,34,19,9,2,3]},
+  "32":{"c":"Juiz de Fora","e":"MG","r":"Sudeste","t":34,"d":[12,12,7,1,2]},
+  "33":{"c":"Gov. Valadares","e":"MG","r":"Sudeste","t":57,"d":[16,19,9,6,5,1,1]},
+  "34":{"c":"Uberlandia","e":"MG","r":"Sudeste","t":6,"d":[3,1,1,1]},
+  "35":{"c":"Pocos de Caldas","e":"MG","r":"Sudeste","t":35,"d":[11,14,6,1,3]},
+  "37":{"c":"Divinopolis","e":"MG","r":"Sudeste","t":16,"d":[2,9,3,1,1]},
+  "38":{"c":"Montes Claros","e":"MG","r":"Sudeste","t":143,"d":[51,42,24,5,9,12]},
+  "41":{"c":"Curitiba","e":"PR","r":"Sul","t":2,"d":[1,1]},
+  "42":{"c":"Ponta Grossa","e":"PR","r":"Sul","t":1,"d":[1]},
+  "43":{"c":"Londrina","e":"PR","r":"Sul","t":4,"d":[1,2,1]},
+  "44":{"c":"Maringa","e":"PR","r":"Sul","t":2,"d":[1,1]},
+  "47":{"c":"Joinville","e":"SC","r":"Sul","t":5,"d":[2,3]},
+  "48":{"c":"Florianopolis","e":"SC","r":"Sul","t":2,"d":[2]},
+  "49":{"c":"Chapeco","e":"SC","r":"Sul","t":1,"d":[1]},
+  "51":{"c":"Porto Alegre","e":"RS","r":"Sul","t":48,"d":[8,16,7,6,7,3,1]},
+  "53":{"c":"Pelotas","e":"RS","r":"Sul","t":18,"d":[7,6,3,1,1]},
+  "54":{"c":"Caxias do Sul","e":"RS","r":"Sul","t":7,"d":[2,3,1,1]},
+  "55":{"c":"Santa Maria","e":"RS","r":"Sul","t":22,"d":[6,8,4,3,1]},
+  "61":{"c":"Brasilia","e":"DF","r":"Centro-Oeste","t":160,"d":[6,10,5,2,3,1,133]},
+  "62":{"c":"Goiania","e":"GO","r":"Centro-Oeste","t":69,"d":[2,4,63]},
+  "64":{"c":"Rio Verde","e":"GO","r":"Centro-Oeste","t":5,"d":[3,1,1]},
+  "65":{"c":"Cuiaba","e":"MT","r":"Centro-Oeste","t":108,"d":[5,5,2,1,2,93]},
+  "66":{"c":"Rondonopolis","e":"MT","r":"Centro-Oeste","t":7,"d":[2,1,3,1]},
+  "67":{"c":"Campo Grande","e":"MS","r":"Centro-Oeste","t":161,"d":[5,8,6,2,2,138]},
+  "68":{"c":"Rio Branco","e":"AC","r":"Norte","t":9,"d":[2,4,1,2]},
+  "69":{"c":"Porto Velho","e":"RO","r":"Norte","t":1,"d":[1]},
+  "71":{"c":"Salvador","e":"BA","r":"Nordeste","t":26,"d":[9,6,7,3,1]},
+  "73":{"c":"Itabuna","e":"BA","r":"Nordeste","t":34,"d":[10,14,6,4]},
+  "74":{"c":"Juazeiro","e":"BA","r":"Nordeste","t":34,"d":[11,15,3,2,2,1]},
+  "75":{"c":"F. de Santana","e":"BA","r":"Nordeste","t":93,"d":[35,22,17,8,3,6,2]},
+  "77":{"c":"V. da Conquista","e":"BA","r":"Nordeste","t":35,"d":[12,11,7,1,2,2]},
+  "79":{"c":"Aracaju","e":"SE","r":"Nordeste","t":151,"d":[36,53,30,13,11,7,1]},
+  "81":{"c":"Recife","e":"PE","r":"Nordeste","t":17,"d":[5,5,5,1,1]},
+  "82":{"c":"Maceio","e":"AL","r":"Nordeste","t":9,"d":[2,4,2,1]},
+  "83":{"c":"Joao Pessoa","e":"PB","r":"Nordeste","t":14,"d":[3,5,5,1]},
+  "84":{"c":"Natal","e":"RN","r":"Nordeste","t":1,"d":[1]},
+  "85":{"c":"Fortaleza","e":"CE","r":"Nordeste","t":14,"d":[2,7,2,2,1]},
+  "86":{"c":"Teresina","e":"PI","r":"Nordeste","t":9,"d":[2,5,1,1]},
+  "87":{"c":"Petrolina","e":"PE","r":"Nordeste","t":21,"d":[7,7,4,2,1]},
+  "88":{"c":"Juaz. do Norte","e":"CE","r":"Nordeste","t":15,"d":[3,6,4,2]},
+  "89":{"c":"Picos","e":"PI","r":"Nordeste","t":18,"d":[4,3,9,1,1]},
+  "91":{"c":"Belem","e":"PA","r":"Norte","t":42,"d":[12,18,5,2,2,3]},
+  "92":{"c":"Manaus","e":"AM","r":"Norte","t":361,"d":[95,113,79,33,18,18,5]},
+  "93":{"c":"Santarem","e":"PA","r":"Norte","t":96,"d":[28,30,17,6,7,6,2]},
+  "94":{"c":"Maraba","e":"PA","r":"Norte","t":21,"d":[5,10,4,1,1]},
+  "95":{"c":"Boa Vista","e":"RR","r":"Norte","t":4,"d":[1,1,1,1]},
+  "96":{"c":"Macapa","e":"AP","r":"Norte","t":6,"d":[1,3,2]},
+  "97":{"c":"Coari","e":"AM","r":"Norte","t":25,"d":[5,9,3,4,4]},
+  "98":{"c":"Sao Luis","e":"MA","r":"Nordeste","t":9,"d":[2,6,1]},
+  "99":{"c":"Imperatriz","e":"MA","r":"Nordeste","t":11,"d":[1,5,4,1]}
+};
+
+const REGIOES = {
+  "Sudeste":{"t":1144,"d":[276,376,172,53,45,43,1,1,2,175],"n":21},
+  "Nordeste":{"t":511,"d":[144,174,104,44,21,20,4],"n":17},
+  "Sul":{"t":112,"d":[27,39,21,11,8,5,1],"n":11},
+  "Centro-Oeste":{"t":510,"d":[20,31,16,7,6,3,427],"n":6},
+  "Norte":{"t":565,"d":[150,188,112,46,32,29,8],"n":9}
+};
+
+const REG_COLORS = {
+  "Sudeste":"#1B6B4A",
+  "Nordeste":"#C27A0E",
+  "Sul":"#2563EB",
+  "Centro-Oeste":"#7C3AED",
+  "Norte":"#DC2626"
+};
+
+const TOTAL_GERAL = 2842;
+
+/* ═══ PROJECTION MODEL ═══ */
+function buildProjection(daily, total, targetVal) {
+  if (!daily || daily.length === 0) return null;
+  const numDays = daily.length;
+  const avgRate = total / numDays;
+  const decayRatio = numDays > 2
+    ? daily[numDays - 1] / Math.max(1, daily[0])
+    : 0.6;
+
+  if (total >= targetVal) {
+    let acc = 0;
+    for (let i = 0; i < numDays; i++) {
+      acc += daily[i];
+      if (acc >= targetVal) {
+        return { dias: i + 1, conf: 95, status: "atingido", rate: avgRate };
+      }
+    }
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  const projRate = avgRate * Math.max(0.25, Math.min(0.9, decayRatio));
+  const extraDays = Math.ceil((targetVal - total) / Math.max(0.5, projRate));
+  const totalDays = numDays + extraDays;
+  const confidence = Math.round(Math.max(35, Math.min(92, 96 - extraDays * 0.7)));
 
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--vivo-grape);
-    color: var(--vivo-white);
-    min-height: 100vh;
+  return {
+    dias: totalDays,
+    conf: confidence,
+    status: "projetado",
+    rate: Math.round(projRate * 10) / 10
+  };
+}
+
+function buildChartData(daily, total, targetVal, projection) {
+  let acc = 0;
+  const data = daily.map((val, idx) => {
+    acc += val;
+    return { dia: idx + 1, daily: val, cum: acc, tipo: "real" };
+  });
+
+  if (!projection || total >= targetVal || projection.status === "atingido") {
+    return data;
   }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, var(--vivo-grape) 0%, var(--vivo-purple-dark) 40%, var(--vivo-purple) 100%);
-    padding: 56px 60px 48px;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 3px solid var(--accent-magenta);
+  const baseLen = daily.length;
+  for (let i = 1; i <= projection.dias - baseLen + 3; i++) {
+    const rate = projection.rate * (0.82 + Math.random() * 0.36);
+    acc += rate;
+    data.push({
+      dia: baseLen + i,
+      daily: Math.round(rate),
+      cum: Math.round(acc),
+      tipo: "proj"
+    });
   }
+  return data;
+}
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 420px; height: 420px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(204,0,170,0.25) 0%, transparent 70%);
-    pointer-events: none;
-  }
+/* ═══ STYLES ═══ */
+const COLORS = {
+  accent: "#0F4C35",
+  accentLight: "#E6F2EC",
+  warn: "#C27A0E",
+  danger: "#B63225",
+  text: "#1A1D21",
+  secondary: "#4A5568",
+  muted: "#8896A4",
+  bg: "#F5F6F8",
+  card: "#FFFFFF",
+  border: "#E4E7EB"
+};
 
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -60px; left: 30%;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(102,0,153,0.4) 0%, transparent 70%);
-    pointer-events: none;
-  }
+const FONTS = {
+  display: "'Instrument Serif', Georgia, serif",
+  body: "'Inter', system-ui, sans-serif",
+  mono: "'IBM Plex Mono', 'SF Mono', monospace"
+};
 
-  .logo-area {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 36px;
-    position: relative; z-index: 2;
-  }
+/* ═══ COMPONENTS ═══ */
+function KpiCard({ label, value, subtitle, accentColor }) {
+  return (
+    <div style={{
+      background: COLORS.card,
+      border: "1px solid " + COLORS.border,
+      borderRadius: 6,
+      padding: "13px 15px",
+      flex: "1 1 130px",
+      borderLeft: "3px solid " + (accentColor || COLORS.accent)
+    }}>
+      <div style={{
+        fontSize: 9, fontWeight: 600, letterSpacing: "0.1em",
+        textTransform: "uppercase", color: COLORS.muted, marginBottom: 2
+      }}>{label}</div>
+      <div style={{
+        fontSize: 23, fontWeight: 700, color: COLORS.text,
+        fontFamily: FONTS.mono, lineHeight: 1.1
+      }}>{value}</div>
+      {subtitle && (
+        <div style={{ fontSize: 9, color: COLORS.muted, marginTop: 2 }}>
+          {subtitle}
+        </div>
+      )}
+    </div>
+  );
+}
 
-  /* Vivo logo SVG inline */
-  .vivo-logo-svg {
-    height: 44px;
-  }
+function PillButton({ isActive, children, onClick }) {
+  return (
+    <button onClick={onClick} style={{
+      padding: "4px 10px",
+      fontSize: 10.5,
+      fontWeight: isActive ? 600 : 400,
+      background: isActive ? COLORS.accent : "transparent",
+      color: isActive ? "#fff" : COLORS.muted,
+      border: "1px solid " + (isActive ? COLORS.accent : COLORS.border),
+      borderRadius: 4,
+      cursor: "pointer",
+      transition: "all 0.12s",
+      fontFamily: FONTS.body
+    }}>{children}</button>
+  );
+}
 
-  .logo-divider {
-    width: 2px;
-    height: 40px;
-    background: rgba(255,255,255,0.35);
-  }
+function ChartTooltip({ active, payload, label }) {
+  if (!active || !payload || payload.length === 0) return null;
+  return (
+    <div style={{
+      background: "#fff",
+      border: "1px solid " + COLORS.border,
+      borderRadius: 4,
+      padding: "6px 10px",
+      fontSize: 10.5,
+      boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+      fontFamily: FONTS.body
+    }}>
+      <div style={{ fontWeight: 600, marginBottom: 2 }}>Dia {label}</div>
+      {payload.map((entry, idx) => (
+        <div key={idx} style={{ color: entry.color }}>
+          {entry.name}: <strong>{Math.round(entry.value).toLocaleString("pt-BR")}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
 
-  .logo-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.7);
-    text-transform: uppercase;
-  }
+/* ═══ MAIN APP ═══ */
+export default function TerraSalesDDDModel() {
+  const [scope, setScope] = useState("ddd");
+  const [selectedDdd, setSelectedDdd] = useState("92");
+  const [selectedRegiao, setSelectedRegiao] = useState("Sudeste");
+  const [target, setTarget] = useState(300);
+  const [viewMode, setViewMode] = useState("acumulado");
+  const [showProjection, setShowProjection] = useState(true);
+  const [activeTab, setActiveTab] = useState("chart");
 
-  .hero-content { position: relative; z-index: 2; }
+  const dddList = useMemo(() => {
+    return Object.keys(DDDS).sort((x, y) => DDDS[y].t - DDDS[x].t);
+  }, []);
 
-  .hero-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-magenta);
-    margin-bottom: 12px;
-  }
+  const regionList = ["Sudeste", "Norte", "Nordeste", "Centro-Oeste", "Sul"];
 
-  .hero-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(38px, 5vw, 62px);
-    font-weight: 800;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    color: var(--vivo-white);
-    margin-bottom: 16px;
-  }
+  const currentInfo = scope === "ddd" ? DDDS[selectedDdd] : null;
+  const currentRegInfo = scope === "regiao" ? REGIOES[selectedRegiao] : null;
+  const daily = scope === "ddd" ? (currentInfo ? currentInfo.d : []) : (currentRegInfo ? currentRegInfo.d : []);
+  const total = scope === "ddd" ? (currentInfo ? currentInfo.t : 0) : (currentRegInfo ? currentRegInfo.t : 0);
+  const displayLabel = scope === "ddd"
+    ? ("DDD " + selectedDdd + " - " + (currentInfo ? currentInfo.c : "") + "/" + (currentInfo ? currentInfo.e : ""))
+    : ("Regiao " + selectedRegiao);
+  const activeColor = scope === "regiao" ? REG_COLORS[selectedRegiao] : COLORS.accent;
 
-  .hero-title span {
-    color: var(--accent-magenta);
-  }
+  const projection = useMemo(() => {
+    return buildProjection(daily, total, target);
+  }, [daily, total, target]);
 
-  .hero-subtitle {
-    font-size: 17px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.75);
-    max-width: 560px;
-    line-height: 1.6;
-    margin-bottom: 36px;
-  }
+  const chartData = useMemo(() => {
+    return buildChartData(daily, total, target, showProjection ? projection : null);
+  }, [daily, total, target, showProjection, projection]);
 
-  .hero-stats {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
+  const avgDaily = daily.length > 0 ? Math.round(total / daily.length) : 0;
+  const peakValue = daily.length > 0 ? Math.max(...daily) : 0;
+  const peakIndex = daily.indexOf(peakValue);
 
-  .hero-stat {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 12px;
-    padding: 18px 24px;
-    backdrop-filter: blur(8px);
-    min-width: 160px;
-  }
+  const ranking = useMemo(() => {
+    const filteredList = scope === "regiao"
+      ? dddList.filter(d => DDDS[d].r === selectedRegiao)
+      : dddList;
 
-  .hero-stat .num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--vivo-white);
-    line-height: 1;
-  }
+    return filteredList.map(d => {
+      const info = DDDS[d];
+      const proj = buildProjection(info.d, info.t, target);
+      const avg = info.d.length > 0 ? Math.round(info.t / info.d.length) : 0;
+      return {
+        ddd: d,
+        cidade: info.c,
+        estado: info.e,
+        regiao: info.r,
+        total: info.t,
+        avg: avg,
+        dias: proj ? proj.dias : 999,
+        conf: proj ? proj.conf : 0,
+        status: proj ? proj.status : "?"
+      };
+    }).sort((x, y) => x.dias - y.dias);
+  }, [scope, selectedRegiao, target, dddList]);
 
-  .hero-stat .num span { color: var(--accent-magenta); }
+  const regionSummary = useMemo(() => {
+    return regionList.map(reg => {
+      const ri = REGIOES[reg];
+      const proj = buildProjection(ri.d, ri.t, target);
+      const avg = ri.d.length > 0 ? Math.round(ri.t / ri.d.length) : 0;
+      return {
+        regiao: reg,
+        total: ri.t,
+        avg: avg,
+        numDdds: ri.n,
+        projDias: proj ? proj.dias : 999,
+        conf: proj ? proj.conf : 0,
+        status: proj ? proj.status : "?",
+        color: REG_COLORS[reg]
+      };
+    }).sort((x, y) => y.total - x.total);
+  }, [target]);
 
-  .hero-stat .lbl {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.6);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 4px;
-  }
+  return (
+    <div style={{
+      fontFamily: FONTS.body,
+      background: COLORS.bg,
+      color: COLORS.text,
+      minHeight: "100vh"
+    }}>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
 
-  /* ── BODY ── */
-  .page-body {
-    background: var(--vivo-offwhite);
-    color: var(--text-dark);
-    padding: 48px 60px 80px;
-  }
-
-  /* ── SECTION HEADER ── */
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
-    margin-top: 52px;
-  }
-
-  .section-header:first-child { margin-top: 0; }
-
-  .section-badge {
-    background: var(--vivo-purple);
-    color: #fff;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 20px;
-  }
-
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--vivo-purple-dark);
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--vivo-gray), transparent);
-  }
-
-  /* ── TABLE ── */
-  .audience-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 2px 20px rgba(102,0,153,0.07);
-    margin-bottom: 8px;
-  }
-
-  .audience-table thead tr {
-    background: linear-gradient(90deg, var(--vivo-purple-dark), var(--vivo-purple));
-  }
-
-  .audience-table thead th {
-    padding: 14px 18px;
-    text-align: left;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
-  }
-
-  .audience-table thead th:last-child,
-  .audience-table thead th:nth-child(2),
-  .audience-table thead th:nth-child(3) {
-    text-align: right;
-  }
-
-  .audience-table tbody tr {
-    border-bottom: 1px solid #f0eaf7;
-    transition: background 0.15s;
-  }
-
-  .audience-table tbody tr:hover {
-    background: #fdf7ff;
-  }
-
-  .audience-table tbody tr:last-child {
-    border-bottom: none;
-  }
-
-  .audience-table tbody td {
-    padding: 11px 18px;
-    font-size: 13.5px;
-    color: var(--text-dark);
-  }
-
-  .audience-table tbody td:nth-child(2),
-  .audience-table tbody td:nth-child(3) {
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-    color: var(--vivo-purple);
-  }
-
-  .audience-table tbody td.no-data {
-    color: #bbb;
-    font-style: italic;
-  }
-
-  .row-highlight {
-    background: linear-gradient(90deg, #fdf0ff, #fff) !important;
-  }
-
-  .row-highlight td:first-child {
-    font-weight: 600;
-    color: var(--vivo-purple-dark);
-  }
-
-  /* Bar visual */
-  .bar-cell { width: 120px; }
-  .bar-wrap {
-    height: 6px;
-    background: #ede8f5;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .bar-fill {
-    height: 100%;
-    border-radius: 3px;
-    background: linear-gradient(90deg, var(--vivo-purple), var(--accent-magenta));
-  }
-
-  /* ── GRID CARDS ── */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-    margin-bottom: 8px;
-  }
-
-  .aud-card {
-    background: #fff;
-    border: 1px solid var(--vivo-gray);
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 1px 8px rgba(102,0,153,0.05);
-    transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .aud-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--vivo-purple), var(--accent-magenta));
-    border-radius: 0;
-  }
-
-  .aud-card:hover {
-    box-shadow: 0 4px 20px rgba(102,0,153,0.12);
-    transform: translateY(-2px);
-  }
-
-  .card-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 14px;
-    line-height: 1.4;
-    padding-left: 10px;
-  }
-
-  .card-metrics {
-    display: flex;
-    gap: 12px;
-    padding-left: 10px;
-  }
-
-  .card-metric {
-    flex: 1;
-  }
-
-  .card-metric .val {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--vivo-purple);
-    line-height: 1;
-  }
-
-  .card-metric .tag {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #999;
-    margin-top: 2px;
-  }
-
-  /* ── FOOTER ── */
-  .doc-footer {
-    background: var(--vivo-grape);
-    padding: 36px 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    border-top: 3px solid var(--vivo-purple);
-  }
-
-  .footer-note {
-    font-size: 12px;
-    color: rgba(255,255,255,0.45);
-    max-width: 520px;
-    line-height: 1.6;
-  }
-
-  .footer-logo {
-    opacity: 0.5;
-    height: 28px;
-  }
-
-  /* Print */
-  @media print {
-    body { background: #fff; }
-    .hero { background: #660099 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  }
-</style>
-</head>
-<body>
-
-<!-- ══ HERO ══ -->
-<div class="hero">
-  <div class="logo-area">
-    <!-- Vivo logo SVG -->
-    <svg class="vivo-logo-svg" viewBox="0 0 120 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="120" height="44" rx="8" fill="white"/>
-      <text x="12" y="31" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#660099" letter-spacing="-1">vivo</text>
-      <circle cx="102" cy="22" r="12" fill="#660099"/>
-      <circle cx="102" cy="22" r="8" fill="#cc00aa"/>
-    </svg>
-    <div class="logo-divider"></div>
-    <div class="logo-label">Ads Track</div>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">📡 Relatório de Audiências</div>
-    <h1 class="hero-title">Vivo Ads <span>Track</span><br>Audiências Disponíveis</h1>
-    <p class="hero-subtitle">
-      Catálogo completo de segmentos de audiência disponíveis na plataforma Vivo Ads Track, com alcance em Display e YouTube.
-    </p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="num">190<span>M</span></div>
-        <div class="lbl">Alcance Display Máx.</div>
+      {/* ═══ HEADER ═══ */}
+      <div style={{ background: COLORS.accent, padding: "13px 22px", color: "#fff" }}>
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          maxWidth: 1200, margin: "0 auto", flexWrap: "wrap", gap: 8
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+            <div style={{
+              width: 28, height: 28, background: "rgba(255,255,255,0.12)",
+              borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center",
+              fontFamily: FONTS.mono, fontWeight: 700, fontSize: 10.5
+            }}>TS</div>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 600 }}>Terra Sales</div>
+              <div style={{ fontSize: 9, opacity: 0.55, letterSpacing: "0.06em" }}>
+                MODELO ESTATISTICO - VELOCIDADE DE CAPTACAO POR DDD
+              </div>
+            </div>
+          </div>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 5,
+            background: "rgba(255,255,255,0.08)", padding: "3px 10px",
+            borderRadius: 10, fontSize: 9
+          }}>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ADE80" }} />
+            {TOTAL_GERAL.toLocaleString("pt-BR")} registros - 64 DDDs - 5 regioes
+          </div>
+        </div>
       </div>
-      <div class="hero-stat">
-        <div class="num">99<span>M</span></div>
-        <div class="lbl">Usuários YouTube Máx.</div>
-      </div>
-      <div class="hero-stat">
-        <div class="num">250<span>+</span></div>
-        <div class="lbl">Segmentos Ativos</div>
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 22px" }}>
+
+        {/* ═══ CONTROLS ═══ */}
+        <div style={{
+          display: "flex", gap: 10, marginBottom: 14,
+          flexWrap: "wrap", alignItems: "flex-end"
+        }}>
+          <div>
+            <div style={{
+              fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
+              textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
+            }}>Escopo</div>
+            <div style={{
+              display: "flex", border: "1px solid " + COLORS.border,
+              borderRadius: 4, overflow: "hidden"
+            }}>
+              <button
+                onClick={() => { setScope("ddd"); setActiveTab("chart"); }}
+                style={{
+                  padding: "7px 14px", fontSize: 11.5,
+                  fontWeight: scope === "ddd" ? 600 : 400,
+                  background: scope === "ddd" ? COLORS.accent : "#fff",
+                  color: scope === "ddd" ? "#fff" : COLORS.muted,
+                  border: "none", cursor: "pointer", fontFamily: FONTS.body
+                }}
+              >Por DDD</button>
+              <button
+                onClick={() => { setScope("regiao"); setActiveTab("chart"); }}
+                style={{
+                  padding: "7px 14px", fontSize: 11.5,
+                  fontWeight: scope === "regiao" ? 600 : 400,
+                  background: scope === "regiao" ? COLORS.accent : "#fff",
+                  color: scope === "regiao" ? "#fff" : COLORS.muted,
+                  border: "none", cursor: "pointer", fontFamily: FONTS.body
+                }}
+              >Por Regiao</button>
+            </div>
+          </div>
+
+          {scope === "ddd" ? (
+            <div style={{ flex: "1 1 280px" }}>
+              <div style={{
+                fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
+                textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
+              }}>DDD / Cidade</div>
+              <select
+                value={selectedDdd}
+                onChange={(ev) => setSelectedDdd(ev.target.value)}
+                style={{
+                  width: "100%", padding: "7px 10px", fontSize: 12,
+                  border: "1px solid " + COLORS.border, borderRadius: 4, background: "#fff"
+                }}
+              >
+                {dddList.map(d => (
+                  <option key={d} value={d}>
+                    ({d}) {DDDS[d].c} - {DDDS[d].e} - {DDDS[d].t} resp. - {DDDS[d].r}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <div style={{ flex: "1 1 220px" }}>
+              <div style={{
+                fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
+                textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
+              }}>Regiao</div>
+              <select
+                value={selectedRegiao}
+                onChange={(ev) => setSelectedRegiao(ev.target.value)}
+                style={{
+                  width: "100%", padding: "7px 10px", fontSize: 12,
+                  border: "1px solid " + COLORS.border, borderRadius: 4, background: "#fff"
+                }}
+              >
+                {regionList.map(reg => (
+                  <option key={reg} value={reg}>
+                    {reg} - {REGIOES[reg].t.toLocaleString("pt-BR")} resp. - {REGIOES[reg].n} DDDs
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div style={{ flex: "0 0 130px" }}>
+            <div style={{
+              fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
+              textTransform: "uppercase", color: COLORS.muted, marginBottom: 3
+            }}>Meta</div>
+            <input
+              type="number"
+              value={target}
+              onChange={(ev) => setTarget(Math.max(1, parseInt(ev.target.value) || 1))}
+              style={{
+                width: "100%", padding: "7px 10px", fontSize: 12,
+                fontFamily: FONTS.mono, border: "1px solid " + COLORS.border,
+                borderRadius: 4, background: "#fff", boxSizing: "border-box"
+              }}
+            />
+          </div>
+        </div>
+
+        {/* ═══ REGION CARDS ═══ */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
+          {regionSummary.map(reg => (
+            <div
+              key={reg.regiao}
+              onClick={() => { setScope("regiao"); setSelectedRegiao(reg.regiao); setActiveTab("chart"); }}
+              style={{
+                background: COLORS.card,
+                border: "1px solid " + (scope === "regiao" && selectedRegiao === reg.regiao ? COLORS.accent : COLORS.border),
+                borderRadius: 6, padding: "10px 14px", flex: "1 1 130px",
+                cursor: "pointer", transition: "all 0.12s",
+                borderTop: "3px solid " + reg.color
+              }}
+            >
+              <div style={{
+                fontSize: 9, fontWeight: 600, letterSpacing: "0.08em",
+                textTransform: "uppercase", color: reg.color, marginBottom: 2
+              }}>{reg.regiao}</div>
+              <div style={{
+                fontSize: 19, fontWeight: 700, fontFamily: FONTS.mono, lineHeight: 1.1
+              }}>{reg.total.toLocaleString("pt-BR")}</div>
+              <div style={{ fontSize: 8.5, color: COLORS.muted, marginTop: 2 }}>
+                {reg.numDdds} DDDs - {reg.avg} resp./dia - {(reg.total / TOTAL_GERAL * 100).toFixed(1)}%
+              </div>
+              <div style={{
+                fontSize: 8.5,
+                color: reg.status === "atingido" ? COLORS.accent : COLORS.warn,
+                fontWeight: 600, marginTop: 1
+              }}>
+                {reg.projDias}d p/ meta - {reg.conf}%
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ═══ KPIs ═══ */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
+          <KpiCard
+            label="Total Captado"
+            value={total.toLocaleString("pt-BR")}
+            subtitle={"em " + daily.length + " dia" + (daily.length !== 1 ? "s" : "") + " de coleta"}
+            accentColor={activeColor}
+          />
+          <KpiCard label="Media/Dia" value={avgDaily} subtitle="respostas por dia" accentColor="#3B82F6" />
+          <KpiCard
+            label="Pico"
+            value={daily.length > 0 ? "D" + (peakIndex + 1) : "-"}
+            subtitle={daily.length > 0 ? peakValue + " respostas" : ""}
+            accentColor={COLORS.warn}
+          />
+          <KpiCard
+            label="Dias p/ Meta"
+            value={projection ? projection.dias : "-"}
+            subtitle={projection ? projection.conf + "% confianca" : ""}
+            accentColor={projection && projection.status === "atingido" ? COLORS.accent : COLORS.danger}
+          />
+          <KpiCard
+            label="Vel. Projetada"
+            value={projection && projection.rate ? projection.rate + "/d" : avgDaily + "/d"}
+            subtitle="resp./dia estimadas"
+            accentColor="#8B5CF6"
+          />
+        </div>
+
+        {/* ═══ INFO BAR ═══ */}
+        <div style={{
+          display: "flex", gap: 14, alignItems: "center",
+          background: COLORS.card, border: "1px solid " + COLORS.border,
+          borderRadius: 5, padding: "7px 14px", marginBottom: 14,
+          fontSize: 11, flexWrap: "wrap"
+        }}>
+          {scope === "ddd" ? (
+            <>
+              <span><span style={{ color: COLORS.muted }}>DDD:</span> <strong>{selectedDdd}</strong></span>
+              <span style={{ color: COLORS.border }}>|</span>
+              <span><span style={{ color: COLORS.muted }}>Cidade:</span> <strong>{currentInfo ? currentInfo.c : ""}</strong></span>
+              <span style={{ color: COLORS.border }}>|</span>
+              <span><span style={{ color: COLORS.muted }}>UF:</span> <strong>{currentInfo ? currentInfo.e : ""}</strong></span>
+              <span style={{ color: COLORS.border }}>|</span>
+              <span><span style={{ color: COLORS.muted }}>Regiao:</span> <strong style={{ color: REG_COLORS[currentInfo ? currentInfo.r : ""] }}>{currentInfo ? currentInfo.r : ""}</strong></span>
+              <span style={{ color: COLORS.border }}>|</span>
+              <span><span style={{ color: COLORS.muted }}>% do total:</span> <strong>{(total / TOTAL_GERAL * 100).toFixed(1)}%</strong></span>
+            </>
+          ) : (
+            <>
+              <span><span style={{ color: COLORS.muted }}>Regiao:</span> <strong style={{ color: REG_COLORS[selectedRegiao] }}>{selectedRegiao}</strong></span>
+              <span style={{ color: COLORS.border }}>|</span>
+              <span><span style={{ color: COLORS.muted }}>DDDs ativos:</span> <strong>{currentRegInfo ? currentRegInfo.n : 0}</strong></span>
+              <span style={{ color: COLORS.border }}>|</span>
+              <span><span style={{ color: COLORS.muted }}>Total:</span> <strong>{total.toLocaleString("pt-BR")}</strong></span>
+              <span style={{ color: COLORS.border }}>|</span>
+              <span><span style={{ color: COLORS.muted }}>% do total:</span> <strong>{(total / TOTAL_GERAL * 100).toFixed(1)}%</strong></span>
+            </>
+          )}
+        </div>
+
+        {/* ═══ TABS ═══ */}
+        <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
+          <PillButton isActive={activeTab === "chart"} onClick={() => setActiveTab("chart")}>
+            Curva de Captacao
+          </PillButton>
+          <PillButton isActive={activeTab === "ranking"} onClick={() => setActiveTab("ranking")}>
+            {scope === "regiao" ? "DDDs - " + selectedRegiao : "Ranking por DDD"}
+          </PillButton>
+        </div>
+
+        {/* ═══ CHART TAB ═══ */}
+        {activeTab === "chart" && (
+          <div style={{
+            background: COLORS.card, border: "1px solid " + COLORS.border,
+            borderRadius: 6, padding: 16
+          }}>
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "center",
+              marginBottom: 10, flexWrap: "wrap", gap: 8
+            }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 400, fontFamily: FONTS.display }}>
+                  {viewMode === "acumulado" ? "Curva Acumulada de Respostas" : "Volume Diario de Respostas"}
+                </h3>
+                <p style={{ margin: "1px 0 0", fontSize: 10, color: COLORS.muted }}>
+                  {displayLabel}
+                </p>
+              </div>
+              <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+                <PillButton isActive={viewMode === "acumulado"} onClick={() => setViewMode("acumulado")}>
+                  Acumulado
+                </PillButton>
+                <PillButton isActive={viewMode === "diario"} onClick={() => setViewMode("diario")}>
+                  Diario
+                </PillButton>
+                <label style={{
+                  display: "flex", alignItems: "center", gap: 4,
+                  fontSize: 10, color: COLORS.secondary, cursor: "pointer", marginLeft: 6
+                }}>
+                  <input
+                    type="checkbox"
+                    checked={showProjection}
+                    onChange={(ev) => setShowProjection(ev.target.checked)}
+                    style={{ accentColor: COLORS.accent }}
+                  />
+                  Projecao
+                </label>
+              </div>
+            </div>
+
+            {daily.length === 0 ? (
+              <div style={{ padding: 28, textAlign: "center", color: COLORS.muted, fontSize: 12 }}>
+                Sem dados de curva para esta selecao.
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height={300}>
+                {viewMode === "acumulado" ? (
+                  <ComposedChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                    <defs>
+                      <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor={activeColor} stopOpacity={0.12} />
+                        <stop offset="100%" stopColor={activeColor} stopOpacity={0.01} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#EDF0F3" vertical={false} />
+                    <XAxis dataKey="dia" tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={{ stroke: COLORS.border }} />
+                    <YAxis tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={false} tickFormatter={(v) => v >= 1000 ? (v / 1000).toFixed(1) + "k" : v} />
+                    <Tooltip content={<ChartTooltip />} />
+                    <ReferenceLine y={target} stroke={COLORS.danger} strokeDasharray="6 3" strokeWidth={1.5} label={{ value: "Meta: " + target, position: "insideTopRight", fontSize: 10, fill: COLORS.danger, fontWeight: 600 }} />
+                    <Area dataKey="cum" fill="url(#areaGrad)" stroke={activeColor} strokeWidth={2} dot={false} name="Acumulado" activeDot={{ r: 3, stroke: "#fff", strokeWidth: 2 }} />
+                  </ComposedChart>
+                ) : (
+                  <BarChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#EDF0F3" vertical={false} />
+                    <XAxis dataKey="dia" tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={{ stroke: COLORS.border }} />
+                    <YAxis tick={{ fontSize: 10, fill: COLORS.muted }} tickLine={false} axisLine={false} />
+                    <Tooltip content={<ChartTooltip />} />
+                    <Bar dataKey="daily" name="Respostas" radius={[2, 2, 0, 0]}>
+                      {chartData.map((entry, idx) => (
+                        <Cell
+                          key={idx}
+                          fill={entry.tipo === "proj" ? "rgba(194,122,14,0.35)" : activeColor}
+                          opacity={entry.tipo === "proj" ? 0.6 : 0.85}
+                        />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                )}
+              </ResponsiveContainer>
+            )}
+
+            {showProjection && projection && projection.status === "projetado" && (
+              <div style={{
+                marginTop: 8, padding: "8px 11px",
+                background: "#FFF8ED", border: "1px solid #F5DEB0",
+                borderRadius: 4, fontSize: 10, color: "#92610E", lineHeight: 1.6
+              }}>
+                <strong>Projecao:</strong> Taxa estimada de <strong>{projection.rate} resp./dia</strong> - meta de {target.toLocaleString("pt-BR")} em ~<strong>{projection.dias} dias</strong> (confianca: {projection.conf}%).
+              </div>
+            )}
+
+            {projection && projection.status === "atingido" && (
+              <div style={{
+                marginTop: 8, padding: "8px 11px",
+                background: COLORS.accentLight, border: "1px solid #C3E0D1",
+                borderRadius: 4, fontSize: 10, color: COLORS.accent, lineHeight: 1.6
+              }}>
+                <strong>Meta atingida!</strong> Alcancou {target.toLocaleString("pt-BR")} respostas no <strong>dia {projection.dias}</strong>.
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ═══ RANKING TAB ═══ */}
+        {activeTab === "ranking" && (
+          <div style={{
+            background: COLORS.card, border: "1px solid " + COLORS.border,
+            borderRadius: 6, padding: 16
+          }}>
+            <h3 style={{ margin: "0 0 2px", fontSize: 15, fontWeight: 400, fontFamily: FONTS.display }}>
+              {scope === "regiao" ? "DDDs da regiao " + selectedRegiao : "Ranking Geral por DDD"}
+            </h3>
+            <p style={{ margin: "0 0 10px", fontSize: 10, color: COLORS.muted }}>
+              Meta: {target.toLocaleString("pt-BR")} respostas - {ranking.length} DDDs
+            </p>
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 11 }}>
+                <thead>
+                  <tr style={{ borderBottom: "2px solid " + COLORS.border }}>
+                    {["#", "DDD", "Cidade", "UF", "Regiao", "Media/dia", "Total", "Dias", "Conf."].map((header, idx) => (
+                      <th key={idx} style={{
+                        padding: "5px 7px",
+                        textAlign: idx > 4 ? "right" : "left",
+                        fontSize: 9, fontWeight: 600, letterSpacing: "0.06em",
+                        textTransform: "uppercase", color: COLORS.muted
+                      }}>{header}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {ranking.map((row, idx) => {
+                    const isSelected = row.ddd === selectedDdd && scope === "ddd";
+                    return (
+                      <tr
+                        key={row.ddd}
+                        onClick={() => { setSelectedDdd(row.ddd); setScope("ddd"); setActiveTab("chart"); }}
+                        style={{
+                          borderBottom: "1px solid " + COLORS.border,
+                          background: isSelected ? COLORS.accentLight : "transparent",
+                          cursor: "pointer"
+                        }}
+                        onMouseEnter={(ev) => { if (!isSelected) ev.currentTarget.style.background = "#F9FAFB"; }}
+                        onMouseLeave={(ev) => { if (!isSelected) ev.currentTarget.style.background = "transparent"; }}
+                      >
+                        <td style={{ padding: "6px 7px", fontFamily: FONTS.mono, fontSize: 9.5, color: COLORS.muted, fontWeight: 600 }}>{idx + 1}</td>
+                        <td style={{ padding: "6px 7px" }}>
+                          <span style={{
+                            background: isSelected ? COLORS.accent : "#F1F3F5",
+                            color: isSelected ? "#fff" : COLORS.text,
+                            padding: "1px 6px", borderRadius: 3,
+                            fontFamily: FONTS.mono, fontSize: 10, fontWeight: 600
+                          }}>{row.ddd}</span>
+                        </td>
+                        <td style={{ padding: "6px 7px", fontWeight: 500 }}>{row.cidade}</td>
+                        <td style={{ padding: "6px 7px", color: COLORS.muted }}>{row.estado}</td>
+                        <td style={{ padding: "6px 7px" }}>
+                          <span style={{ color: REG_COLORS[row.regiao], fontWeight: 500, fontSize: 10 }}>{row.regiao}</span>
+                        </td>
+                        <td style={{ padding: "6px 7px", textAlign: "right", fontFamily: FONTS.mono, fontSize: 10 }}>{row.avg}</td>
+                        <td style={{ padding: "6px 7px", textAlign: "right", fontFamily: FONTS.mono, fontSize: 10 }}>{row.total.toLocaleString("pt-BR")}</td>
+                        <td style={{ padding: "6px 7px", textAlign: "right" }}>
+                          <span style={{
+                            fontFamily: FONTS.mono, fontSize: 10, fontWeight: 700,
+                            color: row.status === "atingido" ? COLORS.accent : row.dias <= 20 ? COLORS.warn : COLORS.danger
+                          }}>{row.dias}d</span>
+                        </td>
+                        <td style={{ padding: "6px 7px", textAlign: "right" }}>
+                          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 4 }}>
+                            <div style={{ width: 34, height: 3.5, background: "#F1F3F5", borderRadius: 2, overflow: "hidden" }}>
+                              <div style={{
+                                height: "100%",
+                                width: row.conf + "%",
+                                background: row.conf > 75 ? COLORS.accent : row.conf > 50 ? COLORS.warn : COLORS.danger,
+                                borderRadius: 2
+                              }} />
+                            </div>
+                            <span style={{ fontFamily: FONTS.mono, fontSize: 9, color: COLORS.muted, minWidth: 22 }}>{row.conf}%</span>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* ═══ METHODOLOGY ═══ */}
+        <div style={{
+          background: COLORS.card, border: "1px solid " + COLORS.border,
+          borderRadius: 6, padding: "12px 16px", marginTop: 14
+        }}>
+          <h4 style={{ margin: "0 0 5px", fontSize: 12, fontWeight: 400, fontFamily: FONTS.display }}>Metodologia</h4>
+          <p style={{ margin: 0, fontSize: 10, color: COLORS.secondary, lineHeight: 1.65 }}>
+            Dados consolidados por DDD (independente de pesquisa). Taxa diaria calculada sobre dias ativos de coleta.
+            Projecao baseada na media ajustada pelo fator de decaimento (D1 a Dn). Regioes agregam todos os DDDs de
+            seus estados conforme IBGE. Base: <strong>2.842 respostas</strong>, <strong>64 DDDs</strong>,
+            <strong> 5 regioes</strong>, periodo 18/Fev - 25/Mar 2026.
+          </p>
+        </div>
+
+        <div style={{
+          textAlign: "center", padding: "10px 0 20px",
+          fontSize: 9, color: COLORS.muted, letterSpacing: "0.04em"
+        }}>
+          TERRA SALES - ANALISE ESTATISTICA - v2.1 - Base atualizada
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- ══ BODY ══ -->
-<div class="page-body">
-
-  <!-- ══ SEÇÃO 1: TOP ALCANCE ══ -->
-  <div class="section-header">
-    <div class="section-badge">01</div>
-    <div class="section-title">Grandes Alcances — Base & Terra</div>
-    <div class="section-line"></div>
-  </div>
-
-  <table class="audience-table">
-    <thead>
-      <tr>
-        <th>Audiência</th>
-        <th>Display</th>
-        <th>YouTube</th>
-        <th class="bar-cell">Escala</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="row-highlight"><td>All Users of Terra Brasil GA4</td><td>190.000.000</td><td>99.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr><td>All Users of Terra Brasil First Party Data</td><td>150.000.000</td><td>81.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:79%"></div></div></td></tr>
-      <tr><td>Users who have not seen web interstitials</td><td>150.000.000</td><td>58.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:79%"></div></div></td></tr>
-      <tr><td>Users who viewed web interstitials</td><td>98.000.000</td><td>55.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:52%"></div></div></td></tr>
-      <tr><td>Video Views</td><td>60.000.000</td><td>32.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:32%"></div></div></td></tr>
-      <tr><td>Casual Readers</td><td>42.000.000</td><td>24.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:22%"></div></div></td></tr>
-      <tr><td>Loyal Readers</td><td>35.000.000</td><td>19.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
-      <tr><td>Brand Lovers</td><td>19.300.000</td><td>17.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:10%"></div></div></td></tr>
-      <tr><td>Partner Type Interno</td><td>32.000.000</td><td>26.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:17%"></div></div></td></tr>
-      <tr><td>Partner Type Interno & Brand Lovers</td><td>8.200.000</td><td>8.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:4%"></div></div></td></tr>
-      <tr><td>FPD (GA4) — MDivo_Cliente Vivo</td><td>37.000.000</td><td>29.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:19%"></div></div></td></tr>
-      <tr><td>FPD — Usuários Logados</td><td>8.700.000</td><td>7.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:5%"></div></div></td></tr>
-      <tr><td>FPD — VIVO users</td><td>350.000</td><td>200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══ SEÇÃO 2: FLAT ALCANCE TOTAL / COMPORTAMENTAIS ══ -->
-  <div class="section-header">
-    <div class="section-badge">02</div>
-    <div class="section-title">Segmentos de Interesse — Comportamentais</div>
-    <div class="section-line"></div>
-  </div>
-
-  <table class="audience-table">
-    <thead>
-      <tr>
-        <th>Audiência</th>
-        <th>Display</th>
-        <th>YouTube</th>
-        <th class="bar-cell">Escala</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="row-highlight"><td>FLAT — Alcance Total</td><td>120.000.000</td><td>42.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr><td>Comunicação Tradicional</td><td>110.000.000</td><td>40.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:92%"></div></div></td></tr>
-      <tr><td>Redes Sociais Tradicionais</td><td>110.000.000</td><td>40.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:92%"></div></div></td></tr>
-      <tr><td>Redes Sociais Específicas</td><td>100.000.000</td><td>38.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:83%"></div></div></td></tr>
-      <tr><td>Redes Sociais Vídeo</td><td>100.000.000</td><td>39.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:83%"></div></div></td></tr>
-      <tr><td>Usuários Android</td><td>98.000.000</td><td>36.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:82%"></div></div></td></tr>
-      <tr><td>Videoconferência</td><td>96.000.000</td><td>36.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:80%"></div></div></td></tr>
-      <tr><td>Consumo Digital</td><td>95.000.000</td><td>35.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:79%"></div></div></td></tr>
-      <tr><td>Compra Online</td><td>91.000.000</td><td>33.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:76%"></div></div></td></tr>
-      <tr><td>RCS</td><td>86.000.000</td><td>32.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
-      <tr><td>Usuários 4G</td><td>83.000.000</td><td>29.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:69%"></div></div></td></tr>
-      <tr><td>Bancos Tradicionais</td><td>81.000.000</td><td>31.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:68%"></div></div></td></tr>
-      <tr><td>Streaming Música</td><td>75.000.000</td><td>29.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:63%"></div></div></td></tr>
-      <tr><td>Fintechs</td><td>73.000.000</td><td>26.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:61%"></div></div></td></tr>
-      <tr><td>Pagamento Digital</td><td>72.000.000</td><td>27.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:60%"></div></div></td></tr>
-      <tr><td>Carentes</td><td>67.000.000</td><td>24.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:56%"></div></div></td></tr>
-      <tr><td>Notícias</td><td>67.000.000</td><td>26.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:56%"></div></div></td></tr>
-      <tr><td>Fabricantes de Aparelhos</td><td>60.000.000</td><td>22.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:50%"></div></div></td></tr>
-      <tr><td>Streaming Vídeo</td><td>57.000.000</td><td>22.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:48%"></div></div></td></tr>
-      <tr><td>Com Recarga 3 Meses</td><td>55.000.000</td><td>17.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:46%"></div></div></td></tr>
-      <tr><td>Baixo Risco Serasa</td><td>53.000.000</td><td>20.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:44%"></div></div></td></tr>
-      <tr><td>Apostas</td><td>48.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div></td></tr>
-      <tr><td>Usuários Samsung</td><td>48.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div></td></tr>
-      <tr><td>Usuários Meu Vivo</td><td>44.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:37%"></div></div></td></tr>
-      <tr><td>Alto Risco Serasa</td><td>43.000.000</td><td>14.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div></td></tr>
-      <tr><td>Usuários 5G</td><td>43.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div></td></tr>
-      <tr><td>Inadimplentes</td><td>41.000.000</td><td>12.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:34%"></div></div></td></tr>
-      <tr><td>Estoura Pacote de Dados</td><td>40.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:33%"></div></div></td></tr>
-      <tr><td>Apps Bancos</td><td>38.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:32%"></div></div></td></tr>
-      <tr><td>Nova Classe Média</td><td>33.000.000</td><td>12.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:28%"></div></div></td></tr>
-      <tr><td>Delivery</td><td>30.000.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:25%"></div></div></td></tr>
-      <tr><td>Loja Gamer</td><td>29.000.000</td><td>10.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:24%"></div></div></td></tr>
-      <tr><td>Comparador de Celular</td><td>28.000.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:23%"></div></div></td></tr>
-      <tr><td>Esportes Diversos</td><td>26.000.000</td><td>10.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:22%"></div></div></td></tr>
-      <tr><td>Apps Finanças</td><td>25.000.000</td><td>10.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
-      <tr><td>Usuários Apple</td><td>25.000.000</td><td>8.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
-      <tr><td>Usuários Motorola</td><td>25.000.000</td><td>9.600.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
-      <tr><td>Usuários iOS</td><td>25.000.000</td><td>8.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
-      <tr><td>Bancos Específicos</td><td>23.000.000</td><td>8.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:19%"></div></div></td></tr>
-      <tr><td>Usuários Xiaomi</td><td>22.000.000</td><td>8.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
-      <tr><td>Adulto Digital Classe Média</td><td>21.000.000</td><td>7.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
-      <tr><td>Concorrência</td><td>21.000.000</td><td>8.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:18%"></div></div></td></tr>
-      <tr><td>Beleza</td><td>20.000.000</td><td>7.900.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:17%"></div></div></td></tr>
-      <tr><td>Sênior Vida Confortável</td><td>20.000.000</td><td>9.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:17%"></div></div></td></tr>
-      <tr><td>Celular Top de Linha</td><td>18.000.000</td><td>6.700.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:15%"></div></div></td></tr>
-      <tr><td>Portais Gamers</td><td>18.000.000</td><td>6.200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:15%"></div></div></td></tr>
-      <tr><td>Gamers</td><td>16.000.000</td><td>6.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
-      <tr><td>Juventude Trabalhadora</td><td>16.000.000</td><td>5.600.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
-      <tr><td>Médio Risco Serasa</td><td>16.000.000</td><td>5.700.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══ SEÇÃO 3: DEMOGRÁFICOS ══ -->
-  <div class="section-header">
-    <div class="section-badge">03</div>
-    <div class="section-title">Segmentos Demográficos</div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="cards-grid">
-    <div class="aud-card"><div class="card-name">Ciente Casa</div><div class="card-metrics"><div class="card-metric"><div class="val">58M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">21M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Plano Controle</div><div class="card-metrics"><div class="card-metric"><div class="val">18M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">12M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Púrpura</div><div class="card-metrics"><div class="card-metric"><div class="val">17M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">11M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Classe C</div><div class="card-metrics"><div class="card-metric"><div class="val">15M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">9,9M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Gênero Masculino</div><div class="card-metrics"><div class="card-metric"><div class="val">15M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">9,5M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Gênero Feminino</div><div class="card-metrics"><div class="card-metric"><div class="val">14M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">8,9M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Plano Pré</div><div class="card-metrics"><div class="card-metric"><div class="val">12M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">7,4M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Score Serasa Baixo Risco</div><div class="card-metrics"><div class="card-metric"><div class="val">12M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">8,2M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Silver</div><div class="card-metrics"><div class="card-metric"><div class="val">3M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,9M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Gold</div><div class="card-metrics"><div class="card-metric"><div class="val">2M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,3M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Platinum</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">630K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Plano Pós</div><div class="card-metrics"><div class="card-metric"><div class="val">4M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">2,5M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Plano Easy</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">690K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Fibra BL</div><div class="card-metrics"><div class="card-metric"><div class="val">5,8M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">2,4M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Classe B</div><div class="card-metrics"><div class="card-metric"><div class="val">8,4M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,1M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Classe A</div><div class="card-metrics"><div class="card-metric"><div class="val">1,2M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">680K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Classe D</div><div class="card-metrics"><div class="card-metric"><div class="val">8,6M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,4M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Classe E</div><div class="card-metrics"><div class="card-metric"><div class="val">1,4M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1M</div><div class="tag">YouTube</div></div></div></div>
-  </div>
-
-  <!-- ══ SEÇÃO: FAIXAS ETÁRIAS ══ -->
-  <div class="section-header">
-    <div class="section-badge">04</div>
-    <div class="section-title">Segmentos por Faixa Etária</div>
-    <div class="section-line"></div>
-  </div>
-
-  <table class="audience-table">
-    <thead>
-      <tr><th>Faixa Etária</th><th>Display</th><th>YouTube</th><th class="bar-cell">Escala</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>18 a 20 anos</td><td>530.000</td><td>430.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:14%"></div></div></td></tr>
-      <tr><td>21 a 24 anos</td><td>2.000.000</td><td>1.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:52%"></div></div></td></tr>
-      <tr><td>25 a 29 anos</td><td>3.500.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:90%"></div></div></td></tr>
-      <tr class="row-highlight"><td>30 a 34 anos</td><td>3.700.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:95%"></div></div></td></tr>
-      <tr class="row-highlight"><td>35 a 39 anos</td><td>3.900.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr class="row-highlight"><td>40 a 44 anos</td><td>3.900.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr><td>45 a 49 anos</td><td>3.500.000</td><td>2.100.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:90%"></div></div></td></tr>
-      <tr><td>50 a 54 anos</td><td>2.800.000</td><td>1.700.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
-      <tr><td>55 a 59 anos</td><td>2.300.000</td><td>1.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:59%"></div></div></td></tr>
-      <tr><td>60 a 64 anos</td><td>2.000.000</td><td>1.200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:51%"></div></div></td></tr>
-      <tr><td>65 a 69 anos</td><td>1.500.000</td><td>930.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:38%"></div></div></td></tr>
-      <tr><td>70 a 74 anos</td><td>1.000.000</td><td>620.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:26%"></div></div></td></tr>
-      <tr><td>75 anos ou mais</td><td>1.000.000</td><td>610.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:26%"></div></div></td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══ SEÇÃO 5: DDD / UF ══ -->
-  <div class="section-header">
-    <div class="section-badge">05</div>
-    <div class="section-title">Segmentos por DDD / UF</div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="cards-grid">
-    <div class="aud-card"><div class="card-name">DDD/UF São Paulo (SP)</div><div class="card-metrics"><div class="card-metric"><div class="val">9M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,6M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Rio de Janeiro (RJ)</div><div class="card-metrics"><div class="card-metric"><div class="val">2,7M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,7M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Minas Gerais (MG)</div><div class="card-metrics"><div class="card-metric"><div class="val">4,6M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">2,8M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Bahia (BA)</div><div class="card-metrics"><div class="card-metric"><div class="val">1,7M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Pernambuco (PE)</div><div class="card-metrics"><div class="card-metric"><div class="val">990K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">610K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Ceará (CE)</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">680K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Pará (PA)</div><div class="card-metrics"><div class="card-metric"><div class="val">1,1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">690K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Rio Grande do Sul (RS)</div><div class="card-metrics"><div class="card-metric"><div class="val">2,3M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1,4M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Paraná (PR)</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">650K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Santa Catarina (SC)</div><div class="card-metrics"><div class="card-metric"><div class="val">1M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">640K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Amazonas (AM)</div><div class="card-metrics"><div class="card-metric"><div class="val">710K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">460K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Goiás (GO)</div><div class="card-metrics"><div class="card-metric"><div class="val">730K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">440K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Mato Grosso (MT)</div><div class="card-metrics"><div class="card-metric"><div class="val">800K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">460K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Dist. Federal (DF)</div><div class="card-metrics"><div class="card-metric"><div class="val">700K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">470K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Maranhão (MA)</div><div class="card-metrics"><div class="card-metric"><div class="val">660K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">390K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Espírito Santo (ES)</div><div class="card-metrics"><div class="card-metric"><div class="val">1,3M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">770K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Acre (AC)</div><div class="card-metrics"><div class="card-metric"><div class="val">8,5M</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">5,4M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">DDD/UF Mato Grosso do Sul (MS)</div><div class="card-metrics"><div class="card-metric"><div class="val">560K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">320K</div><div class="tag">YouTube</div></div></div></div>
-  </div>
-
-  <!-- ══ SEÇÃO 6: EVENTOS MAPEADOS ══ -->
-  <div class="section-header">
-    <div class="section-badge">06</div>
-    <div class="section-title">Eventos Mapeados — Vivo Ads Track</div>
-    <div class="section-line"></div>
-  </div>
-
-  <table class="audience-table">
-    <thead>
-      <tr><th>Evento</th><th>Display</th><th>YouTube</th><th class="bar-cell">Escala</th></tr>
-    </thead>
-    <tbody>
-      <tr class="row-highlight"><td>Rock In Rio</td><td>89.000</td><td>37.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr><td>The Town 2025</td><td>54.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:61%"></div></div></td></tr>
-      <tr><td>Beauty Fair 2025</td><td>54.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:61%"></div></div></td></tr>
-      <tr><td>Carnaval Sambódromo SP (Anhembi)</td><td>59.000</td><td>27.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:66%"></div></div></td></tr>
-      <tr><td>Carnaval Sapucaí (RJ)</td><td>55.000</td><td>25.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:62%"></div></div></td></tr>
-      <tr><td>Lollapalooza</td><td>48.000</td><td>20.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:54%"></div></div></td></tr>
-      <tr><td>Parada do Orgulho LGBTQIA+</td><td>58.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:65%"></div></div></td></tr>
-      <tr><td>Festa do Peão de Barretos</td><td>33.000</td><td>13.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:37%"></div></div></td></tr>
-      <tr><td>BGS (Brasil Game Show)</td><td>40.000</td><td>16.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:45%"></div></div></td></tr>
-      <tr><td>Gamescom Latam</td><td>67.000</td><td>31.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:75%"></div></div></td></tr>
-      <tr><td>Tomorrowland</td><td>10.000</td><td>6.700</td><td><div class="bar-wrap"><div class="bar-fill" style="width:11%"></div></div></td></tr>
-      <tr><td>CCXP</td><td>18.000</td><td>8.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:20%"></div></div></td></tr>
-      <tr><td>Oktoberfest Blumenau</td><td>18.000</td><td>8.300</td><td><div class="bar-wrap"><div class="bar-fill" style="width:20%"></div></div></td></tr>
-      <tr><td>São Paulo Fashion Week 2024</td><td>7.000</td><td>3.300</td><td><div class="bar-wrap"><div class="bar-fill" style="width:8%"></div></div></td></tr>
-      <tr><td>Festival ITU 2025</td><td>19.000</td><td>8.400</td><td><div class="bar-wrap"><div class="bar-fill" style="width:21%"></div></div></td></tr>
-      <tr><td>Terra Verão 2025</td><td>26.000</td><td>12.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:29%"></div></div></td></tr>
-      <tr><td>SBC Summit RJ 2025</td><td>14.000</td><td>6.600</td><td><div class="bar-wrap"><div class="bar-fill" style="width:16%"></div></div></td></tr>
-      <tr><td>Agrishow</td><td>64.000</td><td>27.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
-      <tr><td>Expointer</td><td>51.000</td><td>24.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:57%"></div></div></td></tr>
-      <tr><td>Visitantes Aeroporto Guarulhos (Cumbica)</td><td>690.000</td><td>290.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr><td>Visitantes Aeroporto Congonhas</td><td>400.000</td><td>170.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:58%"></div></div></td></tr>
-      <tr><td>Público Sala VIP Guarulhos</td><td>140.000</td><td>60.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:20%"></div></div></td></tr>
-      <tr><td>Público Sala VIP Congonhas</td><td>64.000</td><td>27.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:9%"></div></div></td></tr>
-      <tr><td>Clientes Transitantes Shoppings Luxo</td><td>330.000</td><td>140.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:48%"></div></div></td></tr>
-      <tr><td>Possíveis Frequentadores Carrefour SP</td><td>500.000</td><td>230.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div></td></tr>
-      <tr><td>Frequentadores Hopi Hari</td><td>93.000</td><td>39.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
-      <tr><td>Possíveis Clientes Postos Vibra</td><td>2.700.000</td><td>1.200.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr><td>Show Metallica</td><td>5.400</td><td>2.500</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
-      <tr><td>Show Maroon 5</td><td>2.800</td><td>1.100</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
-      <tr><td>NFL SP</td><td>1.200</td><td>500</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══ SEÇÃO 7: TIMES DE FUTEBOL ══ -->
-  <div class="section-header">
-    <div class="section-badge">07</div>
-    <div class="section-title">Times de Futebol — Login Terra Rachas</div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="cards-grid">
-    <div class="aud-card"><div class="card-name">Flamengo</div><div class="card-metrics"><div class="card-metric"><div class="val">41K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">30K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Corinthians</div><div class="card-metrics"><div class="card-metric"><div class="val">34K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">31K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Palmeiras</div><div class="card-metrics"><div class="card-metric"><div class="val">110K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">46K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">São Paulo FC</div><div class="card-metrics"><div class="card-metric"><div class="val">97K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">38K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Grêmio</div><div class="card-metrics"><div class="card-metric"><div class="val">54K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">21K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Internacional</div><div class="card-metrics"><div class="card-metric"><div class="val">49K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">18K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Vasco</div><div class="card-metrics"><div class="card-metric"><div class="val">48K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">21K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Botafogo</div><div class="card-metrics"><div class="card-metric"><div class="val">47K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">20K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Cruzeiro</div><div class="card-metrics"><div class="card-metric"><div class="val">46K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">19K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Fluminense</div><div class="card-metrics"><div class="card-metric"><div class="val">41K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">18K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Santos</div><div class="card-metrics"><div class="card-metric"><div class="val">64K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">25K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Atlético Mineiro</div><div class="card-metrics"><div class="card-metric"><div class="val">1,8K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">980</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Torcedores Atlético MG (BI)</div><div class="card-metrics"><div class="card-metric"><div class="val">39K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">16K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Bahia</div><div class="card-metrics"><div class="card-metric"><div class="val">18K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">7,9K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Bragantino</div><div class="card-metrics"><div class="card-metric"><div class="val">9,4K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">3,1K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Chapecoense</div><div class="card-metrics"><div class="card-metric"><div class="val">3,9K</div><div class="tag">Display</div></div><div class="card-metric"><div class="val">1K</div><div class="tag">YouTube</div></div></div></div>
-  </div>
-
-  <!-- ══ SEÇÃO 8: TERRA TEMÁTICAS ══ -->
-  <div class="section-header">
-    <div class="section-badge">08</div>
-    <div class="section-title">Audiências Temáticas — Portal Terra</div>
-    <div class="section-line"></div>
-  </div>
-
-  <table class="audience-table">
-    <thead>
-      <tr><th>Seção / Temática</th><th>Display</th><th>YouTube</th><th class="bar-cell">Escala</th></tr>
-    </thead>
-    <tbody>
-      <tr class="row-highlight"><td>Diversão</td><td>22.000.000</td><td>19.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div></td></tr>
-      <tr class="row-highlight"><td>Vida e Estilo</td><td>20.000.000</td><td>18.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:91%"></div></div></td></tr>
-      <tr><td>Notícias (Terra)</td><td>18.000.000</td><td>16.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:82%"></div></div></td></tr>
-      <tr><td>Esportes</td><td>15.000.000</td><td>13.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:68%"></div></div></td></tr>
-      <tr><td>Byte (Tech)</td><td>13.000.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:59%"></div></div></td></tr>
-      <tr><td>Esportes / Futebol / Flamengo</td><td>5.900.000</td><td>2.400.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:27%"></div></div></td></tr>
-      <tr><td>Economia</td><td>6.300.000</td><td>8.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:29%"></div></div></td></tr>
-      <tr><td>Redação Terra</td><td>8.400.000</td><td>11.000.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:38%"></div></div></td></tr>
-      <tr><td>Nós</td><td>2.000.000</td><td>4.500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:9%"></div></div></td></tr>
-      <tr><td>Capa</td><td>2.900.000</td><td>2.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td></tr>
-      <tr><td>GameOn</td><td>33.000</td><td>17.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
-      <tr><td>GAMES / Cultura Geek Alcance</td><td>6.800.000</td><td>2.800.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:31%"></div></div></td></tr>
-      <tr><td>Audiência (GA4) Velvet</td><td>1.500.000</td><td>940.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:7%"></div></div></td></tr>
-      <tr><td>Terra Source Social (all)</td><td>700.000</td><td>500.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:3%"></div></div></td></tr>
-      <tr><td>Terra Source Social (Facebook)</td><td>180.000</td><td>72.000</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
-      <tr><td>Terra Source Social (Instagram)</td><td>12.000</td><td>6.300</td><td><div class="bar-wrap"><div class="bar-fill" style="width:1%"></div></div></td></tr>
-    </tbody>
-  </table>
-
-  <!-- ══ SEÇÃO 9: YOUTUBE EXCLUSIVOS ══ -->
-  <div class="section-header">
-    <div class="section-badge">09</div>
-    <div class="section-title">Audiências Exclusivas YouTube — Canal TerraBrasil</div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="cards-grid">
-    <div class="aud-card"><div class="card-name">Viewed any video from a channel — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">5,5M</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Liked any video from a channel — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">440K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Subscribed to a channel — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">210K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Added any video from a channel to a playlist — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">11K</div><div class="tag">YouTube</div></div></div></div>
-    <div class="aud-card"><div class="card-name">Visited a channel page — TerraBrasil</div><div class="card-metrics"><div class="card-metric"><div class="val">29K</div><div class="tag">YouTube</div></div></div></div>
-  </div>
-
-</div>
-
-<!-- ══ FOOTER ══ -->
-<div class="doc-footer">
-  <div>
-    <svg height="28" viewBox="0 0 120 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo">
-      <rect width="120" height="44" rx="8" fill="white" fill-opacity="0.15"/>
-      <text x="12" y="31" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="white" letter-spacing="-1">vivo</text>
-      <circle cx="102" cy="22" r="12" fill="white" fill-opacity="0.3"/>
-      <circle cx="102" cy="22" r="8" fill="white" fill-opacity="0.5"/>
-    </svg>
-  </div>
-  <div class="footer-note">
-    Material de uso exclusivo para apresentação comercial. Dados de audiência referentes à plataforma Vivo Ads Track e Portal Terra. Os números representam estimativas de alcance e podem variar conforme período de análise. Confidencial.
-  </div>
-</div>
-
-</body>
-</html>
+  );
+}
